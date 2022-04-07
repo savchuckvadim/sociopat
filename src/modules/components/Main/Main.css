@@ -1,18 +1,19 @@
-body {
+/* body {
     padding: 0%;
     margin: 0%;
-}
-Header{
+} */
+/* Header{
     height: 10vh;
     background-color: rgba(31, 27, 43, 0.801);
     padding: 0%;
     margin: 0%;
-}
+} */
 #main {
     display: grid;
     grid-template-columns: 15% 85%;
     padding: 0%;
     margin: 0%;
+    min-height: 93vh;
 
 }
 
@@ -27,11 +28,12 @@ Header{
 }
 
 #left__menu {
-    padding: 3vh;
+    padding: 5vh;
     height: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .left__menu__item {
@@ -47,7 +49,7 @@ Header{
     /* width: 70vh; */
     /* height: 60vh; */
     margin: 0px;
-    padding: 10%;
+    padding: 0%;
 
 
 

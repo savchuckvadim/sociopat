@@ -1,0 +1,32 @@
+
+.new__message {
+    position: absolute;
+    bottom: 0;
+    /* left: 0; */
+    right: 0;
+    width: 85%;
+    height: 7vh;
+    background-color: rgb(134, 54, 54);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .form {
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: baseline;
+
+} */
+
+.current__input {
+    width: 100vh;
+    height: 4vh;
+}
+
+.current__btn {
+    height: 5vh;
+
+}

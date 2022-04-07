@@ -1,0 +1,67 @@
+.messages__area {
+    display: grid;
+    grid-template-areas:
+        "a b b b b b "
+        "a b b b b b "
+        "a b b b b b";
+    background-color: bisque;
+    height: 100%;
+
+}
+
+.dialogs {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    grid-area: a;
+}
+
+.dialog {
+    display: block;
+    background-color: rgb(255, 140, 0);
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 4px;
+}
+
+
+.iconOfDialog {
+    border-radius: 50%;
+    background-color: rgb(14, 74, 240);
+    width: 7vh;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5vh;
+}
+
+.lastMessage {
+    border-style: dotted;
+    border-width: 0.5px;
+    width: 65%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.lastMessage__title, .lastMessage__text {
+    display: block;
+    margin: 0;
+    padding: 0;
+    margin-left: 5px;
+}
+
+.currentDialogs {
+    grid-area: b;
+}
+
+
+
+
