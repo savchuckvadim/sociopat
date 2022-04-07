@@ -18,10 +18,10 @@ const Main = () => {
                 </div>
                 <div id="main__area">
                     <Routes>
-                        <Route path="/" render={() => <Profile/>} />
-                        <Route exact path="/profile" component={Profile} />
-                        <Route  path="/messages/" component={Messages} />
-                        <Route  path="/messages/dialog/" component={<Messages />} />
+                        <Route exact path="/" element={<Profile />} />
+                        <Route exact path="/profile" element={<Profile />} />
+                        <Route  path="/messages/" element={<Messages />} />
+                        {/* <Route  path="/messages/dialog/" element={<Messages />} /> */}
                         <Route exact path="/users" element={<Users />} />
                     </Routes>
                 </div>

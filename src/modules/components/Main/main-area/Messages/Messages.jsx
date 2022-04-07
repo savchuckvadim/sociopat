@@ -9,7 +9,7 @@ const Messages = () => (
     <div className={style.messages__area}>
 
         <div className={style.dialogs}>
-            <NavLink to="dialog/1">
+            {/* <NavLink to="dialog/1"> */}
                 <div className={style.dialog}>
                     <div className={style.iconOfDialog}>icon</div>
                     <div className={style.lastMessage}>
@@ -17,7 +17,7 @@ const Messages = () => (
                         <p className={style.lastMessage__text}>Last Message</p>
                     </div>
                 </div>
-            </NavLink>
+            {/* </NavLink> */}
 
             <div className={style.dialog}>
                 <div className={style.iconOfDialog}>icon</div>
@@ -42,10 +42,10 @@ const Messages = () => (
             </div>
         </div>
         <div className={style.currentDialogs}>
-            <Routes>
+            {/* <Routes>
                 <Route path="/dialog/1" component={<CurrentDialog />} />
-            </Routes>
-
+            </Routes> */}
+            <CurrentDialog />
             <NewMessageSendArea />
 
         </div>
