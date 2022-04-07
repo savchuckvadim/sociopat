@@ -20,7 +20,9 @@ const Main = () => {
                     <Routes>
                         <Route exact path="/" element={<Profile />} />
                         <Route exact path="/profile" element={<Profile />} />
-                        <Route  path="/messages/" element={<Messages />} />
+                        <Route  path="/messages" element={<Messages />} />
+                        <Route  path="/messages" element={<Messages />} />
+                        <Route  path="/dialog/1" element={<Messages />} />
                         {/* <Route  path="/messages/dialog/" element={<Messages />} /> */}
                         <Route exact path="/users" element={<Users />} />
                     </Routes>

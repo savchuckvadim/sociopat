@@ -14,11 +14,11 @@ const startApp = (store, state) => {
   root.render(
     <React.StrictMode>
       <Provider store={store}>
-      <BrowserRouter>
-        <App state={state} />
+        <BrowserRouter>
+          <App state={state} />
         </BrowserRouter>
       </Provider>
-     
+
     </React.StrictMode>
   )
 };

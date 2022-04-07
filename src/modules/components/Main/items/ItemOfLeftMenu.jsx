@@ -1,16 +1,14 @@
 import { NavLink } from 'react-router-dom';
-import Profile from '../main-area/Profile/Profile';
+import style from './ItemOfLeftMenu.module.css'
 
 
 
 const Item = (props) => {
 
-    let result = [];
-    for (let i = 0; i < props.namesOfItems.length; i++) {
-        result.push(<NavLink key={i} className='left__menu__item' to={props.namesOfLink[i]}>{props.namesOfItems[i]}</NavLink>)
+    let result = props.namesOfItems.map((name, i) => (
+       <NavLink key={i}  activeclassname={style.active} className={style.left__menu__item} to={props.namesOfLink[i]}>{name}</NavLink>
+    ))
 
-    }
-    {/* <NavLink className="left__menu__item" to={props.link}>{props.nameOfItem}</NavLink> */ }
     return (
         result
     )

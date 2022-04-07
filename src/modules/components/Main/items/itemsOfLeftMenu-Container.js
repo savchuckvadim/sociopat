@@ -1,7 +1,6 @@
 import { connect } from "react-redux"
 import Item from "./ItemOfLeftMenu"
 
-
 const mapStateToProps = (state) => {
         
     return {
