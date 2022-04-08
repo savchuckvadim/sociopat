@@ -9,7 +9,7 @@ const Messages = () => (
     <div className={style.messages__area}>
 
         <div className={style.dialogs}>
-            <NavLink to="/dialog/1">
+            <NavLink to="dialog/1">
                 <div className={style.dialog}>
                     <div className={style.iconOfDialog}>icon</div>
                     <div className={style.lastMessage}>
@@ -43,7 +43,7 @@ const Messages = () => (
         </div>
         <div className={style.currentDialogs}>
             <Routes>
-                <Route path="/dialog/1" element={<CurrentDialog />} />
+                <Route path=":dialog/1" element={<CurrentDialog />} />
             </Routes>
           
             <NewMessageSendArea />
