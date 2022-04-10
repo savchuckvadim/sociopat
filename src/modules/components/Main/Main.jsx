@@ -26,9 +26,8 @@ const Main = () => {
                        
 
                             <Route path="profile" element={<Profile />} />
-                            <Route path="messages" element={<Messages />}>
-                                <Route path=":dialog/1" element={<CurrentDialog />} />
-                            </Route>
+                            <Route path="messages//*" element={<Messages />}/>
+                            
                             <Route path="/messages" element={<Messages />} />
 
                             {/* <Route  path="/messages/dialog/" element={<Messages />} /> */}
