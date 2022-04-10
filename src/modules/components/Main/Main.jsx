@@ -5,8 +5,6 @@ import { LeftItemsContainer } from "./items/itemsOfLeftMenu-Container"
 import './Main.css';
 import Messages from "./main-area/Messages/Messages";
 import Users from "./main-area/Users/Users";
-import Layout from "../Route/Layout";
-import CurrentDialog from "./main-area/Messages/CurrentDialog.jsx/CurrentDialog";
 
 
 const Main = () => {
@@ -17,22 +15,13 @@ const Main = () => {
                 <div id="left__area">
                     <div id="left__menu">
                         <LeftItemsContainer />
-                        {/* <Layout /> */}
                     </div>
-
                 </div>
                 <div id="main__area">
                     <Routes>
-                       
-
-                            <Route path="profile" element={<Profile />} />
-                            <Route path="messages//*" element={<Messages />}/>
-                            
-                            <Route path="/messages" element={<Messages />} />
-
-                            {/* <Route  path="/messages/dialog/" element={<Messages />} /> */}
-                            <Route exact path="/users" element={<Users />} />
-                       
+                        <Route path="profile" element={<Profile />} />
+                        <Route path="messages//*" element={<Messages />} />
+                        <Route exact path="users" element={<Users />} />
                     </Routes>
                 </div>
             </main>

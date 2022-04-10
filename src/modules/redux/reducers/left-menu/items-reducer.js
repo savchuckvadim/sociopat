@@ -1,7 +1,7 @@
 const LEFT_ITEMS = 'LEFT_ITEMS';
 
 let initialState = {
-    namesOfLink: ['/profile', '/messages', '/users'],
+    namesOfLink: ['profile', 'messages/dialog/1', 'users'],
     namesOfItems: ['Profile', 'Messages', 'Users']
 };
 
