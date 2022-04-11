@@ -8,13 +8,13 @@ const mapStateToProps = (state) => {
 
         profile: state.profileReducer,
         posts: state.profileReducer.posts
-
     }
 }
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
 
+    
     return {
-
+       
 
     }
 }

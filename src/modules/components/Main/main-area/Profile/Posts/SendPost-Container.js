@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { changeCurrentPostActionCreator } from "../../../../../redux/reducers/posts/send-post-reducer"
+import { addPostActionCreator } from "../../../../../redux/reducers/profile-reducer";
 import SendPost from "./SendPost";
 
 
@@ -15,9 +16,18 @@ const mapDispatchToProps = (dispatch) => {
         const actionChangeCurrentPost = changeCurrentPostActionCreator(value)
         dispatch(actionChangeCurrentPost);
     }
-    
+    const addPost = (value) => {
+        
+        if(value){
+            const action = addPostActionCreator(value);
+            dispatch(action);
+        
+        }
+       
+    }
     return {
-        changeCurrentPost:changeCurrentPost
+        changeCurrentPost,
+        addPost
     }
 };
 
