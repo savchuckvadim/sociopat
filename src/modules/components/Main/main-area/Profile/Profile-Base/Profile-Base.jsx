@@ -1,7 +1,7 @@
 import Icon from '../../../../Elements/Icon';
 import style from './Profile-Base.module.css'
-import SendPost from '../Posts/SendPost';
 import { SendPostContainer } from '../Posts/SendPost-Container';
+import { PostsContainer } from '../Posts/Posts-Container';
 
 
 const ProfileBase = (props) => {
@@ -23,6 +23,7 @@ const ProfileBase = (props) => {
             <div className={style.posts__area}>
                 <h3 className={style.post__title}>My Posts</h3>
                 <SendPostContainer/>
+                <PostsContainer/>
             </div>
         </div>
     )

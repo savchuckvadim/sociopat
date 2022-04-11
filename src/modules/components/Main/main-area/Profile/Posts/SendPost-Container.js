@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
         const actionChangeCurrentPost = changeCurrentPostActionCreator(value)
         dispatch(actionChangeCurrentPost);
     }
-    debugger
+    
     return {
         changeCurrentPost:changeCurrentPost
     }

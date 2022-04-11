@@ -6,7 +6,7 @@
     text-decoration: none;
     color: black;
     display: block;
-    background-color: rgb(235, 213, 188);
+    background-color: rgba(255, 136, 0, 0.603);
     width: 100%;
     height: 10vh;
     display: flex;
@@ -20,6 +20,7 @@
 .lastMessage {
     border-style: dotted;
     border-width: 0.5px;
+    border-radius: 4%;
     width: 65%;
     height: 80%;
     display: flex;
