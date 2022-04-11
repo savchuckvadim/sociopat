@@ -5,7 +5,6 @@ import style from './ItemOfLeftMenu.module.css';
 
 const Item = (props) => {
 
-    console.log(props.namesOfLink)
     let result = props.namesOfItems.map((name, i) => (
         
         <NavLink

@@ -1,16 +1,14 @@
 .send__post {
     height: 200px;
-    
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     /* justify-content: space-around; */
 
 }
 
 .input__post {
     width: 70%;
-    
     height: 30px;
     margin-right: 15px;
 }
