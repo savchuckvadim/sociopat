@@ -10,22 +10,23 @@ import Users from "./main-area/Users/Users";
 const Main = () => {
 
     return (
-        <>
-            <main id="main">
-                <div id="left__area">
-                    <div id="left__menu">
-                        <LeftItemsContainer />
-                    </div>
+
+        <main id="main">
+            <div id="left__area">
+                <div id="left__menu">
+                    <LeftItemsContainer />
                 </div>
-                <div id="main__area">
-                    <Routes>
-                        <Route path="profile" element={<Profile />} />
-                        <Route path="messages//*" element={<Messages />} />
-                        <Route exact path="users" element={<Users />} />
-                    </Routes>
-                </div>
-            </main>
-        </>
+            </div>
+            <div id="main__area">
+                <Routes>
+                    <Route path="/" index element={<Profile />} />
+                    <Route path="profile" element={<Profile />} />
+                    <Route path="messages//*" element={<Messages />} />
+                    <Route exact path="users" element={<Users />} />
+                </Routes>
+            </div>
+        </main>
+
     )
 }
 

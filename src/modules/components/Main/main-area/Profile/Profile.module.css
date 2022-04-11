@@ -34,7 +34,7 @@
 
 .profile__base{
     grid-area:b;
-    background-color: rgb(238, 255, 0);
+    /* background-color: rgb(238, 255, 0); */
     min-width: 100%;
     min-height: 500px;
 }

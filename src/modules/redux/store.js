@@ -4,9 +4,10 @@ import itemsReducer from "./reducers/left-menu/items-reducer";
 import profileReducer from "./reducers/profile-reducer";
 
 let reducers = combineReducers({
-    profileReducer,
+
     itemsReducer,
-    dialogsReducer
+    dialogsReducer,
+    profileReducer
 });
 let store = createStore(reducers);
 export default store;

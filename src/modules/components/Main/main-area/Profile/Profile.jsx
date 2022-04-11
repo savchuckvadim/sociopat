@@ -1,16 +1,19 @@
-import './Profile.css'
+
+import { ProfileBaseContainer } from './Profile-Base/Profile-Base-Container';
+import style from './Profile.module.css';
 
 const Profile = () => {
     return (
-        <div className='profile__container'>
-            <div className='profile__hero'></div>
-            <div className='profile__rightMenu' ></div>
-            <div className='profile__base' ></div>
+        <div className={style.profile__container}>
+            <div className={style.profile__hero}></div>
+            <div className={style.profile__base}>
+                <ProfileBaseContainer />
+            </div>
 
         </div>
 
     )
-}
+};
 
 
 

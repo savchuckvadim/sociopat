@@ -16,22 +16,6 @@
 }
 
 
-.icon__container {
-    border-radius: 50%;
-    background-color: rgb(219, 131, 241);
-    width: 11vh;
-    height: 11vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 5vh;
-}
-
-.icon{
-    border-radius: 50%;
-    width: 10vh;
-    height: 10vh;
-}
 
 .lastMessage {
     border-style: dotted;

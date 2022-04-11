@@ -1,0 +1,25 @@
+.wrapper{
+    display: grid;
+    grid-template-rows: 200px 100%;
+}
+
+.header{
+    /* background-color: rgba(255, 255, 255, 0.548); */
+    /* padding: 5px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.aboutMe{
+    text-align: left;
+}
+.main{
+    background-color: rgb(42, 233, 42);
+    display: grid;
+    height: 100%;
+    width: 100%;
+}
