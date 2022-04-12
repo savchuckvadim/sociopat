@@ -9,19 +9,19 @@ const initialState = [
         messages: [
             {
                 send: 'to',
-                message_body:'to 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aspernatur qui laborum dolores, amet distinctio autem eveniet voluptatibus voluptatum recusandae provident accusamus libero quibusdam harum. Beatae magnam dolor doloremque dignissimos?'
+                message_body:'Э!'
             },
             {
                 send: 'to',
-                message_body:'to 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aspernatur qui laborum dolores, amet distinctio autem eveniet voluptatibus voluptatum recusandae provident accusamus libero quibusdam harum. Beatae magnam dolor doloremque dignissimos?'
+                message_body:'Как тебя зовут?'
             },
             {
                 send: 'from',
-                message_body:'to 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aspernatur qui laborum dolores, amet distinctio autem eveniet voluptatibus voluptatum recusandae provident accusamus libero quibusdam harum. Beatae magnam dolor doloremque dignissimos?'
+                message_body:'Привет'
             },
             {
                 send: 'to',
-                message_body:'to 1 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam aspernatur qui laborum dolores, amet distinctio autem eveniet voluptatibus voluptatum recusandae provident accusamus libero quibusdam harum. Beatae magnam dolor doloremque dignissimos?'
+                message_body:'Привет'
             },
             
 

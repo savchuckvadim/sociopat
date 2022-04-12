@@ -2,23 +2,29 @@ import style from './Messages.module.css';
 import { DialogsContainer } from './Dialogs/Dialogs-Container';
 import { NewMessageContainer } from './CurrentDialog.jsx/New-Message-Container';
 import { RouteCurrentDialogContainer } from './CurrentDialog.jsx/Route-Current-Dialog-Container';
+import React from 'react';
 
-const Messages = () => (
+const Messages = () => {
 
-    <div className={style.messages__area}>
-        <div className={style.dialogs}>
-            <DialogsContainer />
-        </div>
+    const ref = React.createRef();
+    // ref.scrollTop = 999;
 
-        <div className={style.currentDialogs}>
-            <div className={style.old_messages}>
-            <RouteCurrentDialogContainer/>
+    return (
+
+        <div className={style.messages__area}>
+            <div className={style.dialogs}>
+                <DialogsContainer />
             </div>
-            
-            <NewMessageContainer />
 
+            <div className={style.currentDialogs}>
+                <div ref={ref} className={style.old_messages}>
+                    <RouteCurrentDialogContainer />
+                </div>
+
+                <NewMessageContainer />
+
+            </div>
         </div>
-    </div>
-)
-
+    )
+}
 export default Messages;

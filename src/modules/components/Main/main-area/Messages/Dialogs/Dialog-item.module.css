@@ -20,19 +20,27 @@
 .lastMessage {
     border-style: dotted;
     border-width: 0.5px;
-    border-radius: 4%;
+    border-radius: 5px;
     width: 65%;
     height: 80%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: flex-start;
+    
 }
-
 .lastMessage__title, .lastMessage__text {
     display: block;
     margin: 0;
     padding: 0;
     margin-left: 5px;
 }
+.lastMessage__title{
+    font-weight: 600;
+}
+.lastMessage__text{
+    /* white-space: nowrap; */
+    overflow: hidden;
+	text-overflow: ellipsis;
 
+}

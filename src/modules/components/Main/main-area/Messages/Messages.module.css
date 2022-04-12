@@ -21,11 +21,12 @@
     grid-area: b;
 }
 
-.old_messages{
+.old_messages {
     position: relative;
     height: 86vh;
-    overflow: auto
+    
+    /* display: flex; */
+    /* flex-direction: column-reverse; */
+    overflow:auto;
+  
 }
-
-
-

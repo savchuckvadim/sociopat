@@ -2,12 +2,12 @@ import style from './CurrentDialog.module.css'
 
 
 const CurrentDialog = (props) => {
-    let messages = props.messages.map((message, index) => {
+    let messages = props.messages.reverse().map((message, index) => {
         if (message.send === 'to') {
             return (
                 <div key={`message-wrapper-${props.id}-${index}`} className={style.wrapper__to}>
                     <div key={`message-${props.id}-${index}`} className={style.message__to}>
-                        {message.message_body}
+                        <p className={style.message_body}>{message.message_body}</p>
                     </div>
                 </div>
             )
@@ -15,7 +15,7 @@ const CurrentDialog = (props) => {
             return (
                 <div key={`message-wrapper-${props.id}-${index}`} className={style.wrapper__from}>
                     <div key={`message-${props.id}-${index}`} className={style.message__from}>
-                        {message.message_body}
+                    <p className={style.message_body}>{message.message_body}</p>
                     </div>
                 </div>
             )

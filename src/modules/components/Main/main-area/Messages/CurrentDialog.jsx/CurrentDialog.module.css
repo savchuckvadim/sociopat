@@ -5,6 +5,7 @@
     position: relative;
     
     
+    
 }
 
 .wrapper__to, .wrapper__from{
@@ -16,7 +17,7 @@
 .message__to, .message__from {
     padding: 5px;
     margin: 5px;
-    width: 30%;
+    width: 42%;
     height: 100%;
     display: flex;
     border-style: dotted;
@@ -44,4 +45,7 @@
 	border: 2px solid rgb(67, 56, 97);
 
 
+}
+.message_body{
+    margin: 0 5px;
 }

@@ -3,15 +3,16 @@ import DialogItem from './Dialog-item'
 import style from './Dialogs.module.css'
 
 const Dialogs = (props) => {
-
+ 
+   
     let dialogs =
-        props.state.map(dialog => (
+        props.dialogs.map(dialog => (
             <DialogItem
                 key={`dialog-${dialog.id}`}
                 id={dialog.id}
                 nameOfDialog={dialog.nameOfDialog}
                 iconOfDialog={dialog.iconOfDialog}
-                lastMessage={dialog.lastMessage +'...'}
+                lastMessage={dialog.messages[dialog.messages.length-1].message_body +'...'}
             />
         ))
 
