@@ -1,3 +1,4 @@
+import Button from '../../../../Elements/Button';
 import style from './SendPost.module.css';
 
 const SendPost = (props) => {
@@ -10,12 +11,13 @@ const SendPost = (props) => {
             type="text" 
             value={props.value} 
             onChange={(e) => props.changeCurrentPost(e.target.value)} />
-            <input 
+            {/* <input 
             key='input-send-post-btn'
             className={style.btn__post} 
             type="button" 
             value="add post" 
-            onClick={()=>{props.addPost(props.value)}}/>
+            onClick={()=>{props.addPost(props.value)}}/> */}
+            <Button nameOfButton={props.nameOfButton} onClick={() => { props.addPost(props.value) }} />
         </div>
     )
 };

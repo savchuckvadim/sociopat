@@ -1,7 +1,7 @@
-import style from './Messages.module.css'
-import NewMessageSendArea from './CurrentDialog.jsx/NewMessageSendArea';
+import style from './Messages.module.css';
 import RouteCurrentDialog from './CurrentDialog.jsx/Route-Current-Dialog';
 import { DialogsContainer } from './Dialogs/Dialogs-Container';
+import { NewMessageContainer } from './CurrentDialog.jsx/New-Message-Container';
 
 const Messages = () => (
 
@@ -12,7 +12,7 @@ const Messages = () => (
 
         <div className={style.currentDialogs}>
             <RouteCurrentDialog/>
-            <NewMessageSendArea />
+            <NewMessageContainer />
 
         </div>
     </div>

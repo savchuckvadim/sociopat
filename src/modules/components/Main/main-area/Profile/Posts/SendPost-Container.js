@@ -7,7 +7,8 @@ import SendPost from "./SendPost";
 const mapStateToProps = (state) => {
 
     return {
-        value: state.changeCurrentPostReducer.value
+        value: state.changeCurrentPostReducer.value,
+        nameOfButton: 'add post'
     }
 };
 const mapDispatchToProps = (dispatch) => {
