@@ -1,5 +1,47 @@
 .previous__meesages {
     background-color: aliceblue;
     min-height: 100%;
+    min-width: 100%;
     position: relative;
+    
+    
+}
+
+.wrapper__to, .wrapper__from{
+    min-width: 100%;
+    display: flex;
+   
+}
+
+.message__to, .message__from {
+    padding: 5px;
+    margin: 5px;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    border-style: dotted;
+    border-width: 1px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 4px #888;
+}
+.message__to, .wrapper__to{
+
+    justify-content: start;
+  
+}
+.message__from, .wrapper__from{
+
+    justify-content: end;
+
+
+}
+
+.message__to, .message__from{
+    position: relative;
+	/* width: 100px; */
+	
+	text-align: center;
+	border: 2px solid rgb(67, 56, 97);
+
+
 }

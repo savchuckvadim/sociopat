@@ -21,7 +21,11 @@
     grid-area: b;
 }
 
-
+.old_messages{
+    position: relative;
+    height: 86vh;
+    overflow: auto
+}
 
 
 
