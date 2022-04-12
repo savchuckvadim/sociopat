@@ -6,7 +6,7 @@
     right: 0;
     width: 85%;
     height: 7vh;
-    background-color: rgb(134, 54, 54);
+    background-color: rgba(255, 255, 255, 0.39);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,5 +28,12 @@
 
 .current__btn {
     height: 5vh;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
+
+
+    

@@ -6,7 +6,8 @@ import NewMessageSendArea from "./NewMessageSendArea";
 const mapStateToProps = (state) => {
 
     return {
-        newMessageBody: state.newMessageReducer.messageBody
+        newMessageBody: state.newMessageReducer.messageBodyб,
+        nameOfButton: 'send'
     }
 };
 

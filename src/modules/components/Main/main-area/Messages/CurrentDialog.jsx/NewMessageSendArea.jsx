@@ -15,7 +15,7 @@ const NewMessageSendArea = (props) => {
             />
 
             <div className={style.current__btn}>
-                <Button nameOfButton={props.nameOfButton} />
+                <Button nameOfButton={props.nameOfButton} className={style.btn} />
             </div>
         </div>
     )
