@@ -1,0 +1,10 @@
+.container{
+min-width: 100vh;
+min-height: 100vh;
+background-color: bisque;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: start;
+}

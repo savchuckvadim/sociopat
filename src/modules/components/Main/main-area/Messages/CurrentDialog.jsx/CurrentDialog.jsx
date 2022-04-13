@@ -21,7 +21,7 @@ const CurrentDialog = (props) => {
             )
         }
     })
-    debugger
+    
     return (
         <div className={style.previous__meesages}>
             {messages}
