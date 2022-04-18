@@ -12,7 +12,7 @@ const Messages = () => {
     return (
 
         <div className={style.messages__area}>
-            <div className={style.dialogs}>
+            {/* <div className={style.dialogs}>
                 <DialogsContainer />
             </div>
 
@@ -23,7 +23,7 @@ const Messages = () => {
 
                 <NewMessageContainer />
 
-            </div>
+            </div> */}
         </div>
     )
 }

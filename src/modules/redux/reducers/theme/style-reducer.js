@@ -10,6 +10,7 @@ const initialState = {
     beige: '#F4F4F4',
     grey: '#808080',
     darkGrey: '#595959',
+    red: 'rgba(244, 72, 72, 1)',
     greyLogo: greyLogo,
     logo: logo,
     lightTheme: {

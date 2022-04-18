@@ -5,7 +5,7 @@ const Background = () => {
 
     return (
         <div className={style.background}>
-            <img src={logo} alt="logo" className={style.logo}/>
+            {/* <img src={logo} alt="logo" className={style.logo}/> */}
           
         </div>
     )

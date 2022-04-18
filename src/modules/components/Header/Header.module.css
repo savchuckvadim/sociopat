@@ -3,7 +3,7 @@
   margin: 0 auto;
   background-color: #ffffff;
   height: 10vh;
-  min-width: 100vh;
+  min-width: 100%;
   /* font-size: calc(10px + 2vmin); */
   color: rgb(0, 0, 0);
   display: flex;
@@ -15,7 +15,7 @@
   margin: 0 auto;
   padding: 0;
   height: 56px;
-  min-width: 80%;
+  min-width: 75%;
    /* 920px; */
   display: flex;
   flex-direction: row;

@@ -9,6 +9,9 @@
     border-radius: 16px;
  
 }
+.item p, .itemFocus p {
+font-weight: 600;
+}
 .item{
     background-color: none;
     
@@ -17,8 +20,12 @@
     /* height: 56px;
     width: 406px; */
     background-color: white;
+    color: red;
     
     /* outline:1px solid red; */
     /* outline-offset:-1px; */
     /* border-width: 1px; */
+}
+.itemFocus p{
+    color: red;
 }

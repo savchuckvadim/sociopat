@@ -1,11 +1,12 @@
 .messages__area {
     display: grid;
     grid-template-areas:
-        "a b b b b b "
-        "a b b b b b "
-        "a b b b b b";
+        "a b b b  "
+        "a b b b  "
+        "a b b b ";
     background-color: rgb(247, 242, 221);
     height: 100%;
+    width: 100vh;
 
 }
 
