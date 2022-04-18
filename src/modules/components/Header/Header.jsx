@@ -1,5 +1,5 @@
 import style from './Header.module.css';
-import logo from '../../../assets/logo.svg'
+import logo from '../../../assets/imgs/logo.svg'
 import Icon from '../Elements/Icon';
 const Header = () => {
 
@@ -9,7 +9,7 @@ const Header = () => {
                 <div className={style.brand}>
                     <img className={style.logo} src={logo} alt="" />
                     <h3 className={style.sociopat}>
-                        Sociopath
+                        Sociopath.
                     </h3>
                 </div>
                 <div className={style.currentUser}>

@@ -65,10 +65,11 @@ export const navMenuActionCreator = (index) => {
 
 const navMenuReducer = (state = initialState, action) => {
     let result = state
-    result.forEach(item => {
-        item.icon.currentIconClass = item.icon.iconClasses[item.index]
-        item.icon.currentContainerClass = item.icon.containerClasses[item.index]
+    result.forEach((item, index) => {
+        item.icon.currentIconClass = item.icon.iconClasses[item.icon.index]
+        item.icon.currentContainerClass = item.icon.containerClasses[item.icon.index]
     })
+    debugger
     switch (action.type) {
 
         case NAV_MENU:
@@ -81,7 +82,10 @@ const navMenuReducer = (state = initialState, action) => {
             })
             let item = result[action.index].icon
             item.index = 1
-
+            result.forEach((item, index) => {
+                item.icon.currentIconClass = item.icon.iconClasses[item.icon.index]
+                item.icon.currentContainerClass = item.icon.containerClasses[item.icon.index]
+            })
             return result;
 
         default:

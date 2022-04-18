@@ -1,5 +1,5 @@
 import style from './Profile-Layout.module.css'
-import hero from '../../../../../../assets/Vector.png'
+import hero from '../../../../../../assets/imgs/Vector.png'
 const ProfileLayoute = () => {
 
     return (

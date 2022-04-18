@@ -1,5 +1,5 @@
-import greyLogo from '../../../../assets/grey-logo.svg'
-import logo from '../../../../assets/logo.svg'
+import greyLogo from '../../../../assets/imgs/grey-logo.svg'
+import logo from '../../../../assets/imgs/logo.svg'
 
 
 

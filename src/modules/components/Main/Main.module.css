@@ -1,20 +1,21 @@
-/* body {
-    padding: 0%;
-    margin: 0%;
-} */
-/* Header{
-    height: 10vh;
-    background-color: rgba(31, 27, 43, 0.801);
-    padding: 0%;
-    margin: 0%;
-} */
+
 #main {
+    /* display: grid; */
+    /* grid-template-columns: 15% 85%; */
+    padding: 0;
+    margin: 0 auto;
+    min-height: 93vh;
+    display: flex;
+    justify-content: center;
+
+}
+.container{
     display: grid;
     grid-template-columns: 15% 85%;
     padding: 0%;
     margin: 0%;
     min-height: 93vh;
-
+    width: 920px;
 }
 
 #left__area {
@@ -28,7 +29,7 @@
 }
 
 #left__menu {
-    padding: 5vh;
+    padding: 0px;
     height: 30vh;
     display: flex;
     flex-direction: column;

@@ -1,5 +1,5 @@
 import style from './Background.module.css';
-import logo from '../../../../assets/grey-logo.svg';
+import logo from '../../../../assets/imgs/grey-logo.svg';
 
 const Background = () => {
 
