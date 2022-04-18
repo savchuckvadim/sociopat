@@ -11,8 +11,10 @@
     justify-content: flex-start;
     align-items: center;
     text-decoration: none;
+    color: black;
     font-family: 'Inter', sans-serif;
 }
+
 .name{
     margin: 15px ;
 }

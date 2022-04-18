@@ -13,8 +13,8 @@ let initialState = [
             </svg>,
             iconClasses: ['icon', 'iconRed'],
             currentIconClass: 'icon',
-            containerClasses: ['container', 'containerFocus'],
-            currentContainerClass: 'container'
+            containerClasses: ['item', 'itemFocus'],
+            currentContainerClass: 'item'
 
 
         }
@@ -33,8 +33,8 @@ let initialState = [
             </svg>,
             iconClasses: ['icon', 'iconRed'],
             currentIconClass: 'icon',
-            containerClasses: ['container', 'containerFocus'],
-            currentContainerClass: 'container'
+            containerClasses: ['item', 'itemFocus'],
+            currentContainerClass: 'item'
         }
     },
     {
@@ -47,8 +47,8 @@ let initialState = [
             </svg>,
             iconClasses: ['icon', 'iconRed'],
             currentIconClass: 'icon',
-            containerClasses: ['container', 'containerFocus'],
-            currentContainerClass: 'container'
+            containerClasses: ['item', 'itemFocus'],
+            currentContainerClass: 'item'
         }
 
 
@@ -69,7 +69,7 @@ const navMenuReducer = (state = initialState, action) => {
         item.icon.currentIconClass = item.icon.iconClasses[item.icon.index]
         item.icon.currentContainerClass = item.icon.containerClasses[item.icon.index]
     })
-    debugger
+  
     switch (action.type) {
 
         case NAV_MENU:

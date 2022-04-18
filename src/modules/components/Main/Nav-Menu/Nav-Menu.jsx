@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import style from './Nav-Menu.module.css'
-
+import './Containers.css'
 const NavMenu = (props) => {
     debugger
     let iconProfile =
@@ -36,8 +36,9 @@ const NavMenu = (props) => {
 
     ]
 
-    let items = props.items.map((item, index) => (
-        <div  key={`container-${item.name}`}>
+    let items = props.items.map((item, index) => {
+        let containerClass = item.icon.currentContainerClass
+        return <div className={containerClass} key={`container-${item.name}`}>
             <NavLink
                 onClick={() => { props.click(index) }}
                 key={item.name}
@@ -45,12 +46,12 @@ const NavMenu = (props) => {
                 className={style.item}
                 to={item.link}>
                 {icons[index]}
-               <p className={style.name}> {item.name} </p> 
+                <p className={style.name}> {item.name} </p>
             </NavLink>
         </div>
 
 
-    ))
+    })
     return (
         <div className={style.menu} key='nav-menu'>
             {items}

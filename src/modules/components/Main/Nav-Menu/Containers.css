@@ -1,0 +1,24 @@
+.item, .itemFocus {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    border-radius: 16px;
+ 
+}
+.item{
+    background-color: none;
+    
+} 
+.itemFocus{
+    /* height: 56px;
+    width: 406px; */
+    background-color: white;
+    
+    /* outline:1px solid red; */
+    /* outline-offset:-1px; */
+    /* border-width: 1px; */
+}
