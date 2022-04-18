@@ -12,9 +12,10 @@ class Users extends React.Component {
     
 
     componentDidMount() {
-        axios.get(`https://nmbrsapi.herokuapp.com/api/users`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
             .then(res => {
-                const users = res.data;
+                const users = res.data.items;
+                console.log(users)
                 this.setState({ users });
             })
     }

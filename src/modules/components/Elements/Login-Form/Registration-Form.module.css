@@ -1,0 +1,39 @@
+.line, .description, .link__container{
+    margin: 0 auto;
+    /* padding: 0; */
+    width: 406px;
+    display: block;
+    text-align: center;
+    align-self: center;
+}
+.form__container{
+    margin: 0 0 150px 0  ;
+    padding: 24px 24px 24px 16px;
+    /* height: 70vh;
+    width: 90%;  */
+    background-color: white;
+    border-radius: 20px;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.inputs__container{
+    height:60vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form__footer{
+    display: flex;
+    justify-content: space-around;
+    /* align-items: flex-end; */
+    flex-direction: column;
+}
+
+.link{
+    text-decoration: none;
+    color: red;
+}

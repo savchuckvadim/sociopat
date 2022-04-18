@@ -1,0 +1,36 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.name{
+    margin: 15px ;
+}
+
+.icon, .iconRed {
+    width: 24px;
+    height: 24px;
+    /* margin-right: 8px; */
+}
+
+.icon {
+    /* opacity: 1000%; */
+}
+
+.iconRed path {
+    stroke: rgb(255, 0, 0);
+
+}
+
+.active{
+    background-color: black;
+
+}

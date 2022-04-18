@@ -1,0 +1,64 @@
+.container, .containerFocus {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    width: 406px;
+    border-radius: 16px;
+ 
+}
+
+.container{
+    background-color: #F4F4F4;
+    
+} 
+.containerFocus{
+    height: 56px;
+    width: 406px;
+    background-color: white;
+    
+    outline:1px solid red;
+    outline-offset:-1px;
+    /* border-width: 1px; */
+   
+
+}
+.icon, .iconRed {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.icon {
+    opacity: 50%;
+}
+
+.iconRed path {
+    stroke: rgb(255, 0, 0);
+
+}
+
+
+
+.input {
+    height: 24px;
+    /* margin: 16px; */
+    /* margin-left: 8px; */
+    width: 100%;
+    border: none;
+    background: none;
+    outline: none;
+    color: #323232;
+}
+
+.input:focus {
+    border: #323232;
+
+}
+
+.container:hover {
+    background-color: #ebebeb;
+}
+

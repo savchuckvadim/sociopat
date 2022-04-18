@@ -5,6 +5,8 @@ import { LeftItemsContainer } from "./items/itemsOfLeftMenu-Container"
 import './Main.css';
 import Messages from "./main-area/Messages/Messages";
 import Users from "./main-area/Users/Users";
+import { NavMenuContainer } from "./Nav-Menu/Nav-Menu-Container";
+import ProfileLayoute from "./main-area/Profile/Profile-Layout/Profile-Layout";
 
 
 const Main = () => {
@@ -14,13 +16,14 @@ const Main = () => {
         <main id="main">
             <div id="left__area">
                 <div id="left__menu">
-                    <LeftItemsContainer />
+                    {/* <LeftItemsContainer /> */}
+                    <NavMenuContainer/>
                 </div>
             </div>
             <div id="main__area">
                 <Routes>
-                    <Route path="/" index element={<Profile />} />
-                    <Route path="profile" element={<Profile />} />
+                    <Route path="/" index element={<ProfileLayoute />} />
+                    <Route path="profile" element={<ProfileLayoute />} />
                     <Route path="messages//*" element={<Messages />} />
                     <Route exact path="users" element={<Users />} />
                 </Routes>
