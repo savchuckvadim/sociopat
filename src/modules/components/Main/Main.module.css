@@ -7,6 +7,8 @@
     min-height: 93vh;
     display: flex;
     justify-content: center;
+    min-width: 100vh;
+    /* background-color: blue; */
 
 }
 .container{
@@ -15,7 +17,7 @@
     padding: 0%;
     margin: 0%;
     min-height: 93vh;
-    width: 920px;
+    width: 80%;
 }
 
 #left__area {
