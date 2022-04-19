@@ -51,6 +51,8 @@
 
 .name {
   font-size: small;
+  font-weight: 600;
+  margin: 0 12px;
   /* font-family: Impac t, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
 }
 

@@ -14,7 +14,7 @@ const Header = () => {
                 </div>
                 <div className={style.currentUser}>
                     <p className={style.name}>
-                        Current User
+                        Nmbrs Fuckoff
                     </p>
                     <div className={style.icon__container}> 
                     <Icon img={logo} />

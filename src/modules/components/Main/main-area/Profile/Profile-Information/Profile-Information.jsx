@@ -54,7 +54,7 @@ const ProfileInformation = () => {
 
 
                 <div className={style.avatar}>
-                    <h1 className={style.initials}>CW</h1>
+                    <h1 className={style.initials}>NF</h1>
                 </div>
             </div>
         </div>

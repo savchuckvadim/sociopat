@@ -30,7 +30,7 @@ const DialogItem = (props) => {
                     <p className={style.lastMessage__text}>{props.lastMessage}</p>
                 </div>
                 <div className={style.date__container}>
-                    <p className={style.date} >4 apr</p>
+                    <p className={style.date} >16:20</p>
                 </div>
 
             </NavLink>
