@@ -1,33 +1,17 @@
 .messages__area {
-    display: grid;
-    grid-template-areas:
-        "a b b b  "
-        "a b b b  "
-        "a b b b ";
-    background-color: rgb(247, 242, 221);
+
+
+    margin: 0 auto;
     height: 100%;
-    width: 100vh;
+    min-width: 100vh;
+    display: flex;
+    flex-direction: column;
 
-}
-
-.dialogs {
-    grid-area: a;
-}
-
-
-
-
-
-.currentDialogs {
-    grid-area: b;
 }
 
 .old_messages {
     position: relative;
     height: 86vh;
-    
-    /* display: flex; */
-    /* flex-direction: column-reverse; */
-    overflow:auto;
-  
+    overflow: auto;
+
 }

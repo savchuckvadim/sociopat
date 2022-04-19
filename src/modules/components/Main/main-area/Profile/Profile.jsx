@@ -1,6 +1,6 @@
 
 import Post from './Posts/Post';
-import { ProfileBaseContainer } from './Profile-Base/Profile-Base-Container';
+// import { ProfileBaseContainer } from './Profile-Base/Profile-Base-Container';
 import ProfileInformation from './Profile-Information/Profile-Information';
 import style from './Profile.module.css';
 

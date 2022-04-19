@@ -1,29 +1,36 @@
-
+.icon__container, .lastMessage__title, .date__container, .date, .status, .title{
+   display: block;
+    margin: 0;
+    padding: 0;
+   
+}
 
 .dialog {
+    margin: 4px;
+    padding: 16px;
     text-decoration: none;
     color: black;
     display: block;
-    background-color: rgba(255, 136, 0, 0.603);
-    width: 500px;
-    height: 10vh;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    max-width: 700px;
+    max-height: 100px;
     display: flex;
     justify-content: start;
-    align-items: center;
-    padding: 4px;
+    align-items: flex-start;
+  
+    border-radius: 20px;
     
 }
 
-
-
 .lastMessage {
-    border-style: dotted;
-    border-width: 0.5px;
-    border-radius: 5px;
-    width: 500px;
-    height: 50px;
+    /* border-style: dotted;
+    border-width: 0.5px; */
+    /* border-radius: 5px; */
+    width: 100%;
+    /* height: 100%; */
     display: flex;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
     align-items: flex-start;
     margin-left: 7px;
@@ -37,10 +44,41 @@
 }
 .lastMessage__title{
     font-weight: 600;
+    width: 100%;
+    text-align: start;
 }
 .lastMessage__text{
     /* white-space: nowrap; */
     overflow: hidden;
 	text-overflow: ellipsis;
+max-height: 44px;
+}
+.title{
+    position: relative;
+    min-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.icon__container, .date{
+    width: 68px;
+    height: 68px;
+}
+.status{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+}
+
+
+
+
+
+
+.date{
 
 }

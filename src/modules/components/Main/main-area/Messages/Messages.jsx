@@ -12,11 +12,11 @@ const Messages = () => {
     return (
 
         <div className={style.messages__area}>
-            {/* <div className={style.dialogs}>
+            <div className={style.dialogs}>
                 <DialogsContainer />
             </div>
 
-            <div className={style.currentDialogs}>
+            {/* <div className={style.currentDialogs}>
                 <div ref={ref} className={style.old_messages}>
                     <RouteCurrentDialogContainer />
                 </div>

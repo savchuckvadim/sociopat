@@ -12,9 +12,9 @@ let initialState = [
                 <path d="M4 18.5V19.5C4 20.052 4.448 20.5 5 20.5H19C19.552 20.5 20 20.052 20 19.5V18.5C20 15.474 16.048 13.508 12 13.508C7.952 13.508 4 15.474 4 18.5Z" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
             </svg>,
             iconClasses: ['icon', 'iconRed'],
-            currentIconClass: 'icon',
+            currentIconClass: 'iconRed',
             containerClasses: ['item', 'itemFocus'],
-            currentContainerClass: 'item'
+            currentContainerClass: 'itemFocus'
 
 
         }

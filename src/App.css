@@ -49,10 +49,23 @@ p{
 }
 
 
-.active{
-  color:red;
+.active {
+  
   margin: 0px;
+  background-color: white;
+  opacity: 150%;
 
+}
+.active p {
+  color:red;
+ 
+
+}
+
+.active path{
+  stroke: rgb(255, 0, 0);
+  opacity: 1150%;
+  z-index: 100;
 }
 
 .test-container{
