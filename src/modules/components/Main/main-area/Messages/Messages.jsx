@@ -3,6 +3,7 @@ import { DialogsContainer } from './Dialogs/Dialogs-Container';
 import { NewMessageContainer } from './CurrentDialog.jsx/New-Message-Container';
 import { RouteCurrentDialogContainer } from './CurrentDialog.jsx/Route-Current-Dialog-Container';
 import React from 'react';
+import  Title from '../../../Elements/Title/Title'
 
 const Messages = () => {
 
@@ -11,7 +12,8 @@ const Messages = () => {
 
     return (
         <>
-            <h2 className={style.title} >Messages</h2>
+        <Title title={'Messages'}/>
+            {/* <h2 className={style.title} >Messages</h2> */}
             <div className={style.messages__area}>
 
 
