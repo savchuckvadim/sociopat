@@ -62,8 +62,8 @@ max-height: 44px;
 }
 
 .icon__container, .date{
-    width: 68px;
-    height: 68px;
+    max-width: 68px;
+    max-height: 68px;
 }
 .status{
     width: 100%;

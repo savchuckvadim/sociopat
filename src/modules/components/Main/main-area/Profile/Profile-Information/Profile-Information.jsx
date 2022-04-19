@@ -1,6 +1,6 @@
 import style from './Profile-Information.module.css'
 import hero from '../../../../../../assets/imgs/Vector.png'
-import WhiteButton from '../../../../Elements/Button/WhiteButton';
+import WhiteButton from '../../../../Elements/Button/White-Button';
 const ProfileInformation = () => {
 
     let heroImg = hero

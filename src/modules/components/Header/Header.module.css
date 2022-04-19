@@ -37,8 +37,13 @@
 .sociopat{
   margin: 0 10px;
 }
-.currentUser {}
 
+.icon__container{
+  margin: 0;
+  padding: 0;
+  max-width: 68px;
+  max-height: 68px;
+}
 /* .currentUser{
   display: flex;
     flex-direction: row;

@@ -12,12 +12,18 @@
 }
 
 
-
+.icon__container{
+    margin: 0;
+    padding: 0;
+    width: 68px;
+    height: 68px;
+}
 
 .body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin: 16px 0;
 }
 
 .message__container {}
@@ -25,7 +31,8 @@
 .img__container {}
 
 .message {
-    text-align: justify
+    text-align: justify;
+    margin: 0 0 12px;
 }
 
 .post__img {
@@ -52,22 +59,35 @@
     justify-content: space-between;
     /* margin: 8px 24px; */
 }
-
-.action__button {
-    /* margin: 0 5px; */
+.actions__container{
+    display: flex;
+    flex-direction: row;
+}
+.action_button{
+    margin: 0 8px 0 0 ;
+    border: none;
+    border-radius: 12px;
+    width: 56px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.action {
+    /* margin: 0 0 0 8px; */
     padding: 0;
     /* border-color: white; */
     /* border-radius: 20px; */
     border: none;
 }
 
-.action {
-    border-radius: 20px;
-}
 
-.action:hover {
+
+.action_button:hover {
     color: aqua;
     filter: contrast(90%);
+    cursor: pointer;
+
 }
 
 .views {
@@ -81,4 +101,5 @@
     display: block;
     margin: 0px 5px;
     padding: 0;
+    opacity: 50%;
 }

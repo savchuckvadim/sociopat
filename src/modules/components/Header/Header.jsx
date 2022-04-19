@@ -16,7 +16,10 @@ const Header = () => {
                     <p className={style.name}>
                         Current User
                     </p>
+                    <div className={style.icon__container}> 
                     <Icon img={logo} />
+                    </div>
+                    
                 </div>
             </div>
 

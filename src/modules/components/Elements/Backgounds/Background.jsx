@@ -1,12 +1,10 @@
-import style from './Background.module.css';
-import logo from '../../../../assets/imgs/grey-logo.svg';
+import style from './Background.module.css'
 
 const Background = () => {
 
-    return (
+    return(
         <div className={style.background}>
-            {/* <img src={logo} alt="logo" className={style.logo}/> */}
-          
+
         </div>
     )
 }

@@ -23,13 +23,13 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Background />
+      {/* <Background /> */}
       <Main />
       {/* <ProfileLayoute/> */}
       {/* { <LightLoadingPageContainer />} */}
       {/* <DarkLoadingPageContainer /> */}
 
-      <div className='test-container'>
+      {/* <div className='test-container'> */}
         
         {/* <NavMenuContainer /> */}
         {/* <ProfileLayoute />, */}
@@ -38,7 +38,7 @@ function App() {
         {/* <RegistrationForm /> */}
         {/* <ProfileLayoute/> */}
 
-      </div>
+      {/* </div> */}
     </div>
   );
 }

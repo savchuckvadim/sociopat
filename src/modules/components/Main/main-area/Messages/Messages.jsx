@@ -10,13 +10,16 @@ const Messages = () => {
     // ref.scrollTop = 999;
 
     return (
+        <>
+            <h2 className={style.title} >Messages</h2>
+            <div className={style.messages__area}>
 
-        <div className={style.messages__area}>
-            <div className={style.dialogs}>
-                <DialogsContainer />
-            </div>
 
-            {/* <div className={style.currentDialogs}>
+                <div className={style.dialogs}>
+                    <DialogsContainer />
+                </div>
+
+                {/* <div className={style.currentDialogs}>
                 <div ref={ref} className={style.old_messages}>
                     <RouteCurrentDialogContainer />
                 </div>
@@ -24,7 +27,8 @@ const Messages = () => {
                 <NewMessageContainer />
 
             </div> */}
-        </div>
+            </div>
+        </>
     )
 }
 export default Messages;
