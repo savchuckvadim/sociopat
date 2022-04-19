@@ -11,14 +11,42 @@
     justify-content: space-around;
 }
 
-
+.header{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 100vh;
+}
+.user__container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 .icon__container{
     margin: 0;
     padding: 0;
     width: 68px;
     height: 68px;
 }
-
+.user__info{
+    margin-left: 16px;
+}
+.name{
+    font-weight: 600;
+}
+.name, .date{
+    margin: 0;
+    padding: 0;
+    text-align: start;
+}
+.date{
+    opacity: 60%;
+}
+.dots:hover{
+cursor: pointer;
+}
 .body {
     display: flex;
     flex-direction: column;
