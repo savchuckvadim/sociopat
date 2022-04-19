@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import Icon from "../../../../Elements/Icon";
 import style from './Dialog-item.module.css';
 import status from '../../../../../../assets/imgs/dialogs/message-status-red.svg'

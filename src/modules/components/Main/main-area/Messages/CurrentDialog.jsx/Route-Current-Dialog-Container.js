@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import RouteCurrentDialog from "./Route-Current-Dialog";
 
 const mapStateToProps = (state) => {
-
+   
     return {
         dialogs: state.dialogsReducer
     }

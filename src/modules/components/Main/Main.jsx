@@ -6,6 +6,8 @@ import style from './Main.module.css';
 import Messages from "./main-area/Messages/Messages";
 import Users from "./main-area/Users/Users";
 import { NavMenuContainer } from "./Nav-Menu/Nav-Menu-Container";
+import CurrentDialog from "./main-area/Messages/CurrentDialog.jsx/CurrentDialog";
+import { RouteCurrentDialogContainer } from "./main-area/Messages/CurrentDialog.jsx/Route-Current-Dialog-Container";
 
 
 const Main = () => {
@@ -25,8 +27,10 @@ const Main = () => {
                         <Route path="/" index element={<Profile />} />
                         <Route path="profile" element={<Profile />} />
                         <Route path="messages//*" element={<Messages />} />
+                        {/* <Route path="dialog//*" element={< />} /> */}
                         <Route exact path="users" element={<Users />} />
                     </Routes>
+                    {/* <RouteCurrentDialogContainer/> */}
                 </div>
             </div>
         </main>

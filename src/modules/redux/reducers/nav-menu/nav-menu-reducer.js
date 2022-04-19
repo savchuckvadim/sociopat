@@ -21,7 +21,7 @@ let initialState = [
     },
     {
         name: 'Messages',
-        link: 'messages/dialog/1',
+        link: 'messages/',
         icon: {
             index: 0,
             img: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
