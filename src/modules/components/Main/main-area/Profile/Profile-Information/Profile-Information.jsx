@@ -6,7 +6,7 @@ const ProfileInformation = () => {
     let heroImg = hero
     return (
         <div className={style.container}>
-            <div className={style.frame}>
+            {/* <div className={style.frame}> */}
                 <div className={style.hero__container}>
                     <img className={style.hero} src={hero} alt='hero' />
                 </div>
@@ -56,7 +56,7 @@ const ProfileInformation = () => {
                 <div className={style.avatar}>
                     <h1 className={style.initials}>NF</h1>
                 </div>
-            </div>
+            {/* </div> */}
         </div>
 
     )

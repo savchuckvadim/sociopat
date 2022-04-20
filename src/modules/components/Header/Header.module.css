@@ -12,7 +12,7 @@
 }
 
 .container {
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   height: 56px;
   min-width: 75%;
@@ -21,6 +21,21 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+.menu{
+  display: none;
+}
+
+@media screen and (max-width: 400px) {
+  .container {
+    width: 90%;
+  }
+  .name{
+    display: none;
+  }
+  .menu{
+    display: block;
+  }
 }
 
 .brand, .currentUser {
@@ -41,8 +56,8 @@
 .icon__container{
   margin: 0;
   padding: 0;
-  max-width: 68px;
-  max-height: 68px;
+  width:  48px;
+  height: 48px;
 }
 /* .currentUser{
   display: flex;

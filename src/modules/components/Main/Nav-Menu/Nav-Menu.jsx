@@ -39,7 +39,7 @@ const NavMenu = (props) => {
     let items = props.items.map((item, index) => {
         let containerClass = item.icon.currentContainerClass
         return <div
-            // className={containerClass} 
+            className={containerClass} 
             key={`container-${item.name}`}>
             <NavLink
                 onClick={() => { props.click(index) }}

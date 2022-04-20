@@ -1,11 +1,15 @@
 import style from './Header.module.css';
 import logo from '../../../assets/imgs/logo.svg'
+import burger from '../../../assets/imgs/header/menu-burger.svg'
 import Icon from '../Elements/Icon';
-const Header = () => {
+const Header = (props) => {
 
     return (
         <header className={style.header}>
             <div className={style.container}>
+                <div className={style.menu}>
+                    <img src={burger} alt="menu-burger" />
+                </div>
                 <div className={style.brand}>
                     <img className={style.logo} src={logo} alt="" />
                     <h3 className={style.sociopat}>
@@ -16,10 +20,10 @@ const Header = () => {
                     <p className={style.name}>
                         Nmbrs Fuckoff
                     </p>
-                    <div className={style.icon__container}> 
-                    <Icon img={logo} />
+                    <div className={style.icon__container}>
+                        <Icon user={props.user} theme={props.theme} />
                     </div>
-                    
+
                 </div>
             </div>
 

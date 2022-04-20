@@ -30,6 +30,17 @@
 
 
 }
+@media screen and (max-width: 870px) {
+    #left__area {
+      display: none;
+    }
+    .container{
+        display: flex;
+       justify-content: center;
+       align-items: center;
+     
+    }
+  }
 
 #left__menu {
     padding: 0px;
@@ -44,7 +55,7 @@
 
 #main__area {
     /* background-color: blue; */
-    /* width: 70vh; */
+    width: 90%;
     /* height: 60vh; */
     margin: 0px;
     padding: 0%;

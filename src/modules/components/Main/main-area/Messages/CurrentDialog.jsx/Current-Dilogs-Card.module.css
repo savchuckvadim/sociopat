@@ -10,13 +10,13 @@
 .current__message,
 .send__icon,
 .arrowUp
- {
+{
     margin: 0;
     padding: 0;
 }
 
 .container {
-    min-width: 688px;
+    min-width: 100%;
     min-height: 100%;
     /* 812px; */
     background-color: white;
@@ -69,7 +69,7 @@
 
 .nomessages {
     width: auto;
-    height: 75%;
+    height: 45vh;
 }
 
 .send__message {
