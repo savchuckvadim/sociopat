@@ -8,7 +8,7 @@ const UserCard = (props) => {
     return (
         <div className={style.container}>
             <div className={style.icon__container}>
-                <Icon user={props.user}/>
+                {/* <Icon user={props.user}/> */}
 
             </div>
             <NavLink className={style.login} to='profile'>

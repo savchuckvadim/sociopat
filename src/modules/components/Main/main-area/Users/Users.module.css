@@ -8,3 +8,36 @@
     align-items: flex-start;
     justify-content: start;
 }
+
+.title__container{
+    margin:  0 ;
+    
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+
+}
+.pages{
+    padding-right: 10px;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    margin: 0;
+    background-color: white;
+  display: flex;
+  justify-content: end;
+  border-radius: 10px;
+    
+}
+.selectPage{
+    font-weight: 700;
+}
+.pages span{
+    cursor: pointer;
+}
+span{
+    margin-right: 10px;
+    cursor: pointer;
+}

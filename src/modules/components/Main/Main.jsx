@@ -9,6 +9,7 @@ import { NavMenuContainer } from "./Nav-Menu/Nav-Menu-Container";
 import CurrentDialog from "./main-area/Messages/CurrentDialog.jsx/CurrentDialog";
 import { RouteCurrentDialogContainer } from "./main-area/Messages/CurrentDialog.jsx/Route-Current-Dialog-Container";
 import { ProfileContainer } from "./main-area/Profile/Profile-Container";
+import { UsersContainer } from "./main-area/Users/Users-Container";
 
 
 const Main = () => {
@@ -29,7 +30,7 @@ const Main = () => {
                         <Route path="profile" element={<ProfileContainer />} />
                         <Route path="messages//*" element={<Messages />} />
                         {/* <Route path="dialog//*" element={< />} /> */}
-                        <Route exact path="users" element={<Users />} />
+                        <Route exact path="users" element={<UsersContainer />} />
                     </Routes>
                     {/* <RouteCurrentDialogContainer/> */}
                 </div>
