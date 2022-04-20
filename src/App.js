@@ -25,7 +25,7 @@ function App() {
     <div className="App">
       <HeaderContainer/>
       {/* <Background /> */}
-      {/* <Main /> */}
+      <Main />
       {/* <ProfileLayoute/> */}
       {/* { <LightLoadingPageContainer />} */}
       {/* <DarkLoadingPageContainer /> */}

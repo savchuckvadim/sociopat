@@ -13,12 +13,16 @@ class Users extends React.Component {
 
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users/5`)
             .then(res => {
                 const users = res.data.items;
-                console.log(users)
+                // console.log(users)
                 this.setState({ users });
             })
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users/3`)
+            .then(res => {
+                console.log(res.data)
+            })    
     }
 
     render() {
@@ -26,7 +30,7 @@ class Users extends React.Component {
             <><Title title={'People'} />
                 <div className={style.container}>
                     {this.state.users.map(user =>
-                        <UserCard name={user.name} />)}
+                        <UserCard user={user} name={user.name} />)}
                 </div>
             </>
         )

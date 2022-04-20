@@ -4,22 +4,21 @@ const Icon = (props) => {
     //user: avatar or Name Surname
     //theme: red
     let icon
-    if (props.user.avatar) {
+  
+    if (props.user.photo) {
 
         icon =
             <div className={style.icon__container}>
-                <img className={style.icon} src={props.user.avatar} alt="icon" />
+                <img className={style.icon} src={props.user.photo} alt="icon" />
             </div>
 
     } else {
         icon =
             <div className={style.icon__container}>
-                <div style={{
-                    backgroundColor: props.theme.red
-                }} className={style.icon}>
+                <div className={style.initials__container}>
                     <p
-                    className={style.initials}
-                   
+                        className={style.initials}
+
                     >{props.user.name[0]} {props.user.surname[0]}</p>
                 </div>
             </div>

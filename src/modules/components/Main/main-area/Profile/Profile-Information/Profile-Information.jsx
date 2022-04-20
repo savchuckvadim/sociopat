@@ -1,7 +1,8 @@
 import style from './Profile-Information.module.css'
 import hero from '../../../../../../assets/imgs/Vector.png'
 import WhiteButton from '../../../../Elements/Button/White-Button';
-const ProfileInformation = () => {
+// import Icon from '../../../../Elements/Icon';
+const ProfileInformation = (props) => {
 
     let heroImg = hero
     return (
@@ -55,6 +56,7 @@ const ProfileInformation = () => {
 
                 <div className={style.avatar}>
                     <h1 className={style.initials}>NF</h1>
+                    {/* <Icon user={props.user} /> */}
                 </div>
             {/* </div> */}
         </div>

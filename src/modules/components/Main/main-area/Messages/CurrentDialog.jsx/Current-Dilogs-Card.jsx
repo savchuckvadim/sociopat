@@ -6,8 +6,9 @@ import arrowUp from '../../../../../../assets/imgs/dialogs/arrow-up.svg'
 import Icon from '../../../../Elements/Icon'
 import { useNavigate } from 'react-router-dom';
 
-const CurrentDialogsCard = () => {
+const CurrentDialogsCard = (props) => {
     const navigate = useNavigate();
+    debugger
     return (
         <div className={style.container}>
             <div className={style.header}>
@@ -17,7 +18,7 @@ const CurrentDialogsCard = () => {
                     src={arrow}
                     alt="arrow" />
                 <div className={style.icon__container}>
-                    <Icon img={'https://images.unsplash.com/photo-1617209689367-2c367c7d8b2c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=610&q=80'} />
+                    {/* <Icon users={props.users} /> */}
                 </div>
                 <div className={style.user__information}>
                     <h3 className={style.username}>User Name</h3>

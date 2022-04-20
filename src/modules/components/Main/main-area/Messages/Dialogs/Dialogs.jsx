@@ -13,6 +13,7 @@ const Dialogs = (props) => {
                 nameOfDialog={dialog.nameOfDialog}
                 iconOfDialog={dialog.iconOfDialog}
                 lastMessage={dialog.messages[dialog.messages.length-1].message_body +'...'}
+                user={props.user}
             />
         ))
 

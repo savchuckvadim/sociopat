@@ -4,7 +4,8 @@ import RouteCurrentDialog from "./Route-Current-Dialog";
 const mapStateToProps = (state) => {
    
     return {
-        dialogs: state.dialogsReducer
+        dialogs: state.dialogsReducer,
+        users:state.users[0]
     }
 };
 const mapDispatchToProps = (dispatch) => {

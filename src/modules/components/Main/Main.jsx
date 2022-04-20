@@ -8,6 +8,7 @@ import Users from "./main-area/Users/Users";
 import { NavMenuContainer } from "./Nav-Menu/Nav-Menu-Container";
 import CurrentDialog from "./main-area/Messages/CurrentDialog.jsx/CurrentDialog";
 import { RouteCurrentDialogContainer } from "./main-area/Messages/CurrentDialog.jsx/Route-Current-Dialog-Container";
+import { ProfileContainer } from "./main-area/Profile/Profile-Container";
 
 
 const Main = () => {
@@ -24,8 +25,8 @@ const Main = () => {
                 </div>
                 <div id={style.main__area}>
                     <Routes>
-                        <Route path="/" index element={<Profile />} />
-                        <Route path="profile" element={<Profile />} />
+                        <Route path="/" index element={<ProfileContainer />} />
+                        <Route path="profile" element={<ProfileContainer />} />
                         <Route path="messages//*" element={<Messages />} />
                         {/* <Route path="dialog//*" element={< />} /> */}
                         <Route exact path="users" element={<Users />} />

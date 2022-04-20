@@ -9,7 +9,7 @@ const RouteCurrentDialog = (props) => {
         <Route
             key={`dialog-{dialog.id}`}
             path={`:dialog/${dialog.id}`}
-            element={<CurrentDialogsCard id={dialog.id} messages={dialog.messages} />}
+            element={<CurrentDialogsCard usrers={props.users} id={dialog.id} messages={dialog.messages} />}
         />
     ))
     // const dialogs = <Route key='defaultDialog' path=':' element={ <DialogsContainer />} />

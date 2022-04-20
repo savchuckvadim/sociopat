@@ -6,7 +6,9 @@ import Dialogs from "./Dialogs"
 const mapStateToProps = (state) => {
 
     return {
-        dialogs: state.dialogsReducer
+        dialogs: state.dialogsReducer,
+        user:state.users[0],
+        
     }
 }
 const mapDispatchToProps = (dispatch) => {

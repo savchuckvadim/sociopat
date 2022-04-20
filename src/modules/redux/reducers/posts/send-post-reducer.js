@@ -16,22 +16,41 @@ export const changeCurrentPostActionCreator = (value) => {
 
 
 
-const changeCurrentPostReducer = (state = initialState, action) => {
+const currentPostReducer = (state = initialState, action) => {
     let result = state;
 
-    if (action.type === CHANGE_CURRENT_POST) {
-        result = {
-            ...state
-        }
-        result.value = action.value
-    } else if (action.type === ADD_POST) {
-        result = {
-            ...state
-        }
-        result.value = ''
-    }
+    switch (action.type) {
+        case CHANGE_CURRENT_POST:
 
-    return result
+            result = {
+                ...state
+            }
+            result.value = action.value
+            return result
+
+
+        case  ADD_POST:
+            result = {
+                ...state
+            }
+            result.value = ''
+            return result
+        default:
+            return result
+    }
+    // if (action.type === CHANGE_CURRENT_POST) {
+    //     result = {
+    //         ...state
+    //     }
+    //     result.value = action.value
+    // } else if (action.type === ADD_POST) {
+    //     result = {
+    //         ...state
+    //     }
+    //     result.value = ''
+    // }
+
+    // return result
 };
 
-export default changeCurrentPostReducer
+export default currentPostReducer
