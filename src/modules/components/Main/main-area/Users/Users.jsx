@@ -1,75 +1,48 @@
 import axios from "axios";
 import React from "react";
+import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container";
 import Title from "../../../Elements/Title/Title";
 import UserCard from "./User-Card";
 import style from './Users.module.css'
 
 
-class Users extends React.Component {
-    state = {
-        users: [],
-        totalUsersCount: 0
+const Users = (props) => {
+    // let isFetching = false
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
+    let loader = <LightLoadingPageContainer />
+    let users = <>
 
+        <div className={style.title__container}>
+            <Title title={'People'} />
 
+        </div>
+        <div className={style.container}>
+            {props.users.map(user =>
+                <UserCard user={user} name={user.name} />)}
+        </div>
+        <div className={style.pages}>
+            {pages.map(p => {
 
+                return <span
+                    onClick={() => { props.onPageChanged(p) }}
 
+                    className={props.currentPage === p && style.selectPage}>
+                    {p}
+                </span>
+            })}
+        </div>
 
-    componentDidMount() {
-        debugger
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(res => {
-                const users = res.data.items;
+    </>
+    return (
+        <>
+           {props.isFetching ? loader : users}
+        </>
+    )
 
-                this.setState({ users });
-            })
-
-    }
-
-    onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then(res => {
-                const users = res.data.items;
-//this.props.setUsers
-                this.setState({ users });
-            })
-
-    }
-    render() {
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-        let pages = [];
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
-
-        return (
-
-            <>
-
-                <div className={style.title__container}>
-                    <Title title={'People'} />
-
-                </div>
-                <div className={style.container}>
-                    {this.state.users.map(user =>
-                        <UserCard user={user} name={user.name} />)}
-                </div>
-                <div className={style.pages}>
-                    {pages.map(p => {
-
-                        return <span
-                            onClick={() => { this.onPageChanged(p) }}
-                           
-                            className={this.props.currentPage === p && style.selectPage}>
-                            {p}
-                        </span>
-                    })}
-                </div>
-
-            </>
-        )
-    }
 
 }
 

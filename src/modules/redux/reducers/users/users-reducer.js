@@ -1,15 +1,19 @@
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_USERS = 'SET_USERS';
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const FETCHING = 'FETCHING';
 
 const initialState = {
     users: [],
-    pageSize: 9,
+    pageSize: 18,
     totalUsersCount: 200,
-    currentPage: 1
+    currentPage: 1,
+    count: 0,
+    isFetching: false
 
 }
 
 export const setCurrentPageActionCreator = (value) => {
-
     return {
         type: SET_CURRENT_PAGE,
         value
@@ -18,6 +22,26 @@ export const setCurrentPageActionCreator = (value) => {
 
 
 
+export const setUsersAC = (users) => {
+
+    return {
+        type: SET_USERS,
+        users
+    }
+}
+export const setTotalUsersCountAC = (count) => {
+    return {
+        type: SET_TOTAL_USERS_COUNT,
+        count
+    }
+}
+
+export const fetchingAC = (bool) => {
+    return {
+        type: FETCHING,
+        bool
+    }
+}
 // {
 //     id:1,
 //     name: 'Name',
@@ -38,7 +62,25 @@ const usersReducer = (state = initialState, action) => {
         case SET_CURRENT_PAGE:
             result = { ...state }
             result.currentPage = action.value
-            console.log(result.currentPage)
+
+            return result
+
+        case SET_USERS:
+            result = { ...state }
+            result.users = action.users
+
+            return result
+
+        case SET_TOTAL_USERS_COUNT:
+            result = { ...state }
+            result.count = action.count
+
+            return result
+
+        case FETCHING:
+            result = { ...state }
+            result.isFetching = action.bool
+
             return result
 
         default:

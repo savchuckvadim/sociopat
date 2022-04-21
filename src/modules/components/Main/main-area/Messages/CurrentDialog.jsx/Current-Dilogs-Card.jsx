@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CurrentDialogsCard = (props) => {
     const navigate = useNavigate();
-    debugger
+
     return (
         <div className={style.container}>
             <div className={style.header}>
