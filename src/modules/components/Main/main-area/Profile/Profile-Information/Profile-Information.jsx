@@ -42,9 +42,7 @@ const ProfileInformation = (props) => {
                             </div>
                         </div>
                         <div className={style.edit__container}>
-                            {/* <button className={style.edit__btn} >
-                                <p>Edit profile</p>
-                            </button> */}
+                           
                             <WhiteButton name={'Edit profile'}/>
                         </div>
 

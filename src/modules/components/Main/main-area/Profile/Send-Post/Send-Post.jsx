@@ -17,19 +17,24 @@ const SendPost = (props) => {
     
     return (
         <div className={style.container}>
+            <div className={style.left__area}>
             <Icon user={props.user} />
             <input
             ref={ref}
                 className={style.input}
                 placeholder='Take a shit here...'
-                type="text"
+                type="text-area"
                 value={props.value}
                 onChange={() => {props.change(ref.current.value)}}
             />
+            </div>
+            <div className={style.right__area}>
             <img src={camera}></img>
             <div className={style.sendArea}>
             {sendArea}
             </div>
+            </div>
+            
             
         </div>
     )
