@@ -13,46 +13,33 @@ const initialState = {
 
 }
 
-export const setCurrentPageActionCreator = (value) => {
+export const setCurrentPage = (page) => {
     return {
         type: SET_CURRENT_PAGE,
-        value
+        page
     }
 }
 
-
-
-export const setUsersAC = (users) => {
+export const setUsers = (users) => {
 
     return {
         type: SET_USERS,
         users
     }
 }
-export const setTotalUsersCountAC = (count) => {
+export const setTotalUsersCount = (count) => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         count
     }
 }
 
-export const fetchingAC = (bool) => {
+export const fetching = (bool) => {
     return {
         type: FETCHING,
         bool
     }
 }
-// {
-//     id:1,
-//     name: 'Name',
-//     surname: 'Surname',
-//     login: 'Login',
-//     followers:[],
-//     following:[],
-//     photo: 'https://images.unsplash.com/photo-1634498481594-e82257b5c59c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80',
-
-// }
-
 
 
 const usersReducer = (state = initialState, action) => {
@@ -61,7 +48,7 @@ const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_CURRENT_PAGE:
             result = { ...state }
-            result.currentPage = action.value
+            result.currentPage = action.page
 
             return result
 

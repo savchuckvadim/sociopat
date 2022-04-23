@@ -1,7 +1,8 @@
 import { connect } from "react-redux"
-import { fetchingAC, setCurrentPageActionCreator, setTotalUsersCountAC, setUsersAC } from "../../../../redux/reducers/users/users-reducer"
-import Users from "./Users"
-import UsersApiContainer from "./Users-API-Container"
+import { fetching, setCurrentPage, setTotalUsersCount, setUsers } from "../../../../redux/reducers/users/users-reducer"
+
+import UsersContainer from "./Users-API-Container"
+
 
 
 const mapStateToProps = (state) => {
@@ -16,33 +17,40 @@ const mapStateToProps = (state) => {
         
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    const setCurrentPage = (value) => {
-        const action = setCurrentPageActionCreator(value)
-        dispatch(action)
-        
-    }
-    const setUsers = (users) => {
-        const action = setUsersAC(users)
-       
-        dispatch(action)
-       
-    }
-    const setTotalUsersCount = (count) => {
-        const action = setTotalUsersCountAC(count);
-        dispatch(action)
-    }
-    const fetching = (bool) => {
-        const action = fetchingAC(bool);
-        dispatch(action)
-    }
-    return {
-        setCurrentPage,
-        setUsers,
-        setTotalUsersCount,
-        fetching
-       
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiContainer)
+//     const setCurrentPage = (page) => {
+//         const action = setCurrentPageActionCreator(page)
+//         dispatch(action)
+        
+//     }
+//     const setUsers = (users) => {
+//         const action = setUsersAC(users)
+       
+//         dispatch(action)
+       
+//     }
+//     const setTotalUsersCount = (count) => {
+//         const action = setTotalUsersCountAC(count);
+//         dispatch(action)
+//     }
+//     const fetching = (bool) => {
+//         const action = fetchingAC(bool);
+//         dispatch(action)
+//     }
+//     return {
+//         setCurrentPage,
+//         setUsers,
+//         setTotalUsersCount,
+//         fetching
+       
+//     }
+// }
+
+export default connect(mapStateToProps,  {
+    setCurrentPage,
+    setUsers,
+    setTotalUsersCount,
+    fetching
+   
+})(UsersContainer)

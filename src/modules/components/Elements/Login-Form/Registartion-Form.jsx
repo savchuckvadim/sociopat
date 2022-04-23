@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import RedButton from '../Button/Red-Button';
 import { InputEmailContainer } from './Inputs/Input-Email/Input-Email-Container';
 import { InputNameContainer } from './Inputs/Input-Name/Input-Name-Container';
 import { InputPasswordContainer } from './Inputs/Input-Password/Input-Password-Container';
@@ -24,7 +25,10 @@ const RegistrationForm = () => {
                     <InputEmailContainer />
                     <InputPasswordContainer />
                     <InputRepeatPassContainer />
-                    <InputRepeatPassContainer />
+                    <div className={style.button__container}>
+                    <RedButton name={'НАЖАТЬ'} />
+                    </div>
+                   
                 </div>
                 <div className={style.form__footer}>
                     <div className={style.description}>

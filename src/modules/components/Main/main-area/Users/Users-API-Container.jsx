@@ -5,7 +5,7 @@ import Users from "./Users";
 
 
 
-class UsersApiContainer extends React.Component {
+class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.fetching(true)
@@ -54,4 +54,4 @@ class UsersApiContainer extends React.Component {
 
 
 
-export default UsersApiContainer;
+export default UsersContainer;

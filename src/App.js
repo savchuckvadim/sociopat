@@ -10,7 +10,7 @@ import PostLayout from './modules/components/Main/main-area/Profile/Posts/Post';
 import NavMenu from './modules/components/Main/Nav-Menu/Nav-Menu';
 import { NavMenuContainer } from './modules/components/Main/Nav-Menu/Nav-Menu-Container';
 import Main from './modules/components/Main/Main';
-import { HeaderContainer } from './modules/components/Header/Header-Container';
+import HeaderContainer from './modules/components/Header/Header-Container';
 
 
 

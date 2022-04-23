@@ -46,6 +46,7 @@ const NavMenu = (props) => {
                 key={item.name}
                 activeclassname='active'
                 className={style.item}
+                // className={(isActive)=> isActive ? style.item : style.activeItem}
                 to={item.link}>
                 {icons[index]}
                 <p className={style.name}> {item.name} </p>

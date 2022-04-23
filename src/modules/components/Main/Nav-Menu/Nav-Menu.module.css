@@ -14,10 +14,7 @@
     text-decoration: none;
     color: black;
     /* font-family: 'Inter', sans-serif; */
-
-
     padding: 0 16px;
-
     height: 40px;
     width: 100%;
     border-radius: 16px;
@@ -49,4 +46,18 @@
 .active{
     color: red;
 
+}
+.activeItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+    color: red;
+    background-color: white;
+    /* font-family: 'Inter', sans-serif; */
+    padding: 0 16px;
+    height: 40px;
+    width: 100%;
+    border-radius: 16px;
 }

@@ -11,7 +11,9 @@ const UserCard = (props) => {
                 {/* <Icon user={props.user}/> */}
 
             </div>
-            <NavLink className={style.login} to='profile'>
+            <NavLink className={style.login} to={'../profile/'+props.user.id}>
+            {/* +props.user.id */}
+            {/*  */}
                 <p >{props.name}</p>
             </NavLink>
 

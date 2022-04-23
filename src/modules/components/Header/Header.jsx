@@ -2,8 +2,13 @@ import style from './Header.module.css';
 import logo from '../../../assets/imgs/logo.svg'
 import burger from '../../../assets/imgs/header/menu-burger.svg'
 import Icon from '../Elements/Icon';
+import { NavLink } from 'react-router-dom';
 const Header = (props) => {
-
+    let login = 'Login'
+    debugger
+    if (props.auth.login) {
+        login = props.auth.login
+    }
     return (
         <header className={style.header}>
             <div className={style.container}>
@@ -18,7 +23,12 @@ const Header = (props) => {
                 </div>
                 <div className={style.currentUser}>
                     <p className={style.name}>
-                        Nmbrs Fuckoff
+
+                        <NavLink to='login' >
+                            {login}
+                        </NavLink>
+
+
                     </p>
                     <div className={style.icon__container}>
                         <Icon user={props.user} theme={props.theme} />
