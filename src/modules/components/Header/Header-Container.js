@@ -1,11 +1,20 @@
-import axios from "axios"
+
 import React from "react"
-import { connect } from "react-redux"
-import { setAuthUserData } from "../../redux/reducers/auth/auth-reducer"
-import { setCurrentUser } from "../../redux/reducers/current-user/current-user-reducer"
+import {
+    connect
+} from "react-redux"
+import {
+    setAuthUserData
+} from "../../redux/reducers/auth/auth-reducer"
+import {
+    setCurrentUser
+} from "../../redux/reducers/current-user/current-user-reducer"
 
 
-import { getProfile } from "../../services/api"
+import {
+    auth,
+    getProfile
+} from "../../services/api"
 import Header from "./Header"
 
 
@@ -23,14 +32,14 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(action)
     }
     const setCurrentUserData = (userProfile) => {
-        
+
         const action = setCurrentUser(userProfile)
         dispatch(action)
     }
     return {
         setUserData,
         setCurrentUserData
-       
+
     }
 }
 
@@ -39,10 +48,8 @@ const mapDispatchToProps = (dispatch) => {
 class HeaderContainer extends React.Component {
 
     componentDidMount() {
-        
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials: true
-        })
+
+        auth()
             .then(res => {
                 const resultCode = res.data.resultCode;
                 const data = res.data.data;
@@ -51,22 +58,25 @@ class HeaderContainer extends React.Component {
                     this.props.setUserData(data.id, data.login, data.email)
                 }
 
-              getProfile(data.id)
+                getProfile(data.id)
 
-                .then(res => {
-                    const userProfile = res.data
-                    
-                    this.props.setCurrentUserData(userProfile)
-                })
-                
+                    .then(res => {
+                        const userProfile = res.data
+
+                        this.props.setCurrentUserData(userProfile)
+                    })
+
             })
-            
 
-      
+
+
     }
 
     render() {
-        return <Header {...this.props} />
+        return <Header {
+            ...this.props
+        }
+        />
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer)

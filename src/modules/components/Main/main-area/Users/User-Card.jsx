@@ -3,35 +3,21 @@ import Icon from '../../../Elements/Icon';
 import style from './User-Card.module.css';
 import RedButton from '../../../Elements/Button/Red-Button'
 import WhiteButton from '../../../Elements/Button/White-Button';
-import axios from 'axios';
-import { getUsers } from '../../../../services/api';
+import { follow, unfollow } from '../../../../services/api';
 
 const UserCard = (props) => {
-    
+
     let followButton = <RedButton
         className={style.followun}
         onClick={() => {
 
-            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${props.user.id}`, {}, {
-                withCredentials: true,
-                headers:{
-                    'API-KEY': 'a4d4d821-994c-44e2-8c4d-82bd68d24d0f'
-                }
-            })
+            follow(props.user.id)
                 .then(res => {
-                  
                     if (res.data.resultCode === 0) {
                         props.follow(props.user.id)
-                        
-               
                         props.setUsers(props.users)
                     }
-
                 })
-                
-                   
-                
-
         }}
         name={'Follow'} />
     if (props.user.followed) {
@@ -39,19 +25,13 @@ const UserCard = (props) => {
             <WhiteButton
                 className={style.followun}
                 onClick={() => {
-                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.user.id}`, {
-                withCredentials: true,
-                
-                headers:{
-                    'API-KEY': 'a4d4d821-994c-44e2-8c4d-82bd68d24d0f'
-                }
-            })
-                .then(res => {
-                    if (res.data.resultCode === 0) {
-                        props.unFollow(props.user.id)
-                    }
+                    unfollow(props.user.id)
+                        .then(res => {
+                            if (res.data.resultCode === 0) {
+                                props.unFollow(props.user.id)
+                            }
 
-                })
+                        })
                 }}
                 name={'Unfollow'} />
     }

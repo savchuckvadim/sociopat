@@ -1,8 +1,8 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom";
 import { setProfile } from "../../../../redux/reducers/profile-reducer"
+import { getProfile } from "../../../../services/api";
 import Profile from "./Profile"
 
 
@@ -34,7 +34,8 @@ class ProfileContainer extends React.Component {
             }
         }
         debugger
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
+        getProfile(userId)
+       
             .then(res => {
                 const profile = res.data;
               
