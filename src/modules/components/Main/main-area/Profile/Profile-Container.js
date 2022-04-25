@@ -20,24 +20,20 @@ const withRouter = WrappedComponent => props => {
 };
 class ProfileContainer extends React.Component {
 
-    userId(){
+
+    
+    componentDidMount() {
+       
         let userId = 2
         if (this.props.params.userId) {
             userId = this.props.params.userId;
     
         }else{
             if(this.props.user.userId){
-                userId = this.props.currentUser.userId
+                userId = this.props.user.userId
             }
         }
-       
-        return userId
-    }
-    
-    componentDidMount() {
-        
-        let userId = this.userId()
-       
+        debugger
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(res => {
                 const profile = res.data;
