@@ -13,6 +13,7 @@ const Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+    
     let loader = <LightLoadingPageContainer />
     let users = <>
 

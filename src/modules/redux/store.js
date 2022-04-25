@@ -11,7 +11,7 @@ import inputEmailReducer from "./reducers/login-form/input-email-reducer";
 import inputPasswordReducer from "./reducers/login-form/input-password-reducer";
 import inputRepeatPassReducer from "./reducers/login-form/input-repeat-password-reducer";
 import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer";
-import { currentUserReducer } from "./reducers/current-user/current-user-reducer";
+import currentUserReducer from "./reducers/current-user/current-user-reducer";
 import usersReducer from "./reducers/users/users-reducer";
 import authReducer from "./reducers/auth/auth-reducer";
 

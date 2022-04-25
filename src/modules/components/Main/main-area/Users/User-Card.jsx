@@ -5,10 +5,11 @@ import RedButton from '../../../Elements/Button/Red-Button'
 
 const UserCard = (props) => {
 
+let ava = props.user.photos.small
     return (
         <div className={style.container}>
             <div className={style.icon__container}>
-                {/* <Icon user={props.user}/> */}
+                <Icon user={ava}/>
 
             </div>
             <NavLink className={style.login} to={'../profile/'+props.user.id}>

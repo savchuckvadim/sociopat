@@ -5,9 +5,15 @@ import Icon from '../Elements/Icon';
 import { NavLink } from 'react-router-dom';
 const Header = (props) => {
     let login = 'Login'
-    debugger
+    let ava = null
+  debugger
     if (props.auth.login) {
         login = props.auth.login
+        
+    }
+    if (props.user) {
+       
+        ava = props.user.photos.small
     }
     return (
         <header className={style.header}>
@@ -31,7 +37,7 @@ const Header = (props) => {
 
                     </p>
                     <div className={style.icon__container}>
-                        <Icon user={props.user} theme={props.theme} />
+                        <Icon img={ava}  />
                     </div>
 
                 </div>
