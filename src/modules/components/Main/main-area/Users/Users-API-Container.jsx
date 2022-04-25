@@ -1,6 +1,6 @@
 
 import React from "react";
-import { getUsers } from "../../../../services/api";
+import { usersAPI } from "../../../../services/api";
 
 import Users from "./Users";
 
@@ -11,7 +11,7 @@ class UsersContainer extends React.Component {
     componentDidMount() {
 
         this.props.fetching(true)
-        getUsers(this.props.currentPage, this.props.pageSize).then(res => {
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(res => {
             const users = res.items;
             this.props.setTotalUsersCount(res.totalCount)
             this.props.setUsers(users);
@@ -23,7 +23,7 @@ class UsersContainer extends React.Component {
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber)
         this.props.fetching(true)
-        getUsers(pageNumber, this.props.pageSize).then(res => {
+        usersAPI.getUsers(pageNumber, this.props.pageSize).then(res => {
             const users = res.items;
             this.props.setTotalUsersCount(res.totalUsersCount)
             this.props.setUsers(users);

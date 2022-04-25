@@ -3,7 +3,7 @@ import Icon from '../../../Elements/Icon';
 import style from './User-Card.module.css';
 import RedButton from '../../../Elements/Button/Red-Button'
 import WhiteButton from '../../../Elements/Button/White-Button';
-import { follow, unfollow } from '../../../../services/api';
+import { usersAPI} from '../../../../services/api';
 
 const UserCard = (props) => {
 
@@ -11,7 +11,7 @@ const UserCard = (props) => {
         className={style.followun}
         onClick={() => {
 
-            follow(props.user.id).then(res => {
+            usersAPI.follow(props.user.id).then(res => {
                 if (res === 0) {
                     props.follow(props.user.id)
                     props.setUsers(props.users)
@@ -24,7 +24,7 @@ const UserCard = (props) => {
             <WhiteButton
                 className={style.followun}
                 onClick={() => {
-                    unfollow(props.user.id).then(res => {
+                    usersAPI.unfollow(props.user.id).then(res => {
                         if (res === 0) {
                             props.unFollow(props.user.id)
                         }

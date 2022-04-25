@@ -27,7 +27,7 @@
     margin: 0;
     background-color: white;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   border-radius: 10px;
     
 }

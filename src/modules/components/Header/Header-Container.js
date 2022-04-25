@@ -11,8 +11,7 @@ import {
 
 
 import {
-    auth,
-    getProfile
+    usersAPI
 } from "../../services/api"
 import Header from "./Header"
 
@@ -48,7 +47,7 @@ class HeaderContainer extends React.Component {
 
     componentDidMount() {
 
-        auth().then(res => {
+        usersAPI.auth().then(res => {
             const resultCode = res.resultCode;
             const data = res.data;
 
@@ -56,7 +55,7 @@ class HeaderContainer extends React.Component {
                 this.props.setUserData(data.id, data.login, data.email)
             }
 
-            getProfile(data.id)
+            usersAPI.getProfile(data.id)
 
                 .then(res => {
                     const userProfile = res.data

@@ -1,36 +1,32 @@
 import axios from "axios";
+const instance = axios.create({
+    withCredentials: true,
+    baseURL: 'https://social-network.samuraijs.com/api/1.0',
+    headers: {
+        'API-KEY': 'a4d4d821-994c-44e2-8c4d-82bd68d24d0f'
+    }
+})
 
-export const auth = () =>   axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-    withCredentials: true
-}).then(res => res.data)
+export const usersAPI = {
 
+    auth() {
+        return instance.get(`auth/me`).then(res => res.data)
+    },
 
-export const getUsers = (currentPage = 1, pageSize = 10) =>
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`, {
-        withCredentials: true,
-        headers: {
-            'API-KEY': 'a4d4d821-994c-44e2-8c4d-82bd68d24d0f'
-        }
-    }).then(res => res.data)
+    getUsers(currentPage = 1, pageSize = 10) {
+        return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
+    },
 
+    getProfile(userId) {
+        return instance.get(`profile/${userId}`)
 
-export const getProfile = (userId) =>
+    },
+    follow(userId) {
+        return instance.post(`follow/${userId}`).then(res => res.data.resultCode)
+    },
 
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+    unfollow(userId) {
+        return instance.delete(`follow/${userId}`).then(res => res.data.resultCode)
+    }
 
-
-export const follow = (userId) => axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, {
-        withCredentials: true,
-        headers: {
-            'API-KEY': 'a4d4d821-994c-44e2-8c4d-82bd68d24d0f'
-        }
-    }).then(res => res.data.resultCode)
-
-
-export const unfollow = (userId) => axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {
-        withCredentials: true,
-
-        headers: {
-            'API-KEY': 'a4d4d821-994c-44e2-8c4d-82bd68d24d0f'
-        }
-    }).then(res => res.data.resultCode)
+}

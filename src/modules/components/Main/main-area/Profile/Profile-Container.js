@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom";
 import { setProfile } from "../../../../redux/reducers/profile-reducer"
-import { getProfile } from "../../../../services/api";
+import { usersAPI } from "../../../../services/api";
 import Profile from "./Profile"
 
 
@@ -33,8 +33,8 @@ class ProfileContainer extends React.Component {
                 userId = this.props.user.userId
             }
         }
-        debugger
-        getProfile(userId)
+        
+        usersAPI.getProfile(userId)
        
             .then(res => {
                 const profile = res.data;
