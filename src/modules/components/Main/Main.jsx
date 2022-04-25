@@ -14,7 +14,7 @@ import RegistrationForm from "../Elements/Login-Form/Registartion-Form";
 
 
 const Main = () => {
-
+    
     return (
 
         <main id={style.main}>

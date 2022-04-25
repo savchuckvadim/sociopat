@@ -6,15 +6,16 @@ import { NavLink } from 'react-router-dom';
 const Header = (props) => {
     let login = 'Login'
     let ava = null
-  debugger
+
     if (props.auth.login) {
         login = props.auth.login
         
     }
-    if (props.user) {
+    if (props.user.userId) {
        
         ava = props.user.photos.small
     }
+   
     return (
         <header className={style.header}>
             <div className={style.container}>

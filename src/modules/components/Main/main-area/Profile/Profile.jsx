@@ -15,8 +15,9 @@ export const Profile = (props) => {
         <div className={style.profile__container}>
             <ProfileInformation {...props} user={props.user} />
             <SendPostContainer />
-            {props.posts.map(post => {
-                return <Post user={props.user} body={post.body} postsImg={post.img} />
+            {props.posts.map((post, index) => {
+            
+                return <Post key={`post-${index}`} user={props.user} body={post.body} postsImg={post.img} />
             })}
             {/* <Post user={props.user} postsImg={img} />
             <Post user={props.user} />

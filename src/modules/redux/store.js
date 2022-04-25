@@ -1,11 +1,16 @@
-import { combineReducers, createStore } from "redux";
+import {
+    combineReducers,
+    createStore
+} from "redux";
 import dialogsReducer from "./reducers/dialogs/dialogs-reduser";
 import newMessageReducer from "./reducers/dialogs/new-message-reducer";
 import inputNameReducer from "./reducers/login-form/input-name-reducer";
 import itemsReducer from "./reducers/left-menu/items-reducer";
 import currentPostReducer from "./reducers/posts/send-post-reducer";
 import profileReducer from "./reducers/profile-reducer";
-import { themeReducer } from "./reducers/theme/style-reducer";
+import {
+    themeReducer
+} from "./reducers/theme/style-reducer";
 import inputSurnameReducer from "./reducers/login-form/input-surname-reducer";
 import inputEmailReducer from "./reducers/login-form/input-email-reducer";
 import inputPasswordReducer from "./reducers/login-form/input-password-reducer";
@@ -16,21 +21,22 @@ import usersReducer from "./reducers/users/users-reducer";
 import authReducer from "./reducers/auth/auth-reducer";
 
 let reducers = combineReducers({
+    auth: authReducer,
     currentUser: currentUserReducer,
-    users:usersReducer,
+    users: usersReducer,
     theme: themeReducer,
     itemsReducer,
-    navMenu:navMenuReducer,
+    navMenu: navMenuReducer,
     dialogsReducer,
     profileReducer,
-    currentPost:currentPostReducer,
+    currentPost: currentPostReducer,
     newMessageReducer,
-    inputName:inputNameReducer,
-    inputSurname:inputSurnameReducer,
-    inputEmail:inputEmailReducer,
-    inputPassword:inputPasswordReducer,
-    inputRepeatPass:inputRepeatPassReducer,
-    auth:authReducer
+    inputName: inputNameReducer,
+    inputSurname: inputSurnameReducer,
+    inputEmail: inputEmailReducer,
+    inputPassword: inputPasswordReducer,
+    inputRepeatPass: inputRepeatPassReducer,
+
 
 });
 

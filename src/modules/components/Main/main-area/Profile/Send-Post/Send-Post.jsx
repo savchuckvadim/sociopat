@@ -29,7 +29,7 @@ const SendPost = (props) => {
             />
             </div>
             <div className={style.right__area}>
-            <img src={camera}></img>
+            {/* <img src={camera} alt='camera-image'/> */}
             <div className={style.sendArea}>
             {sendArea}
             </div>

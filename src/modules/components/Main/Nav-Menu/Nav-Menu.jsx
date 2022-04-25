@@ -55,6 +55,7 @@ const NavMenu = (props) => {
 
 
     })
+    
     return (
         <div className={style.menu} key='nav-menu'>
             {items}

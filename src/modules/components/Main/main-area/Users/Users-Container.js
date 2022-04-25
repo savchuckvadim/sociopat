@@ -1,5 +1,14 @@
-import { connect } from "react-redux"
-import { fetching, setCurrentPage, setTotalUsersCount, setUsers } from "../../../../redux/reducers/users/users-reducer"
+import {
+    connect
+} from "react-redux"
+import {
+    fetching,
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    unFollow
+} from "../../../../redux/reducers/users/users-reducer"
 
 import UsersContainer from "./Users-API-Container"
 
@@ -14,7 +23,7 @@ const mapStateToProps = (state) => {
         currentPage: state.users.currentPage,
         count: state.users.count,
         isFetching: state.users.isFetching
-        
+
     }
 }
 // const mapDispatchToProps = (dispatch) => {
@@ -22,13 +31,13 @@ const mapStateToProps = (state) => {
 //     const setCurrentPage = (page) => {
 //         const action = setCurrentPageActionCreator(page)
 //         dispatch(action)
-        
+
 //     }
 //     const setUsers = (users) => {
 //         const action = setUsersAC(users)
-       
+
 //         dispatch(action)
-       
+
 //     }
 //     const setTotalUsersCount = (count) => {
 //         const action = setTotalUsersCountAC(count);
@@ -43,14 +52,16 @@ const mapStateToProps = (state) => {
 //         setUsers,
 //         setTotalUsersCount,
 //         fetching
-       
+
 //     }
 // }
 
-export default connect(mapStateToProps,  {
+export default connect(mapStateToProps, {
     setCurrentPage,
     setUsers,
     setTotalUsersCount,
-    fetching
-   
+    fetching,
+    follow,
+    unFollow
+
 })(UsersContainer)

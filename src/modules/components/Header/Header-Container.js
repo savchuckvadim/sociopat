@@ -58,7 +58,7 @@ class HeaderContainer extends React.Component {
                     
                     this.props.setCurrentUserData(userProfile)
                 })
-
+                
             })
             
 

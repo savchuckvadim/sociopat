@@ -1,6 +1,6 @@
 const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
-const initialState = null
+const initialState = {}
     // id: 123,
     // name: 'Socio',
     // surname: 'Path',
@@ -21,7 +21,7 @@ const currentUserReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case SET_CURRENT_USER:
-            result = { ...state };
+            result = { ...state};
             result = action.userProfile
 
             

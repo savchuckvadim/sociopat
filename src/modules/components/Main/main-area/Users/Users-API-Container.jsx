@@ -9,6 +9,7 @@ import Users from "./Users";
 class UsersContainer extends React.Component {
 
     componentDidMount() {
+        
         this.props.fetching(true)
         getUsers(this.props.currentPage, this.props.pageSize)
             .then(res => {
@@ -34,6 +35,7 @@ class UsersContainer extends React.Component {
             })
 
     }
+
     render() {
 
         return (
@@ -45,7 +47,12 @@ class UsersContainer extends React.Component {
                     pageSize={this.props.pageSize}
                     currentPage={this.props.currentPage}
                     onPageChanged={this.onPageChanged}
-                    isFetching={this.props.isFetching} />
+                    isFetching={this.props.isFetching} 
+                    follow={this.props.follow}
+                    unFollow={this.props.unFollow}
+                    setUsers={this.props.setUsers}
+                    
+                    />
 
             </>
         )

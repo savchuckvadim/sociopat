@@ -13,34 +13,47 @@ const Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-    
+
     let loader = <LightLoadingPageContainer />
-    let users = <>
+    let users =
+        <>
+            <div className={style.title__container}>
+                <Title title={'People'} />
 
-        <div className={style.title__container}>
-            <Title title={'People'} />
+            </div>
+            <div className={style.container}>
+                {props.users.map(user =>
+                    <UserCard
+                        key={`user-card-${user.id}`}
+                        users={props.users}
+                        user={user}
+                        name={user.name}
+                        follow={props.follow}
+                        unFollow={props.unFollow}
+                        setUsers={props.setUsers}
+                        currentPage={props.currentPage}
+                        pageSize={props.pageSize}
+                    />)}
+            </div>
+            <div className={style.pages}>
+                {pages.map(p => {
+                    let spanClassName = style.span
+                    props.currentPage === p ? spanClassName = style.selectPage : spanClassName = style.span
+                    return <span
+                        key={`user-page-${p}`}
+                        onClick={() => { props.onPageChanged(p) }}
 
-        </div>
-        <div className={style.container}>
-            {props.users.map(user =>
-                <UserCard user={user} name={user.name} />)}
-        </div>
-        <div className={style.pages}>
-            {pages.map(p => {
+                        className={spanClassName}>
 
-                return <span
-                    onClick={() => { props.onPageChanged(p) }}
+                        {p}
+                    </span>
+                })}
+            </div>
 
-                    className={props.currentPage === p && style.selectPage}>
-                    {p}
-                </span>
-            })}
-        </div>
-
-    </>
+        </>
     return (
         <>
-           {props.isFetching ? loader : users}
+            {props.isFetching ? loader : users}
         </>
     )
 

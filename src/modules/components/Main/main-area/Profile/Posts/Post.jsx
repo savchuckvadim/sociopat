@@ -8,10 +8,11 @@ let img = `https://images.unsplash.com/photo-1518991669955-9c7e78ec80ca?ixlib=rb
 let postsImg = `https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80`
 
 const Post = (props) => {
+    
     let postsImg = null
     if (props.postsImg) {
-        postsImg = <div className={style.img__container}>
-            <img className={style.post__img} src={props.postsImg} alt="postsImg" />
+        postsImg = <div key={`post-img-container`} className={style.img__container}>
+            <img  key={'post-img-container'} className={style.post__img} src={props.postsImg} alt="postsImg" />
         </div>
     }
 

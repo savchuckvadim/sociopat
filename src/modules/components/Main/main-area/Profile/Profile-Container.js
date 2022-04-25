@@ -4,9 +4,12 @@ import { connect } from "react-redux"
 import { useParams } from "react-router-dom";
 import { setProfile } from "../../../../redux/reducers/profile-reducer"
 import Profile from "./Profile"
+
+
 const withRouter = WrappedComponent => props => {
     const params = useParams();
     // etc... other react-router-dom v6 hooks
+  
     return (
         <WrappedComponent
             {...props}
@@ -17,14 +20,24 @@ const withRouter = WrappedComponent => props => {
 };
 class ProfileContainer extends React.Component {
 
-    componentDidMount() {
-       
-        let userId = 23418
+    userId(){
+        let userId = 2
         if (this.props.params.userId) {
             userId = this.props.params.userId;
-
+    
+        }else{
+            if(this.props.user.userId){
+                userId = this.props.currentUser.userId
+            }
         }
+       
+        return userId
+    }
+    
+    componentDidMount() {
         
+        let userId = this.userId()
+       
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(res => {
                 const profile = res.data;
@@ -43,8 +56,8 @@ class ProfileContainer extends React.Component {
 
 
 const mapStateToProps = (state) => {
-    // debugger
-
+    
+    
     return {
         profile: state.profileReducer.profile,
         user: state.currentUser,
