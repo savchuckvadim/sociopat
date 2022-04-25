@@ -1,4 +1,3 @@
-
 import React from "react"
 import {
     connect
@@ -49,24 +48,23 @@ class HeaderContainer extends React.Component {
 
     componentDidMount() {
 
-        auth()
-            .then(res => {
-                const resultCode = res.data.resultCode;
-                const data = res.data.data;
+        auth().then(res => {
+            const resultCode = res.resultCode;
+            const data = res.data;
 
-                if (resultCode === 0) {
-                    this.props.setUserData(data.id, data.login, data.email)
-                }
+            if (resultCode === 0) {
+                this.props.setUserData(data.id, data.login, data.email)
+            }
 
-                getProfile(data.id)
+            getProfile(data.id)
 
-                    .then(res => {
-                        const userProfile = res.data
+                .then(res => {
+                    const userProfile = res.data
 
-                        this.props.setCurrentUserData(userProfile)
-                    })
+                    this.props.setCurrentUserData(userProfile)
+                })
 
-            })
+        })
 
 
 

@@ -11,13 +11,12 @@ const UserCard = (props) => {
         className={style.followun}
         onClick={() => {
 
-            follow(props.user.id)
-                .then(res => {
-                    if (res.data.resultCode === 0) {
-                        props.follow(props.user.id)
-                        props.setUsers(props.users)
-                    }
-                })
+            follow(props.user.id).then(res => {
+                if (res === 0) {
+                    props.follow(props.user.id)
+                    props.setUsers(props.users)
+                }
+            })
         }}
         name={'Follow'} />
     if (props.user.followed) {
@@ -25,13 +24,12 @@ const UserCard = (props) => {
             <WhiteButton
                 className={style.followun}
                 onClick={() => {
-                    unfollow(props.user.id)
-                        .then(res => {
-                            if (res.data.resultCode === 0) {
-                                props.unFollow(props.user.id)
-                            }
+                    unfollow(props.user.id).then(res => {
+                        if (res === 0) {
+                            props.unFollow(props.user.id)
+                        }
 
-                        })
+                    })
                 }}
                 name={'Unfollow'} />
     }

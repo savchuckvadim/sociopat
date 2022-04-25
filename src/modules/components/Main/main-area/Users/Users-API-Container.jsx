@@ -9,30 +9,27 @@ import Users from "./Users";
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        
+
         this.props.fetching(true)
-        getUsers(this.props.currentPage, this.props.pageSize)
-            .then(res => {
-                const users = res.data.items;
-                this.props.setTotalUsersCount(res.data.totalCount)
-                this.props.setUsers(users);
-                this.props.fetching(false)
-            })
+        getUsers(this.props.currentPage, this.props.pageSize).then(res => {
+            const users = res.items;
+            this.props.setTotalUsersCount(res.totalCount)
+            this.props.setUsers(users);
+            this.props.fetching(false)
+        })
 
     }
 
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber)
         this.props.fetching(true)
-        getUsers(pageNumber, this.props.pageSize)
-       
-            .then(res => {
-                const users = res.data.items;
-                this.props.setTotalUsersCount(res.data.totalUsersCount)
-                this.props.setUsers(users);
-                this.props.fetching(false)
+        getUsers(pageNumber, this.props.pageSize).then(res => {
+            const users = res.items;
+            this.props.setTotalUsersCount(res.totalUsersCount)
+            this.props.setUsers(users);
+            this.props.fetching(false)
 
-            })
+        })
 
     }
 
@@ -47,12 +44,12 @@ class UsersContainer extends React.Component {
                     pageSize={this.props.pageSize}
                     currentPage={this.props.currentPage}
                     onPageChanged={this.onPageChanged}
-                    isFetching={this.props.isFetching} 
+                    isFetching={this.props.isFetching}
                     follow={this.props.follow}
                     unFollow={this.props.unFollow}
                     setUsers={this.props.setUsers}
-                    
-                    />
+
+                />
 
             </>
         )
