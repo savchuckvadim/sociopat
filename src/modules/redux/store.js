@@ -1,4 +1,5 @@
 import {
+    applyMiddleware,
     combineReducers,
     createStore
 } from "redux";
@@ -19,6 +20,8 @@ import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer";
 import currentUserReducer from "./reducers/current-user/current-user-reducer";
 import usersReducer from "./reducers/users/users-reducer";
 import authReducer from "./reducers/auth/auth-reducer";
+import ThunkMiddleware from 'redux-thunk';
+
 
 let reducers = combineReducers({
     auth: authReducer,
@@ -40,5 +43,5 @@ let reducers = combineReducers({
 
 });
 
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware(ThunkMiddleware));
 export default store;

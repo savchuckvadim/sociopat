@@ -1,6 +1,6 @@
 import style from './Send-Post.module.css'
 import Icon from '../../../../Elements/Icon'
-import camera from '../../../../../../assets/imgs/posts/camera-photo.svg'
+// import camera from '../../../../../../assets/imgs/posts/camera-photo.svg'
 import arrowup from '../../../../../../assets/imgs/posts/arrow-up.svg'
 import React from 'react'
 

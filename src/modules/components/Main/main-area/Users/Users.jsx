@@ -25,14 +25,13 @@ const Users = (props) => {
                 {props.users.map(user =>
                     <UserCard
                         key={`user-card-${user.id}`}
-                        users={props.users}
                         user={user}
                         name={user.name}
                         follow={props.follow}
                         unFollow={props.unFollow}
-                        setUsers={props.setUsers}
-                        currentPage={props.currentPage}
-                        pageSize={props.pageSize}
+                        toggleFollowingInProgress={props.toggleFollowingInProgress}
+                        disabled={props.followingInProgress}
+                        
                     />)}
             </div>
             <div className={style.pages}>
