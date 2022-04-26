@@ -20,7 +20,15 @@ export const usersAPI = {
     },
 
     getProfile(userId) {
-        return instance.get(`profile/${userId}`)
+        
+        if(!userId){
+            
+            return instance.get(`auth/me`).then(res => instance.get(`profile/${res.data.id}`))
+           
+        }else{
+            return instance.get(`profile/${userId}`)
+        }
+        
 
     },
     follow(userId) {

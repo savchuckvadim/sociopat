@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom";
+import { getAuth } from "../../../../redux/reducers/auth/auth-reducer";
 
 import { setProfile } from "../../../../redux/reducers/profile-reducer"
 import { usersAPI } from "../../../../services/api";
@@ -25,19 +26,27 @@ class ProfileContainer extends React.Component {
     
     componentDidMount() {
        
-        let userId = 2
-        if (this.props.params.userId) {
-            userId = this.props.params.userId;
-    
-        }else{
-            if(this.props.user.userId){
-                userId = this.props.user.userId
+        
+        let userId 
+       
+            if (this.props.params.userId) {
+                userId = this.props.params.userId;
+        
             }
-        }
+            // else{
+               
+            //     if(this.props.user.userId){
+            //         userId = this.props.user.userId
+            //     }
+            // }
+        
+       
+        
         
         usersAPI.getProfile(userId)
-       
+        
             .then(res => {
+               
                 const profile = res.data;
               
                 this.props.setProfile(profile)
@@ -59,7 +68,8 @@ const mapStateToProps = (state) => {
     return {
         profile: state.profileReducer.profile,
         user: state.auth.currentUser,
-        posts: state.profileReducer.posts
+        posts: state.profileReducer.posts,
+        
     }
 }
 
@@ -69,5 +79,6 @@ let WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
 export default connect(mapStateToProps, {
     setProfile,
+    getAuth
 
 })(WithUrlDataContainerComponent)
