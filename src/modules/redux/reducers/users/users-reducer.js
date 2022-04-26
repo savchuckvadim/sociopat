@@ -17,7 +17,7 @@ const initialState = {
     currentPage: 1,
     count: 0,
     isFetching: false,
-    followingInProgress: false
+    followingInProgress: []
 
 }
 
@@ -91,8 +91,12 @@ const usersReducer = (state = initialState, action) => {
             result = {
                 ...state
             }
-            result.followingInProgress = action.bool
+            result.followingInProgress = [...state.followingInProgress]
 
+            action.isFetching 
+            ? result.followingInProgress.push(action.userId)
+            : result.followingInProgress = state.followingInProgress.filter(id => id !== action.userId)
+           
             return result
 
 
@@ -102,34 +106,13 @@ const usersReducer = (state = initialState, action) => {
     }
 
 }
-export const setCurrentPage = (page) => ({
-    type: SET_CURRENT_PAGE,
-    page
-})
-export const setUsers = (users) => ({
-    type: SET_USERS,
-    users
-})
-export const setTotalUsersCount = (count) => ({
-    type: SET_TOTAL_USERS_COUNT,
-    count
-})
-export const fetching = (bool) => ({
-    type: FETCHING,
-    bool
-})
-export const follow = (userId) => ({
-    type: FOLLOW,
-    userId
-})
-export const unFollow = (userId) => ({
-    type: UNFOLLOW,
-    userId
-})
-export const toggleFollowingInProgress = (bool) => ({
-    type: FOLLOWING_IN_PROGRESS,
-    bool
-})
+export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page})
+export const setUsers = (users) => ({type: SET_USERS, users})
+export const setTotalUsersCount = (count) => ({type: SET_TOTAL_USERS_COUNT, count})
+export const fetching = (bool) => ({type: FETCHING, bool})
+export const follow = (userId) => ({type: FOLLOW, userId})
+export const unFollow = (userId) => ({ type: UNFOLLOW, userId})
+export const toggleFollowingInProgress = (userId, isFetching) => ({type: FOLLOWING_IN_PROGRESS, userId, isFetching})
 
 
 export const getUsers = (currentPage, pageSize) => (dispatch) => {
@@ -145,24 +128,24 @@ export const getUsers = (currentPage, pageSize) => (dispatch) => {
 }
 
 export const followThunk = (userId) => (dispatch) => {
-    dispatch(toggleFollowingInProgress(true))
+    dispatch(toggleFollowingInProgress(userId, true))
     usersAPI.follow(userId).then(res => {
         if (res === 0) {
             dispatch(follow(userId))
 
         }
-        dispatch(toggleFollowingInProgress(false))
+        dispatch(toggleFollowingInProgress(userId, false))
     })
 }
 
 export const unFollowThunk = (userId) => (dispatch) => {
-    dispatch(toggleFollowingInProgress(true))
+    dispatch(toggleFollowingInProgress(userId, true))
     usersAPI.unfollow(userId).then(res => {
         if (res === 0) {
             dispatch(unFollow(userId))
 
         }
-        dispatch(toggleFollowingInProgress(false))
+        dispatch(toggleFollowingInProgress(userId, false))
     })
 }
 

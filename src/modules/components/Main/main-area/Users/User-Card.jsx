@@ -6,8 +6,11 @@ import WhiteButton from '../../../Elements/Button/White-Button';
 import { usersAPI } from '../../../../services/api';
 
 const UserCard = (props) => {
+    
+let disable = props.followingInProgress.some(id => id === props.user.id)
 
     let followButton = <RedButton
+    disable={disable}
         className={style.followun}
         onClick={() => {
             props.followThunk(props.user.id)
@@ -18,6 +21,7 @@ const UserCard = (props) => {
     if (props.user.followed) {
         followButton =
             <WhiteButton
+            disable={disable}
                 className={style.followun}
                 onClick={() => {
                     props.unFollowThunk(props.user.id)

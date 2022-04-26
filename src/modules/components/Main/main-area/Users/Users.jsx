@@ -30,7 +30,8 @@ const Users = (props) => {
                         followThunk={props.followThunk}
                         unFollowThunk={props.unFollowThunk}
                         toggleFollowingInProgress={props.toggleFollowingInProgress}
-                        disabled={props.followingInProgress}
+                        followingInProgress={props.followingInProgress}
+
                         
                     />)}
             </div>
