@@ -3,6 +3,7 @@ import {
     connect
 } from "react-redux"
 import {
+    getAuth,
     setAuthUserData,
     setCurrentUser
 } from "../../redux/reducers/auth/auth-reducer"
@@ -22,47 +23,14 @@ const mapStateToProps = (state) => {
         theme: state.theme
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    const setUserData = (id, login, email) => {
-        const action = setAuthUserData(id, login, email)
-        dispatch(action)
-    }
-    const setCurrentUserData = (userProfile) => {
 
-        const action = setCurrentUser(userProfile)
-        dispatch(action)
-    }
-    return {
-        setUserData,
-        setCurrentUserData
 
-    }
-}
-
-// export const HeaderContainer = connect(mapStateToProps)(Header)
 
 class HeaderContainer extends React.Component {
 
     componentDidMount() {
 
-        usersAPI.auth().then(res => {
-            const resultCode = res.resultCode;
-            const data = res.data;
-
-            if (resultCode === 0) {
-                this.props.setUserData(data.id, data.login, data.email)
-            }
-
-            usersAPI.getProfile(data.id)
-
-                .then(res => {
-                    const userProfile = res.data
-
-                    this.props.setCurrentUserData(userProfile)
-                })
-
-        })
-
+        this.props.getAuth()
 
 
     }
@@ -74,4 +42,6 @@ class HeaderContainer extends React.Component {
         />
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer)
+export default connect(mapStateToProps, {
+    getAuth
+})(HeaderContainer)
