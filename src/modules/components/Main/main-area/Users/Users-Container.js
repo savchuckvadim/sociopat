@@ -3,13 +3,15 @@ import {
 } from "react-redux"
 import {
     fetching,
-    follow,
+
+    followThunk,
     getUsers,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
     toggleFollowingInProgress,
-    unFollow
+
+    unFollowThunk
 } from "../../../../redux/reducers/users/users-reducer"
 
 import UsersContainer from "./Users-API-Container"
@@ -25,7 +27,7 @@ const mapStateToProps = (state) => {
         currentPage: state.users.currentPage,
         count: state.users.count,
         isFetching: state.users.isFetching,
-        followingInProgress:state.users.followingInProgress
+        followingInProgress: state.users.followingInProgress
 
     }
 }
@@ -36,9 +38,11 @@ export default connect(mapStateToProps, {
     setUsers,
     setTotalUsersCount,
     fetching,
-    follow,
-    unFollow,
+    // follow,
+    // unFollow,
     toggleFollowingInProgress,
-    getUsers
+    getUsers,
+    followThunk,
+    unFollowThunk
 
 })(UsersContainer)

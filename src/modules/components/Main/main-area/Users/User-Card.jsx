@@ -10,29 +10,20 @@ const UserCard = (props) => {
     let followButton = <RedButton
         className={style.followun}
         onClick={() => {
-            props.toggleFollowingInProgress(true)
-            usersAPI.follow(props.user.id).then(res => {
-                if (res === 0) {
-                    props.follow(props.user.id)
-                    
-                }
-                props.toggleFollowingInProgress(false)
-            })
+            props.followThunk(props.user.id)
+
         }}
+
         name={'Follow'} />
     if (props.user.followed) {
         followButton =
             <WhiteButton
                 className={style.followun}
                 onClick={() => {
-                    props.toggleFollowingInProgress(true)
-                    usersAPI.unfollow(props.user.id).then(res => {
-                        if (res === 0) {
-                            props.unFollow(props.user.id)
-                        }
-                        props.toggleFollowingInProgress(false)
-                    })
+                    props.unFollowThunk(props.user.id)
+
                 }}
+
                 name={'Unfollow'} />
     }
     let ava = props.user.photos.small

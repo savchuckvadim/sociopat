@@ -27,8 +27,8 @@ const Users = (props) => {
                         key={`user-card-${user.id}`}
                         user={user}
                         name={user.name}
-                        follow={props.follow}
-                        unFollow={props.unFollow}
+                        followThunk={props.followThunk}
+                        unFollowThunk={props.unFollowThunk}
                         toggleFollowingInProgress={props.toggleFollowingInProgress}
                         disabled={props.followingInProgress}
                         
