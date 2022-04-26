@@ -109,7 +109,7 @@ export const unFollow = (userId) => ({ type: UNFOLLOW, userId })
 export const toggleFollowingInProgress = (bool) => ({ type: FOLLOWING_IN_PROGRESS, bool })
 
 
-export const getUsersThunkCreator = (currentPage, pageSize) => (dispatch) => {
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
   dispatch(fetching(true))
 
     usersAPI.getUsers(currentPage, pageSize).then(res => {

@@ -4,7 +4,7 @@ import {
 import {
     fetching,
     follow,
-    getUsersThunkCreator,
+    getUsers,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
@@ -39,6 +39,6 @@ export default connect(mapStateToProps, {
     follow,
     unFollow,
     toggleFollowingInProgress,
-    getUsersThunkCreator
+    getUsers
 
 })(UsersContainer)

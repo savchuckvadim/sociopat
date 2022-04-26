@@ -57,7 +57,7 @@ const mapStateToProps = (state) => {
     
     return {
         profile: state.profileReducer.profile,
-        user: state.currentUser,
+        user: state.auth.currentUser,
         posts: state.profileReducer.posts
     }
 }

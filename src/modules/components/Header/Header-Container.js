@@ -3,11 +3,9 @@ import {
     connect
 } from "react-redux"
 import {
-    setAuthUserData
-} from "../../redux/reducers/auth/auth-reducer"
-import {
+    setAuthUserData,
     setCurrentUser
-} from "../../redux/reducers/current-user/current-user-reducer"
+} from "../../redux/reducers/auth/auth-reducer"
 
 
 import {
@@ -19,8 +17,8 @@ import Header from "./Header"
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.auth,
-        user: state.currentUser,
+        auth: state.auth.auth,
+        user: state.auth.currentUser,
         theme: state.theme
     }
 }
