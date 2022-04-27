@@ -14,3 +14,8 @@
 .text{
     color: #ffffff;
 }
+
+.logo{
+    min-width: 100px;
+    height: auto;
+}

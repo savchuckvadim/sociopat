@@ -12,6 +12,8 @@
 
 .logo{
     opacity: 50%;
+    min-width: 100px;
+    height: auto;
 }
 .text{
     color: #808080;

@@ -2,11 +2,14 @@ import style from './Light-Loading-Page.module.css'
 import dark from './Dark-Loading-Page.module.css'
 
 const LoadingPage = (props) => {
-   
+    
     if (props.type === 'dark') {
         return (
             <div className={dark.container} style={props.style}>
-                <img className={dark.logo} src={props.style.logo} alt="logo" />
+                <div className={dark.logo}>
+                    <img className={dark.logo} src={props.style.logo} alt="logo" />
+                </div>
+
                 <p className={dark.text}>Loading...</p>
             </div>
         )
