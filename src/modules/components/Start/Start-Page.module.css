@@ -1,7 +1,9 @@
 .start__page,
 .wrapper,
 .logo__wrapper,
-.buttons__wrapper
+.buttons__wrapper,
+.slogan__title,
+.slogan__text
  {
     padding: 0;
     margin: 0 auto;
@@ -31,13 +33,13 @@
 }
 
 .wrapper {
-    max-width: 30%;
-    height: 50%;
+    max-width: 35%;
+    height: 90%;
     padding-top: 40px;
     z-index: 3000;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 
 
 }
@@ -57,7 +59,12 @@
     margin-right: 20px;
     z-index: 3000;
 }
-
+.slogan__wrapper{
+    margin-bottom: 80px;
+}
+.slogan__title{
+    margin-bottom: 10px; 
+}
 .buttons__wrapper{
     display: flex;
     flex-direction: row;
@@ -67,7 +74,10 @@
     width: 200px;
     margin: 0 5px;
 }
-
+.button__link{
+    text-decoration: none;
+    /* color: white; */
+}
 .greyLogo {
     position: absolute;
     top: 10%;
