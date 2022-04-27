@@ -5,38 +5,38 @@ import { getAuth } from "../../redux/reducers/auth/auth-reducer"
 import Sociopath from "../Sociopath-App/Sociopath"
 import StartPage from "../Start/Start-Page"
 
-const mapStateToProps = (state) => {
+// const mapStateToProps = (state) => {
 
-    return {
-        auth: state.auth.auth.id
-    }
-}
-
-
-class AuthRedirectComponent extends React.Component {
-
-    componentDidMount() {
-        debugger
-        this.props.getAuth()
+//     return {
+//         auth: state.auth.auth.id
+//     }
+// }
 
 
-    }
-    render() {
-        if (!this.props.auth) return <Navigate replace to='start' />
-        return <Sociopath/>
-    }
+// class AuthRedirectComponent extends React.Component {
+
+//     componentDidMount() {
+     
+//         this.props.getAuth()
+
+
+//     }
+//     render() {
+//         if (!this.props.auth) return <Navigate replace to='start' />
+//         return <Sociopath/>
+//     }
   
 
-}
-const AuthRedirectComponentContainer = connect(mapStateToProps, {
-    getAuth
-})(AuthRedirectComponent)
-export default AuthRedirectComponentContainer
+// }
+// const AuthRedirectComponentContainer = connect(mapStateToProps, {
+//     getAuth
+// })(AuthRedirectComponent)
+// export default AuthRedirectComponentContainer
 
 
 
 
-export const withAuthRedirect = (Component) => {
+ const withAuthRedirect = (Component) => {
 
     class RedirectComponent extends React.Component{
         render(){
@@ -45,3 +45,5 @@ export const withAuthRedirect = (Component) => {
         }
     }
 }
+
+export default withAuthRedirect

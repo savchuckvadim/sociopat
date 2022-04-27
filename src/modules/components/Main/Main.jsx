@@ -8,7 +8,7 @@ import RegistrationForm from "../Elements/Login-Form/Registartion-Form";
 
 
 const Main = () => {
-    
+
     return (
 
         <main id={style.main}>
@@ -22,12 +22,13 @@ const Main = () => {
                 <div id={style.main__area}>
                     <Routes>
                         <Route path="/" index element={<ProfileContainer />} />
-                        <Route path="login" element={<RegistrationForm/>}/>
+                        <Route path="login" element={<RegistrationForm />} />
                         <Route path="profile" element={<ProfileContainer />} />
                         <Route path="messages//*" element={<Messages />} />
                         {/* <Route path="dialog//*" element={< />} /> */}
                         <Route path="users" element={<UsersContainer />} />
                         <Route path="/profile/:userId" element={<ProfileContainer />} />
+
                     </Routes>
                     {/* <RouteCurrentDialogContainer/> */}
                 </div>
