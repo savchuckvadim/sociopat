@@ -8,11 +8,10 @@ import { SendPostContainer } from './Send-Post/Send-Post-Container';
 
 
 export const Profile = (props) => {
-debugger
+
     return (
-        !props.isAuth
-        ? <Navigate redirect to='../login' />
-        : <div className={style.profile__container}>
+     
+        <div className={style.profile__container}>
             <ProfileInformation {...props} user={props.user} />
             <SendPostContainer />
             {props.posts.map((post, index) => {

@@ -8,6 +8,18 @@ import { usersAPI } from "../../../../services/api";
 import withAuthRedirect from "../../../HOC/Auth-Redirect";
 import Profile from "./Profile"
 
+const mapStateToProps = (state) => {
+
+    return {
+        profile: state.profileReducer.profile,
+        user: state.auth.currentUser,
+        posts: state.profileReducer.posts,
+        
+
+    }
+}
+
+
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -43,32 +55,22 @@ class ProfileContainer extends React.Component {
 
     }
     render() {
+        // if (!this.props.isAuth) return <Navigate redirect to='../login' />
         return (
+
             <Profile {...this.props} />
         )
     }
 }
 
 
-let authRedirectComponent = (props) => {
-    if (!props.auth) return <Navigate replace to='login' />
-    return <ProfileContainer {...props} />
-}
-
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
-// => props =>(authRedirectComponent(props));
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
 
 
-const mapStateToProps = (state) => {
+let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
-    return {
-        profile: state.profileReducer.profile,
-        user: state.auth.currentUser,
-        posts: state.profileReducer.posts,
-        isAuth:state.auth.auth.isAuth
 
-    }
-}
+
 
 
 export default connect(mapStateToProps, {
