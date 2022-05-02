@@ -80,7 +80,7 @@ export default  compose(
     
     }),
     withRouter,  
-    withAuthRedirect
+    // withAuthRedirect
 )(ProfileContainer)
 
 // export default connect(mapStateToProps, {

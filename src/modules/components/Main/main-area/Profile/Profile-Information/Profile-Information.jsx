@@ -1,6 +1,7 @@
 import style from './Profile-Information.module.css'
 import hero from '../../../../../../assets/imgs/Vector.png'
 import WhiteButton from '../../../../Elements/Button/White-Button';
+import Status from './Status';
 
 // import Icon from '../../../../Elements/Icon';
 const ProfileInformation = (props) => {
@@ -18,9 +19,11 @@ const ProfileInformation = (props) => {
                 <div className={style.information}>
                     <div className={style.info__container}>
                         <div className={style.about__container}>
+                          
                             <h1 className={style.name}>{props.profile.fullName}</h1>
-                            <p className={style.about}>My actions are not for fame, I just hate most people.
-                                I don't see anything remarkable in them. People are really stupid shit. I bring them joy by suffering to die without any slobbering "buts".</p>
+                            <Status/>
+                            {/* <p className={style.about}>My actions are not for fame, I just hate most people. */}
+                                {/* I don't see anything remarkable in them. People are really stupid shit. I bring them joy by suffering to die without any slobbering "buts".</p> */}
                         </div>
                         <div className={style.statistics__container}>
                             <div className={style.posts}>
