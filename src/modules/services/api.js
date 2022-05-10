@@ -38,7 +38,7 @@ export const profileAPI = {
             return instance.get(`auth/me`).then(res => instance.get(`profile/${res.data.id}`))
 
         } else {
-            return instance.put(`profile/${userId}`)
+            return instance.get(`profile/${userId}`)
         }
 
     },
