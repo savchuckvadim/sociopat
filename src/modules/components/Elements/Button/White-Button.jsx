@@ -1,10 +1,12 @@
 import style from './Button.module.css'
-
+import { Field } from 'redux-form'
 
 const WhiteButton = (props) => {
 
     return (
-        <button
+        <Field
+            component={'button'}
+            name={'whiteButton'}
             onClick={props.onClick}
             disabled={props.disabled}
             className={style.button} >
@@ -12,7 +14,7 @@ const WhiteButton = (props) => {
                 className={style.button__name}>
                 {props.name}
             </p>
-        </button>
+        </Field>
     )
 }
 
