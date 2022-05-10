@@ -7,18 +7,30 @@ class Status extends React.Component {
         editMode: false
     }
 
+    toggleMode = () => {
+
+        this.state.editMode
+            ? this.setState({
+                editMode: false
+            })
+            :
+            this.setState({
+                editMode: true
+            })
+
+
+    }
+
     render() {
         return (
 
             <div className={style.about}>
                 {this.state.editMode
-                    ? <input  autoFocus className={style.input} type='textarea' value={`My actions are not for fame, I just hate most people.
-                    I don't see anything remarkable in them. People are really stupid shit. I bring them joy by suffering to die without any slobbering "buts".`} >
-                        
+                    ? <input onDoubleClick={this.toggleMode} autoFocus className={style.input} type='textarea' value={this.props.aboutMe} >
+
                     </input>
-                    : <p >
-                        My actions are not for fame, I just hate most people.
-                        I don't see anything remarkable in them. People are really stupid shit. I bring them joy by suffering to die without any slobbering "buts".
+                    : <p className={style.input} onBlur={this.toggleMode} >
+                        {this.props.aboutMe}
                     </p>
                 }
 

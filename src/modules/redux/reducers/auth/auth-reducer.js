@@ -68,7 +68,9 @@ export const getAuth = () => (dispatch) => {
 
         usersAPI.getProfile(data.id)
             .then(res => {
+
                 const userProfile = res.data
+               
                 dispatch(setCurrentUser(userProfile))
             })
 
