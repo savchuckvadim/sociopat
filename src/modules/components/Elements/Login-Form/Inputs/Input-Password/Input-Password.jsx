@@ -1,6 +1,6 @@
 import '../Input.css';
 import React from 'react';
-
+import { Field } from 'redux-form'
 const InputPassword = (props) => {
     const refPassword = React.createRef()
 
@@ -18,7 +18,8 @@ const InputPassword = (props) => {
         <div className={props.containerClass}>
             {icon}
 
-            <input
+            <Field
+            component={'input'}
                 key={props.title}
                 ref={refPassword}
                 onFocus={props.changeClass}

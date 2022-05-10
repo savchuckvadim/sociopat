@@ -1,6 +1,6 @@
 import '../Input.css';
 import React from 'react';
-
+import { Field } from 'redux-form'
 const InputEmail = (props) => {
     const refEmail = React.createRef()
 
@@ -16,7 +16,8 @@ const InputEmail = (props) => {
         <div className={props.containerClass}>
             {icon}
 
-            <input
+            <Field
+                component={'input'}
                 key={props.title}
                 ref={refEmail}
                 onFocus={props.changeClass}

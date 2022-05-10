@@ -1,5 +1,6 @@
 import '../Input.css';
 import React from 'react';
+import { Field } from 'redux-form'
 
 const InputRepeatPass = (props) => {
     const refRepeatPass = React.createRef()
@@ -18,7 +19,8 @@ const InputRepeatPass = (props) => {
         <div className={props.containerClass}>
             {icon}
 
-            <input
+            <Field
+                component={'input'}
                 key={props.title}
                 ref={refRepeatPass}
                 onFocus={props.changeClass}

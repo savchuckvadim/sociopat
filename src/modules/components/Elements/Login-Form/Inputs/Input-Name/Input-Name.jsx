@@ -1,6 +1,6 @@
 import '../Input.css';
 import React from 'react';
-
+import { Field } from 'redux-form'
 const InputName = (props) => {
     const refName = React.createRef()
 
@@ -16,8 +16,9 @@ const InputName = (props) => {
         <div className={props.containerClass}>
             {icon}
 
-            <input
-            key={props.title}
+            <Field
+                component={'input'}
+                key={props.title}
                 ref={refName}
                 onFocus={props.changeClass}
                 onBlur={props.changeClass}

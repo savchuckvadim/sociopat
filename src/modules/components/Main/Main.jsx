@@ -4,7 +4,7 @@ import Messages from "./main-area/Messages/Messages";
 import { NavMenuContainer } from "./Nav-Menu/Nav-Menu-Container";
 import ProfileContainer from "./main-area/Profile/Profile-Container";
 import UsersContainer from "./main-area/Users/Users-Container";
-import RegistrationForm from "../Elements/Login-Form/Registartion-Form";
+import Registration from "../Elements/Login-Form/Registartion-Form";
 
 
 const Main = () => {
@@ -22,7 +22,7 @@ const Main = () => {
                 <div id={style.main__area}>
                     <Routes>
                         <Route path="/" index element={<ProfileContainer />} />
-                        <Route path="login" element={<RegistrationForm />} />
+                        <Route path="login" element={<Registration />} />
                         <Route path="profile" element={<ProfileContainer />} />
                         <Route path="messages//*" element={<Messages />} />
                         {/* <Route path="dialog//*" element={< />} /> */}

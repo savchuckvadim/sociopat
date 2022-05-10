@@ -6,8 +6,8 @@ import { InputPasswordContainer } from './Inputs/Input-Password/Input-Password-C
 import { InputRepeatPassContainer } from './Inputs/Input-Repeat-Password/Input-RepeatPass-Container';
 import { InputSurnameContainer } from './Inputs/Input-Surame/Input-Surname-Container';
 import style from './Registration-Form.module.css';
-
-const RegistrationForm = () => {
+import { reduxForm } from 'redux-form'
+const Registration = () => {
 
     return (
         <div className={style.registration}>
@@ -19,17 +19,7 @@ const RegistrationForm = () => {
             </div>
 
             <div className={style.form__container}>
-                <div className={style.inputs__container}>
-                    <InputNameContainer />
-                    <InputSurnameContainer />
-                    <InputEmailContainer />
-                    <InputPasswordContainer />
-                    <InputRepeatPassContainer />
-                    <div className={style.button__container}>
-                    <RedButton name={'НАЖАТЬ'} />
-                    </div>
-                   
-                </div>
+                <RegistartionReduxForm/>
                 <div className={style.form__footer}>
                     <div className={style.description}>
                         By pressing Sign Up, you agree to the Terms of Service and Privacy Policy.
@@ -47,4 +37,22 @@ const RegistrationForm = () => {
     )
 }
 
-export default RegistrationForm
+const RegistartionForm = () => {
+
+    return (
+        <div className={style.inputs__container}>
+        <InputNameContainer />
+        <InputSurnameContainer />
+        <InputEmailContainer />
+        <InputPasswordContainer />
+        <InputRepeatPassContainer />
+        <div className={style.button__container}>
+        <RedButton name={'НАЖАТЬ'} />
+        </div>
+       
+    </div>
+    )
+}
+
+const RegistartionReduxForm = reduxForm ({form: 'registaration' })(RegistartionForm)
+export default Registration

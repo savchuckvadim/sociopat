@@ -21,7 +21,7 @@ import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer";
 import usersReducer from "./reducers/users/users-reducer";
 import authReducer from "./reducers/auth/auth-reducer";
 import ThunkMiddleware from 'redux-thunk';
-
+import {reducer as formReducer} from 'redux-form'
 
 let reducers = combineReducers({
     auth: authReducer,
@@ -39,6 +39,7 @@ let reducers = combineReducers({
     inputEmail: inputEmailReducer,
     inputPassword: inputPasswordReducer,
     inputRepeatPass: inputRepeatPassReducer,
+    form:formReducer
 
 
 });
