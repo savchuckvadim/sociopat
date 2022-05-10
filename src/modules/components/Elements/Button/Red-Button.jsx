@@ -6,8 +6,8 @@ const RedButton = (props) => {
 
 
     return (
-        <Field
-            component={'button'}
+        <button
+        type='submit'
             name={'redButton'}
             onClick={props.onClick}
             disabled={props.disabled}
@@ -17,7 +17,7 @@ const RedButton = (props) => {
                 className={style.button__name}>
                 {props.name}
             </p>
-        </Field>
+        </button>
     )
 }
 

@@ -4,8 +4,8 @@ import { Field } from 'redux-form'
 const WhiteButton = (props) => {
 
     return (
-        <Field
-            component={'button'}
+        <button
+           type='submit'
             name={'whiteButton'}
             onClick={props.onClick}
             disabled={props.disabled}
@@ -14,7 +14,7 @@ const WhiteButton = (props) => {
                 className={style.button__name}>
                 {props.name}
             </p>
-        </Field>
+        </button>
     )
 }
 
