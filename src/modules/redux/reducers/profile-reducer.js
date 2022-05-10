@@ -1,10 +1,13 @@
-import { usersAPI } from "../../services/api"
+import {
+    profileAPI
+} from "../../services/api"
 
 const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';
-
+const SET_STATUS = 'SET_STATUS'
 let initialState = {
     profile: {},
+    status: '',
     login: 'Super User',
     about: 'Российский предприниматель. По данным Forbes, на 5 февраля 2022 года занимал 608-е место в списке наиболее состоятельных людей мира, в списке богатейших бизнесменов России в 2021 году занимал 32-е место с состоянием 4,7 миллиарда долларов. Известен как основатель «Тинькофф банка»',
     img: 'https://avatars.mds.yandex.net/i?id=9d717e4eaa6e7edfbea31ddfc889103e_l-4728599-images-thumbs&n=13',
@@ -50,7 +53,12 @@ export const setProfile = (profile) => {
         profile
     }
 };
-
+const setStatus = (status) => {
+    return {
+        type: SET_STATUS,
+        status
+    }
+}
 const profileReducer = (state = initialState, action) => {
     let result = state
     switch (action.type) {
@@ -76,21 +84,52 @@ const profileReducer = (state = initialState, action) => {
             posts.unshift(lastPost)
             result.posts = posts
             return result
+
+        case SET_STATUS:
+            result = {
+                ...state
+            }
+            result.status = action.status
+            return result
         default:
             return result;
     }
 };
+
+
 export const getProfile = (userId) => (dispatch) => {
-    
-        usersAPI.getProfile(userId)
+
+    profileAPI.getProfile(userId)
         .then(res => {
-           
+
             const profile = res.data;
-          
+
             dispatch(setProfile(profile))
 
         })
-  
+
+}
+export const getStatus = (status) => (dispatch) => {
+
+    profileAPI.getStatus(status)
+        .then(res => {
+           
+            const status = res.data
+      
+            dispatch(setStatus(status))
+        })
+
+
 }
 
+export const updateStatus = (status) => (dispatch) => {
+
+    profileAPI.updateStatus(status)
+        .then(res => {
+            if (res.data.resultCode === 0) {
+               
+                dispatch(setStatus(status))
+            }
+        })
+}
 export default profileReducer;

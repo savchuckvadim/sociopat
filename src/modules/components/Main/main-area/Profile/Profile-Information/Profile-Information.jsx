@@ -6,11 +6,7 @@ import Status from './Status';
 // import Icon from '../../../../Elements/Icon';
 const ProfileInformation = (props) => {
   
-  let aboutMe
-  props.profile ? aboutMe = props.profile.aboutMe : aboutMe =  `My actions are not for fame, I just hate most people.
-  I don't see anything remarkable in them. People are really stupid shit. I bring them joy by suffering to die without any slobbering "buts".`
-    
-  let heroImg = hero
+  
     return (
         <div className={style.container}>
             {/* <div className={style.frame}> */}
@@ -25,7 +21,11 @@ const ProfileInformation = (props) => {
                         <div className={style.about__container}>
                           
                             <h1 className={style.name}>{props.profile.fullName}</h1>
-                            <Status aboutMe={aboutMe}/>
+                            <Status 
+                            status={props.status}
+                            getStatus={props.getStatus}
+                            updateStatus={props.updateStatus}
+                            />
                             {/* <p className={style.about}>My actions are not for fame, I just hate most people. */}
                                 {/* I don't see anything remarkable in them. People are really stupid shit. I bring them joy by suffering to die without any slobbering "buts".</p> */}
                         </div>

@@ -4,33 +4,49 @@ import style from './Status.module.css'
 class Status extends React.Component {
 
     state = {
-        editMode: false
+        editMode: false,
+        status: this.props.status
     }
 
-    toggleMode = () => {
 
-        this.state.editMode
-            ? this.setState({
-                editMode: false
-            })
-            :
-            this.setState({
-                editMode: true
-            })
 
+    activateEditMode = () => {
+        this.setState({
+            editMode: true,
+            status: this.props.status 
+        })
+    }
+    deactivateEditMode = () => {
+        this.setState({
+            editMode: false
+        })
+
+        this.props.updateStatus(this.state.status)
+    }
+    onStatusChange = (e) => {
+        this.setState({
+            status: e.currentTarget.value
+        })
 
     }
-
     render() {
+       
         return (
 
             <div className={style.about}>
                 {this.state.editMode
-                    ? <input onDoubleClick={this.toggleMode} autoFocus className={style.input} type='textarea' value={this.props.aboutMe} >
+                    ? <input
+                        onChange={this.onStatusChange}
+                        onBlur={this.deactivateEditMode}
+                        autoFocus
+                        className={style.input}
+                        type='textarea'
+                        value={this.state.status} >
 
                     </input>
-                    : <p className={style.input} onBlur={this.toggleMode} >
-                        {this.props.aboutMe}
+                    : <p className={style.input}
+                        onDoubleClick={this.activateEditMode} >
+                        {this.props.status}
                     </p>
                 }
 

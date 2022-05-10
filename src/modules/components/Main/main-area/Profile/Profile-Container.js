@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux"
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { compose } from "redux";
-import { getAuth } from "../../../../redux/reducers/auth/auth-reducer";
 
-import { getProfile, setProfile } from "../../../../redux/reducers/profile-reducer"
-import { usersAPI } from "../../../../services/api";
+
+import { getProfile, getStatus,  updateStatus } from "../../../../redux/reducers/profile-reducer"
+// import { usersAPI } from "../../../../services/api";
 import withAuthRedirect from "../../../HOC/Auth-Redirect";
 import Profile from "./Profile"
 
@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
         profile: state.profileReducer.profile,
         user: state.auth.currentUser,
         posts: state.profileReducer.posts,
+        status: state.profileReducer.status
         
 
     }
@@ -49,11 +50,13 @@ class ProfileContainer extends React.Component {
 
             if (this.props.user.userId) {
                 userId = this.props.user.userId
+            }else{
+                userId = 2/////////////////////дичь
             }
         }
 
         this.props.getProfile(userId)
-
+        this.props.getStatus(userId)
     }
     render() {
         // if (!this.props.isAuth) return <Navigate redirect to='../login' />
@@ -76,7 +79,9 @@ export default  compose(
     
     connect(mapStateToProps, {
 
-        getProfile
+        getProfile,
+        getStatus,
+        updateStatus
     
     }),
     withRouter,  

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+
 import Post from './Posts/Post';
 // import { ProfileBaseContainer } from './Profile-Base/Profile-Base-Container';
 import ProfileInformation from './Profile-Information/Profile-Information';

@@ -19,18 +19,6 @@ export const usersAPI = {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
     },
 
-    getProfile(userId) {
-        
-        if(!userId){
-            
-            return instance.get(`auth/me`).then(res => instance.get(`profile/${res.data.id}`))
-           
-        }else{
-            return instance.get(`profile/${userId}`)
-        }
-        
-
-    },
     follow(userId) {
         return instance.post(`follow/${userId}`).then(res => res.data.resultCode)
     },
@@ -38,5 +26,34 @@ export const usersAPI = {
     unfollow(userId) {
         return instance.delete(`follow/${userId}`).then(res => res.data.resultCode)
     }
+
+}
+
+export const profileAPI = {
+
+    getProfile(userId) {
+
+        if (!userId) {
+
+            return instance.get(`auth/me`).then(res => instance.get(`profile/${res.data.id}`))
+
+        } else {
+            return instance.put(`profile/${userId}`)
+        }
+
+    },
+
+    getStatus(userId) {
+
+        return instance.get(`profile/status/${userId}`)
+    },
+
+    updateStatus(status) {
+        debugger
+        return instance.put(`profile/status`, {
+            status: status
+        })
+    }
+
 
 }
