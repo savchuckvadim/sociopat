@@ -1,4 +1,4 @@
-import { Email } from "@mui/icons-material";
+
 import axios from "axios";
 
 
@@ -50,7 +50,7 @@ export const profileAPI = {
     },
 
     updateStatus(status) {
-        debugger
+      
         return instance.put(`profile/status`, {
             status: status
         })
@@ -61,10 +61,11 @@ export const profileAPI = {
 
 export const loginAPI = {
 
-    login(email, password, rememberMe) {
+    login(values) {
+      console.log(values)
         return instance.put( 'auth/login', {
-            emael: email,
-            password: password,
+            email: values['E-mail'],
+            password: values['Password'],
             rememberMe: true
 
         })

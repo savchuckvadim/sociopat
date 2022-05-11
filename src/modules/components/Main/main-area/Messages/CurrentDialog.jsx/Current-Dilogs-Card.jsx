@@ -1,14 +1,16 @@
 import style from './Current-Dilogs-Card.module.css'
 import arrow from '../../../../../../assets/imgs/dialogs/arrow.svg'
 import noMessage from '../../../../../../assets/imgs/dialogs/no-messages.svg'
-import camera from '../../../../../../assets/imgs/dialogs/camera-photo.svg'
-import arrowUp from '../../../../../../assets/imgs/dialogs/arrow-up.svg'
-import Icon from '../../../../Elements/Icon'
+
 import { useNavigate } from 'react-router-dom';
+import SendMessageReduxForm from './Send-Message-Form'
 
 const CurrentDialogsCard = (props) => {
     const navigate = useNavigate();
 
+    const submit = (values) => {
+        console.log(values)
+    }
     return (
         <div className={style.container}>
             <div className={style.header}>
@@ -28,21 +30,9 @@ const CurrentDialogsCard = (props) => {
             <div className={style.messages}>
                 <img className={style.nomessages} src={noMessage} alt="no-messages-icon" />
             </div>
-            <div className={style.send__message}>
-                <input
-                    className={style.current__message}
-                    type="text"
-                    name=""
-                    id=""
-                    placeholder='Message...'
-                />
-                <div className={style.send__icon}>
-                    <img className={style.camera} src={camera} alt="camera-icon" />
-                    {/* <img className={style.arrowup} src={arrowUp} alt="arrow-up-icon" /> */}
 
-                </div>
 
-            </div>
+            <SendMessageReduxForm onSubmit={submit}/>
 
         </div>
     )

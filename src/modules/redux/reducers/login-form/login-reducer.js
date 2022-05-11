@@ -8,11 +8,18 @@ const initialState = {
     rememberMe: true
 }
 
+const setLoginData = (values) => {
+    return {
+        type: LOGIN,
+        values
+    }
+}
+
 const loginReducer = (state = initialState, action) => {
     let result = state
     switch (action.type) {
         case LOGIN:
-
+            result = { ...action.values }
             return result;
 
         default:
@@ -20,9 +27,24 @@ const loginReducer = (state = initialState, action) => {
     }
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
- loginAPI.login(email, password, rememberMe)
- .then(res => console.log(res))
+// export const loginTest = (values) => {
+//     console.log(values['E-mail'])
+// }
+export const loginTest = (values = 0) => {
+
+    return (dispatch) => {
+
+        console.log('Password')
+        loginAPI.login(values)
+            .then(res => {
+                console.log(res)
+                let action = setLoginData(values)
+                dispatch(action)
+            })
+
+    }
+
+
 }
 
 export default loginReducer

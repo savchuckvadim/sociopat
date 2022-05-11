@@ -7,14 +7,15 @@ import { InputRepeatPassContainer } from './Inputs/Input-Repeat-Password/Input-R
 import { InputSurnameContainer } from './Inputs/Input-Surame/Input-Surname-Container';
 import style from './Registration-Form.module.css';
 import { reduxForm } from 'redux-form'
-import { Field } from 'redux-form'
+
 import LoginForm from './Login-Form';
 const Registration = () => {
   
     const submit  = (values) => {
         // print the form values to the console
+    
         console.log(values)
-        console.log('values')
+       
       }
      
     return (
@@ -51,7 +52,7 @@ const RegistartionForm = (props) => {
     
     return (
         <form onSubmit={props.handleSubmit}  className={style.inputs__container}>
-            {/* <Field component={'input'} name='test-input'/> */}
+  
         <InputNameContainer />
         <InputSurnameContainer />
         <InputEmailContainer />

@@ -20,7 +20,7 @@ import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer";
 // import currentUserReducer from "./reducers/current-user/current-user-reducer";
 import usersReducer from "./reducers/users/users-reducer";
 import authReducer from "./reducers/auth/auth-reducer";
-import ThunkMiddleware from 'redux-thunk';
+import thunk from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
 import loginReducer from "./reducers/login-form/login-reducer";
 
@@ -46,5 +46,5 @@ let reducers = combineReducers({
 
 });
 
-let store = createStore(reducers, applyMiddleware(ThunkMiddleware));
+let store = createStore(reducers, applyMiddleware(thunk));
 export default store;
