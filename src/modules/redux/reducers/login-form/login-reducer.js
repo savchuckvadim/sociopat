@@ -1,3 +1,4 @@
+import { loginAPI } from "../../../services/api";
 
 const LOGIN = 'LOGIN'
 
@@ -19,8 +20,9 @@ const loginReducer = (state = initialState, action) => {
     }
 }
 
-export const login = (values) => (dispatc) => {
- 
+export const login = (email, password, rememberMe) => (dispatch) => {
+ loginAPI.login(email, password, rememberMe)
+ .then(res => console.log(res))
 }
 
 export default loginReducer
