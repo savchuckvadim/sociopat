@@ -40,7 +40,7 @@ let initialState = {
     ]
 };
 export const addPostActionCreator = (value) => {
-
+debugger
     return {
         type: ADD_POST,
         value: value
