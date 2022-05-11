@@ -2,7 +2,9 @@
 const LOGIN = 'LOGIN'
 
 const initialState = {
-    login: ''
+    email: '',
+    password: '',
+    rememberMe: true
 }
 
 const loginReducer = (state = initialState, action) => {
@@ -15,6 +17,10 @@ const loginReducer = (state = initialState, action) => {
         default:
             return result;
     }
+}
+
+export const login = (values) => (dispatc) => {
+ 
 }
 
 export default loginReducer
