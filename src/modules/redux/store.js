@@ -22,9 +22,11 @@ import usersReducer from "./reducers/users/users-reducer";
 import authReducer from "./reducers/auth/auth-reducer";
 import ThunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
+import loginReducer from "./reducers/login-form/login-reducer";
 
 let reducers = combineReducers({
     auth: authReducer,
+    login:loginReducer,
     // currentUser: currentUserReducer,
     users: usersReducer,
     theme: themeReducer,
