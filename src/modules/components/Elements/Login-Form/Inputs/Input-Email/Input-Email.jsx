@@ -1,7 +1,7 @@
 import '../Input.css';
 import React from 'react';
-import { Field } from 'redux-form'
-const InputEmail = (props) => {
+
+const InputEmail = ({ input, meta, ...props }) => {
     const refEmail = React.createRef()
 
     const icon = <svg className={props.iconClass} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -10,23 +10,23 @@ const InputEmail = (props) => {
         </g>
     </svg>
 
-
+debugger
     return (
 
         <div className={props.containerClass}>
             {icon}
 
-            <Field
-                component={'input'}
+            <input
+                // component={'input'}
                 key={props.title}
-                ref={refEmail}
-                onFocus={props.changeClass}
-                onBlur={props.changeClass}
-                onChange={() => { props.changeValue(refEmail.current.value) }}
+                // ref={refEmail}
+                // onFocus={props.changeClass}
+                // onBlur={props.changeClass}
+                // onChange={() => { props.changeValue(refEmail.current.value) }}
                 className='input'
                 type="e-mail"
-                name={props.title}
-                value={props.value}
+                name={'email'}
+                // value={props.value}
                 placeholder={props.title} />
         </div>
     )

@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import RedButton from '../Button/Red-Button';
-import { InputEmailContainer } from './Inputs/Input-Email/Input-Email-Container';
+import InputEmail from "./Inputs/Input-Email/Input-Email-Container"
 import { InputNameContainer } from './Inputs/Input-Name/Input-Name-Container';
 import { InputPasswordContainer } from './Inputs/Input-Password/Input-Password-Container';
 import { InputRepeatPassContainer } from './Inputs/Input-Repeat-Password/Input-RepeatPass-Container';
@@ -13,7 +13,7 @@ const Registration = () => {
   
     const submit  = (values) => {
         // print the form values to the console
-    
+    debugger
         console.log(values)
        
       }
@@ -55,7 +55,7 @@ const RegistartionForm = (props) => {
   
         <InputNameContainer />
         <InputSurnameContainer />
-        <InputEmailContainer />
+        <InputEmail/>
         <InputPasswordContainer />
         <InputRepeatPassContainer />
         <div className={style.button__container}>

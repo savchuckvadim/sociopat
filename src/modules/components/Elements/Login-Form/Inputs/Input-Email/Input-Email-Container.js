@@ -32,4 +32,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export const InputEmailContainer = connect(mapStateToProps, mapDispatchToProps)(InputEmail)
+export default connect(mapStateToProps, mapDispatchToProps)(InputEmail)
