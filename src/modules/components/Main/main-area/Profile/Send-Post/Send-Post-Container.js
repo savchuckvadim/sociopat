@@ -15,17 +15,17 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => {
-    const change = (value) => {
-        const action = changeCurrentPostActionCreator(value)
-        dispatch(action)
-    }
+    // const change = (value) => {
+    //     const action = changeCurrentPostActionCreator(value)
+    //     dispatch(action)
+    // }
 
     const send = (value)=> {
         const action = addPostActionCreator(value) 
         dispatch(action)
     }
     return {
-        change,
+        // change,
         send
     }
 }

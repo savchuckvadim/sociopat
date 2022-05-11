@@ -2,16 +2,18 @@ import Icon from '../../../../Elements/Icon'
 import camera from '../../../../../../assets/imgs/posts//camera-photo.svg'
 import style from './Send-Post.module.css'
 import arrowup from '../../../../../../assets/imgs/posts/arrow-up.svg'
+
+
 const InputSendPost = ({ input, meta, ...props }) => {
+
     let sendArea = <p>Photo/Video</p>
     if (meta.active && input.value ) {
         sendArea = <img
-
             src={arrowup}
             alt='arrow-up' />
     }
 
-    console.log(input)
+  
     return (
         <>
             <div className={style.left__area}>

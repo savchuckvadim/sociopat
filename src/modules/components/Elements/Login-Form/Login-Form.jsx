@@ -1,14 +1,19 @@
+import { Field } from "redux-form";
+import { required, symbol } from "../../../utils/Validators/validator";
 import RedButton from "../Button/Red-Button"
 import { InputEmailContainer } from "./Inputs/Input-Email/Input-Email-Container"
 import { InputPasswordContainer } from "./Inputs/Input-Password/Input-Password-Container"
 import style from './Registration-Form.module.css';
-
+const symbolsValidate = symbol('@');
 const LoginForm = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit}  className={style.login}>
-            
-        <InputEmailContainer />
+         <Field 
+         component={InputEmailContainer }
+         validate={[required, symbolsValidate]}
+         />   
+        
         <InputPasswordContainer />
      
         <div className={style.button__container}>
