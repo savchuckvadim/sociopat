@@ -10,6 +10,7 @@ import { Route, Routes } from 'react-router-dom';
 import Sociopath from './modules/components/Sociopath-App/Sociopath';
 
 import AuthRedirectComponentContainer from './modules/components/HOC/Auth-Redirect';
+import Registration from './modules/components/Elements/Login-Form/Registartion-Form';
 
 
 
@@ -28,6 +29,8 @@ function App() {
           <Route path='start' element={<StartPage/>}/>
         </Routes> */}
         <Sociopath />
+        {/* <StartPage/> */}
+     
     </div>
   
   );

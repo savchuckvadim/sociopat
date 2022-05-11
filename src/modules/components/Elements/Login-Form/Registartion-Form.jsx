@@ -8,6 +8,7 @@ import { InputSurnameContainer } from './Inputs/Input-Surame/Input-Surname-Conta
 import style from './Registration-Form.module.css';
 import { reduxForm } from 'redux-form'
 import { Field } from 'redux-form'
+import LoginForm from './Login-Form';
 const Registration = () => {
   
     const submit  = (values) => {
@@ -26,7 +27,8 @@ const Registration = () => {
             </div>
 
             <div className={style.form__container}>
-                <RegistartionReduxForm onSubmit={submit}/>
+                {/* <RegistartionReduxForm onSubmit={submit}/> */}
+                <LoginReduxForm onSubmit={submit}/>
                 <div className={style.form__footer}>
                     <div className={style.description}>
                         By pressing Sign Up, you agree to the Terms of Service and Privacy Policy.
@@ -55,13 +57,14 @@ const RegistartionForm = (props) => {
         <InputEmailContainer />
         <InputPasswordContainer />
         <InputRepeatPassContainer />
-        {/* <div className={style.button__container}> */}
+        <div className={style.button__container}>
         <RedButton  name={'НАЖАТЬ'} />
-        {/* </div> */}
+        </div>
        
     </form>
     )
 }
 
 const RegistartionReduxForm = reduxForm ({form: 'registaration' })(RegistartionForm)
+const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 export default Registration
