@@ -7,7 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import store from './modules/redux/store';
 import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render( <React.StrictMode>
+ReactDOM.render( 
+<React.StrictMode>
   <Provider store={store}>
     <BrowserRouter>
       <App />
