@@ -6,7 +6,7 @@ const initialState = {
         title: 'Log in',
         instruction: 'Use your email and password to continue',
         footerInstruction: `Don't you have an account yet? `,
-        footerLink:`Sign up`
+        footerLink: `Sign up`
     },
     registration: {
         fields: [
@@ -17,14 +17,20 @@ const initialState = {
         privacy: `By pressing Sign Up, you agree to the Terms of Service and Privacy Policy.`,
         forgotLink: `Forgot password?`,
         footerInstruction: `Already have an account? `,
-        footerLink:`Sign In`
+        footerLink: `Sign In`
     },
     classesNames: {
         index: 0,
-        title: 'Surname',
         iconClasses: ['icon', 'iconRed'],
         currentIconClass: 'icon',
         containerClasses: ['container', 'containerFocus'],
         currentContainerClass: 'container',
     }
 }
+
+ const LoginRegistrationReducer = (state = initialState, action) => {
+
+    return state
+}
+
+export default LoginRegistrationReducer

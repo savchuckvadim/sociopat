@@ -21,12 +21,16 @@ import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer";
 import usersReducer from "./reducers/users/users-reducer";
 import authReducer from "./reducers/auth/auth-reducer";
 import thunk from 'redux-thunk';
-import {reducer as formReducer} from 'redux-form'
+import {
+    reducer as formReducer
+} from 'redux-form'
 import loginReducer from "./reducers/login-form/login-reducer";
+import LoginRegistrationReducer from "./reducers/login-registaration/login-registration-reducer";
 
 let reducers = combineReducers({
     auth: authReducer,
-    login:loginReducer,
+    login: loginReducer,
+    loginRegistration: LoginRegistrationReducer,
     // currentUser: currentUserReducer,
     users: usersReducer,
     theme: themeReducer,
@@ -41,7 +45,7 @@ let reducers = combineReducers({
     inputEmail: inputEmailReducer,
     inputPassword: inputPasswordReducer,
     inputRepeatPass: inputRepeatPassReducer,
-    form:formReducer
+    form: formReducer
 
 
 });
