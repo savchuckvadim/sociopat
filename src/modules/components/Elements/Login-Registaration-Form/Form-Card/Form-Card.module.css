@@ -1,10 +1,14 @@
-.line, .description, .link__container{
+.line__wrapper, .description, .link__container{
     margin: 0 auto;
     /* padding: 0; */
     width: 406px;
     display: block;
     text-align: center;
     align-self: center;
+}
+.line__wrapper{
+    margin: 8px 0;
+    padding: 0;
 }
 .wrapper{
     display: flex;
@@ -45,11 +49,23 @@ margin: 0;
     flex-direction: column;
     /* padding: 0px 24px 24px 16px; */
 }
+.line{
+    opacity: 50%;
+    margin: 0;
+    min-width: 406px;
+}
 .form__footer{
     display: flex;
     justify-content: space-around;
     /* align-items: flex-end; */
     flex-direction: column;
+}
+
+.footer__text{
+    margin: 16px 0 0px  0;
+}
+.description{
+    margin: 8px 0;
 }
 
 .link{

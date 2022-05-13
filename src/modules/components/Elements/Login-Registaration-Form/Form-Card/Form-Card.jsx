@@ -17,21 +17,21 @@ const FormCard = (props) => {
 
                 {/* <RegistartionReduxForm onSubmit={submit}/> */}
                 {/* <LoginReduxForm onSubmit={submit}/> */}
-                <Form {...props}/>
+                <Form {...props} />
 
                 <div className={style.form__footer}>
                     <div className={style.description}>
                         {type === 'registration'
                             ? props.privacy
-                            : ''
+                            : <NavLink className={style.link} to={`profile`} activeclassname='active'>{props.forgotLink}</NavLink>
                         }
                         {/* By pressing Sign Up, you agree to the Terms of Service and Privacy Policy. */}
                     </div>
-                    <div className={style.line}>
-                        <hr ></hr>
+                    <div className={style.line__wrapper}>
+                        <hr className={style.line} ></hr>
                     </div>
                     <div className={style.link__container}>
-                        <p>
+                        <p className={style.footer__text}>
                             {props.footerInstruction}
                             <NavLink className={style.link} to={`profile`} activeclassname='active'>
                                 {props.footerLink}

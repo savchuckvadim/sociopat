@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
         fields: login.fields,
         title: login.title,
         instruction: login.instruction,
+        forgotLink: login.forgotLink,
         footerInstruction: login.footerInstruction,
         footerLink: login.footerLink
     }

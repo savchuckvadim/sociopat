@@ -39,7 +39,7 @@ const InputPassword = ({ input, meta, ...props }) => {
                 key={'passwordInput'}
                 className='input'
                 name={'email'}
-                placeholder={'E-mail'} />
+                placeholder={props.placeholder} />
             <span className='error'>{error}</span>
 
         </div>

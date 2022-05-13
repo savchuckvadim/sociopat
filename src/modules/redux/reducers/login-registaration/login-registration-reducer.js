@@ -15,6 +15,7 @@ const initialState = {
         ],
         title: 'Log in',
         instruction: 'Use your email and password to continue',
+        forgotLink: `Forgot password?`,
         footerInstruction: `Don't you have an account yet? `,
         footerLink: `Sign up`
     },
@@ -26,7 +27,6 @@ const initialState = {
         title: 'Getting started',
         instruction: 'Create an account to continue and connect with the Sociopaths.',
         privacy: `By pressing Sign Up, you agree to the Terms of Service and Privacy Policy.`,
-        forgotLink: `Forgot password?`,
         footerInstruction: `Already have an account? `,
         footerLink: `Sign In`
     },
