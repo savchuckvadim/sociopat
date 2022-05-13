@@ -64,3 +64,9 @@
     background-color: #ebebeb;
 }
 
+.error{
+    font-size: xx-small;
+    color: red;
+    padding: 0;
+    margin: 0%;
+}

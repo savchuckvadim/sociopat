@@ -3,20 +3,21 @@ import React from 'react';
 
 const InputEmail = ({ input, meta, ...props }) => {
     let index = 0
-   
+
     let iconClasses = ['icon', 'iconRed']
     let containerClasses = ['container', 'containerFocus']
-    let iconClass = iconClasses[index]
-    let containerClass = containerClasses[index]
-let error = null
-    if (meta.touched) {
+    
+    let error = null
+    if (meta.active) {
         index = 1
         console.log(meta)
     }
-    if(meta.error && meta.touched){
+    if (meta.error && meta.touched && !meta.active ) {
         console.log(meta.error)
         error = meta.error
     }
+    let iconClass = iconClasses[index]
+    let containerClass = containerClasses[index]
 
     const icon = <svg className={iconClass} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g opacity="0.5">
@@ -24,19 +25,21 @@ let error = null
         </g>
     </svg>
 
-    
+
     return (
         <>
             <div className={containerClass}>
                 {icon}
 
                 <input
+                    {...input}
+                    {...meta}
                     key={'emailInpput'}
                     className='input'
                     type="e-mail"
                     name={'email'}
                     placeholder={'E-mail'} />
-                <span>{error}</span>
+                <span className='error'>{error}</span>
             </div>
 
         </>
