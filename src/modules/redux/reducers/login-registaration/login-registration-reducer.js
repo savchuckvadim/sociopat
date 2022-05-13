@@ -1,5 +1,6 @@
 const initialState = {
     login: {
+        type: 'login',
         fields: [
             'E-mail', 'Password'
         ],
@@ -9,6 +10,7 @@ const initialState = {
         footerLink: `Sign up`
     },
     registration: {
+        type:'registration',
         fields: [
             'Name', 'Surname', 'E-mail', 'Password', 'Repeat Password'
         ],
