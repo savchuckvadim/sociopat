@@ -28,8 +28,8 @@
 
 }
 .icon, .iconRed {
-    width: 24px;
-    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
     margin-right: 8px;
 }
 
@@ -69,4 +69,5 @@
     color: red;
     padding: 0;
     margin: 0%;
+    min-width: 90px;
 }
