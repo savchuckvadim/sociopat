@@ -6,7 +6,7 @@
     text-align: center;
     align-self: center;
 }
-.wrapper{
+.registration{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,7 +28,7 @@
 }
 
 .inputs__container{
-    /* max-height:60vh; */
+    /* height:60vh; */
     display: flex;
     justify-content: space-around;
     align-items: center;

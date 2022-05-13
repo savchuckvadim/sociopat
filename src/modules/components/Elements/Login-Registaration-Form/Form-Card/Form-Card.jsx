@@ -1,4 +1,6 @@
+import { NavLink } from 'react-router-dom'
 import style from './Form-Card.module.css'
+import Form from './Form/Form'
 
 const FormCard = (props) => {
     let type = props.type
@@ -15,7 +17,7 @@ const FormCard = (props) => {
 
                 {/* <RegistartionReduxForm onSubmit={submit}/> */}
                 {/* <LoginReduxForm onSubmit={submit}/> */}
-
+                <Form {...props}/>
 
                 <div className={style.form__footer}>
                     <div className={style.description}>

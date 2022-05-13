@@ -34,11 +34,10 @@ const InputEmail = ({ input, meta, ...props }) => {
                 <input
                     {...input}
                     {...meta}
-                    key={'emailInpput'}
+                    key={'emailInput'}
                     className='input'
-                    type="e-mail"
                     name={'email'}
-                    placeholder={'E-mail'} />
+                    placeholder={props.placeholder} />
                 <span className='error'>{error}</span>
             </div>
 

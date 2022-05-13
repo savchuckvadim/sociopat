@@ -13,7 +13,7 @@ const Registration = () => {
   
     const submit  = (values) => {
         // print the form values to the console
-    debugger
+   
         console.log(values)
        
       }

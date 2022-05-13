@@ -2,7 +2,16 @@ const initialState = {
     login: {
         type: 'login',
         fields: [
-            'E-mail', 'Password'
+            {
+                name:'email',
+                placeholder: 'E-mail'
+            }, 
+            {
+                name:'password',
+                placeholder: 'Password'
+            }, 
+            
+            
         ],
         title: 'Log in',
         instruction: 'Use your email and password to continue',

@@ -28,7 +28,7 @@
 }
 
 .inputs__container{
-    height:60vh;
+    height: 60vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
