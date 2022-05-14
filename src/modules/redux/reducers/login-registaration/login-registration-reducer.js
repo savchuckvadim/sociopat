@@ -22,7 +22,28 @@ const initialState = {
     registration: {
         type:'registration',
         fields: [
-            'Name', 'Surname', 'E-mail', 'Password', 'Repeat Password'
+            {
+                name:'name',
+                placeholder: 'Name'
+            }, 
+            {
+                name:'surname',
+                placeholder: 'Surname'
+            }, 
+            {
+                name:'email',
+                placeholder: 'E-mail'
+            }, 
+            {
+                name:'password',
+                placeholder: 'Password'
+            }, 
+            {
+                name:'repeatPassword',
+                placeholder: 'Repeat Password'
+            }, 
+           
+          
         ],
         title: 'Getting started',
         instruction: 'Create an account to continue and connect with the Sociopaths.',

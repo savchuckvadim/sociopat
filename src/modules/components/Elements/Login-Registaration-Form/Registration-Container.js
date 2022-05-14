@@ -16,6 +16,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const LoginContainer = connect(mapStateToProps)(FormCard)
+const RegistrationContainer = connect(mapStateToProps)(FormCard)
 
-export default LoginContainer
+export default RegistrationContainer
