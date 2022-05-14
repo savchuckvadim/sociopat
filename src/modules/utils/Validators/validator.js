@@ -4,6 +4,7 @@ export const required = value => {
     return 'Field is required'
 }
 export const symbol = (symbol) => (value) => {
+ 
    let errors = {
        
    }
