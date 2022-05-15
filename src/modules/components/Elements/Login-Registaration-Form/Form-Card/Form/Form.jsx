@@ -30,11 +30,11 @@ let Form = (props) => {
         : typeIndex = 1
 
 
-debugger
+
     inputs = props.fields.map((field, index) =>
         <Field
             component={components[typeIndex][index]}
-            validate={symbolsValidate}
+            // validate={symbolsValidate}
             name={field.name}
             placeholder={field.placeholder}
             key={field.name}

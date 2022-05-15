@@ -12,9 +12,7 @@ const instance = axios.create({
 
 export const usersAPI = {
 
-    auth() {
-        return instance.get(`auth/me`).then(res => res.data)
-    },
+    
 
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
@@ -59,15 +57,21 @@ export const profileAPI = {
 
 }
 
-export const loginAPI = {
-
-    login(values) {
-      console.log(values)
-        return instance.put( 'auth/login', {
-            email: values['E-mail'],
-            password: values['Password'],
-            rememberMe: true
+export const authAPI = {
+    me() {
+        return instance.get(`auth/me`).then(res => res.data)
+    },
+    login(email, password, rememberMe = true) {
+      
+        return instance.post( 'auth/login', {
+            email: email,
+            password: password,
+            rememberMe: rememberMe
 
         })
+    },
+    logout() {
+      
+        return instance.delete( 'auth/login')
     }
 }

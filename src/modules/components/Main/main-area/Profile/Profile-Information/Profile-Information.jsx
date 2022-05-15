@@ -2,6 +2,7 @@ import style from './Profile-Information.module.css'
 import hero from '../../../../../../assets/imgs/Vector.png'
 import WhiteButton from '../../../../Elements/Button/White-Button';
 import Status from './Status';
+import RedButton from '../../../../Elements/Button/Red-Button';
 
 // import Icon from '../../../../Elements/Icon';
 const ProfileInformation = (props) => {
@@ -51,7 +52,7 @@ const ProfileInformation = (props) => {
                         </div>
                         <div className={style.edit__container}>
                            
-                            <WhiteButton name={'Edit profile'}/>
+                            <RedButton name={'Edit profile'}/>
                         </div>
 
                     </div>

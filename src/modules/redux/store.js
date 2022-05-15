@@ -24,12 +24,11 @@ import thunk from 'redux-thunk';
 import {
     reducer as formReducer
 } from 'redux-form'
-import loginReducer from "./reducers/login-form/login-reducer";
 import LoginRegistrationReducer from "./reducers/login-registaration/login-registration-reducer";
 
 let reducers = combineReducers({
     auth: authReducer,
-    login: loginReducer,
+   
     loginRegistration: LoginRegistrationReducer,
     // currentUser: currentUserReducer,
     users: usersReducer,

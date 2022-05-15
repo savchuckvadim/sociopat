@@ -10,14 +10,11 @@ const InputPassword = ({ input, meta, ...props }) => {
     let containerClasses = ['container', 'containerFocus']
 
     let error = null
-    if (meta.active) {
+    if (meta.active || input.value) {
         index = 1
-        console.log(meta)
+        
     }
-    if (meta.error && meta.touched && !meta.active) {
-        console.log(meta.error)
-        error = meta.error
-    }
+  
 
     let containerClass = containerClasses[index]
     let icon = getLoginRegistrationIcon(props.placeholder, index)
@@ -29,7 +26,8 @@ const InputPassword = ({ input, meta, ...props }) => {
             {icon}
             <input
                 {...input}
-                {...meta}        
+                {...meta}  
+                type='password'      
                 className='input'
                 placeholder={props.placeholder} />
             <span className='error'>{error}</span>

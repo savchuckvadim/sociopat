@@ -1,4 +1,4 @@
-import { loginAPI } from "../../../services/api";
+import { authAPI} from "../../../services/api";
 
 const LOGIN = 'LOGIN'
 
@@ -35,7 +35,7 @@ export const loginTest = (values = 0) => {
     return (dispatch) => {
 
         console.log('Password')
-        loginAPI.login(values)
+        authAPI.login(values)
             .then(res => {
                 console.log(res)
                 let action = setLoginData(values)
@@ -47,4 +47,4 @@ export const loginTest = (values = 0) => {
 
 }
 
-export default loginReducer
+// export default loginReducer

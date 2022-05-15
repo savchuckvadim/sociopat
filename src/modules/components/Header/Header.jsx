@@ -3,19 +3,21 @@ import logo from '../../../assets/imgs/logo.svg'
 import burger from '../../../assets/imgs/header/menu-burger.svg'
 import Icon from '../Elements/Icon';
 import { NavLink } from 'react-router-dom';
+
+import LogoutContainer from './Logout-Container';
 const Header = (props) => {
     let login = 'Login'
     let ava = null
-
+    const logout = <NavLink to='login' >logout</NavLink>
     if (props.auth.login) {
         login = props.auth.login
-        
+
     }
     if (props.user.userId) {
-       
+
         ava = props.user.photos.small
     }
-   
+
     return (
         <header className={style.header}>
             <div className={style.container}>
@@ -35,11 +37,12 @@ const Header = (props) => {
                             {login}
                         </NavLink>
 
-
                     </p>
+
                     <div className={style.icon__container}>
-                        <Icon img={ava}  />
+                        <Icon img={ava} />
                     </div>
+                    <LogoutContainer/>
 
                 </div>
             </div>

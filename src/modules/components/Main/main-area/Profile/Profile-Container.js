@@ -12,6 +12,7 @@ import Profile from "./Profile"
 const mapStateToProps = (state) => {
 
     return {
+        isAuth: state.auth.auth.isAuth,
         profile: state.profileReducer.profile,
         user: state.auth.currentUser,
         posts: state.profileReducer.posts,

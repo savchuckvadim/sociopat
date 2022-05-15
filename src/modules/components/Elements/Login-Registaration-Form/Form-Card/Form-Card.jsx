@@ -1,9 +1,15 @@
-import { NavLink } from 'react-router-dom'
+import { Navigate, NavLink } from 'react-router-dom'
 import style from './Form-Card.module.css'
 import Form from './Form/Form'
 
 const FormCard = (props) => {
     let type = props.type
+    const onSubmit = (values) => {
+        props.login(values.email, values.password, true)
+        return console.log(values)
+    }
+    
+    if(props.isAuth) {return <Navigate replace to='../profile' />}
     return (
         <div className={style.wrapper}>
             <div className={style.form__title}>
@@ -17,7 +23,7 @@ const FormCard = (props) => {
 
                 {/* <RegistartionReduxForm onSubmit={submit}/> */}
                 {/* <LoginReduxForm onSubmit={submit}/> */}
-                <Form {...props} />
+                <Form {...props} onSubmit={onSubmit} />
 
                 <div className={style.form__footer}>
                     <div className={style.description}>

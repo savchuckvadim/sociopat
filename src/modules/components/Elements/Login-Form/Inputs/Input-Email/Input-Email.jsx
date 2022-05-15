@@ -9,7 +9,7 @@ const InputEmail = ({ input, meta, ...props }) => {
     let containerClasses = ['container', 'containerFocus']
 
     let error = null
-    if (meta.active) {
+    if (meta.active || input.value) {
         index = 1
         console.log(meta)
     }
