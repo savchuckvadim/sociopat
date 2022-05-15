@@ -23,7 +23,7 @@ const StartPage = () => {
 
                     <div className={style.buttons__wrapper}>
                      
-                        <div className={style.button__wrapper}> <NavLink className={style.button__link} to='profile'> <RedButton name={'Login'} /> </NavLink> </div>
+                        <div className={style.button__wrapper}> <NavLink className={style.button__link} to='../login'> <RedButton name={'Login'} /> </NavLink> </div>
                         <div className={style.button__wrapper}><WhiteButton onClick={() => {return <Navigate redirect to='/'/>}} name={'Sign up'} /> </div>
                     </div>
 

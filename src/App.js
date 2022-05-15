@@ -11,6 +11,7 @@ import Sociopath from './modules/components/Sociopath-App/Sociopath';
 
 import AuthRedirectComponentContainer from './modules/components/HOC/Auth-Redirect';
 import Registration from './modules/components/Elements/Login-Form/Registartion-Form';
+import LoginContainer from './modules/components/Elements/Login-Registaration-Form/Login-Container';
 
 
 
@@ -19,20 +20,36 @@ import Registration from './modules/components/Elements/Login-Form/Registartion-
 // import { LightLoadingPageContainer } from './modules/components/Elements/Loading/Light-Loading-Page-Container';
 
 
-function App() {
- 
+function App(props) {
+
+
+
   return (
-  
+
     <div className="App">
-        {/* <Routes>
-          <Route path="*" index element={<AuthRedirectComponentContainer />} />
-          <Route path='start' element={<StartPage/>}/>
-        </Routes> */}
-        <Sociopath />
-        {/* <StartPage/> */}
-     
+      {/* {props.isAuth
+        ? <Routes>
+          <Route path="sociopath" index element={<Sociopath />} />
+
+        </Routes>
+        : <Routes>
+
+          <Route path='start' element={<StartPage />} />
+          <Route path="login" element={<LoginContainer />} />
+        </Routes>
+
+      }
+      <Routes>
+        <Route path="/" index element={<Sociopath />} />
+        <Route path='start' element={<StartPage />} />
+        <Route path="login" element={<LoginContainer />} />
+      </Routes> */}
+
+
+<Sociopath />
+
     </div>
-  
+
   );
 }
 

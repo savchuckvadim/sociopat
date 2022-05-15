@@ -13,6 +13,7 @@ const mapStateToProps = (state) => {
 
     return {
         isAuth: state.auth.auth.isAuth,
+        auth:state.auth.auth,
         profile: state.profileReducer.profile,
         user: state.auth.currentUser,
         posts: state.profileReducer.posts,
@@ -52,7 +53,7 @@ class ProfileContainer extends React.Component {
             if (this.props.user.userId) {
                 userId = this.props.user.userId
             }else{
-                userId = 2/////////////////////дичь
+                userId = this.props.auth.userId
             }
         }
 

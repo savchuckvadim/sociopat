@@ -1,17 +1,18 @@
+const SET_ERROR = 'SET_ERROR'
 const initialState = {
     login: {
         type: 'login',
         fields: [
             {
-                name:'email',
+                name: 'email',
                 placeholder: 'E-mail'
-            }, 
+            },
             {
-                name:'password',
+                name: 'password',
                 placeholder: 'Password'
-            }, 
-            
-            
+            },
+
+
         ],
         title: 'Log in',
         instruction: 'Use your email and password to continue',
@@ -20,30 +21,30 @@ const initialState = {
         footerLink: `Sign up`
     },
     registration: {
-        type:'registration',
+        type: 'registration',
         fields: [
             {
-                name:'name',
+                name: 'name',
                 placeholder: 'Name'
-            }, 
+            },
             {
-                name:'surname',
+                name: 'surname',
                 placeholder: 'Surname'
-            }, 
+            },
             {
-                name:'email',
+                name: 'email',
                 placeholder: 'E-mail'
-            }, 
+            },
             {
-                name:'password',
+                name: 'password',
                 placeholder: 'Password'
-            }, 
+            },
             {
-                name:'repeatPassword',
+                name: 'repeatPassword',
                 placeholder: 'Repeat Password'
-            }, 
-           
-          
+            },
+
+
         ],
         title: 'Getting started',
         instruction: 'Create an account to continue and connect with the Sociopaths.',
@@ -51,18 +52,26 @@ const initialState = {
         footerInstruction: `Already have an account? `,
         footerLink: `Sign In`
     },
-    classesNames: {
-        index: 0,
-        iconClasses: ['icon', 'iconRed'],
-        currentIconClass: 'icon',
-        containerClasses: ['container', 'containerFocus'],
-        currentContainerClass: 'container',
+    error: ''
+}
+export const setError = (error) => {
+    return {
+        type: SET_ERROR,
+        error
     }
 }
+const LoginRegistrationReducer = (state = initialState, action) => {
+    
+    switch (action.type) {
+        case SET_ERROR:
+            let result = { ...state }
+            result.error = action.error
+            return result
 
- const LoginRegistrationReducer = (state = initialState, action) => {
+        default:
+            return state
+    }
 
-    return state
 }
 
 export default LoginRegistrationReducer

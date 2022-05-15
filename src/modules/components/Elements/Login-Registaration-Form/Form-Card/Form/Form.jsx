@@ -12,6 +12,9 @@ const symbolsValidate = symbol('@');
 
 
 let Form = (props) => {
+    if (props.error) {
+        props.setError(props.error)
+    }
 
     let components = [
         [
@@ -40,7 +43,8 @@ let Form = (props) => {
             key={field.name}
         />)
 
-    return (
+    return (<>
+        
         <form onSubmit={props.handleSubmit} className={style.inputs__container}>
 
             {inputs}
@@ -49,7 +53,9 @@ let Form = (props) => {
             </div>
 
         </form>
+    </>
+
     )
 }
 
-export default Form = reduxForm({form: 'registaration' })(Form)
+export default Form = reduxForm({ form: 'login' })(Form)

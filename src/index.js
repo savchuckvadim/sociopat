@@ -6,12 +6,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './modules/redux/store';
 import { BrowserRouter } from 'react-router-dom';
+import AppContainer from './App-Container';
 
 ReactDOM.render( 
 <React.StrictMode>
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <AppContainer />
     </BrowserRouter>
   </Provider>
 

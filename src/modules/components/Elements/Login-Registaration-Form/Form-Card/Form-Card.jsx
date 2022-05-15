@@ -12,11 +12,14 @@ const FormCard = (props) => {
     if(props.isAuth) {return <Navigate replace to='../profile' />}
     return (
         <div className={style.wrapper}>
+          
             <div className={style.form__title}>
                 <h1>
                     {props.title}
                 </h1>
-                <p>{props.instruction}</p>
+                <p>{props.error 
+                ? <span className={style.error}>{props.error}</span>  
+                : props.instruction}</p>
             </div>
 
             <div className={style.form__container}>
