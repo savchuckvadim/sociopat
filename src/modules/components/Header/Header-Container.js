@@ -30,7 +30,7 @@ class HeaderContainer extends React.Component {
 
     componentDidMount() {
 
-        this.props.getAuth()
+        // this.props.getAuth()
 
 
     }

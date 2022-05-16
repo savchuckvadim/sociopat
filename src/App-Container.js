@@ -27,7 +27,7 @@ class AppContainer extends React.Component {
 
     render() {
        debugger
-        if(!this.props.initialized ){
+        if(!this.props.isAuth && !this.props.initialInProgress){
             return <StartPage/>
         }
         if(this.props.initialInProgress){

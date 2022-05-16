@@ -59,27 +59,39 @@ const authReducer = (state = initialState, action) => {
 
 }
 
+// export const getAuth = () => (dispatch) => {
+
+//    return authAPI.me().then(res => {
+//         const resultCode = res.resultCode;
+//         const data = res.data;
+
+//         if (resultCode === 0) {
+//             dispatch(setAuthUserData(data.id, data.login, data.email, true))
+//         }
+
+//         profileAPI.getProfile(data.id)
+//             .then(res => {
+
+//                 const userProfile = res.data
+
+//                 dispatch(setCurrentUser(userProfile))
+//             })
+
+//     })
+// }
 export const getAuth = () => (dispatch) => {
 
-   return authAPI.me().then(res => {
-        const resultCode = res.resultCode;
-        const data = res.data;
-
-        if (resultCode === 0) {
-            dispatch(setAuthUserData(data.id, data.login, data.email, true))
-        }
-
-        profileAPI.getProfile(data.id)
-            .then(res => {
-
-                const userProfile = res.data
-
-                dispatch(setCurrentUser(userProfile))
-            })
-
-    })
-}
-
+    return authAPI.me().then(res => {
+         const resultCode = res.resultCode;
+         const data = res.data;
+ 
+         if (resultCode === 0) {
+             dispatch(setAuthUserData(data.id, data.login, data.email, true))
+         }
+ 
+        
+     })
+ }
 export const login = (email, password, rememberMe) => (dispatch) => {
 
 
