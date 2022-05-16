@@ -1,13 +1,20 @@
-import {getAuth} from './auth/auth-reducer'
+import {
+    getAuth
+} from './auth/auth-reducer'
 const INITIALIZED_SUCCES = 'INITIALIZED_SUCCES'
-
+const INITIALIZING = 'INITIALIZING'
 
 let initialState = {
-    initialized: false
+    initialized: false,
+    inProgress: false,
 }
 
-export const initializedSuccess = () => ({type: INITIALIZED_SUCCES}) 
-      
+export const initializedSuccess = () => ({
+    type: INITIALIZED_SUCCES
+})
+export const initializing = () => ({
+    type: INITIALIZING
+})
 
 
 const appReducer = (state = initialState, action) => {
@@ -18,21 +25,30 @@ const appReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                initialized: true
+                initialized: true,
+                    inProgress: false
             }
+            case INITIALIZING:
 
-            default:
-                return state;
+                return {
+                    ...state,
+                    inProgress: true
+                }
+                default:
+                    return state;
     }
 
 }
 
 export const initialize = () => (dispatch) => {
 
-  let promise = dispatch(getAuth())
-Promise.all([promise]).then(responses => {
-    dispatch(initializedSuccess())
-})
+    let promise = () => {
+        dispatch(initializing())
+        return dispatch(getAuth())
+    }
+    Promise.all([promise]).then(responses => {
+        dispatch(initializedSuccess())
+    })
 
 }
 

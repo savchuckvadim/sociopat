@@ -4,13 +4,15 @@ import { compose } from "redux";
 import App from "./App";
 import { LightLoadingPageContainer } from "./modules/components/Elements/Loading/Light-Loading-Page-Container";
 import withAuthRedirect from "./modules/components/HOC/Auth-Redirect";
+import StartPage from "./modules/components/Start/Start-Page";
 import { initialize } from "./modules/redux/reducers/app-reducer";
 import { getAuth } from "./modules/redux/reducers/auth/auth-reducer";
 
 const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.auth.isAuth,
-        initialized:state.app.initialized
+        initialized:state.app.initialized,
+        initialInProgress:state.app.inProgress
 
     }
 }
@@ -24,8 +26,11 @@ class AppContainer extends React.Component {
 
 
     render() {
-        debugger
+       debugger
         if(!this.props.initialized ){
+            return <StartPage/>
+        }
+        if(this.props.initialInProgress){
             return <LightLoadingPageContainer/>
         }
         
