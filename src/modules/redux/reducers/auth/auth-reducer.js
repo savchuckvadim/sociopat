@@ -61,7 +61,7 @@ const authReducer = (state = initialState, action) => {
 
 export const getAuth = () => (dispatch) => {
 
-    authAPI.me().then(res => {
+   return authAPI.me().then(res => {
         const resultCode = res.resultCode;
         const data = res.data;
 

@@ -1,4 +1,4 @@
-
+import {getAuth} from './auth/auth-reducer'
 const INITIALIZED_SUCCES = 'INITIALIZED_SUCCES'
 
 
@@ -11,6 +11,7 @@ export const initializedSuccess = () => ({type: INITIALIZED_SUCCES})
 
 
 const appReducer = (state = initialState, action) => {
+
 
     switch (action.type) {
         case INITIALIZED_SUCCES:
@@ -28,6 +29,10 @@ const appReducer = (state = initialState, action) => {
 
 export const initialize = () => (dispatch) => {
 
+  let promise = dispatch(getAuth())
+Promise.all([promise]).then(responses => {
+    dispatch(initializedSuccess())
+})
 
 }
 
