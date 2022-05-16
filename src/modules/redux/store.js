@@ -25,10 +25,12 @@ import {
     reducer as formReducer
 } from 'redux-form'
 import LoginRegistrationReducer from "./reducers/login-registaration/login-registration-reducer";
+import appReducer from "./reducers/app-reducer";
 
 let reducers = combineReducers({
+    app: appReducer,
     auth: authReducer,
-   
+
     loginRegistration: LoginRegistrationReducer,
     // currentUser: currentUserReducer,
     users: usersReducer,
