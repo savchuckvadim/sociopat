@@ -23,7 +23,7 @@ const Main = () => {
                 <div id={style.main__area}>
                     <Routes>
                         <Route path="/" index element={<ProfileContainer />} />
-                        <Route path="login" element={<LoginContainer  />} />
+                        {/* <Route path="login" element={<LoginContainer  />} /> */}
                         <Route path="profile" element={<ProfileContainer />} />
                         <Route path="messages//*" element={<Messages />} />
                         {/* <Route path="dialog//*" element={< />} /> */}

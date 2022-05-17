@@ -8,7 +8,7 @@ import LogoutContainer from './Logout-Container';
 const Header = (props) => {
     let login = 'Login'
     let ava = null
-    const logout = <NavLink to='login' >logout</NavLink>
+    const logout = <NavLink to='../'>logout</NavLink>
     if (props.auth.login) {
         login = props.auth.login
 

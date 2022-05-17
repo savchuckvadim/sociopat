@@ -101,7 +101,7 @@ export const login = (email, password, rememberMe) => (dispatch) => {
             const resultCode = res.data.resultCode;
             // const data = res.data;
             console.log(resultCode)
-            debugger
+            
             if (resultCode === 0) {
 
                 dispatch(getAuth())

@@ -5,6 +5,7 @@ const WhiteButton = (props) => {
 
     return (
         <button
+        style={{borderRadius: props.border}}
            type='submit'
             name={'whiteButton'}
             onClick={props.onClick}

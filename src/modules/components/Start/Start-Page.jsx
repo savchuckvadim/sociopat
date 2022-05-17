@@ -22,13 +22,19 @@ const Start = () => {
                 <div>
                     <div className={style.slogan__wrapper}>
                         <h1 className={style.slogan__title}>Become a Sociopath.</h1>
-                        <h3 className={style.slogan__text}> and give a shit at all</h3>
+                        <p className={style.slogan__text}> and give a shit at all</p>
                     </div>
 
                     <div className={style.buttons__wrapper}>
 
                         <div className={style.button__wrapper}><NavLink className={style.button__link} to='../login'> <RedButton name={'Login'} /> </NavLink> </div>
-                        <div className={style.button__wrapper}><WhiteButton onClick={() => { return <Navigate redirect to='/' /> }} name={'Sign up'} /> </div>
+                        <div className={style.button__wrapper}>
+                            <WhiteButton
+                                onClick={() => { return <Navigate redirect to='/' /> }}
+                                name={'Sign up'} 
+                                border={16}
+                                />
+                        </div>
                     </div>
 
                 </div>
