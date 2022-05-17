@@ -11,6 +11,7 @@ import { initialize } from "./modules/redux/reducers/app-reducer";
 import { getAuth } from "./modules/redux/reducers/auth/auth-reducer";
 
 const mapStateToProps = (state) => {
+    
     return {
         isAuth: state.auth.auth.isAuth,
         initialized:state.app.initialized,
@@ -28,7 +29,7 @@ class AppContainer extends React.Component {
 
 
     render() {
-       debugger
+       
         if(!this.props.isAuth && !this.props.initialInProgress){
             return (<>
             {/* <Routes >
