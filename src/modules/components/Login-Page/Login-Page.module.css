@@ -1,8 +1,17 @@
-.background{
-    position: absolute;
+.page{
+    /* position: absolute; */
     min-height: 100vh;
-    min-width: 100vh;
+    /* min-width: 100%; */
     margin: 0;
     padding: 0;
-    background-color: '#F4F4F4';
+    background-color: #F4F4F4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
