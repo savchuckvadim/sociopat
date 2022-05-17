@@ -9,7 +9,7 @@ const Sociopath = () => {
     return(
         <div className="App">
              <HeaderContainer />
-             <Main/>
+             {/* <Main/> */}
         </div>
     )
 }

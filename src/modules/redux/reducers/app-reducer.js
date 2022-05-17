@@ -43,7 +43,7 @@ const appReducer = (state = initialState, action) => {
 export const initialize = () => (dispatch) => {
     dispatch(initializing())
     let promise = () => {
-        
+      
         return dispatch(getAuth())
     }
     Promise.all([promise]).then(responses => {
