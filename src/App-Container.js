@@ -4,7 +4,6 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { compose } from "redux";
 import App from "./App";
 import { LightLoadingPageContainer } from "./modules/components/Elements/Loading/Light-Loading-Page-Container";
-import LoginContainer from "./modules/components/Elements/Login-Registaration-Form/Login-Container";
 import withAuthRedirect from "./modules/components/HOC/Auth-Redirect";
 import StartPage from "./modules/components/Start/Start-Page";
 import { initialize } from "./modules/redux/reducers/app-reducer";

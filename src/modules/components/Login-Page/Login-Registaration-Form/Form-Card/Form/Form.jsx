@@ -1,12 +1,12 @@
 import { reduxForm } from 'redux-form'
 import { Field } from 'redux-form'
 import { symbol } from '../../../../../utils/Validators/validator'
-import RedButton from '../../../Button/Red-Button'
-import InputEmail from '../../../Login-Form/Inputs/Input-Email/Input-Email'
-import InputName from '../../../Login-Form/Inputs/Input-Name/Input-Name'
-import InputPassword from '../../../Login-Form/Inputs/Input-Password/Input-Password'
-import InputRepeatPass from '../../../Login-Form/Inputs/Input-Repeat-Password/Input-RepeatPass'
-import InputSurname from '../../../Login-Form/Inputs/Input-Surame/Input-Surname'
+import RedButton from '../../../../Elements/Button/Red-Button'
+import InputEmail from './Inputs/Input-Email/Input-Email'
+import InputName from './Inputs/Input-Name/Input-Name'
+import InputPassword from './Inputs/Input-Password/Input-Password'
+import InputRepeatPass from './Inputs/Input-Repeat-Password/Input-RepeatPass'
+import InputSurname from './Inputs/Input-Surame/Input-Surname'
 import style from './Form.module.css'
 const symbolsValidate = symbol('@');
 

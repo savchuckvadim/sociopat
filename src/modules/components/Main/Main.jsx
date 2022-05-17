@@ -4,9 +4,7 @@ import Messages from "./main-area/Messages/Messages";
 import { NavMenuContainer } from "./Nav-Menu/Nav-Menu-Container";
 import ProfileContainer from "./main-area/Profile/Profile-Container";
 import UsersContainer from "./main-area/Users/Users-Container";
-import Registration from "../Elements/Login-Form/Registartion-Form";
-import LoginContainer from "../Elements/Login-Registaration-Form/Login-Container";
-import RegistrationContainer from "../Elements/Login-Registaration-Form/Registration-Container";
+
 
 const Main = () => {
 

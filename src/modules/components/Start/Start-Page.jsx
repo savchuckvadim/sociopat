@@ -6,8 +6,9 @@ import RedButton from '../Elements/Button/Red-Button'
 import WhiteButton from '../Elements/Button/White-Button'
 import { Navigate, NavLink } from 'react-router-dom'
 import { Route, Routes } from "react-router-dom"
-import LoginContainer from '../Elements/Login-Registaration-Form/Login-Container'
+
 import ProfileContainer from '../Main/main-area/Profile/Profile-Container'
+import LoginPage from '../Login-Page/Login-Page'
 const Start = () => {
 
     return (
@@ -56,7 +57,7 @@ const StartPage = () => {
         <>
             <Routes>
                 <Route path="/" element={<Start />} />
-                <Route path="login" element={<LoginContainer />} />
+                <Route path="login" element={<LoginPage />} />
             </Routes>
 
         </>
