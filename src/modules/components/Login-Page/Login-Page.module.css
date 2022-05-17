@@ -8,10 +8,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: -1000;
 }
 
 .form__wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.greyLogo {
+    position: absolute;
+    top: 10%;
+    left: 33.3%;
+    /* z-index: 0; */
+    opacity: 5%;
+    min-width: 33.3%;
+    height: auto;
+
+
 }
