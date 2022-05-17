@@ -81,7 +81,7 @@ const authReducer = (state = initialState, action) => {
 //     })
 // }
 export const getAuth = () => (dispatch) => {
-  
+  debugger
     return authAPI.me().then(res => {
          const resultCode = res.resultCode;
          const data = res.data;

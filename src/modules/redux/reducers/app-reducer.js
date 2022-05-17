@@ -41,16 +41,24 @@ const appReducer = (state = initialState, action) => {
 }
 
 export const initialize = () => (dispatch) => {
-    dispatch(initializing())
+   
+   
     let promise = () => {
-      
+        debugger
+        // dispatch(initializing())    
         return dispatch(getAuth())
     }
-    Promise.all([promise]).then(responses => {
+
+    // Promise.all([promise]).then(responses => {
         
+    //     let a = responses
+    //     dispatch(initializedSuccess())
+    // })
+
+    dispatch(initializing()) 
+    promise().then(res => {
         dispatch(initializedSuccess())
     })
-
 }
 
 
