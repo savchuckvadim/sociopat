@@ -1,7 +1,16 @@
-.page{
+
+.header{
+    margin: 0;
+    padding: 0;
+    min-width: 100%;
+    height: 56px;
+    z-index: 5;
+    background-color: #ffffff;
+}
+.page__container{
     /* position: absolute; */
-    min-height: 100vh;
-    /* min-width: 100%; */
+    min-height: 93vh;
+    min-width: 100%;
     margin: 0;
     padding: 0;
     background-color: #F4F4F4;
@@ -18,11 +27,11 @@
 }
 .greyLogo {
     position: absolute;
-    top: 10%;
-    left: 33.3%;
-    /* z-index: 0; */
+    top: 2%;
+    left: 30%;
+    z-index: 0;
     opacity: 5%;
-    min-width: 33.3%;
+    min-width: 37%;
     height: auto;
 
 
