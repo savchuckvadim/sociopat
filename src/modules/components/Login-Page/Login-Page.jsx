@@ -8,9 +8,9 @@ const LoginPage = (props) => {
     return (
        
         <>
-        <div className={style.header}>
-            {/* <HeaderContainer /> */}
-            </div>
+        {/* <div className={style.header}>
+            <HeaderContainer />
+            </div> */}
         <div className={style.page__container}>
             
             <div className={style.form__wrapper}>

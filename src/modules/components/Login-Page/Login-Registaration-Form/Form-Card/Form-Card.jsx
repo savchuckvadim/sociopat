@@ -6,7 +6,8 @@ const FormCard = (props) => {
     let type = props.type
     const onSubmit = (values) => {
         props.login(values.email, values.password, true)
-        return console.log(values)
+        debugger
+        return <Navigate replace to='/hbvhk'/>
     }
     
     if(props.isAuth) {return <Navigate replace to='../profile' />}

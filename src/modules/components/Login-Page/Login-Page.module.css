@@ -9,7 +9,7 @@
 }
 .page__container{
     /* position: absolute; */
-    min-height: 93vh;
+    min-height: 100vh;
     min-width: 100%;
     margin: 0;
     padding: 0;
@@ -28,7 +28,7 @@
 .greyLogo {
     position: absolute;
     top: 2%;
-    left: 30%;
+    left: 33,3%;
     z-index: 0;
     opacity: 5%;
     min-width: 37%;

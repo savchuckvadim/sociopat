@@ -11,10 +11,10 @@ const InputEmail = ({ input, meta, ...props }) => {
     let error = null
     if (meta.active || input.value) {
         index = 1
-        console.log(meta)
+        
     }
     if (meta.error && meta.touched && !meta.active) {
-        console.log(meta.error)
+      
         error = meta.error
     }
 

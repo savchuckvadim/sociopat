@@ -34,7 +34,7 @@ export const setCurrentUser = (userProfile) => {
 }
 const authReducer = (state = initialState, action) => {
     let result = state
-    debugger
+ 
     switch (action.type) {
         case SET_USER_DATA:
             result = {
@@ -81,7 +81,7 @@ const authReducer = (state = initialState, action) => {
 //     })
 // }
 export const getAuth = () => (dispatch) => {
-  debugger
+  
     return authAPI.me().then(res => {
          const resultCode = res.resultCode;
          const data = res.data;

@@ -8,7 +8,9 @@ import InputPassword from './Inputs/Input-Password/Input-Password'
 import InputRepeatPass from './Inputs/Input-Repeat-Password/Input-RepeatPass'
 import InputSurname from './Inputs/Input-Surame/Input-Surname'
 import style from './Form.module.css'
+import { Navigate, NavLink } from 'react-router-dom'
 const symbolsValidate = symbol('@');
+
 
 
 let Form = (props) => {
@@ -49,7 +51,9 @@ let Form = (props) => {
 
             {inputs}
             <div className={style.button__container}>
-                <RedButton name={'НАЖАТЬ'} />
+            <NavLink className={style.button__container} to={'../profile'}> 
+            <RedButton name={'НАЖАТЬ'}/>  
+             </NavLink>
             </div>
 
         </form>

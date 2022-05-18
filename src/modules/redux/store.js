@@ -3,6 +3,7 @@ import {
     combineReducers,
     createStore
 } from "redux";
+import { configureStore } from '@reduxjs/toolkit'
 import dialogsReducer from "./reducers/dialogs/dialogs-reduser";
 import newMessageReducer from "./reducers/dialogs/new-message-reducer";
 import inputNameReducer from "./reducers/login-form/input-name-reducer";
@@ -51,5 +52,5 @@ let reducers = combineReducers({
 
 });
 
-let store = createStore(reducers, applyMiddleware(thunk));
+let store = configureStore({reducer: reducers}, applyMiddleware(thunk));
 export default store;

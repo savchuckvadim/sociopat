@@ -9,7 +9,7 @@ import { SendPostContainer } from './Send-Post/Send-Post-Container';
 
 
 export const Profile = (props) => {
-    
+  
     // if(!props.isAuth) {return <Navigate replace to='../login' />}
     return (
      

@@ -22,7 +22,7 @@ const appReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case INITIALIZED_SUCCES:
-           
+
             return {
                 ...state,
                 initialized: true,
@@ -41,24 +41,34 @@ const appReducer = (state = initialState, action) => {
 }
 
 export const initialize = () => (dispatch) => {
-   
-   
-    let promise = () => {
-        debugger
-        // dispatch(initializing())    
-        return dispatch(getAuth())
+
+
+
+    let dispatchInitializing = () => {
+
+        return dispatch(initializing())
     }
 
-    // Promise.all([promise]).then(responses => {
-        
-    //     let a = responses
-    //     dispatch(initializedSuccess())
-    // })
+    let promiseAuth = () => {
 
+
+        return dispatch(getAuth())
+    }
     dispatch(initializing()) 
-    promise().then(res => {
+    promiseAuth().then(responses => {
+
+        let a = responses
         dispatch(initializedSuccess())
     })
+
+    // dispatch(initializing()) 
+    // debugger
+    // Promise.all([dispatchInitializing, promiseAuth])
+    //     .then((values) => {
+    //         debugger
+    //         console.log(values)
+    //         dispatch(initializedSuccess())
+    //     })
 }
 
 

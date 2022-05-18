@@ -21,8 +21,10 @@ import AuthRedirectComponentContainer from './modules/components/HOC/Auth-Redire
 
 function App(props) {
 
-
-
+debugger
+if(props.params){
+  console.log(props.params)
+}
   return (
 
     <div className="App">
