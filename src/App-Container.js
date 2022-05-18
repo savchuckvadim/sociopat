@@ -47,11 +47,7 @@ class AppContainer extends React.Component {
         
         if(!this.props.isAuth && !this.props.initialInProgress){
             return (<>
-            {/* <Routes >
-                <Route path="/" index element={<StartPage />} />
-                <Route path="login" element={<LoginContainer />} />
-            </Routes> */}
-            {/* <Navigate replace to='start' /> */}
+         
              <StartPage/>
              </>
              )
