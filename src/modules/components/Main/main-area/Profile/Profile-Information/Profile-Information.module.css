@@ -1,9 +1,9 @@
-.container, .frame, .hero, .information, .avatar {
+.wrapper, .frame, .hero, .information, .avatar {
     margin: 0;
     padding: 0;
 }
 
-.container {
+.wrapper {
     background-color: none;
     /* width: 100%; */
   width: 100%;
@@ -16,26 +16,26 @@
     align-items: center;
 }
 @media screen and (max-width: 900px) {
-    .container {
+    .wrapper {
         width: 106%;
     }
 
   }
 
   @media screen and (max-width: 600px) {
-    .container {
+    .wrapper {
         width: 109%;
     }
 
   }
   @media screen and (max-width: 400px) {
-    .container {
+    .wrapper {
         width: 114%;
     }
 
   }
 
-.frame, .hero__container, .information {
+.frame, .hero__wrapper, .information {
     /* width: 73%; */
     width: 100%;
     margin: 0 auto;
@@ -58,7 +58,7 @@
     align-items: center;
 }
 
-.hero__container {
+.hero__wrapper {
 
     height: 192px;
     background-color: rgba(50, 50, 50, 1);
@@ -83,12 +83,12 @@
     border-bottom-right-radius: 30px;
 }
 
-.info__container {
+.info__wrapper {
     margin-top: 15px;
     padding: 10px;
 }
 
-.statistics__container {
+.statistics__wrapper {
     margin: 16px 0;
     display: flex;
     flex-direction: row;
@@ -115,7 +115,7 @@
     opacity: 10%;
 }
 
-.edit__container {
+.edit__wrapper {
     margin: 16px  ;
 }
 

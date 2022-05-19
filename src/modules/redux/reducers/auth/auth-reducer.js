@@ -90,7 +90,14 @@ export const getAuth = () => (dispatch) => {
             
              dispatch(setAuthUserData(data.id, data.login, data.email, true))
          }
- 
+         profileAPI.getProfile(data.id)
+                     .then(res => {
+         
+                         const userProfile = res.data
+         
+                         dispatch(setCurrentUser(userProfile))
+                     })
+         
         
      })
  }

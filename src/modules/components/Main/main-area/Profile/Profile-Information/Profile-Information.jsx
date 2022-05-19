@@ -7,19 +7,19 @@ import RedButton from '../../../../Elements/Button/Red-Button';
 // import Icon from '../../../../Elements/Icon';
 const ProfileInformation = (props) => {
   
-  
+    debugger
     return (
-        <div className={style.container}>
+        <div className={style.wrapper}>
             {/* <div className={style.frame}> */}
-                <div className={style.hero__container}>
+                <div className={style.hero__wrapper}>
                     <img className={style.hero} src={hero} alt='hero' />
                 </div>
 
 
 
                 <div className={style.information}>
-                    <div className={style.info__container}>
-                        <div className={style.about__container}>
+                    <div className={style.info__wrapper}>
+                        <div className={style.about__wrapper}>
                           
                             <h1 className={style.name}>{props.profile.fullName}</h1>
                             <Status 
@@ -30,7 +30,7 @@ const ProfileInformation = (props) => {
                             {/* <p className={style.about}>My actions are not for fame, I just hate most people. */}
                                 {/* I don't see anything remarkable in them. People are really stupid shit. I bring them joy by suffering to die without any slobbering "buts".</p> */}
                         </div>
-                        <div className={style.statistics__container}>
+                        <div className={style.statistics__wrapper}>
                             <div className={style.posts}>
                                 <h3 className={style.statistics__quantity}>4</h3>
                                 <p className={style.statistics__name}>Posts</p>
@@ -50,7 +50,7 @@ const ProfileInformation = (props) => {
                                 <p className={style.statistics__name}>Following</p>
                             </div>
                         </div>
-                        <div className={style.edit__container}>
+                        <div className={style.edit__wrapper}>
                            
                             <RedButton name={'Edit profile'}/>
                         </div>

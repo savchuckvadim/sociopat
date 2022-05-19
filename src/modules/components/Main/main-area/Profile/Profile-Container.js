@@ -53,10 +53,10 @@ class ProfileContainer extends React.Component {
             if (this.props.user.userId) {
                 userId = this.props.user.userId
             }else{
-                userId = this.props.auth.userId
+                userId = this.props.auth.id
             }
         }
-
+        debugger
         this.props.getProfile(userId)
         this.props.getStatus(userId)
     }

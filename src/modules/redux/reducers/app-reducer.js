@@ -51,13 +51,12 @@ export const initialize = () => (dispatch) => {
 
     let promiseAuth = () => {
 
-
         return dispatch(getAuth())
     }
     dispatch(initializing()) 
     promiseAuth().then(responses => {
 
-        let a = responses
+       
         dispatch(initializedSuccess())
     })
 
@@ -69,6 +68,8 @@ export const initialize = () => (dispatch) => {
     //         console.log(values)
     //         dispatch(initializedSuccess())
     //     })
+
+    
 }
 
 
