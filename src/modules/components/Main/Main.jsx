@@ -7,7 +7,7 @@ import UsersContainer from "./main-area/Users/Users-Container";
 
 
 const Main = () => {
-debugger
+
     return (
 
         <main id={style.main}>

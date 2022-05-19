@@ -22,10 +22,7 @@ import LoginRedirect from './modules/components/Login-Page/Login-Redirect';
 
 function App(props) {
 
-debugger
-if(props.params){
-  console.log(props.params)
-}
+
   return (
 
     <div className="App">
