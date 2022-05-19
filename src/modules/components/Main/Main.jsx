@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 import style from './Main.module.css';
 import Messages from "./main-area/Messages/Messages";
 import { NavMenuContainer } from "./Nav-Menu/Nav-Menu-Container";
@@ -20,7 +20,7 @@ debugger
                 </div>
                 <div id={style.main__area}>
                     <Routes>
-                        <Route path="/" index element={<ProfileContainer />} />
+                        <Route path="*" index element={ <Navigate replace to={'profile'} />} />
                         {/* <Route path="login" element={<LoginContainer  />} /> */}
                         <Route path="profile" element={<ProfileContainer />} />
                         <Route path="messages//*" element={<Messages />} />
