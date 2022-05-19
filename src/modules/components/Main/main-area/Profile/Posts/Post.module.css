@@ -1,8 +1,8 @@
-.container {
-    padding: 16px;
+.wrapper {
+    padding: 0px;
     margin-top: 16px;
     /* width: 100%; */
-    width: 96%;
+    width: 100%;
     /* min-width: 700px; */
     min-height: 5vh;
     background-color: white;
@@ -11,16 +11,24 @@
     flex-direction: column;
     justify-content: space-around;
 }
+@media screen and (max-width: 900px) {
+    .wrapper {
+        width: 95%;
+    }
+
+  }
+
 
 .header{
-    margin: 0;
+    margin:  16px  16px 0 16px;
+
     padding: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
+    /* width: 100%; */
 }
-.user__container{
+.user__wrapper{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -34,6 +42,9 @@
 }
 .user__info{
     margin-left: 16px;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
 }
 .name{
     font-weight: 600;
@@ -53,15 +64,17 @@ cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: 16px 0;
+    margin: 16px ;
 }
 
-.message__container {}
+.message__wrapper {}
 
-.img__container {}
+.img__wrapper {}
 
 .message {
     text-align: justify;
+    margin: 0;
+    margin-bottom: 12px;
     /* margin: 0 0 12px; */
 }
 
@@ -87,9 +100,9 @@ cursor: pointer;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* margin: 8px 24px; */
+    margin:  0 16px 16px 16px;
 }
-.actions__container{
+.actions__wrapper{
     display: flex;
     flex-direction: row;
 }

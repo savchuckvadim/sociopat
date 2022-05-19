@@ -11,7 +11,7 @@ const Post = (props) => {
     
     let postsImg = null
     if (props.postsImg) {
-        postsImg = <div key={`post-img-container`} className={style.img__container}>
+        postsImg = <div key={`post-img-container`} className={style.img__wrapper}>
             <img  key={'post-img-container'} className={style.post__img} src={props.postsImg} alt="postsImg" />
         </div>
     }
@@ -19,9 +19,9 @@ const Post = (props) => {
 
     return (
 
-        <div className={style.container}>
+        <div className={style.wrapper}>
             <div className={style.header}>
-                <div className={style.user__container}>
+                <div className={style.user__wrapper}>
                     <div className={style.icon__wrapper}>
                         <Icon user={props.user} />
                     </div>
@@ -37,7 +37,7 @@ const Post = (props) => {
                 </div>
             </div>
             <div className={style.body}>
-                <div className={style.message__container}>
+                <div className={style.message__wrapper}>
                     <p className={style.message}>
                         {props.body}
                         
@@ -49,7 +49,7 @@ const Post = (props) => {
                 {postsImg}
             </div>
             <div className={style.footer}>
-                <div className={style.actions__container}>
+                <div className={style.actions__wrapper}>
                     <button className={style.action_button}>
                         <img className={style.action} src={dislike} alt="dislike" />
                     </button>
