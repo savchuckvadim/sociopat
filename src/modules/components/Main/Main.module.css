@@ -24,7 +24,7 @@
 #left__area {
     
     /* width: 30vh; */
-    height: 40vh;
+    min-height: 40vh;
     margin: 0%;
     padding: 0%;
 
