@@ -18,7 +18,7 @@ export const SendPost = (props) => {
 let SendPostForm = (props) => {
 
     return (
-        <form onSubmit={props.handleSubmit} className={style.container}>
+        <form onSubmit={props.handleSubmit} className={style.wrapper}>
            
             <Field
                 component={InputSendPost}

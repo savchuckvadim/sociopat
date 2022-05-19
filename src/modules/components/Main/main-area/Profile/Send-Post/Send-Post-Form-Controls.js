@@ -17,7 +17,10 @@ const InputSendPost = ({ input, meta, ...props }) => {
     return (
         <>
             <div className={style.left__area}>
+                <div className={style.icon__wrapper}>
                 <Icon user={props.user} />
+                </div>
+                
                 <input
                     {...input}
                     {...props}
