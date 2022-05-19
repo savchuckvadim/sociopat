@@ -81,8 +81,8 @@ p{
 }
 
 
-[class*=__container]{
-  max-width: 1210px;
+[class*=_container]{
+  max-width: 991px;
 }
 
 body{

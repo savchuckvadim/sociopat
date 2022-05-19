@@ -16,7 +16,7 @@
   margin: 0;
   padding: 0;
   height: 56px;
-  min-width: 75%;
+  width: 100%;
    /* 920px; */
   display: flex;
   flex-direction: row;

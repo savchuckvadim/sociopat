@@ -5,7 +5,7 @@
     justify-content: flex-start;
     align-items: center;
     height: 40px;
-    width: 155px;
+    min-width: 90%;
     border-radius: 16px;
  
 }
