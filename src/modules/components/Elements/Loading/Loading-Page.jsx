@@ -5,7 +5,7 @@ const LoadingPage = (props) => {
     
     if (props.type === 'dark') {
         return (
-            <div className={dark.container} style={props.style}>
+            <div className={dark.wrapper} style={props.style}>
                 <div className={dark.logo}>
                     <img className={dark.logo} src={props.style.logo} alt="logo" />
                 </div>
@@ -15,7 +15,7 @@ const LoadingPage = (props) => {
         )
     }
     return (
-        <div className={style.container} style={props.style}>
+        <div className={style.wrapper} style={props.style}>
             <img className={style.logo} src={props.style.logo} alt="logo" />
             <p className={style.text}>Loading...</p>
         </div>
