@@ -48,7 +48,7 @@ if(props.params){
       </Routes> */}
 
 <Routes>
-        <Route path="/" index element={<Sociopath />} />
+        <Route path="*" index element={<Sociopath />} />
         
         <Route path="login" element={<LoginRedirect />} />
       </Routes>
