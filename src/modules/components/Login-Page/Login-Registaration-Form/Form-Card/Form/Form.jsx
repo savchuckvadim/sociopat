@@ -51,9 +51,9 @@ let Form = (props) => {
 
             {inputs}
             <div className={style.button__container}>
-            <NavLink className={style.button__container} to={'../profile'}> 
+            {/* <NavLink className={style.button__container} to={'../'}>  */}
             <RedButton name={'НАЖАТЬ'}/>  
-             </NavLink>
+             {/* </NavLink> */}
             </div>
 
         </form>
