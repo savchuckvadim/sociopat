@@ -35,18 +35,26 @@ class Status extends React.Component {
 
             <div className={style.about}>
                 {this.state.editMode
-                    ? <input
+                    ? <textarea
                         onChange={this.onStatusChange}
                         onBlur={this.deactivateEditMode}
                         autoFocus
                         className={style.input}
-                        type='textarea'
+                        // type='textarea'
+                        rows='5'
+                        cols={'82'}
                         value={this.state.status} >
 
-                    </input>
-                    : <p className={style.input}
-                        onDoubleClick={this.activateEditMode} >
-                        {this.props.status}
+                    </textarea>
+                    : <p className={style.text}
+                        onDoubleClick={this.activateEditMode} 
+                       
+                        >
+                            
+                        {this.props.status 
+                        ? this.props.status 
+                        : 'Напишите о себе'
+                    }
                     </p>
                 }
 

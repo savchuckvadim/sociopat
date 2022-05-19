@@ -7,7 +7,7 @@ import RedButton from '../../../../Elements/Button/Red-Button';
 // import Icon from '../../../../Elements/Icon';
 const ProfileInformation = (props) => {
   
-    debugger
+    
     return (
         <div className={style.wrapper}>
             {/* <div className={style.frame}> */}

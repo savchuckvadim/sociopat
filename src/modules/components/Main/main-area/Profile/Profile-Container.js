@@ -56,7 +56,7 @@ class ProfileContainer extends React.Component {
                 userId = this.props.auth.id
             }
         }
-        debugger
+        
         this.props.getProfile(userId)
         this.props.getStatus(userId)
     }
