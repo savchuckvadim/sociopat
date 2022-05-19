@@ -22,7 +22,7 @@ const Post = (props) => {
         <div className={style.container}>
             <div className={style.header}>
                 <div className={style.user__container}>
-                    <div className={style.icon__container}>
+                    <div className={style.icon__wrapper}>
                         <Icon user={props.user} />
                     </div>
 
@@ -59,7 +59,10 @@ const Post = (props) => {
 
                 </div>
                 <div className={style.views}>
+                   
                     <img className={style.icon} src={eye} alt="eye" />
+                 
+                    
                     <p className={style.quantity}>420</p>
                 </div>
             </div>
