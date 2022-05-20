@@ -62,6 +62,7 @@ const StartPage = () => {
             <Routes>
                 <Route path="/" element={<Start />} />
                 <Route path="login" element={<LoginPage />} />
+                <Route path="profile" element={<Navigate replace to='../'/> } />
             </Routes>
 
         </>

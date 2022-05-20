@@ -10,6 +10,7 @@ const UserCard = (props) => {
 let disable = props.followingInProgress.some(id => id === props.user.id)
 
     let followButton = <RedButton
+    border={12}
     disable={disable}
         className={style.followun}
         onClick={() => {
@@ -21,6 +22,8 @@ let disable = props.followingInProgress.some(id => id === props.user.id)
     if (props.user.followed) {
         followButton =
             <WhiteButton
+            border={12}
+            grey={true}
             disable={disable}
                 className={style.followun}
                 onClick={() => {

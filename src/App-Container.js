@@ -44,10 +44,10 @@ class AppContainer extends React.Component {
 
 
     render() {
-        
+        debugger
         if(!this.props.isAuth && !this.props.initialInProgress){
             return (<>
-         
+       
              <StartPage/>
              </>
              )

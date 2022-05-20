@@ -14,7 +14,7 @@
 
 .container {
   margin: 0;
-  padding: 0;
+  padding: 0 ;
   height: 56px;
   width: 100%;
    /* 920px; */
@@ -27,7 +27,12 @@
 .menu{
   display: none;
 }
+@media screen and (max-width: 900px) {
+  .container {
+    width: 95%;
+  }
 
+}
 @media screen and (max-width: 400px) {
   .container {
     width: 90%;
