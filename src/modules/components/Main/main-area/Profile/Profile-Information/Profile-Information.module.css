@@ -74,7 +74,7 @@
 
 .info__wrapper {
     margin-top: 15px;
-    padding:10px;
+    /* padding:10px; */
 }
 .name{
     margin-bottom: 0;
@@ -114,8 +114,10 @@
     opacity: 10%;
 }
 
-.edit__wrapper {
+.buttons__wrapper {
     margin: 16px  ;
+    height: 40px;
+    /* background-color: black; */
 }
 
 .avatar {

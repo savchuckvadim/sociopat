@@ -52,7 +52,7 @@ let Form = (props) => {
             {inputs}
             <div className={style.button__container}>
             {/* <NavLink className={style.button__container} to={'../'}>  */}
-            <RedButton name={'НАЖАТЬ'}/>  
+            <RedButton border={16} name={'НАЖАТЬ'}/>  
              {/* </NavLink> */}
             </div>
 

@@ -8,6 +8,7 @@ const RedButton = (props) => {
     return (
         <button
         type='submit'
+        style={{borderRadius: props.border}}
             name={'redButton'}
             onClick={props.onClick}
             disabled={props.disabled}

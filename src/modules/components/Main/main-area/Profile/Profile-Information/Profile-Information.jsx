@@ -1,8 +1,9 @@
 import style from './Profile-Information.module.css'
 import hero from '../../../../../../assets/imgs/Vector.png'
 import WhiteButton from '../../../../Elements/Button/White-Button';
-import Status from './Status';
+import Status from './Status/Status';
 import RedButton from '../../../../Elements/Button/Red-Button';
+import ProfileButtons from './Buttons/Profile-Buttons';
 
 // import Icon from '../../../../Elements/Icon';
 const ProfileInformation = (props) => {
@@ -50,9 +51,9 @@ const ProfileInformation = (props) => {
                                 <p className={style.statistics__name}>Following</p>
                             </div>
                         </div>
-                        <div className={style.edit__wrapper}>
-                           
-                            <RedButton name={'Edit profile'}/>
+                        <div className={style.buttons__wrapper}>
+                           <ProfileButtons/>
+                            {/* <RedButton name={'Edit profile'}/> */}
                         </div>
 
                     </div>

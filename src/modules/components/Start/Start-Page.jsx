@@ -28,13 +28,17 @@ const Start = () => {
 
                     <div className={style.buttons__wrapper}>
 
-                        <div className={style.button__wrapper}><NavLink className={style.button__link} to='../login'> <RedButton name={'Login'} /> </NavLink> </div>
+                        <div className={style.button__wrapper}>
+                            <NavLink className={style.button__link} to='../login'>
+                                <RedButton border={16} name={'Login'} />
+                            </NavLink>
+                        </div>
                         <div className={style.button__wrapper}>
                             <WhiteButton
                                 onClick={() => { return <Navigate redirect to='/' /> }}
-                                name={'Sign up'} 
+                                name={'Sign up'}
                                 border={16}
-                                />
+                            />
                         </div>
                     </div>
 

@@ -32,17 +32,17 @@ const Header = (props) => {
                 </div>
                 <div className={style.currentUser}>
                     <p className={style.name}>
-
-                        <NavLink to='login' >
+                        <LogoutContainer />
+                        {/* <NavLink to='login' >
                             {login}
-                        </NavLink>
+                        </NavLink> */}
 
                     </p>
 
                     <div className={style.icon__container}>
                         <Icon img={ava} />
                     </div>
-                    <LogoutContainer/>
+
 
                 </div>
             </div>
