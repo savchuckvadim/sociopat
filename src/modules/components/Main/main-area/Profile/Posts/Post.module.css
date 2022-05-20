@@ -116,6 +116,7 @@ cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #F4F4F4;
 }
 .action {
     /* margin: 0 0 0 8px; */
