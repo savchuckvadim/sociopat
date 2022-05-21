@@ -35,8 +35,8 @@ let disable = props.followingInProgress.some(id => id === props.user.id)
     }
     let ava = props.user.photos.small
     return (
-        <div className={style.container}>
-            <div className={style.icon__container}>
+        <div className={style.frame}>
+            <div className={style.icon__wrapper}>
                 <Icon user={ava} />
 
             </div>
@@ -46,7 +46,7 @@ let disable = props.followingInProgress.some(id => id === props.user.id)
                 <p >{props.name}</p>
             </NavLink>
 
-            <div className={style.follow__container}>
+            <div className={style.follow__wrapper}>
                 {/* <RedButton className={style.followun} name={'Follow'} /> */}
                 {/* <input  type="button" value="follow" /> */}
                 {followButton}
