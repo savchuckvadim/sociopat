@@ -51,9 +51,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    transition-duration: 3s;
-    transition-delay: 0.5s;
-    transition-property: height opacity;
+    transition-duration: 4s;
+    transition-delay: 2s;
+    /* transition-property: height opacity ; */
     
 }
 .left__area{

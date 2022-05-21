@@ -4,21 +4,25 @@ import style from '../Send-Post.module.css'
 import footer from './Footer-Send-Post.module.css'
 const FooterSendPost = (props) => {
     let height = 0
+    let heightCamera = 0
     let opacity = 0
     let opacityCamera = 0
-
+    let margin = 0
     if (props.display !== 'none') {
         height = 40
+        heightCamera = 24
         opacity = 100
-        opacityCamera = 50
+        opacityCamera = '50%'
+        margin = 16
     }
-    
+
     return (
         <div
             style={
                 {
                     // display: props.display,
-                    height: height
+                    height: height,
+                    margin: margin
                 }}
             className={footer.footer__wrapper}
         >
@@ -36,12 +40,12 @@ const FooterSendPost = (props) => {
                     <img style={
                         {
                             opacity: opacityCamera,
-                            // height: height
+                            height: heightCamera
                         }} className={footer.camera__img} src={camera} alt='camera' />
                     <p style={
                         {
                             opacity: opacityCamera,
-                            // height: height
+                            height: heightCamera
                         }} className={footer.camera__text}>Photo/Video</p>
                 </div>
 
@@ -55,7 +59,13 @@ const FooterSendPost = (props) => {
                     }}
                 className={style.right__area}>
 
-                <button className={style.sendArea}>
+                <button
+                    style={
+                        {
+                            // display: props.display,
+                            height: height
+                        }}
+                    className={style.sendArea}>
                     <RedButton border={12} name={'Post'} />
                 </button>
             </div>

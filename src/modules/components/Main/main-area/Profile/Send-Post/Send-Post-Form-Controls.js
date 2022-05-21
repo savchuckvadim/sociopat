@@ -59,11 +59,11 @@ const InputSendPost = ({ input, meta, ...props }) => {
 
                 </div>
             </div>
-            <div  className={style.wrapper} style={{
-                // display: displaySending
-            }}>
+            {/* <div  className={style.wrapper} style={{
+                display: displaySending
+            }}> */}
                 <FooterSendPost display={displaySending} />
-            </div>
+            {/* </div> */}
 
 
 
