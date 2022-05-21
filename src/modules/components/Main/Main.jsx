@@ -22,7 +22,7 @@ const Main = () => {
                     <Routes>
                         <Route path="*" index element={ <Navigate replace to={'profile'} />} />
                         {/* <Route path="login" element={<LoginContainer  />} /> */}
-                        <Route path=":profile" element={<ProfileContainer />} />
+                        <Route path="profile" element={<ProfileContainer />} />
                         <Route path="messages//*" element={<Messages />} />
                         {/* <Route path="dialog//*" element={< />} /> */}
                         <Route path="users" element={<UsersContainer />} />

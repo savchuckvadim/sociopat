@@ -7,7 +7,7 @@ import ProfileButtons from './Buttons/Profile-Buttons';
 
 // import Icon from '../../../../Elements/Icon';
 const ProfileInformation = (props) => {
-  
+  debugger
     
     return (
         <div className={style.wrapper}>
@@ -52,7 +52,7 @@ const ProfileInformation = (props) => {
                             </div>
                         </div>
                         <div className={style.buttons__wrapper}>
-                           <ProfileButtons/>
+                           <ProfileButtons userId={props.params.userId} />
                             {/* <RedButton name={'Edit profile'}/> */}
                         </div>
 
