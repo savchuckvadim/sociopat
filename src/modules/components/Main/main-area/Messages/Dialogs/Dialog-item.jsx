@@ -16,8 +16,8 @@ const DialogItem = (props) => {
             to={`dialog/${props.id}`}
             // activeClassname='activeDialog'
             className={style.dialog}>
-            <div className={style.icon__container}>
-                {/* <Icon user={props.user} /> */}
+            <div className={style.icon__wrapper}>
+                <Icon user={props.user} />
             </div>
 
             <div className={style.lastMessage}>
