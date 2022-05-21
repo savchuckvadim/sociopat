@@ -2,7 +2,7 @@ import RedButton from '../../../../../Elements/Button/Red-Button';
 import WhiteButton from '../../../../../Elements/Button/White-Button';
 import style from './Profile-Buttons.module.css'
 const ProfileButtons = (props) => {
-    debugger
+    
     if (props.userId) {
         return (
             <div className={style.twoButtons}>

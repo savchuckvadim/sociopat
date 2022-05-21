@@ -7,7 +7,7 @@ import ProfileButtons from './Buttons/Profile-Buttons';
 
 // import Icon from '../../../../Elements/Icon';
 const ProfileInformation = (props) => {
-  debugger
+  
     
     return (
         <div className={style.wrapper}>

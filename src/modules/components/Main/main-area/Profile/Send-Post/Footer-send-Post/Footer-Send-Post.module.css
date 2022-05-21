@@ -1,0 +1,17 @@
+.footer__wrapper{
+    /* margin: 16px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    transition-duration: 3s;
+    transition-delay: 0.5s;
+    transition-property: height;
+}
+
+.camera__img, .camera__text{
+    transition-duration: 5s;
+  
+    transition-property: opacity;
+}
