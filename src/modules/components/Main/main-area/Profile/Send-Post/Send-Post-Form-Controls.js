@@ -12,6 +12,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
     let textHeight = '5px'
     let textCols = 5
     let textResize = 'none'
+    let textClass = style.input
     let sendArea = <p>Photo/Video</p>
     if (meta.active || input.value) {
         sendArea = <img
@@ -23,6 +24,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
         textHeight = '50px'
         textCols = 55
         textResize = 'vertical'
+        textClass = style.inputActive
     }
 
 
@@ -50,9 +52,9 @@ style={{
     height:textHeight,
     resize: textResize
 }}
-                        className={style.input}
+                        className={textClass}
                         placeholder='Take a shit here...'
-                        cols={textCols}
+                        // cols={textCols}
                         rows={'1'}
                     />
                 </div>

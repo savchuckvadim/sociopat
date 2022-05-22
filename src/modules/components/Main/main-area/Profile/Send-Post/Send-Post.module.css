@@ -15,6 +15,21 @@
     .frame {
         width: 95%;
     }
+    .inputActive{
+        max-width: 200px;
+
+    }
+
+  }
+
+  @media screen and (max-width: 700px) {
+    .frame {
+        width: 90%;
+    }
+    .inputActive{
+        max-width: 220px;
+
+    }
 
   }
   .test__body{
@@ -62,22 +77,23 @@
     margin-left: 0px;
 }
 
-.input{
+.input, .inputActive{
     margin: 0 20px;
     min-height: 24px;
     max-height: 100vh;
-    min-width: 100%;
-    /* background-color: white; */
+   
+
     border: none;
     outline: none;
-    
-    
-    /* height: 100%; */
-
     transition-duration: 2s;
     transition-delay: 0.5s;
- 
     transition-property: height;
+}
+.input{
+    min-width:100%;
+}
+.inputActive{
+    width:630px;
 }
 
 .sendArea{
