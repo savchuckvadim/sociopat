@@ -9,14 +9,20 @@ const InputSendPost = ({ input, meta, ...props }) => {
     let height = 40
     let displaySending = 'none'
     let displayDefault = 'block'
+    let textHeight = '5px'
+    let textCols = 5
+    let textResize = 'none'
     let sendArea = <p>Photo/Video</p>
-    if (meta.active && input.value) {
+    if (meta.active || input.value) {
         sendArea = <img
             src={arrowup}
             alt='arrow-up' />
-        height = 250
+        height = '100%'
         displaySending = 'flex'
         displayDefault = 'none'
+        textHeight = '50px'
+        textCols = 55
+        textResize = 'vertical'
     }
 
 
@@ -32,18 +38,22 @@ const InputSendPost = ({ input, meta, ...props }) => {
                 <div className={style.left__area}>
                     <div style={
                         {
-                            display: displayDefault
+                            // display: displayDefault
                         }} className={style.icon__wrapper}>
                         <Icon user={props.user} />
                     </div>
 
-                    <input
+                    <textarea
                         {...input}
                         {...props}
-
+style={{
+    height:textHeight,
+    resize: textResize
+}}
                         className={style.input}
                         placeholder='Take a shit here...'
-
+                        cols={textCols}
+                        rows={'1'}
                     />
                 </div>
 
