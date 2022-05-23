@@ -69,7 +69,7 @@ const FooterSendPost = (props) => {
                             height: height
                         }}
                     className={sendAreaClass}>
-                    <RedButton className={cameraClass}  border={12} name={'Post'} />
+                    <RedButton onClick={props.reset} className={cameraClass}  border={12} name={'Post'} />
                 </button>
             </div>
         </div>

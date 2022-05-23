@@ -26,7 +26,8 @@ const mapDispatchToProps = (dispatch) => {
     }
     return {
         // change,
-        send
+        send,
+        
     }
 }
 

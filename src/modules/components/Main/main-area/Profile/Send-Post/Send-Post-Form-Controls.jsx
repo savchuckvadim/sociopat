@@ -2,8 +2,6 @@ import Icon from '../../../../Elements/Icon'
 import camera from '../../../../../../assets/imgs/posts//camera-photo.svg'
 import style from './Send-Post.module.css'
 import arrowup from '../../../../../../assets/imgs/posts/arrow-up.svg'
-import RedButton from '../../../../Elements/Button/Red-Button';
-import './Send-Post.css'
 import FooterSendPost from './Footer-send-Post/Footer-Send-Post.jsx';
 const InputSendPost = ({ input, meta, ...props }) => {
     let height = 40
@@ -27,11 +25,9 @@ const InputSendPost = ({ input, meta, ...props }) => {
         textCols = 55
         textResize = 'vertical'
         textClass = style.inputActive
-      
         leftAreaClass = style.left__areaActive
     }
-
-
+  
     return (
         <>
 
@@ -78,7 +74,8 @@ const InputSendPost = ({ input, meta, ...props }) => {
                 </div>
             </div>
 
-            <FooterSendPost display={displaySending} />
+            <FooterSendPost {...input}
+                        {...props}  display={displaySending} />
 
 
 
