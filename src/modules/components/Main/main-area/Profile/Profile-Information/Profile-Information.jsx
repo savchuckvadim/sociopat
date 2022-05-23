@@ -4,6 +4,7 @@ import WhiteButton from '../../../../Elements/Button/White-Button';
 import Status from './Status/Status';
 import RedButton from '../../../../Elements/Button/Red-Button';
 import ProfileButtons from './Buttons/Profile-Buttons';
+import ProfileStatus from './Status/Profile-Status';
 
 // import Icon from '../../../../Elements/Icon';
 const ProfileInformation = (props) => {
@@ -23,7 +24,7 @@ const ProfileInformation = (props) => {
                         <div className={style.about__wrapper}>
                           
                             <h1 className={style.name}>{props.profile.fullName}</h1>
-                            <Status 
+                            <ProfileStatus 
                             status={props.status}
                             getStatus={props.getStatus}
                             updateStatus={props.updateStatus}
