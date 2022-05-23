@@ -1,6 +1,12 @@
+import { createSelector } from "reselect"
+
 export const getUsers = (state) => {
     return state.users.users
 }
+export const getUsersSelector = createSelector(getUsers, (users) => {
+    return users
+})
+
 export const getPageSize = (state) => {
     return state.users.pageSize
 }
@@ -16,6 +22,7 @@ export const getCount = (state) => {
 }
 
 export const getIsFetching = (state) => {
+    debugger
     return state.users.isFetching
 }
 

@@ -13,7 +13,7 @@ import {
 
     unFollowThunk
 } from "../../../../redux/reducers/users/users-reducer"
-import { getCount, getIsFetching, getIsFollowing, getPage, getPageSize, getTotalUsersCount, getUsers } from "../../../../redux/selectors/user-selectors"
+import { getCount, getIsFetching, getIsFollowing, getPage, getPageSize, getTotalUsersCount, getUsers, getUsersSelector } from "../../../../redux/selectors/user-selectors"
 
 import UsersContainer from "./Users-API-Container"
 
@@ -22,7 +22,7 @@ import UsersContainer from "./Users-API-Container"
 const mapStateToProps = (state) => {
 
     return {
-        users: getUsers(state) ,
+        users: getUsersSelector(state) ,
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getPage(state) ,
