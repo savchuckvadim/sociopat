@@ -1,7 +1,10 @@
 # React, Redux learning
 Educational project - social network. Made using the React library.
 
+libraries that are used in the projectЖ
 
+
+[Reselect](https://github.com/reduxjs/reselect) - A library for creating memoized "selector" functions. Commonly used with Redux, but usable with any plain JS immutable data as well.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
