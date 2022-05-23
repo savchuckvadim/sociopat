@@ -15,61 +15,11 @@
     .frame {
         width: 95%;
     }
-    /* .inputActive{
-        max-width: 530px;
 
-    } */
 
   }
 
-  /* @media screen and (max-width: 700px) {
-  
-    .inputActive{
-        max-width: 490px;
-
-    }
-
-  }
-  @media screen and (max-width: 600px) {
-  
-    .inputActive{
-        max-width: 345px;
-
-    }
-
-  }
-  @media screen and (max-width: 450px) {
-  
-    .inputActive{
-        max-width: 290px;
-
-    }
-
-  }
-  @media screen and (max-width: 450px) {
-  
-    .inputActive{
-        max-width: 250px;
-
-    }
-
-  }
-  @media screen and (max-width: 390px) {
-  
-    .inputActive{
-        max-width: 210px;
-
-    }
-
-  }
-  @media screen and (max-width: 320px) {
-  
-    .inputActive{
-        max-width: 110px;
-
-    }
-
-  } */
+ 
 
 .wrapper{
     

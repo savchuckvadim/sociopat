@@ -11,6 +11,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
     let textCols = 5
     let textResize = 'none'
     let textClass = style.input
+    let cameraOpacity = 50
     let sendArea = <p>Photo/Video</p>
 
     let leftAreaClass = style.left__area
@@ -26,6 +27,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
         textResize = 'vertical'
         textClass = style.inputActive
         leftAreaClass = style.left__areaActive
+        cameraOpacity = 0
     }
   
     return (
@@ -63,10 +65,13 @@ const InputSendPost = ({ input, meta, ...props }) => {
 
                 <div className={style.right__area}
                     style={{
-                        display: displayDefault
+                        display: displayDefault,
+                        opacity:cameraOpacity
                     }}
                 >
-                    <div className={style.camera__wrapper}>
+                    <div className={style.camera__wrapper}
+                    
+                    >
                         <img src={camera} alt='camera' />
                         <p>Photo/Video</p>
                     </div>

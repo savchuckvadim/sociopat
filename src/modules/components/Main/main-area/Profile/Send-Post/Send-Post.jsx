@@ -14,7 +14,7 @@ export const SendPost = (props) => {
     }
     
     return (
-        <SendPostForm  onSubmit={submit} />
+        <SendPostFormReduxForm  onSubmit={submit} />
     )
 }
 let SendPostForm = (props) => {
@@ -32,5 +32,5 @@ let SendPostForm = (props) => {
     )
 }
 
-SendPostForm = reduxForm({ form: 'sendPost' })(SendPostForm)
+const SendPostFormReduxForm = reduxForm({ form: 'sendPost' })(SendPostForm)
 export default SendPost

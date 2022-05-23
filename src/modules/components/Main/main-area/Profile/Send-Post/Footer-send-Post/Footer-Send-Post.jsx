@@ -42,7 +42,7 @@ const FooterSendPost = (props) => {
                     className={style.camera__wrapper}>
                     <img style={
                         {
-                            opacity: opacityCamera,
+                            // opacity: opacityCamera,
                             height: heightCamera
                         }} className={cameraClass} src={camera} alt='camera' />
                     <p style={
@@ -62,15 +62,15 @@ const FooterSendPost = (props) => {
                     }}
                 >
 
-                <button
+                <div
                     style={
                         {
                             opacity:opacity,
                             height: height
                         }}
                     className={sendAreaClass}>
-                    <RedButton onClick={props.reset} className={cameraClass}  border={12} name={'Post'} />
-                </button>
+                    <RedButton className={cameraClass}  border={12} name={'Post'} />
+                </div>
             </div>
         </div>
     )

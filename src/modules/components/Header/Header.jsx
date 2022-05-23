@@ -8,7 +8,7 @@ import LogoutContainer from './Logout-Container';
 const Header = (props) => {
     let login = 'Login'
     let ava = null
-    const logout = <NavLink to='../'>logout</NavLink>
+    // const logout = <NavLink to='../'>logout</NavLink>
     if (props.auth.login) {
         login = props.auth.login
 
@@ -31,13 +31,13 @@ const Header = (props) => {
                     </h3>
                 </div>
                 <div className={style.currentUser}>
-                    <p className={style.name}>
+                    <div className={style.name}>
                         <LogoutContainer />
                         {/* <NavLink to='login' >
                             {login}
                         </NavLink> */}
 
-                    </p>
+                    </div>
 
                     <div className={style.icon__container}>
                         <Icon img={ava} />
