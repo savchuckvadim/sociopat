@@ -115,7 +115,7 @@ export const unFollow = (userId) => ({ type: UNFOLLOW, userId})
 export const toggleFollowingInProgress = (userId, isFetching) => ({type: FOLLOWING_IN_PROGRESS, userId, isFetching})
 
 
-export const getUsers = (currentPage, pageSize) => (dispatch) => {
+export const requestUsers = (currentPage, pageSize) => (dispatch) => {
     dispatch(fetching(true))
 
     usersAPI.getUsers(currentPage, pageSize).then(res => {

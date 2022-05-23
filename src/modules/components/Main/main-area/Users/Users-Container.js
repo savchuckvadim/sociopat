@@ -5,7 +5,7 @@ import {
     fetching,
 
     followThunk,
-    getUsers,
+    requestUsers,
     setCurrentPage,
     setTotalUsersCount,
     setUsers,
@@ -13,6 +13,7 @@ import {
 
     unFollowThunk
 } from "../../../../redux/reducers/users/users-reducer"
+import { getCount, getIsFetching, getIsFollowing, getPage, getPageSize, getTotalUsersCount, getUsers } from "../../../../redux/selectors/user-selectors"
 
 import UsersContainer from "./Users-API-Container"
 
@@ -21,13 +22,13 @@ import UsersContainer from "./Users-API-Container"
 const mapStateToProps = (state) => {
 
     return {
-        users: state.users.users,
-        pageSize: state.users.pageSize,
-        totalUsersCount: state.users.totalUsersCount,
-        currentPage: state.users.currentPage,
-        count: state.users.count,
-        isFetching: state.users.isFetching,
-        followingInProgress: state.users.followingInProgress
+        users: getUsers(state) ,
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getPage(state) ,
+        count: getCount(state) ,
+        isFetching: getIsFetching(state) ,
+        followingInProgress: getIsFollowing(state)
 
     }
 }
@@ -41,7 +42,7 @@ export default connect(mapStateToProps, {
     // follow,
     // unFollow,
     toggleFollowingInProgress,
-    getUsers,
+    requestUsers,
     followThunk,
     unFollowThunk
 
