@@ -14,6 +14,8 @@ const InputSendPost = ({ input, meta, ...props }) => {
     let textResize = 'none'
     let textClass = style.input
     let sendArea = <p>Photo/Video</p>
+
+    let leftAreaClass = style.left__area
     if (meta.active || input.value) {
         sendArea = <img
             src={arrowup}
@@ -25,19 +27,23 @@ const InputSendPost = ({ input, meta, ...props }) => {
         textCols = 55
         textResize = 'vertical'
         textClass = style.inputActive
+      
+        leftAreaClass = style.left__areaActive
     }
 
 
     return (
         <>
 
-            <div style={
+            <div className={style.wrapper} style={
                 {
                     minHeight: height
                 }}
-                className={style.wrapper}>
+            >
 
-                <div className={style.left__area}>
+                <div className={leftAreaClass}
+                   
+                >
                     <div style={
                         {
                             // display: displayDefault
@@ -45,25 +51,25 @@ const InputSendPost = ({ input, meta, ...props }) => {
                         <Icon user={props.user} />
                     </div>
 
-                    <textarea
+                    <textarea className={textClass}
                         {...input}
                         {...props}
-style={{
-    height:textHeight,
-    resize: textResize
-}}
-                        className={textClass}
+                        style={{
+                            height: textHeight,
+                            resize: textResize
+                        }}
+
                         placeholder='Take a shit here...'
                         // cols={textCols}
                         rows={'1'}
                     />
                 </div>
 
-                <div
+                <div className={style.right__area}
                     style={{
                         display: displayDefault
                     }}
-                    className={style.right__area}>
+                >
                     <div className={style.camera__wrapper}>
                         <img src={camera} alt='camera' />
                         <p>Photo/Video</p>
@@ -71,33 +77,14 @@ style={{
 
                 </div>
             </div>
-            {/* <div  className={style.wrapper} style={{
-                display: displaySending
-            }}> */}
-                <FooterSendPost display={displaySending} />
-            {/* </div> */}
+
+            <FooterSendPost display={displaySending} />
+
 
 
 
         </>
-        // <>
-        //     <div className={style.wrapper}>
-        //         <div className={style.left__area}>
-        //             <div className={style.camera__wrapper}>
-        //             <img src={camera} alt='camera' />
-        //             <p>Photo/Video</p>
-        //             </div>
 
-        //         </div>
-        //         <div className={style.right__area}>
-
-        //             <button className={style.sendArea}>
-        //                 <RedButton border={12} name={'Post'} />
-        //             </button>
-        //         </div>
-        //     </div>
-
-        // </>
     )
 }
 

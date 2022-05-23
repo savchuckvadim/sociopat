@@ -15,14 +15,14 @@
     .frame {
         width: 95%;
     }
-    .inputActive{
+    /* .inputActive{
         max-width: 530px;
 
-    }
+    } */
 
   }
 
-  @media screen and (max-width: 700px) {
+  /* @media screen and (max-width: 700px) {
   
     .inputActive{
         max-width: 490px;
@@ -69,16 +69,8 @@
 
     }
 
-  }
-  .test__body{
-      
-    width: 456px;
-    background-color: black;
-    transition-duration: 10s;
-    transition-delay: 1s;
-    transition-property: display;
-    opacity: 0;
-}
+  } */
+
 .wrapper{
     
     margin: 16px;
@@ -98,21 +90,25 @@
     padding: 0;
     /* margin-left: 16px; */
 }
-.left__area, .right__area{
+.left__area, .right__area, .left__areaActive{
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    transition-duration: 2s;
+    /* align-items: center; */
+    transition-duration: 1s;
     transition-delay: 0.5s;
- 
-    transition-property: height opacity ;
+    transition-property: height opacity align-items;
     
 }
+.left__areaActive{
+    align-items: flex-start;
+    width: 100%;
+}
 .left__area{
-    /* width: 100%; */
-    margin-left: 0px;
+    align-items: center;
+    width: 80%;
+    
 }
 
 .input, .inputActive{
@@ -128,22 +124,13 @@
     transition-property: height;
 }
 .input{
-    min-width:100%;
+    width:100%;
 }
 .inputActive{
-    width:630px;
+    width:100%;
 }
 
-.sendArea{
-   
-    min-width: 90px;
-    height: 40px;
-    min-width: 79px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* margin-right: 16px; */
-}
+
 .camera__wrapper{
     min-width: 60px;
     margin: 0;

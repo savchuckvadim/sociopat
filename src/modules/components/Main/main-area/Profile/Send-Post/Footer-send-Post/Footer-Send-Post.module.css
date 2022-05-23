@@ -10,8 +10,43 @@
     transition-property: height, margin, display;
 }
 
-.camera__img, .camera__text{
-    transition-duration: 3s;
-    transition-delay: 1s;
+.camera, .cameraActive {
+  
     transition-property: opacity, height ;
+}
+.camera {
+    transition-duration: 1.5s;
+    transition-delay: 0.5s;
+    
+}
+.cameraActive {
+    transition-duration: 1s;
+    
+   
+}
+
+.sendArea, .sendAreaActive{
+   
+    min-width: 90px;
+    height: 40px;
+    min-width: 79px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+   
+    
+    transition-property: height opacity;
+}
+.sendArea{
+   
+    transition-delay: 0.2s;
+    transition-duration: 1.5s;
+
+}
+.sendAreaActive{
+   
+
+    transition-duration: 1s;
+   
 }
