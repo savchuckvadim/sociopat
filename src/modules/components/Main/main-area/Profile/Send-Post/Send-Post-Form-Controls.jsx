@@ -3,6 +3,7 @@ import camera from '../../../../../../assets/imgs/posts//camera-photo.svg'
 import style from './Send-Post.module.css'
 import arrowup from '../../../../../../assets/imgs/posts/arrow-up.svg'
 import FooterSendPost from './Footer-send-Post/Footer-Send-Post.jsx';
+import { useEffect } from 'react';
 const InputSendPost = ({ input, meta, ...props }) => {
     let height = 40
     let displaySending = 'none'
@@ -28,8 +29,9 @@ const InputSendPost = ({ input, meta, ...props }) => {
         textClass = style.inputActive
         leftAreaClass = style.left__areaActive
         cameraOpacity = 0
+        
     }
-  
+
     return (
         <>
 
@@ -69,9 +71,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
                         opacity:cameraOpacity
                     }}
                 >
-                    <div className={style.camera__wrapper}
-                    
-                    >
+                    <div className={style.camera__wrapper}>
                         <img src={camera} alt='camera' />
                         <p>Photo/Video</p>
                     </div>
