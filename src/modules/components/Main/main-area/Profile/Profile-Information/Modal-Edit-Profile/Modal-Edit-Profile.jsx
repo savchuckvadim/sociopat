@@ -7,7 +7,7 @@ let modalClass = style.modal
 active 
 ? modalClass = style.modalActive
 : modalClass = style.modal
-debugger
+
     return (
         <div className={modalClass} onClick={() => { setModalActive(false) }}>
             <div className={style.modalcard}>

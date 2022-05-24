@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './Status.module.css'
 
 const ProfileStatus = (props) => {
- 
+
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
+
+    useEffect(() => {
+        debugger
+        setStatus(props.status)
+    }, [props.status])
 
     const activateEditMode = () => {
         setEditMode(true)
@@ -15,9 +20,10 @@ const ProfileStatus = (props) => {
 
         props.updateStatus(status)
     }
-   const  onStatusChange = (e) => {
+    const onStatusChange = (e) => {
+
         setStatus(e.currentTarget.value)
-      
+
 
     }
     // render() {
@@ -34,17 +40,17 @@ const ProfileStatus = (props) => {
                     // type='textarea'
                     rows='5'
                     cols={'82'}
-                value={status} 
+                    value={status}
                 >
 
                 </textarea>
                 : <p className={style.text}
-                onDoubleClick={activateEditMode} 
+                    onDoubleClick={activateEditMode}
 
                 >
 
-                    {props.status 
-                        ? props.status 
+                    {props.status
+                        ? props.status
                         : 'Напишите о себе'
                     }
                 </p>
