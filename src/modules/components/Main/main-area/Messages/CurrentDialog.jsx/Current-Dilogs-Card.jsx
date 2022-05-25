@@ -11,6 +11,7 @@ const CurrentDialogsCard = (props) => {
     const submit = (values) => {
         console.log(values)
     }
+    
     return (
         <div className={style.container}>
             <div className={style.header}>

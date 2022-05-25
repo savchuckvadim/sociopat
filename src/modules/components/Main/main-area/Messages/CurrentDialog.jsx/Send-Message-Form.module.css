@@ -40,14 +40,15 @@ width: 100%;
     outline: none;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content:center;
+
 
 }
 @media screen and (max-width: 500px){
     .send__message{
         border: none;
         border-radius: 0;
-        background-color: black
+       
     }
 }
 .send__icon {
