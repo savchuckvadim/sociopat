@@ -69,6 +69,13 @@ const profileReducer = (state = initialState, action) => {
             result.profile = action.profile
             return result
 
+        case SET_STATUS:
+            result = {
+                ...state
+            }
+            result.status = action.status
+            return result
+
         case ADD_POST:
             result = {
                 ...state
@@ -85,12 +92,7 @@ const profileReducer = (state = initialState, action) => {
             result.posts = posts
             return result
 
-        case SET_STATUS:
-            result = {
-                ...state
-            }
-            result.status = action.status
-            return result
+
         default:
             return result;
     }
@@ -117,7 +119,6 @@ export const updateStatus = (status) => async (dispatch) => {
     const res = await profileAPI.updateStatus(status)
 
     if (res.data.resultCode === 0) {
-
         dispatch(setStatus(status))
     }
 

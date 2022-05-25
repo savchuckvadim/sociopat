@@ -33,7 +33,7 @@ button {
 
 .current__message {
     min-height: 100%;
-
+width: 100%;
     /* min-width: 616px; */
     border: none;
     background: none;
@@ -43,7 +43,13 @@ button {
     justify-content: space-between;
 
 }
-
+@media screen and (max-width: 500px){
+    .send__message{
+        border: none;
+        border-radius: 0;
+        background-color: black
+    }
+}
 .send__icon {
     width: 64px;
     display: flex;

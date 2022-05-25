@@ -6,7 +6,6 @@ const FormCard = (props) => {
     let type = props.type
     const onSubmit = (values) => {
         props.login(values.email, values.password, true)
-        debugger
         return <Navigate replace to='/hbvhk'/>
     }
     

@@ -22,7 +22,6 @@ export const getCount = (state) => {
 }
 
 export const getIsFetching = (state) => {
-    debugger
     return state.users.isFetching
 }
 

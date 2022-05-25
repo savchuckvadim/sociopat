@@ -42,8 +42,6 @@ const appReducer = (state = initialState, action) => {
 
 export const initialize = () => (dispatch) => {
 
-
-
     let dispatchInitializing = () => {
 
         return dispatch(initializing())
@@ -60,14 +58,6 @@ export const initialize = () => (dispatch) => {
         dispatch(initializedSuccess())
     })
 
-    // dispatch(initializing()) 
-    // debugger
-    // Promise.all([dispatchInitializing, promiseAuth])
-    //     .then((values) => {
-    //         debugger
-    //         console.log(values)
-    //         dispatch(initializedSuccess())
-    //     })
 
     
 }
