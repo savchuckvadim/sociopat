@@ -47,8 +47,6 @@ const mapStateToProps = (state) => {
 }
 const AppContainer = (props) => {
 
-
-
     useEffect(() => {
         props.initialize()
     }, [])

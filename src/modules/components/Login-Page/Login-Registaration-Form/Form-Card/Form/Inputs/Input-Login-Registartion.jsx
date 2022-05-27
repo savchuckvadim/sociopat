@@ -30,7 +30,6 @@ class Input extends React.Component {
         let containerClass = containerClasses[index]
         let icon = getLoginRegistrationIcon(this.props.placeholder, index)
 
-debugger
         return (
             <>
                 <div className={containerClass}>

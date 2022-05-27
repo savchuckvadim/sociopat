@@ -1,6 +1,10 @@
-
-import { stopSubmit } from "redux-form";
-import { profileAPI, authAPI } from "../../../services/api";
+import {
+    stopSubmit
+} from "redux-form";
+import {
+    profileAPI,
+    authAPI
+} from "../../../services/api";
 const SET_USER_DATA = 'SET_USER_DATA'
 const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
@@ -34,7 +38,7 @@ export const setCurrentUser = (userProfile) => {
 }
 const authReducer = (state = initialState, action) => {
     let result = state
- 
+
     switch (action.type) {
         case SET_USER_DATA:
             result = {
@@ -61,27 +65,23 @@ const authReducer = (state = initialState, action) => {
 }
 
 
-export const getAuth = () => (dispatch) => {
-  
-    return authAPI.me().then(res => {
-         const resultCode = res.resultCode;
-         const data = res.data;
-         
-         if (resultCode === 0) {
-            
-             dispatch(setAuthUserData(data.id, data.login, data.email, true))
-         }
-         profileAPI.getProfile(data.id)
-                     .then(res => {
-         
-                         const userProfile = res.data
-         
-                         dispatch(setCurrentUser(userProfile))
-                     })
-         
-        
-     })
- }
+export const getAuth = () => async (dispatch) => {
+
+    const res = await authAPI.me();
+    const resultCode = res.resultCode;
+    const data = res.data;
+    if (resultCode === 0) {
+
+        dispatch(setAuthUserData(data.id, data.login, data.email, true));
+        getCurrentUser(data.id, dispatch)
+    }
+}
+const getCurrentUser = async (userId, dispatch) => {
+    const res = await profileAPI.getProfile(userId)
+
+    const userProfile = res.data
+    dispatch(setCurrentUser(userProfile))
+}
 export const login = (email, password, rememberMe) => (dispatch) => {
 
 
@@ -91,15 +91,17 @@ export const login = (email, password, rememberMe) => (dispatch) => {
             const resultCode = res.data.resultCode;
             // const data = res.data;
             console.log(resultCode)
-            
+
             if (resultCode === 0) {
 
                 dispatch(getAuth())
 
             } else {
                 let message = res.data.messages.length > 0 ? res.data.messages[0] : 'Email or Password was wrong !'
-               
-                let action = stopSubmit('login', { _error: message })
+
+                let action = stopSubmit('login', {
+                    _error: message
+                })
                 dispatch(action)
             }
 
