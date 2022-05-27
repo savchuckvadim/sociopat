@@ -32,7 +32,7 @@ let Form = (props) => {
         : validate = passwordValidate
       
         return <Field
-            component={Input2}
+            component={Input}
             validate={[validate]}
             name={field.name}
             type={field.name}
