@@ -1,15 +1,12 @@
 import { reduxForm } from 'redux-form'
 import { Field } from 'redux-form'
-import { symbol } from '../../../../../utils/Validators/validator'
+import { required, symbol } from '../../../../../utils/Validators/validator'
 import RedButton from '../../../../Elements/Button/Red-Button'
-import InputEmail from './Inputs/Input-Email/Input-Email'
-import InputName from './Inputs/Input-Name/Input-Name'
-import InputPassword from './Inputs/Input-Password/Input-Password'
-import InputRepeatPass from './Inputs/Input-Repeat-Password/Input-RepeatPass'
-import InputSurname from './Inputs/Input-Surame/Input-Surname'
+
 import style from './Form.module.css'
 import { Navigate, NavLink } from 'react-router-dom'
-const symbolsValidate = symbol('@');
+import Input from './Inputs/Input-Login-Registartion'
+import React from 'react'
 
 
 
@@ -18,15 +15,7 @@ let Form = (props) => {
         props.setError(props.error)
     }
 
-    let components = [
-        [
-            InputEmail, InputPassword
-        ],
-        [
-            InputName, InputSurname, InputEmail, InputPassword, InputRepeatPass
-        ]
 
-    ]
     let inputs = []
 
     let typeIndex = 0
@@ -36,24 +25,29 @@ let Form = (props) => {
 
 
 
-    inputs = props.fields.map((field, index) =>
-        <Field
-            component={components[typeIndex][index]}
-            // validate={symbolsValidate}
+    inputs = props.fields.map(field => {
+      
+
+       return <Field
+            component={Input}
+            // validate={[symbol, required]}
             name={field.name}
+            type={field.name}
             placeholder={field.placeholder}
             key={field.name}
-        />)
+        />
+    }
+    )
 
     return (<>
-        
+
         <form onSubmit={props.handleSubmit} className={style.inputs__container}>
 
             {inputs}
             <div className={style.button__container}>
-            {/* <NavLink className={style.button__container} to={'../'}>  */}
-            <RedButton border={16} name={'НАЖАТЬ'}/>  
-             {/* </NavLink> */}
+                {/* <NavLink className={style.button__container} to={'../'}>  */}
+                <RedButton border={16} name={'НАЖАТЬ'} />
+                {/* </NavLink> */}
             </div>
 
         </form>
@@ -62,4 +56,5 @@ let Form = (props) => {
     )
 }
 
-export default Form = reduxForm({ form: 'login' })(Form)
+export default Form = reduxForm({ form: 'login'
+})(Form)

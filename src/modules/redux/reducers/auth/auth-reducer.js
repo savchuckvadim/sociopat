@@ -61,18 +61,26 @@ const authReducer = (state = initialState, action) => {
 }
 
 
-export const getAuth = () => async (dispatch) => {
+export const getAuth = () => (dispatch) => {
   
-    const resMe = await authAPI.me();
-    const resultCode = resMe.resultCode;
-    const data = resMe.data;
-    if (resultCode === 0) {
-
-        dispatch(setAuthUserData(data.id, data.login, data.email, true));
-    }
-    let respProfile = await profileAPI.getProfile(data.id)
-            const userProfile = respProfile.data;
-            dispatch(setCurrentUser(userProfile));
+    return authAPI.me().then(res => {
+         const resultCode = res.resultCode;
+         const data = res.data;
+         
+         if (resultCode === 0) {
+            
+             dispatch(setAuthUserData(data.id, data.login, data.email, true))
+         }
+         profileAPI.getProfile(data.id)
+                     .then(res => {
+         
+                         const userProfile = res.data
+         
+                         dispatch(setCurrentUser(userProfile))
+                     })
+         
+        
+     })
  }
 export const login = (email, password, rememberMe) => (dispatch) => {
 

@@ -64,6 +64,7 @@ const LoginRegistrationReducer = (state = initialState, action) => {
     
     switch (action.type) {
         case SET_ERROR:
+            debugger
             let result = { ...state }
             result.error = action.error
             return result
