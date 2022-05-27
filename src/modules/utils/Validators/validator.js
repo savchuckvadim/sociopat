@@ -1,8 +1,4 @@
-export const required = value => {
 
-    if (value) return undefined
-    return 'Field is required'
-}
 export const symbol = type => value => {
 
     let error = undefined
@@ -29,7 +25,3 @@ export const symbol = type => value => {
 export const emailValidate = symbol('email')
 export const passwordValidate = symbol('password')
 
-// export const emailSumbol = value => {
-//     if(value && value.indexOf('@') !== -1) return undefined
-//     return 'E-mail ввёден не правильно!'
-// }
