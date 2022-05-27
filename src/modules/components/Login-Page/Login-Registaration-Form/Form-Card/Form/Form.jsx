@@ -1,11 +1,11 @@
 import { reduxForm } from 'redux-form'
 import { Field } from 'redux-form'
-import { required, symbol } from '../../../../../utils/Validators/validator'
+import { emailValidate, passwordValidate, required, symbol } from '../../../../../utils/Validators/validator'
 import RedButton from '../../../../Elements/Button/Red-Button'
 
 import style from './Form.module.css'
 import { Navigate, NavLink } from 'react-router-dom'
-import Input from './Inputs/Input-Login-Registartion'
+import Input, { Input2 } from './Inputs/Input-Login-Registartion'
 import React from 'react'
 
 
@@ -23,14 +23,17 @@ let Form = (props) => {
         ? typeIndex = 0
         : typeIndex = 1
 
-
+        let validate = null
 
     inputs = props.fields.map(field => {
-      
 
-       return <Field
-            component={Input}
-            // validate={[symbol, required]}
+        field.name === 'email'
+        ? validate = emailValidate
+        : validate = passwordValidate
+      
+        return <Field
+            component={Input2}
+            validate={[validate]}
             name={field.name}
             type={field.name}
             placeholder={field.placeholder}
@@ -56,5 +59,6 @@ let Form = (props) => {
     )
 }
 
-export default Form = reduxForm({ form: 'login'
+export default Form = reduxForm({
+    form: 'login'
 })(Form)

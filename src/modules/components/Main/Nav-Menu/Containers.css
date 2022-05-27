@@ -7,6 +7,7 @@
     height: 40px;
     min-width: 90%;
     border-radius: 16px;
+    margin:  5px 0px;
  
 }
 .item p, .itemFocus p {
@@ -17,14 +18,9 @@ font-weight: 600;
     
 } 
 .itemFocus{
-    /* height: 56px;*/
-    /* width: 118px;  */
+  
     background-color: white;
     color: red;
-    /* padding: 0; */
-    /* outline:1px solid red; */
-    /* outline-offset:-1px; */
-    /* border-width: 1px; */
 }
 .itemFocus p{
     color: red;
