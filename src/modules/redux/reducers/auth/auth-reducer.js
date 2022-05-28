@@ -6,7 +6,7 @@ import {
     authAPI
 } from "../../../services/api";
 const SET_USER_DATA = 'SET_USER_DATA'
-const SET_CURRENT_USER = 'SET_CURRENT_USER';
+const SET_AUTH_CURRENT_USER = 'SET_AUTH_CURRENT_USER';
 
 let initialState = {
     auth: {
@@ -30,9 +30,9 @@ export const setAuthUserData = (id = null, login = null, email = null, isAuth = 
         isAuth
     }
 }
-export const setCurrentUser = (userProfile) => {
+export const setAuthCurrentUser = (userProfile) => {
     return {
-        type: SET_CURRENT_USER,
+        type: SET_AUTH_CURRENT_USER,
         userProfile
     }
 }
@@ -50,7 +50,7 @@ const authReducer = (state = initialState, action) => {
             }
 
             return result;
-        case SET_CURRENT_USER:
+        case SET_AUTH_CURRENT_USER:
             result = {
                 ...state
             };
@@ -80,7 +80,7 @@ const getCurrentUser = async (userId, dispatch) => {
     const res = await profileAPI.getProfile(userId)
 
     const userProfile = res.data
-    dispatch(setCurrentUser(userProfile))
+    dispatch(setAuthCurrentUser(userProfile))
 }
 export const login = (email, password, rememberMe) => (dispatch) => {
 
@@ -117,7 +117,7 @@ export const logout = () => (dispatch) => {
 
             if (resultCode === 0) {
                 dispatch(setAuthUserData(null, null, null, false))
-                dispatch(setCurrentUser({}))
+                dispatch(setAuthCurrentUser({}))
             }
 
         })

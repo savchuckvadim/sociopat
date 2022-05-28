@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { connect } from 'react-redux'
-
 import style from './Status.module.css'
 
 const ProfileStatus = (props) => {
@@ -8,6 +6,7 @@ const ProfileStatus = (props) => {
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
     let [unlimitSymbols, setUnlimit] = useState(false)
+    
     useEffect(() => {
         setStatus(props.status)
     }, [props.status])
@@ -38,7 +37,7 @@ const ProfileStatus = (props) => {
 
     }
 
-    debugger
+    
     let inputClass = unlimitSymbols ? style.inputError : style.input
     return (
 
@@ -73,12 +72,5 @@ const ProfileStatus = (props) => {
     )
 
 }
-const mapStateToProps = (state, ownProps) => {
-    return {
-        status: ownProps.status
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return {}
-}
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileStatus) 
+
+export default ProfileStatus

@@ -78,7 +78,7 @@ const profileReducer = (state = initialState, action) => {
         case SET_STATUS:
 
             if (result.status !== action.status) {
-                debugger
+                
                 result = {
                     ...state
                 }
@@ -121,7 +121,7 @@ export const getStatus = (userId) => async (dispatch) => {
 
     const res = await profileAPI.getStatus(userId)
     const status = res.data
-    debugger
+    
     dispatch(setStatus(status))
 
 }

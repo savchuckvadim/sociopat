@@ -9,7 +9,7 @@ const FETCHING = 'FETCHING';
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS';
-
+const SET_CURRENT_USER = 'SET_CURRENT_USER'
 const initialState = {
     users: [],
     pageSize: 100,
@@ -17,7 +17,8 @@ const initialState = {
     currentPage: 1,
     count: 0,
     isFetching: false,
-    followingInProgress: []
+    followingInProgress: [],
+    currentUser: null
 
 }
 
@@ -93,12 +94,18 @@ const usersReducer = (state = initialState, action) => {
             }
             result.followingInProgress = [...state.followingInProgress]
 
-            action.isFetching 
-            ? result.followingInProgress.push(action.userId)
-            : result.followingInProgress = state.followingInProgress.filter(id => id !== action.userId)
-           
-            return result
+            action.isFetching
+                ? result.followingInProgress.push(action.userId)
+                : result.followingInProgress = state.followingInProgress.filter(id => id !== action.userId)
 
+            return result
+        case SET_CURRENT_USER:
+            result = {
+                ...state
+            }
+           result.currentUser = action.user
+
+            return result
 
         default:
             return result
@@ -106,14 +113,14 @@ const usersReducer = (state = initialState, action) => {
     }
 
 }
-export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page})
-export const setUsers = (users) => ({type: SET_USERS, users})
-export const setTotalUsersCount = (count) => ({type: SET_TOTAL_USERS_COUNT, count})
-export const fetching = (bool) => ({type: FETCHING, bool})
-export const follow = (userId) => ({type: FOLLOW, userId})
-export const unFollow = (userId) => ({ type: UNFOLLOW, userId})
-export const toggleFollowingInProgress = (userId, isFetching) => ({type: FOLLOWING_IN_PROGRESS, userId, isFetching})
-
+export const setCurrentPage = (page) => ({ type: SET_CURRENT_PAGE, page })
+export const setUsers = (users) => ({ type: SET_USERS, users })
+export const setTotalUsersCount = (count) => ({ type: SET_TOTAL_USERS_COUNT, count })
+export const fetching = (bool) => ({ type: FETCHING, bool })
+export const follow = (userId) => ({ type: FOLLOW, userId })
+export const unFollow = (userId) => ({ type: UNFOLLOW, userId })
+export const toggleFollowingInProgress = (userId, isFetching) => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching })
+export const setCurrentUser = (user) => ({type:SET_CURRENT_USER, user})
 
 export const requestUsers = (currentPage, pageSize) => (dispatch) => {
     dispatch(fetching(true))

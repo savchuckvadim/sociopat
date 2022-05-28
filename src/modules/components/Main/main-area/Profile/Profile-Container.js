@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
         isAuth: state.auth.auth.isAuth,
         auth: state.auth.auth,
         profile: state.profileReducer.profile,
-        // user: state.auth.currentUser,
+        // user: state.users.currentUser,
         posts: state.profileReducer.posts,
         status: state.profileReducer.status
 
@@ -74,48 +74,7 @@ class ProfileContainer extends React.Component {
         )
     }
 }
-// const ProfileContainer = (props) => {
 
-// const [userId, setUserId] = useState(null)
-// const params = props.params;
-// const getUserId = (params) => {
-//     if (params.userId !== undefined) {
-//      setUserId(params.userId);
-
-//     }
-//     else {
-
-//         if (props.user.userId) {
-//            setUserId( props.user.userId)
-//         }else{
-//            setUserId(props.auth.id)
-//         }
-//     }
-// }
-
-// const getProfileAndStatus = () => {
-//     props.getProfile(userId)
-//     props.getStatus(userId)
-// }
-//     useEffect(() => {
-
-
-//         getUserId(params)
-//         getProfileAndStatus()
-//     }, [])
-
-
-//         return (
-
-//             <Profile {...props} />
-//         )
-
-// }
-
-// let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-
-
-// let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
 
 
@@ -125,7 +84,9 @@ export default compose(
 
         getProfile,
         getStatus,
-        updateStatus
+        updateStatus,
+
+
 
     }),
     withRouter,

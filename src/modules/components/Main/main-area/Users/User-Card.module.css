@@ -29,10 +29,7 @@
     padding: 0;
 width: 68px;
 height: 68px;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
+
 }
 
 .login {
@@ -52,6 +49,3 @@ height: 68px;
     justify-content: center;
 }
 
-.followun {
-    margin: 0 3px;
-}

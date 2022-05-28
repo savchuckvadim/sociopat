@@ -1,38 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import Icon from '../../../Elements/Icon';
 import style from './User-Card.module.css';
-import RedButton from '../../../Elements/Button/Red-Button'
-import WhiteButton from '../../../Elements/Button/White-Button';
-import { usersAPI } from '../../../../services/api';
+import FollowUnfollowButtons from '../../../Elements/Button/Follow-Unfollow-Buttons/Follow-Unfollow-Buttons';
 
 const UserCard = (props) => {
-    
-let disable = props.followingInProgress.some(id => id === props.user.id)
 
-    let followButton = <RedButton
-    border={12}
-    disable={disable}
-        className={style.followun}
-        onClick={() => {
-            props.followThunk(props.user.id)
 
-        }}
-
-        name={'Follow'} />
-    if (props.user.followed) {
-        followButton =
-            <WhiteButton
-            border={12}
-            grey={true}
-            disable={disable}
-                className={style.followun}
-                onClick={() => {
-                    props.unFollowThunk(props.user.id)
-
-                }}
-
-                name={'Unfollow'} />
-    }
     let ava = props.user.photos.small
     return (
         <div className={style.frame}>
@@ -41,16 +14,18 @@ let disable = props.followingInProgress.some(id => id === props.user.id)
 
             </div>
             <NavLink className={style.login} to={'../profile/' + props.user.id}>
-                {/* +props.user.id */}
-                {/*  */}
-                <p >{props.name}</p>
+                <p onClick={() => {props.setCurrentUser(props.user)}} >{props.name}</p>
             </NavLink>
 
             <div className={style.follow__wrapper}>
-                {/* <RedButton className={style.followun} name={'Follow'} /> */}
-                {/* <input  type="button" value="follow" /> */}
-                {followButton}
 
+        
+                <FollowUnfollowButtons 
+                user={props.user}  
+                followThunk={props.followThunk}
+                unFollowThunk={props.unFollowThunk}
+                followingInProgress={props.followingInProgress}
+                />
             </div>
         </div>
     )
