@@ -1,0 +1,19 @@
+
+
+.quantity, .name {
+    margin: 0;
+}
+.quantity{
+    font-size: 14px;
+}
+.name{
+    font-size: 12px;
+}
+
+.line {
+
+    width: 0;
+    height: 24px;
+    border-left: 1px solid #212121;
+    opacity: 10%;
+}

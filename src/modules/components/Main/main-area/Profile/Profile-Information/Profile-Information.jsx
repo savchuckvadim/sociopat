@@ -1,12 +1,10 @@
 import style from './Profile-Information.module.css'
 import hero from '../../../../../../assets/imgs/Vector.png'
-import WhiteButton from '../../../../Elements/Button/White-Button';
-import Status from './Status/Status';
-import RedButton from '../../../../Elements/Button/Red-Button';
+
 import ProfileButtons from './Buttons/Profile-Buttons';
 import ProfileStatus from './Status/Profile-Status';
+import ProfileStatistics from './Statistics/Profile-Statistics';
 
-// import Icon from '../../../../Elements/Icon';
 const ProfileInformation = (props) => {
   
     
@@ -32,29 +30,10 @@ const ProfileInformation = (props) => {
                             {/* <p className={style.about}>My actions are not for fame, I just hate most people. */}
                                 {/* I don't see anything remarkable in them. People are really stupid shit. I bring them joy by suffering to die without any slobbering "buts".</p> */}
                         </div>
-                        <div className={style.statistics__wrapper}>
-                            <div className={style.posts}>
-                                <h3 className={style.statistics__quantity}>4</h3>
-                                <p className={style.statistics__name}>Posts</p>
-                            </div>
-
-                            <div className={style.statistics__line}></div>
-
-                            <div className={style.followers}>
-                                <h3 className={style.statistics__quantity}>0</h3>
-                                <p className={style.statistics__name}>Followers</p>
-                            </div>
-
-                            <div className={style.statistics__line}></div>
-
-                            <div className={style.following}>
-                                <h3 className={style.statistics__quantity}>0</h3>
-                                <p className={style.statistics__name}>Following</p>
-                            </div>
-                        </div>
+                        <ProfileStatistics/>
+           
                         <div className={style.buttons__wrapper}>
                            <ProfileButtons userId={props.params.userId} />
-                            {/* <RedButton name={'Edit profile'}/> */}
                         </div>
 
                     </div>
