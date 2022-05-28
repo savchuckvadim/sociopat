@@ -1,5 +1,5 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 
 import Post from './Posts/Post';
 // import { ProfileBaseContainer } from './Profile-Base/Profile-Base-Container';
@@ -9,10 +9,11 @@ import { SendPostContainer } from './Send-Post/Send-Post-Container';
 
 
 export const Profile = (props) => {
-  
+   
+
     // if(!props.isAuth) {return <Navigate replace to='../login' />}
     return (
-     
+
         <div className={style.profile__container}>
             <ProfileInformation {...props} user={props.user} />
             <SendPostContainer />

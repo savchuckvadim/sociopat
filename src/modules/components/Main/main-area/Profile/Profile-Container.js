@@ -40,25 +40,35 @@ const withRouter = WrappedComponent => props => {
 
 
 class ProfileContainer extends React.Component {
+    userId = null
 
-    componentDidMount() {
-        let userId
-
+    getUserId = () => {
         if (this.props.params.userId) {
-            userId = this.props.params.userId;
+            this.userId = this.props.params.userId;
 
         }
         else {
 
             if (this.props.user.userId) {
-                userId = this.props.user.userId
+                this.userId = this.props.user.userId
             }else{
-                userId = this.props.auth.id
+                this.userId = this.props.auth.id
             }
         }
-        
-        this.props.getProfile(userId)
-        this.props.getStatus(userId)
+    }
+
+    getProfileAndStatus = () => {
+        this.props.getProfile(this.userId)
+        this.props.getStatus(this.userId)
+    }
+    componentDidMount() {
+      this.getUserId()
+      this.getProfileAndStatus()
+       
+    }
+    componentDidUpdate(){
+        this.getUserId()
+        this.getProfileAndStatus()
     }
     render() {
         // if (!this.props.isAuth) return <Navigate redirect to='../login' />

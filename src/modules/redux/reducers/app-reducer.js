@@ -52,6 +52,7 @@ export const initialize = () => (dispatch) => {
         return dispatch(getAuth())
     }
     dispatch(initializing()) 
+    
     promiseAuth().then(responses => {
 
        
