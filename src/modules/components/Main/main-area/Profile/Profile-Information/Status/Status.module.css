@@ -1,9 +1,9 @@
 .about{
     /* width: 95%; */
-    margin: 0 38px;
+    margin: 10px 38px;
 }
 
-.input{
+.input, .inputError{
     display: block;
     /* width: 100vh; */
     /* min-height: 20vh; */
@@ -12,8 +12,15 @@
     text-align: left;
     word-break: break-word;
     outline: none;
-    border: 0.5px solid #ccc;
+    
+   
     resize: none;
+}
+.input{
+border: 0.5px solid #ccc;
+} 
+.inputError{
+    border: 0.5px solid rgb(255, 0, 0);
 }
 .text{
     width: 100%;
@@ -23,4 +30,12 @@
     text-align: center;
     word-break: break-word;
     margin: 8px 0;
+}
+
+.error{
+    font-size: xx-small;
+    color: red;
+    padding: 0;
+    margin: 0%;
+    min-width: 90px;
 }

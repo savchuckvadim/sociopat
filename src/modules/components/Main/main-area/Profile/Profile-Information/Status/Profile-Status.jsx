@@ -1,44 +1,55 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+
 import style from './Status.module.css'
 
 const ProfileStatus = (props) => {
 
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
-
+    let [unlimitSymbols, setUnlimit] = useState(false)
     useEffect(() => {
         setStatus(props.status)
     }, [props.status])
 
     const activateEditMode = () => {
-        if(props.isCurrentUser){
-        setEditMode(true)
-        setStatus(props.status)
+
+        if (props.isCurrentUser) {
+            setEditMode(true)
+            setStatus(props.status)
         }
     }
     const deactivateEditMode = () => {
-       
+        if (!unlimitSymbols) {
             setEditMode(false)
             props.updateStatus(status)
-        
-       
+        }
+
+
+
     }
     const onStatusChange = (e) => {
-
+        if (e.currentTarget.value.length > 300) {
+            setUnlimit(true)
+        } else {
+            setUnlimit(false)
+        }
         setStatus(e.currentTarget.value)
 
     }
-  
 
+    debugger
+    let inputClass = unlimitSymbols ? style.inputError : style.input
     return (
 
-        <div className={style.about}>
+        <form className={style.about}>
+            <p className={style.error}>{unlimitSymbols && 'Превышено количество символов'}</p>
             {editMode & props.isCurrentUser
                 ? <textarea
                     onChange={onStatusChange}
                     onBlur={deactivateEditMode}
                     autoFocus
-                    className={style.input}
+                    className={inputClass}
                     rows='5'
                     cols={'82'}
                     value={status}
@@ -57,10 +68,17 @@ const ProfileStatus = (props) => {
                 </p>
             }
 
-        </div>
+        </form>
 
     )
-    // }
-}
 
-export default ProfileStatus
+}
+const mapStateToProps = (state, ownProps) => {
+    return {
+        status: ownProps.status
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileStatus) 

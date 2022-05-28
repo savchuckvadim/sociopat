@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom";
 import { compose } from "redux";
-
-
 import { getProfile, getStatus, updateStatus } from "../../../../redux/reducers/profile-reducer"
-// import { usersAPI } from "../../../../services/api";
-import withAuthRedirect from "../../../HOC/Auth-Redirect";
 import Profile from "./Profile"
 
 const mapStateToProps = (state) => {
