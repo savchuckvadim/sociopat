@@ -10,7 +10,7 @@ const ProfileInformation = (props) => {
     
     return (
         <div className={style.wrapper}>
-            {/* <div className={style.frame}> */}
+           
                 <div className={style.hero__wrapper}>
                     <img className={style.hero} src={hero} alt='hero' />
                 </div>
@@ -26,9 +26,8 @@ const ProfileInformation = (props) => {
                             status={props.status}
                             getStatus={props.getStatus}
                             updateStatus={props.updateStatus}
+                            isCurrentUser={props.isCurrentUser}
                             />
-                            {/* <p className={style.about}>My actions are not for fame, I just hate most people. */}
-                                {/* I don't see anything remarkable in them. People are really stupid shit. I bring them joy by suffering to die without any slobbering "buts".</p> */}
                         </div>
                         <ProfileStatistics/>
            
@@ -46,7 +45,7 @@ const ProfileInformation = (props) => {
                     <h1 className={style.initials}>NF</h1>
                     {/* <Icon user={props.user} /> */}
                 </div>
-            {/* </div> */}
+          
         </div>
 
     )

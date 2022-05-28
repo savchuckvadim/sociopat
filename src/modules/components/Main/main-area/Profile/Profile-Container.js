@@ -41,16 +41,17 @@ const withRouter = WrappedComponent => props => {
 
 class ProfileContainer extends React.Component {
     userId = null
-    currentUser
+    isCurrentUser = true
     getUserId = (params) => {
         if (this.props.params.userId) {
             this.userId = this.props.params.userId;
+            this.isCurrentUser = false
 
         }
         else {
 
             this.userId = this.props.auth.id
-
+            this.isCurrentUser = true
         }
     }
 
@@ -73,7 +74,7 @@ class ProfileContainer extends React.Component {
     render() {
         return (
 
-            <Profile {...this.props} />
+            <Profile {...this.props} isCurrentUser={this.isCurrentUser} />
         )
     }
 }

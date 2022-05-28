@@ -11,32 +11,34 @@ const ProfileStatus = (props) => {
     }, [props.status])
 
     const activateEditMode = () => {
+        if(props.isCurrentUser){
         setEditMode(true)
         setStatus(props.status)
+        }
     }
     const deactivateEditMode = () => {
-        setEditMode(false)
-
-        props.updateStatus(status)
+       
+            setEditMode(false)
+            props.updateStatus(status)
+        
+       
     }
     const onStatusChange = (e) => {
 
         setStatus(e.currentTarget.value)
 
-
     }
-    // render() {
+  
 
     return (
 
         <div className={style.about}>
-            {editMode
+            {editMode & props.isCurrentUser
                 ? <textarea
                     onChange={onStatusChange}
                     onBlur={deactivateEditMode}
                     autoFocus
                     className={style.input}
-                    // type='textarea'
                     rows='5'
                     cols={'82'}
                     value={status}
@@ -50,7 +52,7 @@ const ProfileStatus = (props) => {
 
                     {props.status
                         ? props.status
-                        : 'Напишите о себе'
+                        : props.isCurrentUser && 'Напишите о себе'
                     }
                 </p>
             }
