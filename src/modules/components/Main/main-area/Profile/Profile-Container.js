@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom";
 import { compose } from "redux";
 
 
-import { getProfile, getStatus,  updateStatus } from "../../../../redux/reducers/profile-reducer"
+import { getProfile, getStatus, updateStatus } from "../../../../redux/reducers/profile-reducer"
 // import { usersAPI } from "../../../../services/api";
 import withAuthRedirect from "../../../HOC/Auth-Redirect";
 import Profile from "./Profile"
@@ -13,12 +13,12 @@ const mapStateToProps = (state) => {
 
     return {
         isAuth: state.auth.auth.isAuth,
-        auth:state.auth.auth,
+        auth: state.auth.auth,
         profile: state.profileReducer.profile,
-        user: state.auth.currentUser,
+        // user: state.auth.currentUser,
         posts: state.profileReducer.posts,
         status: state.profileReducer.status
-        
+
 
     }
 }
@@ -41,19 +41,16 @@ const withRouter = WrappedComponent => props => {
 
 class ProfileContainer extends React.Component {
     userId = null
-
-    getUserId = () => {
+    currentUser
+    getUserId = (params) => {
         if (this.props.params.userId) {
             this.userId = this.props.params.userId;
 
         }
         else {
 
-            if (this.props.user.userId) {
-                this.userId = this.props.user.userId
-            }else{
-                this.userId = this.props.auth.id
-            }
+            this.userId = this.props.auth.id
+
         }
     }
 
@@ -62,23 +59,59 @@ class ProfileContainer extends React.Component {
         this.props.getStatus(this.userId)
     }
     componentDidMount() {
-      this.getUserId()
-      this.getProfileAndStatus()
-       
+
+        this.getUserId()
+        this.getProfileAndStatus()
+
     }
-    componentDidUpdate(){
+    componentDidUpdate() {
         this.getUserId()
         this.getProfileAndStatus()
     }
     render() {
-        // if (!this.props.isAuth) return <Navigate redirect to='../login' />
         return (
 
             <Profile {...this.props} />
         )
     }
 }
+// const ProfileContainer = (props) => {
 
+// const [userId, setUserId] = useState(null)
+// const params = props.params;
+// const getUserId = (params) => {
+//     if (params.userId !== undefined) {
+//      setUserId(params.userId);
+
+//     }
+//     else {
+
+//         if (props.user.userId) {
+//            setUserId( props.user.userId)
+//         }else{
+//            setUserId(props.auth.id)
+//         }
+//     }
+// }
+
+// const getProfileAndStatus = () => {
+//     props.getProfile(userId)
+//     props.getStatus(userId)
+// }
+//     useEffect(() => {
+
+
+//         getUserId(params)
+//         getProfileAndStatus()
+//     }, [])
+
+
+//         return (
+
+//             <Profile {...props} />
+//         )
+
+// }
 
 // let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
 
@@ -87,16 +120,16 @@ class ProfileContainer extends React.Component {
 
 
 
-export default  compose(
-    
+export default compose(
+
     connect(mapStateToProps, {
 
         getProfile,
         getStatus,
         updateStatus
-    
+
     }),
-    withRouter,  
+    withRouter,
     // withAuthRedirect
 )(ProfileContainer)
 

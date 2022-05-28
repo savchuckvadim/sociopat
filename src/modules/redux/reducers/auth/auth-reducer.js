@@ -55,7 +55,7 @@ const authReducer = (state = initialState, action) => {
                 ...state
             };
             result.currentUser = action.userProfile
-
+            debugger
 
             return result;
         default:
@@ -71,7 +71,7 @@ export const getAuth = () => async (dispatch) => {
     const resultCode = res.resultCode;
     const data = res.data;
     if (resultCode === 0) {
-
+debugger
         dispatch(setAuthUserData(data.id, data.login, data.email, true));
         getCurrentUser(data.id, dispatch)
     }
