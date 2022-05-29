@@ -78,6 +78,7 @@
 }
 .name{
     margin-bottom: 0;
+    margin-top: 0px;
 }
 .about__wrapper{
     display: flex;
@@ -95,7 +96,7 @@
 }
 
 .avatar {
-    top: 104px;
+    top: 88px;
 
     width: 128px;
     height: 128px;
