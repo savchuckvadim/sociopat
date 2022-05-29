@@ -4,12 +4,14 @@ import noMessage from '../../../../../../assets/imgs/dialogs/no-messages.svg'
 
 import { useNavigate } from 'react-router-dom';
 import SendMessageReduxForm from './Send-Message-Form'
+import Author from '../../../../Elements/Author/Author';
 
 const CurrentDialogsCard = (props) => {
     const navigate = useNavigate();
 
     const submit = (values) => {
         console.log(values)
+        
     }
     
     return (
@@ -20,13 +22,10 @@ const CurrentDialogsCard = (props) => {
                     onClick={() => { navigate(-1) }}
                     src={arrow}
                     alt="arrow" />
-                <div className={style.icon__container}>
-                    {/* <Icon users={props.users} /> */}
-                </div>
-                <div className={style.user__information}>
-                    <h3 className={style.username}>User Name</h3>
-                    <p className={style.last__visit}>last seen 3 hour ago</p>
-                </div>
+                    <div className={style.author}>
+                    <Author userName={'Fake Name'} siz={46}/>
+                    </div>
+
             </div>
             <div className={style.messages}>
                 <img className={style.nomessages} src={noMessage} alt="no-messages-icon" />
