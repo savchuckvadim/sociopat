@@ -19,9 +19,13 @@ export const Profile = (props) => {
         img = props.profile.photos.small
       }
     
-  }else{
-    postUserName = props.user.name
-    img = props.user.photos.small
+  }else {
+    if(props.user ){
+        postUserName = props.user.name
+        img = props.user.photos.small
+        
+    }
+    
   }
 
     
@@ -36,7 +40,7 @@ export const Profile = (props) => {
                 return <Post 
                 key={`post-${index}`}
                 img={img} 
-                userName={postUserName} 
+                userName={props.profile.fullName} 
                 body={post.body} 
                 postsImg={post.img} />
             })}

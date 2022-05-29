@@ -11,7 +11,7 @@ const Author = (props) => {
         dateLineHeight = '24px'
 
     }
-    debugger
+    
     return (
 
         <div className={style.user__wrapper}>

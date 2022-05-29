@@ -53,7 +53,7 @@ class ProfileContainer extends React.Component {
             this.isAuthUser = false
 
             if (!this.props.user) {
-                this.visitedUser = getVisitedUserFromLocalStorage()
+                // this.visitedUser = getVisitedUserFromLocalStorage()
             }
 
         }
