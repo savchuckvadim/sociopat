@@ -1,6 +1,6 @@
 import {
     profileAPI
-} from "../../services/api"
+} from "../../../services/api"
 
 const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';

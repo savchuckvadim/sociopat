@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
-import { changeCurrentPostActionCreator } from "../../../../../redux/reducers/posts/send-post-reducer"
-import { addPostActionCreator } from "../../../../../redux/reducers/profile-reducer"
+
+import { addPostActionCreator } from "../../../../../redux/reducers/profile/profile-reducer"
 
 import SendPost from "./Send-Post"
 

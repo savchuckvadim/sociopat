@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom";
 import { compose } from "redux";
-import { getProfile, getStatus, updateStatus } from "../../../../redux/reducers/profile-reducer"
-import { deleteVisitedUserFromLocalStorage, getVisitedUserFromLocalStorage } from "../../../../utils/memory/saveVisitedUser";
+import { getProfile, getStatus, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
+
 
 import Profile from "./Profile"
 

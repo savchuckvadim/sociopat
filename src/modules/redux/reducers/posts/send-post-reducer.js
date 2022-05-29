@@ -38,19 +38,7 @@ const currentPostReducer = (state = initialState, action) => {
         default:
             return result
     }
-    // if (action.type === CHANGE_CURRENT_POST) {
-    //     result = {
-    //         ...state
-    //     }
-    //     result.value = action.value
-    // } else if (action.type === ADD_POST) {
-    //     result = {
-    //         ...state
-    //     }
-    //     result.value = ''
-    // }
 
-    // return result
 };
 
 export default currentPostReducer

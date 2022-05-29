@@ -1,10 +1,7 @@
-import {
-    stopSubmit
-} from "redux-form";
-import {
-    profileAPI,
-    authAPI
-} from "../../../services/api";
+import { stopSubmit } from "redux-form";
+import { profileAPI, authAPI } from "../../../services/api";
+
+
 const SET_USER_DATA = 'SET_USER_DATA'
 const SET_AUTH_CURRENT_USER = 'SET_AUTH_CURRENT_USER';
 
@@ -30,12 +27,8 @@ export const setAuthUserData = (id = null, login = null, email = null, isAuth = 
         isAuth
     }
 }
-export const setAuthCurrentUser = (userProfile) => {
-    return {
-        type: SET_AUTH_CURRENT_USER,
-        userProfile
-    }
-}
+export const setAuthCurrentUser = (userProfile) => ({type: SET_AUTH_CURRENT_USER,userProfile})
+
 const authReducer = (state = initialState, action) => {
     let result = state
 
@@ -55,7 +48,7 @@ const authReducer = (state = initialState, action) => {
                 ...state
             };
             result.currentUser = action.userProfile
-            
+
 
             return result;
         default:
