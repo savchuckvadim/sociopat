@@ -41,18 +41,18 @@ const withRouter = WrappedComponent => props => {
 
 
 class ProfileContainer extends React.Component {
+    visitedUser = this.props.user
     userId = null
     isAuthUser = true
     currentUser
-    visitedUser
+
     getUserId = (params) => {
-debugger
+
         if (this.props.params.userId) {
             this.userId = this.props.params.userId;
             this.isAuthUser = false
-            this.visitedUser = this.props.user
+
             if (!this.props.user) {
-                
                 this.visitedUser = getVisitedUserFromLocalStorage()
             }
 
@@ -82,6 +82,7 @@ debugger
 
     }
     render() {
+        
         return (
 
             <Profile {...this.props}

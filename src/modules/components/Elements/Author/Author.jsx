@@ -11,7 +11,7 @@ const Author = (props) => {
         dateLineHeight = '24px'
 
     }
-    
+    debugger
     return (
 
         <div className={style.user__wrapper}>
@@ -30,7 +30,7 @@ const Author = (props) => {
                         fontSize: fontSize
                     }}
                 >
-                    Nmbrs Fuckoff
+                  {props.userName}
                 </p>
                 <p className={style.date}
                 style={{
