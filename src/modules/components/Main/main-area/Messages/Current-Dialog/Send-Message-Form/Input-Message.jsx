@@ -1,6 +1,6 @@
 import style from './Send-Message-Form.module.css'
-import camera from '../../../../../../assets/imgs/dialogs/camera-photo.svg'
-import arrowUp from '../../../../../../assets/imgs/dialogs/arrow-up.svg'
+import camera from '../../../../../../../assets/imgs/dialogs/camera-photo.svg'
+import arrowUp from '../../../../../../../assets/imgs/dialogs/arrow-up.svg'
 const InputMessage = ({ input, meta, ...props }) => {
     console.log(input.value.length)
     let height = 25

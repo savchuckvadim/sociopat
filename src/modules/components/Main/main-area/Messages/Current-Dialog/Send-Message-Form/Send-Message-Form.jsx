@@ -4,7 +4,7 @@ import { Field } from 'redux-form'
 import { reduxForm } from 'redux-form'
 import InputMessage from './Input-Message'
 const SendMessage = (props) => {
-debugger
+
     return (
         <form onSubmit={props.handleSubmit} className={style.send__message}>
             <Field

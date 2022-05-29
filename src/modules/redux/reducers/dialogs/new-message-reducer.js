@@ -5,12 +5,12 @@ const initialState = {
 };
 
 
-export const newMessageActionCreator = (messageBody) => {
+export const sendNewMessage = (messageBody) => {
 
     return {
         type: NEW_MESSAGE,
         messageBody: messageBody,
-        nameOfButton: 'отправить сообщение'
+
 
     }
 };
@@ -19,12 +19,15 @@ export const newMessageActionCreator = (messageBody) => {
 const newMessageReducer = (state = initialState, action) => {
 
     let result = state
-    if (action.type === NEW_MESSAGE) {
-        result = { ...state }
-        result.messageBody = action.messageBody
-       
+    switch (action.type) {
+        case NEW_MESSAGE:
+            result = { ...state }
+            result.messageBody = action.messageBody
+            return result
+        default:
+            return result
     }
-    return result
+
 }
 
 export default newMessageReducer;

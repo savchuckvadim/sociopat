@@ -1,17 +1,19 @@
 import { connect } from "react-redux";
+import { sendNewMessage } from "../../../../../redux/reducers/dialogs/new-message-reducer";
 import RouteCurrentDialog from "./Route-Current-Dialog";
 
 const mapStateToProps = (state) => {
-   
+
     return {
         dialogs: state.dialogsReducer,
-        users:state.users[0]
+        newMessage: state.newMessage
+        // users:state.users.users
     }
 };
 const mapDispatchToProps = (dispatch) => {
 
     return {
-
+        sendNewMessage
     }
 };
 

@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { DialogsContainer } from "../Dialogs/Dialogs-Container";
 import CurrentDialogsCard from "./Current-Dilogs-Card";
-import CurrentDialog from "./CurrentDialog";
+;
 
 const RouteCurrentDialog = (props) => {
 
@@ -9,7 +8,13 @@ const RouteCurrentDialog = (props) => {
         <Route
             key={`dialog-{dialog.id}`}
             path={`:dialog/${dialog.id}`}
-            element={<CurrentDialogsCard usrers={props.users} id={dialog.id} messages={dialog.messages} />}
+            element={
+            <CurrentDialogsCard 
+            {...props}
+            // usrers={props.users} 
+            id={dialog.id} 
+            messages={dialog.messages} 
+            />}
         />
     ))
     // const dialogs = <Route key='defaultDialog' path=':' element={ <DialogsContainer />} />

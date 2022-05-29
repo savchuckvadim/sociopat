@@ -1,17 +1,17 @@
 import style from './Current-Dilogs-Card.module.css'
 import arrow from '../../../../../../assets/imgs/dialogs/arrow.svg'
 import noMessage from '../../../../../../assets/imgs/dialogs/no-messages.svg'
-
 import { useNavigate } from 'react-router-dom';
-import SendMessageReduxForm from './Send-Message-Form'
+import SendMessageReduxForm from './Send-Message-Form/Send-Message-Form'
 import Author from '../../../../Elements/Author/Author';
-
+import { reset } from 'redux-form'
 const CurrentDialogsCard = (props) => {
     const navigate = useNavigate();
 
-    const submit = (values) => {
-        console.log(values)
+    const submit = (values, dispatch) => {
         
+        props.sendNewMessage(values)
+        dispatch(reset('sendMessage'))
     }
     
     return (

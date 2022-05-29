@@ -1,28 +1,15 @@
-import {
-    applyMiddleware,
-    combineReducers,
-    createStore
-} from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import ThunkMiddleware from 'redux-thunk';
 
 import dialogsReducer from "./reducers/dialogs/dialogs-reduser";
 import newMessageReducer from "./reducers/dialogs/new-message-reducer";
-
-import itemsReducer from "./reducers/left-menu/items-reducer";
 import currentPostReducer from "./reducers/posts/send-post-reducer";
 import profileReducer from "./reducers/profile-reducer";
-import {
-    themeReducer
-} from "./reducers/theme/style-reducer";
-
+import { themeReducer } from "./reducers/theme/style-reducer";
 import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer";
-
 import usersReducer from "./reducers/users/users-reducer";
 import authReducer from "./reducers/auth/auth-reducer";
-import thunk from 'redux-thunk';
-import {
-    reducer as formReducer
-} from 'redux-form'
+import { reducer as formReducer } from 'redux-form'
 import LoginRegistrationReducer from "./reducers/login-registaration/login-registration-reducer";
 import appReducer from "./reducers/app-reducer";
 
@@ -33,7 +20,6 @@ let reducers = combineReducers({
     // currentUser: currentUserReducer,
     users: usersReducer,
     theme: themeReducer,
-    itemsReducer,
     navMenu: navMenuReducer,
     dialogsReducer,
     profileReducer,
