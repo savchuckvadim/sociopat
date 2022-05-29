@@ -7,7 +7,7 @@ import ProfileStatistics from './Statistics/Profile-Statistics';
 
 const ProfileInformation = (props) => {
 
-
+    debugger
     return (
         <div className={style.wrapper}>
 
@@ -35,7 +35,7 @@ const ProfileInformation = (props) => {
                     <div className={style.buttons__wrapper}>
                         <ProfileButtons
                             userId={props.params.userId}
-                           
+                           visitedUser={props.visitedUser}
                         />
                     </div>
 

@@ -28,7 +28,7 @@
     justify-content: space-between;
     /* width: 100%; */
 }
-.user__wrapper{
+/* .user__wrapper{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -56,7 +56,7 @@
 }
 .date{
     opacity: 60%;
-}
+} */
 .dots:hover{
 cursor: pointer;
 }

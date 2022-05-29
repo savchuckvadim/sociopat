@@ -31,7 +31,7 @@ const Users = (props) => {
                         unFollowThunk={props.unFollowThunk}
                         toggleFollowingInProgress={props.toggleFollowingInProgress}
                         followingInProgress={props.followingInProgress}
-                        setCurrentUser={props.setCurrentUser}
+                        setVisitedUser={props.setVisitedUser}
 
                         
                     />)}

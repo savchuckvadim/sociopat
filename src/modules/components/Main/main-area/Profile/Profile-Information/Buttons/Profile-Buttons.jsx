@@ -10,11 +10,13 @@ const ProfileButtons = (props) => {
     let [modalActive, setModalActive] = useState(false)
     // let disable = props.followingInProgress.some(id => id === props.user.id)
 
-    if (props.userId) {
+    if (props.userId && props.visitedUser) {
         return (
             <div className={style.twoButtons}>
                 <div className={style.button__wrapper}>
-                <FollowUnfollowButtonsContainer/>
+                <FollowUnfollowButtonsContainer
+                user={props.visitedUser}
+                />
                 </div>
                 
                 <div className={style.button__wrapper}>

@@ -3,6 +3,8 @@ import { connect } from "react-redux"
 import { useParams } from "react-router-dom";
 import { compose } from "redux";
 import { getProfile, getStatus, updateStatus } from "../../../../redux/reducers/profile-reducer"
+import { deleteVisitedUserFromLocalStorage, getVisitedUserFromLocalStorage } from "../../../../utils/memory/saveVisitedUser";
+
 import Profile from "./Profile"
 
 const mapStateToProps = (state) => {
@@ -11,7 +13,9 @@ const mapStateToProps = (state) => {
         isAuth: state.auth.auth.isAuth,
         auth: state.auth.auth,
         profile: state.profileReducer.profile,
-        // user: state.users.currentUser,
+
+        user: state.users.visitedUser,
+
         posts: state.profileReducer.posts,
         status: state.profileReducer.status
 
@@ -35,19 +39,29 @@ const withRouter = WrappedComponent => props => {
 };
 
 
+
 class ProfileContainer extends React.Component {
     userId = null
-    isCurrentUser = true
+    isAuthUser = true
+    currentUser
+    visitedUser
     getUserId = (params) => {
+debugger
         if (this.props.params.userId) {
             this.userId = this.props.params.userId;
-            this.isCurrentUser = false
+            this.isAuthUser = false
+            this.visitedUser = this.props.user
+            if (!this.props.user) {
+                
+                this.visitedUser = getVisitedUserFromLocalStorage()
+            }
 
         }
         else {
 
             this.userId = this.props.auth.id
-            this.isCurrentUser = true
+            this.isAuthUser = true
+            // deleteVisitedUserFromLocalStorage()
         }
     }
 
@@ -62,15 +76,19 @@ class ProfileContainer extends React.Component {
 
     }
     componentDidUpdate() {
-        
+
         this.getUserId()
         this.getProfileAndStatus()
-       
+
     }
     render() {
         return (
 
-            <Profile {...this.props} isCurrentUser={this.isCurrentUser} />
+            <Profile {...this.props}
+                isCurrentUser={this.isAuthUser}
+                visitedUser={this.visitedUser}
+
+            />
         )
     }
 }

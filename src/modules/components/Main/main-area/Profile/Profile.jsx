@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+
 
 import Post from './Posts/Post';
 // import { ProfileBaseContainer } from './Profile-Base/Profile-Base-Container';
@@ -19,7 +19,7 @@ export const Profile = (props) => {
             <SendPostContainer />
             {props.posts.map((post, index) => {
 
-                return <Post key={`post-${index}`} user={props.user} body={post.body} postsImg={post.img} />
+                return <Post key={`post-${index}`} user={props.visitedUser} body={post.body} postsImg={post.img} />
             })}
 
 

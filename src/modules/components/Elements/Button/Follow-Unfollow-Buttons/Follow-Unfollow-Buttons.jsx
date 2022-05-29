@@ -2,7 +2,7 @@ import Button from "../Button"
 
 
 const FollowUnfollowButtons = (props) => {
-
+debugger
 let colorOfButton = 'red'
 let onButtonClick = props.followThunk
 
