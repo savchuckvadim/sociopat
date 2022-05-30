@@ -73,23 +73,23 @@ const profileReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case SET_PROFILE:
-           
-            if(state.profile){
+
+            if (state.profile) {
                 if (state.profile.userId !== action.profile.userId) {
-                
-                    
+
+
                 }
-            }else{
+            } else {
                 return { ...state, profile: action.profile }
             }
-            
+
             return state
 
         case SET_VISITED_USER:
-            
-            
+
+
             if (result.visitedUser) {
-                
+
 
                 if (result.visitedUser.name !== action.user.name) {
 
@@ -107,7 +107,7 @@ const profileReducer = (state = initialState, action) => {
                 }
                 result.visitedUser = action.user
                 return result
-                
+
             }
 
             return state
@@ -137,12 +137,44 @@ const profileReducer = (state = initialState, action) => {
 
         case SET_STATUS:
             if (result.status !== action.status) {
-                
-                result = {...state}
-                result.status = action.status 
+
+                result = { ...state }
+                result.status = action.status
                 return result
             }
             return state
+
+        case SET_PROFILE_PAGE_DATA:
+            
+
+            if (result.status !== action.status) {      //status
+                result = { ...state }
+                result.status = action.status
+            }
+
+            if (state.profile) {                                         //profile
+                if (state.profile.userId !== action.profile.userId) {
+                    result = { ...state }
+                    result.profile = action.profile
+
+                }
+            } else {
+                result.profile = action.profile
+            }
+
+            if (state.visitedUser) {                                        //visiteduser
+
+                if (state.visitedUser.name !== action.user.name) {
+                    result = { ...state }
+                    result.visitedUser = action.user 
+                }
+            } else {
+
+                result = { ...state }
+                result.visitedUser = action.user
+            }
+
+            return result
 
         case ADD_POST:
             result = {
@@ -166,13 +198,14 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 
-export const getDataForLoadProfilePage = (userId) => async (dispatch)=> {
+export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
+    
     const resProfile = await profileAPI.getProfile(userId)
     const profile = resProfile.data;
     const users = await usersAPI.getUser(profile.fullName)
-   
+
     let user = null
-    
+
     users.items.forEach(u => {
         if (u.name === profile.fullName) {
             user = u
@@ -180,10 +213,10 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch)=> {
     });
     const resStatus = await profileAPI.getStatus(userId)
     const status = resStatus.data
-
-    dispatch(setStatus(status))
-    dispatch(setProfile(profile))
-    dispatch(setVisitedUser(user))
+    dispatch(setProfilePageData(status, profile, user))
+    // dispatch(setStatus(status))
+    // dispatch(setProfile(profile))
+    // dispatch(setVisitedUser(user))
 
 }
 export const getProfileAndSetVisitedUser = (userId) => async (dispatch) => {
@@ -194,9 +227,9 @@ export const getProfileAndSetVisitedUser = (userId) => async (dispatch) => {
     const res = await profileAPI.getProfile(userId)
     const profile = res.data;
     const users = await usersAPI.getUser(profile.fullName)
-   
+
     let user = null
-    
+
     users.items.forEach(u => {
         if (u.name === profile.fullName) {
             user = u
