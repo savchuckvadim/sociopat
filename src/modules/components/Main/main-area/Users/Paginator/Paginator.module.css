@@ -1,0 +1,28 @@
+
+.pages{
+    /* padding-right: 10px; */
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    margin: 0;
+    background-color: white;
+  display: flex;
+  justify-content: flex-end;
+  border-radius: 10px;
+    
+}
+.selectPage{
+    font-weight: 700;
+    cursor: pointer;
+}
+.pages span{
+    cursor: pointer;
+}
+span{
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.span{
+    font-weight: 100;
+}

@@ -2,6 +2,7 @@
 import React from "react";
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container";
 import Title from "../../../Elements/Title/Title";
+import Paginator from "./Paginator/Paginator";
 import UserCard from "./User-Card";
 import style from './Users.module.css'
 
@@ -36,19 +37,16 @@ const Users = (props) => {
                         
                     />)}
             </div>
+
             <div className={style.pages}>
-                {pages.map(p => {
-                    let spanClassName = style.span
-                    props.currentPage === p ? spanClassName = style.selectPage : spanClassName = style.span
-                    return <span
-                        key={`user-page-${p}`}
-                        onClick={() => { props.onPageChanged(p) }}
 
-                        className={spanClassName}>
+                <Paginator 
+                totalUsersCount={props.totalUsersCount}
+                pageSize={props.pageSize}
+                currentPage={props.currentPage}
+                onPageChanged={props.onPageChanged}
 
-                        {p}
-                    </span>
-                })}
+                />
             </div>
 
         </>
