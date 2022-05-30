@@ -70,16 +70,20 @@ const profileReducer = (state = initialState, action) => {
 
             return result
 
-        case SET_VISITED_USER :
+        case SET_VISITED_USER:
+            if (result.visitedUser) {
+                if (result.visitedUser.name !== action.user.name) {
 
-            if (result.visitedUser !== action.user) {
-
-                result = {
-                    ...state
+                    result = { ...state }
+                    result.visitedUser = action.user
+                    return result
                 }
+            } else {
+                result = { ...state }
                 result.visitedUser = action.user
                 return result
             }
+
 
             return state
         case SET_STATUS:
@@ -94,7 +98,7 @@ const profileReducer = (state = initialState, action) => {
             }
 
             return state
-            
+
         case ADD_POST:
             result = {
                 ...state
@@ -125,7 +129,7 @@ export const getProfileAndSetVisitedUser = (userId) => async (dispatch) => {
     const user = await usersAPI.getUser(profile.fullName)
     dispatch(setProfile(profile))
     dispatch(setVisitedUser(user.items[0]))
-    
+
 
 
 }

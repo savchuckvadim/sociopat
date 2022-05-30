@@ -14,7 +14,9 @@ const UserCard = (props) => {
 
             </div>
             <NavLink className={style.login} to={'../profile/' + props.user.id}>
-                <p onClick={() => {props.setVisitedUser(props.user)}} >{props.name}</p>
+                <p onClick={() => {
+                    // props.setVisitedUser(props.user)
+                    }} >{props.name}</p>
             </NavLink>
 
             <div className={style.follow__wrapper}>

@@ -55,20 +55,18 @@ class ProfileContainer extends React.Component {
             this.userId = this.props.params.userId;
             this.isAuthUser = false
 
-            if (!this.props.user) {
-                // this.visitedUser = getVisitedUserFromLocalStorage()
-            }
-
         }
         else {
 
             this.userId = this.props.auth.id
             this.isAuthUser = true
-            // deleteVisitedUserFromLocalStorage()
+           
         }
+        
     }
 
     getProfileAndStatus = () => {
+     
         this.props.getProfileAndSetVisitedUser(this.userId)
         this.props.getStatus(this.userId)
         
