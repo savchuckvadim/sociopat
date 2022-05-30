@@ -57,46 +57,28 @@ const setVisitedUser = (user) => ({ type: SET_VISITED_USER, user })
 const profileReducer = (state = initialState, action) => {
     let result = state
     switch (action.type) {
+
         case SET_PROFILE:
-
-            if (state.profile.userId !== action.profile.userId) {
-                result = {
-                    ...state
-                }
-
-                result.profile = action.profile
-                return result
+            if (state.profile.userId !== action.profile.userId) {   
+                return {...state, profile: action.profile}
             }
-
-            return result
+            return state
 
         case SET_VISITED_USER:
             if (result.visitedUser) {
                 if (result.visitedUser.name !== action.user.name) {
-
-                    result = { ...state }
-                    result.visitedUser = action.user
-                    return result
+                    return { ...state,  visitedUser: action.user}
                 }
             } else {
-                result = { ...state }
-                result.visitedUser = action.user
-                return result
+                
+                return { ...state,  visitedUser: action.user}
             }
-
-
             return state
+
         case SET_STATUS:
-
             if (result.status !== action.status) {
-
-                result = {
-                    ...state
-                }
-                result.status = action.status
-                return result
+                return { ...state,  status: action.status}
             }
-
             return state
 
         case ADD_POST:
