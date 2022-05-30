@@ -5,7 +5,7 @@ import Form from './Form/Form'
 const FormCard = (props) => {
     let type = props.type
     const onSubmit = (values) => {
-        debugger
+      
         props.login(values.email, values.password, true)
         return <Navigate replace to='/hbvhk'/>
     }

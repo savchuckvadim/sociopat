@@ -10,38 +10,38 @@ import { SendPostContainer } from './Send-Post/Send-Post-Container';
 
 export const Profile = (props) => {
  
-   let postUserName = null
+   let userName = null
    let img = null
    
   if(props.isCurrentUser ){
       if(props.profile && JSON.stringify(props.profile) !== '{}' ){
 
-        postUserName = props.profile.fullName
+        userName = props.profile.fullName
         img = props.profile.photos.small
       }
     
   }else {
     if(props.visitedUser ){
-        postUserName = props.visitedUser.name
+        userName = props.visitedUser.name
         img = props.visitedUser.photos.small
         
     }
     
   }
-
-    debugger
+  
+    
     // if(!props.isAuth) {return <Navigate replace to='../login' />}
     return (
 
         <div className={style.profile__container}>
-            <ProfileInformation {...props}  />
+            <ProfileInformation {...props} userName={userName}  />
             <SendPostContainer />
             {props.posts.map((post, index) => {
 
                 return <Post 
                 key={`post-${index}`}
                 img={img} 
-                userName={props.profile.fullName} 
+                userName={userName} 
                 body={post.body} 
                 postsImg={post.img} />
             })}

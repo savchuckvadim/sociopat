@@ -31,5 +31,12 @@ let reducers = combineReducers({
 });
 
 
-let store = createStore(reducers, applyMiddleware(ThunkMiddleware));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+
+const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
+
+    applyMiddleware(ThunkMiddleware)
+  ));
+
+// let store = createStore(reducers, applyMiddleware(ThunkMiddleware));
 export default store;

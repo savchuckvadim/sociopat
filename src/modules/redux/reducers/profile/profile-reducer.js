@@ -1,7 +1,7 @@
 import {
     profileAPI, usersAPI
 } from "../../../services/api"
-import { getUserByName } from "../users/users-reducer";
+
 
 const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';
@@ -9,8 +9,10 @@ const SET_STATUS = 'SET_STATUS'
 const SET_VISITED_USER = 'SET_VISITED_USER'
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
+const SET_PROFILE_PAGE_DATA = 'SET_PROFILE_PAGE_DATA'
+
 let initialState = {
-    profile: {},
+    profile: null,
     visitedUser: null,
     status: '',
     login: 'Super User',
@@ -55,47 +57,79 @@ export const addPostActionCreator = (value) => {
 export const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
 const setStatus = (status) => ({ type: SET_STATUS, status })
 const setVisitedUser = (user) => ({ type: SET_VISITED_USER, user })
+const setProfilePageData = (status, profile, user) => (
+    {
+        type: SET_PROFILE_PAGE_DATA,
+        status,
+        profile,
+        user
+
+    }
+)
+
 
 const profileReducer = (state = initialState, action) => {
     let result = state
     switch (action.type) {
 
         case SET_PROFILE:
-            if (state.profile.userId !== action.profile.userId) {
+           
+            if(state.profile){
+                if (state.profile.userId !== action.profile.userId) {
+                
+                    
+                }
+            }else{
                 return { ...state, profile: action.profile }
             }
+            
             return state
 
         case SET_VISITED_USER:
             
+            
             if (result.visitedUser) {
+                
+
                 if (result.visitedUser.name !== action.user.name) {
-                    return { ...state, visitedUser: action.user }
+
+                    result = {
+                        ...state
+                    }
+
+                    result.visitedUser = action.user
+                    return result
                 }
             } else {
 
-                return { ...state, visitedUser: action.user }
+                result = {
+                    ...state
+                }
+                result.visitedUser = action.user
+                return result
+                
             }
+
             return state
 
         case FOLLOW:
-           
+
             if (state.visitedUser) {
                 result = {
                     ...state
                 }
-                result.visitedUser = {...result.visitedUser}
+                result.visitedUser = { ...result.visitedUser }
                 result.visitedUser.followed = true
                 return result
             }
-            return state
+            return result
 
         case UNFOLLOW:
             if (state.visitedUser) {
                 result = {
                     ...state
                 }
-                result.visitedUser = {...result.visitedUser}
+                result.visitedUser = { ...result.visitedUser }
                 result.visitedUser.followed = false
                 return result
             }
@@ -103,7 +137,10 @@ const profileReducer = (state = initialState, action) => {
 
         case SET_STATUS:
             if (result.status !== action.status) {
-                return { ...state, status: action.status }
+                
+                result = {...state}
+                result.status = action.status 
+                return result
             }
             return state
 
@@ -129,18 +166,48 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 
+export const getDataForLoadProfilePage = (userId) => async (dispatch)=> {
+    const resProfile = await profileAPI.getProfile(userId)
+    const profile = resProfile.data;
+    const users = await usersAPI.getUser(profile.fullName)
+   
+    let user = null
+    
+    users.items.forEach(u => {
+        if (u.name === profile.fullName) {
+            user = u
+        }
+    });
+    const resStatus = await profileAPI.getStatus(userId)
+    const status = resStatus.data
 
+    dispatch(setStatus(status))
+    dispatch(setProfile(profile))
+    dispatch(setVisitedUser(user))
+
+}
 export const getProfileAndSetVisitedUser = (userId) => async (dispatch) => {
+
+
+
 
     const res = await profileAPI.getProfile(userId)
     const profile = res.data;
-    const user = await usersAPI.getUser(profile.fullName)
+    const users = await usersAPI.getUser(profile.fullName)
+   
+    let user = null
+    
+    users.items.forEach(u => {
+        if (u.name === profile.fullName) {
+            user = u
+        }
+    });
     dispatch(setProfile(profile))
-    dispatch(setVisitedUser(user.items[0]))
-
+    dispatch(setVisitedUser(user))
 
 
 }
+
 export const getStatus = (userId) => async (dispatch) => {
 
     const res = await profileAPI.getStatus(userId)

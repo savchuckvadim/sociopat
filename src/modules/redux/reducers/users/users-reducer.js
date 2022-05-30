@@ -25,7 +25,7 @@ const initialState = {
 
 const usersReducer = (state = initialState, action) => {
     let result = state
-
+   
     switch (action.type) {
         case SET_CURRENT_PAGE:
             result = {

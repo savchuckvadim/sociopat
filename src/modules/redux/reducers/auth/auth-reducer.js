@@ -15,19 +15,14 @@ let initialState = {
     currentUser: {}
 }
 
-export const setAuthUserData = (id = null, login = null, email = null, isAuth = false) => {
+export const setAuthUserData = (id = null, login = null, email = null, isAuth = false) =>
+({
+    type: SET_USER_DATA, 
+    data: { id, login, email }, 
+    isAuth
+})
 
-    return {
-        type: SET_USER_DATA,
-        data: {
-            id,
-            login,
-            email
-        },
-        isAuth
-    }
-}
-export const setAuthCurrentUser = (userProfile) => ({type: SET_AUTH_CURRENT_USER,userProfile})
+export const setAuthCurrentUser = (userProfile) => ({ type: SET_AUTH_CURRENT_USER, userProfile })
 
 const authReducer = (state = initialState, action) => {
     let result = state
@@ -44,13 +39,7 @@ const authReducer = (state = initialState, action) => {
 
             return result;
         case SET_AUTH_CURRENT_USER:
-            result = {
-                ...state
-            };
-            result.currentUser = action.userProfile
-
-
-            return result;
+            return {...state, currentUser: action.userProfile};
         default:
             return result;
     }
