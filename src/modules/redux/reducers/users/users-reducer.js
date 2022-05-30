@@ -130,6 +130,7 @@ export const requestUsers = (currentPage, pageSize) => (dispatch) => {
 }
 
 export const followThunk = (userId) => (dispatch) => {
+   
     dispatch(toggleFollowingInProgress(userId, true))
     usersAPI.follow(userId).then(res => {
         if (res === 0) {

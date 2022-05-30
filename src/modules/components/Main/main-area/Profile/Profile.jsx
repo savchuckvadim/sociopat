@@ -29,7 +29,7 @@ export const Profile = (props) => {
     
   }
 
-    
+    debugger
     // if(!props.isAuth) {return <Navigate replace to='../login' />}
     return (
 

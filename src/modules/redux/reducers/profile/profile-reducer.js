@@ -7,6 +7,8 @@ const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS'
 const SET_VISITED_USER = 'SET_VISITED_USER'
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
 let initialState = {
     profile: {},
     visitedUser: null,
@@ -59,25 +61,49 @@ const profileReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case SET_PROFILE:
-            if (state.profile.userId !== action.profile.userId) {   
-                return {...state, profile: action.profile}
+            if (state.profile.userId !== action.profile.userId) {
+                return { ...state, profile: action.profile }
             }
             return state
 
         case SET_VISITED_USER:
+            
             if (result.visitedUser) {
                 if (result.visitedUser.name !== action.user.name) {
-                    return { ...state,  visitedUser: action.user}
+                    return { ...state, visitedUser: action.user }
                 }
             } else {
-                
-                return { ...state,  visitedUser: action.user}
+
+                return { ...state, visitedUser: action.user }
+            }
+            return state
+
+        case FOLLOW:
+           
+            if (state.visitedUser) {
+                result = {
+                    ...state
+                }
+                result.visitedUser = {...result.visitedUser}
+                result.visitedUser.followed = true
+                return result
+            }
+            return state
+
+        case UNFOLLOW:
+            if (state.visitedUser) {
+                result = {
+                    ...state
+                }
+                result.visitedUser = {...result.visitedUser}
+                result.visitedUser.followed = false
+                return result
             }
             return state
 
         case SET_STATUS:
             if (result.status !== action.status) {
-                return { ...state,  status: action.status}
+                return { ...state, status: action.status }
             }
             return state
 
