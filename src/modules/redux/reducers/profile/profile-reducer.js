@@ -1,12 +1,15 @@
 import {
-    profileAPI
+    profileAPI, usersAPI
 } from "../../../services/api"
+import { getUserByName } from "../users/users-reducer";
 
 const ADD_POST = 'ADD_POST';
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS'
+const SET_VISITED_USER = 'SET_VISITED_USER'
 let initialState = {
     profile: {},
+    visitedUser: null,
     status: '',
     login: 'Super User',
     about: 'Российский предприниматель. По данным Forbes, на 5 февраля 2022 года занимал 608-е место в списке наиболее состоятельных людей мира, в списке богатейших бизнесменов России в 2021 году занимал 32-е место с состоянием 4,7 миллиарда долларов. Известен как основатель «Тинькофф банка»',
@@ -47,46 +50,51 @@ export const addPostActionCreator = (value) => {
     }
 }
 
-export const setProfile = (profile) => {
-    return {
-        type: SET_PROFILE,
-        profile
-    }
-};
-const setStatus = (status) => {
-    return {
-        type: SET_STATUS,
-        status
-    }
-}
+export const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
+const setStatus = (status) => ({ type: SET_STATUS, status })
+const setVisitedUser = (user) => ({ type: SET_VISITED_USER, user })
+
 const profileReducer = (state = initialState, action) => {
     let result = state
     switch (action.type) {
         case SET_PROFILE:
-            
-            if(state.profile.userId !== action.profile.userId){
+
+            if (state.profile.userId !== action.profile.userId) {
                 result = {
                     ...state
                 }
-                
+
                 result.profile = action.profile
                 return result
             }
-            
+
             return result
 
+        case SET_VISITED_USER :
+
+            if (result.visitedUser !== action.user) {
+
+                result = {
+                    ...state
+                }
+                result.visitedUser = action.user
+                return result
+            }
+
+            return state
         case SET_STATUS:
 
             if (result.status !== action.status) {
-                
+
                 result = {
                     ...state
                 }
                 result.status = action.status
                 return result
             }
-            
+
             return state
+            
         case ADD_POST:
             result = {
                 ...state
@@ -110,18 +118,22 @@ const profileReducer = (state = initialState, action) => {
 };
 
 
-export const getProfile = (userId) => async (dispatch) => {
+export const getProfileAndSetVisitedUser = (userId) => async (dispatch) => {
 
     const res = await profileAPI.getProfile(userId)
     const profile = res.data;
+    const user = await usersAPI.getUser(profile.fullName)
     dispatch(setProfile(profile))
+    dispatch(setVisitedUser(user.items[0]))
+    
+
 
 }
 export const getStatus = (userId) => async (dispatch) => {
 
     const res = await profileAPI.getStatus(userId)
     const status = res.data
-    
+
     dispatch(setStatus(status))
 
 }

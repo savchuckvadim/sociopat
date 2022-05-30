@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux"
 import { useParams } from "react-router-dom";
 import { compose } from "redux";
-import { getProfile, getStatus, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
+import {  getProfileAndSetVisitedUser, getStatus, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
+
 
 
 import Profile from "./Profile"
@@ -14,7 +15,7 @@ const mapStateToProps = (state) => {
         auth: state.auth.auth,
         profile: state.profileReducer.profile,
 
-        user: state.users.visitedUser,
+        visitedUser: state.profileReducer.visitedUser,
 
         posts: state.profileReducer.posts,
         status: state.profileReducer.status
@@ -41,10 +42,12 @@ const withRouter = WrappedComponent => props => {
 
 
 class ProfileContainer extends React.Component {
-    visitedUser = this.props.user
+    
     userId = null
     isAuthUser = true
     currentUser
+    
+
 
     getUserId = (params) => {
 
@@ -66,8 +69,12 @@ class ProfileContainer extends React.Component {
     }
 
     getProfileAndStatus = () => {
-        this.props.getProfile(this.userId)
+        this.props.getProfileAndSetVisitedUser(this.userId)
         this.props.getStatus(this.userId)
+        
+        
+      
+        
     }
     componentDidMount() {
 
@@ -82,12 +89,12 @@ class ProfileContainer extends React.Component {
 
     }
     render() {
-        
+
         return (
 
             <Profile {...this.props}
                 isCurrentUser={this.isAuthUser}
-                visitedUser={this.visitedUser}
+             
 
             />
         )
@@ -101,11 +108,9 @@ export default compose(
 
     connect(mapStateToProps, {
 
-        getProfile,
+        getProfileAndSetVisitedUser,
         getStatus,
         updateStatus,
-
-
 
     }),
     withRouter,

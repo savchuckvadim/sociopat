@@ -12,6 +12,7 @@ export const Profile = (props) => {
  
    let postUserName = null
    let img = null
+   
   if(props.isCurrentUser ){
       if(props.profile && JSON.stringify(props.profile) !== '{}' ){
 
@@ -20,9 +21,9 @@ export const Profile = (props) => {
       }
     
   }else {
-    if(props.user ){
-        postUserName = props.user.name
-        img = props.user.photos.small
+    if(props.visitedUser ){
+        postUserName = props.visitedUser.name
+        img = props.visitedUser.photos.small
         
     }
     

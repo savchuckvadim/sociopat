@@ -10,7 +10,6 @@ import {
   
     setTotalUsersCount,
     setUsers,
-    setVisitedUser,
     toggleFollowingInProgress,
 
     unFollowThunk
@@ -45,6 +44,6 @@ export default connect(mapStateToProps, {
     requestUsers,
     followThunk,
     unFollowThunk,
-    setVisitedUser
+  
 
 })(UsersContainer)

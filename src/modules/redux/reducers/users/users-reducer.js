@@ -8,7 +8,7 @@ const FETCHING = 'FETCHING';
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS';
-const SET_VISITED_USER = 'SET_VISITED_USER'
+
 
 const initialState = {
     users: [],
@@ -18,7 +18,7 @@ const initialState = {
     count: 0,
     isFetching: false,
     followingInProgress: [],
-    visitedUser: null
+  
 
 }
 
@@ -99,13 +99,7 @@ const usersReducer = (state = initialState, action) => {
                 : result.followingInProgress = state.followingInProgress.filter(id => id !== action.userId)
 
             return result
-        case SET_VISITED_USER:
-            result = {
-                ...state
-            }
-            result.visitedUser = action.user
-            saveVisitedUser(action.user)
-            return result
+
 
         default:
             return result
@@ -120,7 +114,7 @@ export const fetching = (bool) => ({ type: FETCHING, bool })
 export const follow = (userId) => ({ type: FOLLOW, userId })
 export const unFollow = (userId) => ({ type: UNFOLLOW, userId })
 export const toggleFollowingInProgress = (userId, isFetching) => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching })
-export const setVisitedUser = (user) => ({ type: SET_VISITED_USER, user })
+
 
 export const requestUsers = (currentPage, pageSize) => (dispatch) => {
     dispatch(fetching(true))

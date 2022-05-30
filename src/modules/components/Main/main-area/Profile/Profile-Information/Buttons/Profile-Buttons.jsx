@@ -6,7 +6,7 @@ import FollowUnfollowButtonsContainer from '../../../../../Elements/Button/Follo
 
 const ProfileButtons = (props) => {
 
-    
+  
     let [modalActive, setModalActive] = useState(false)
     // let disable = props.followingInProgress.some(id => id === props.user.id)
 
