@@ -1,5 +1,5 @@
 import { usersAPI } from "../../../services/api";
-import { saveVisitedUser } from "../../../utils/memory/saveVisitedUser";
+
 
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_USERS = 'SET_USERS';
@@ -116,40 +116,40 @@ export const unFollow = (userId) => ({ type: UNFOLLOW, userId })
 export const toggleFollowingInProgress = (userId, isFetching) => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching })
 
 
-export const requestUsers = (currentPage, pageSize) => (dispatch) => {
-    dispatch(fetching(true))
-    usersAPI.getUsers(currentPage, pageSize)
-        .then(res => {
+export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
 
+    dispatch(fetching(true))
+
+    let res = await usersAPI.getUsers(currentPage, pageSize)
             const users = res.items;
             dispatch(setTotalUsersCount(res.totalCount))
             dispatch(setUsers(users))
             dispatch(fetching(false))
-        })
 
 }
 
-export const followThunk = (userId) => (dispatch) => {
+export const followThunk = (userId) => async (dispatch) => {
    
     dispatch(toggleFollowingInProgress(userId, true))
-    usersAPI.follow(userId).then(res => {
+
+   let res = await  usersAPI.follow(userId)
         if (res === 0) {
             dispatch(follow(userId))
-
         }
         dispatch(toggleFollowingInProgress(userId, false))
-    })
 }
 
-export const unFollowThunk = (userId) => (dispatch) => {
+
+export const unFollowThunk = (userId) => async (dispatch) => {
     dispatch(toggleFollowingInProgress(userId, true))
-    usersAPI.unfollow(userId).then(res => {
+
+   let res = await usersAPI.unfollow(userId)
         if (res === 0) {
             dispatch(unFollow(userId))
 
         }
         dispatch(toggleFollowingInProgress(userId, false))
-    })
+   
 }
 
 export default usersReducer
