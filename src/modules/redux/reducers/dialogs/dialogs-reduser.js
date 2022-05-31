@@ -6,16 +6,21 @@ const SET_DIALOGS = 'SET_DIALOGS'
 const initialState = {
     dialogs: []
 }
+
+const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
+
+
+
 const getMessages = async () => {
-    
-    let toFrom =() => {
+
+    let toFrom = () => {
 
         return Math.floor(Math.random() * 3)
-    } 
+    }
     let send = () => {
-        if(toFrom() === 1){
+        if (toFrom() === 1) {
             return 'to'
-        }  
+        }
         return 'from'
     }
     let messages = []
@@ -31,7 +36,6 @@ const getMessages = async () => {
     ))
     return returnedMessages
 }
-const setDialogs = (dialogs) => ({ type: SET_DIALOGS, dialogs })
 export const getDialogs = () => async (dispatch) => {
     let users = await usersAPI.getUsers()
     let messages = await getMessages()
@@ -46,19 +50,25 @@ export const getDialogs = () => async (dispatch) => {
             messages: messages
         }
     })
+    dispatch(setDialogs(dialogs))
 
-    return dialogs
-   
+
 }
 
 const dialogsReducer = (state = initialState, action) => {
 
-    if (action.type === DIALOGS) {
 
+    switch (action.type) {
+        case SET_DIALOGS:
+            let resultState = { ...state }
+            resultState.dialogs = action.dialogs
+
+            return resultState
+        default:
+            return state;
     }
 
-    return state
-};
+}
 
-export default dialogsReducer;
+    export default dialogsReducer;
 

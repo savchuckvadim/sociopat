@@ -2,6 +2,8 @@ import { useEffect } from "react"
 import { connect } from "react-redux"
 import { compose } from "redux"
 import { getDialogs } from "../../../../../redux/reducers/dialogs/dialogs-reduser";
+import { LightLoadingPageContainer } from "../../../../Elements/Loading/Light-Loading-Page-Container";
+import LoadingPage from "../../../../Elements/Loading/Loading-Page";
 import Dialogs from "./Dialogs"
 
 const initialState = [
@@ -143,14 +145,8 @@ const initialState = [
 const mapStateToProps = (state) => {
 
     return {
-        dialogs: initialState,
+        dialogs: state.dialogsReducer.dialogs,
         user: state.users[0],
-
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-
-    return {
 
     }
 }
@@ -160,9 +156,13 @@ const DialogsContainer = (props) => {
 
     useEffect(() => {
         props.getDialogs()
+
     }, [])
 
-    return <Dialogs {...props} />
+    if (props.dialogs) {
+        return <Dialogs {...props} />
+    }
+    return <LightLoadingPageContainer />
 }
 
 export default compose(
