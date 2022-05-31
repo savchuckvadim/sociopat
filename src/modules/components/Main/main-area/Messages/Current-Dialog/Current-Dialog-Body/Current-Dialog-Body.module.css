@@ -2,7 +2,7 @@
     height: 65vh;
     overflow: auto;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
 }
