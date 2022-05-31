@@ -79,3 +79,9 @@ export const authAPI = {
         return instance.delete( 'auth/login')
     }
 }
+
+export const  fishAPI = {
+    get(){
+        return axios.get('https://fish-text.ru/get?type=sentence&number=20&format=json').then(res => res.data.text)
+    }
+}

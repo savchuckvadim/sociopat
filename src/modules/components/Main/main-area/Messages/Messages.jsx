@@ -1,5 +1,5 @@
 import style from './Messages.module.css';
-import { DialogsContainer } from './Dialogs/Dialogs-Container';
+import  DialogsContainer from './Dialogs/Dialogs-Container';
 import { RouteCurrentDialogContainer } from './Current-Dialog/Route-Current-Dialog-Container';
 import React from 'react';
 import Title from '../../../Elements/Title/Title'
