@@ -1,9 +1,11 @@
 .cover{
+    margin: 0;
+    padding: 0;
     top: 90px;
     
     width: 33.3vw;
     height: calc(100vh - 90px);
-    background-size: cover;
+    background-size: 100%;
     background-repeat: no-repeat;
     opacity: 7%;
     position: absolute;
