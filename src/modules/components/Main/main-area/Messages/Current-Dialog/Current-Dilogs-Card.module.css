@@ -54,14 +54,4 @@
 
 
 
-.messages {
-    height: 65vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.nomessages {
-    width: auto;
-    height: 45vh;
-}

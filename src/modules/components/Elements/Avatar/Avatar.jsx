@@ -6,7 +6,7 @@ const Avatar = (props) => {
     // size={68}
     // border={false}
     // name={props.nameOfDialog}
-    // link={`../profile/${props.uerId}`}
+    // link={`../profile/${props.userId}`}
     // img={props.iconOfDialog}
 
     let initials = 'SP.'

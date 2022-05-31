@@ -4,8 +4,9 @@ import { RouteCurrentDialogContainer } from './Current-Dialog/Route-Current-Dial
 import React from 'react';
 import Title from '../../../Elements/Title/Title'
 import { Route, Routes } from 'react-router-dom';
+import RouteCurrentDialog from './Current-Dialog/Route-Current-Dialog';
 
-const Messages = () => {
+const Messages = (props) => {
 
 
 
@@ -20,7 +21,7 @@ const Messages = () => {
 
                 <div className={style.currentDialogs}>
                    
-                        <RouteCurrentDialogContainer />
+                        <RouteCurrentDialog {...props} />
                     
                 </div>
             </div>

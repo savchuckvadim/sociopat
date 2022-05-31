@@ -1,0 +1,14 @@
+.wrapper {
+    height: 65vh;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.nomessages {
+    width: auto;
+    height: 45vh;
+}

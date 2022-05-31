@@ -1,17 +1,17 @@
 import { Route, Routes } from "react-router-dom";
 import CurrentDialogsCard from "./Current-Dilogs-Card";
-;
+
 
 const RouteCurrentDialog = (props) => {
-
+    
     const routes = props.dialogs.map(dialog => (
         <Route
             key={`dialog-{dialog.id}`}
             path={`:dialog/${dialog.id}`}
             element={
             <CurrentDialogsCard 
-            {...props}
-            // usrers={props.users} 
+            dialog={dialog}
+            currentAuthUser={props.currentAuthUser}
             id={dialog.id} 
             messages={dialog.messages} 
             />}
