@@ -13,6 +13,7 @@ export const Profile = (props) => {
    let userName = null
    let img = null
    
+   
   if(props.isCurrentUser ){
       if(props.profile && JSON.stringify(props.profile) !== '{}' ){
 
@@ -43,11 +44,13 @@ let profile
                 img={img} 
                 userName={userName} 
                 body={post.body} 
-                postsImg={post.img} />
+                postsImg={post.img}
+                userId={props.profile.userId}
+                />
             })}
         </div>
 : profile = <LightLoadingPageContainer/>
-    
+
     return profile
 
 };

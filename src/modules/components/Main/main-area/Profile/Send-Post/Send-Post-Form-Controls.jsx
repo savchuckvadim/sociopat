@@ -1,4 +1,4 @@
-import Icon from '../../../../Elements/Icon'
+import Avatar from '../../../../Elements/Avatar/Avatar'
 import camera from '../../../../../../assets/imgs/posts//camera-photo.svg'
 import style from './Send-Post.module.css'
 import arrowup from '../../../../../../assets/imgs/posts/arrow-up.svg'
@@ -14,6 +14,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
     let textClass = style.input
     let cameraOpacity = 50
     let sendArea = <p>Photo/Video</p>
+let user= props.user
 
     let leftAreaClass = style.left__area
     if (meta.active || input.value) {
@@ -31,7 +32,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
         cameraOpacity = 0
         
     }
-
+    
     return (
         <>
 
@@ -48,7 +49,15 @@ const InputSendPost = ({ input, meta, ...props }) => {
                         {
                             // display: displayDefault
                         }} className={style.icon__wrapper}>
-                        <Icon user={props.user} />
+                            <Avatar
+                            size={40}
+                            link={false}
+                            img={props.user.photos.small}
+                            name={props.user.fullName}
+                            />
+                        {/* <Icon 
+                        user={props} 
+                        /> */}
                     </div>
 
                     <textarea className={textClass}

@@ -14,7 +14,7 @@ export const SendPost = (props) => {
     }
     
     return (
-        <SendPostFormReduxForm  onSubmit={submit} />
+        <SendPostFormReduxForm  onSubmit={submit} user={props.user} />
     )
 }
 let SendPostForm = (props) => {
@@ -26,6 +26,7 @@ let SendPostForm = (props) => {
             <Field
                 component={InputSendPost}
                 name='sendPost'
+                user={props.user}
             />
             
         </form>

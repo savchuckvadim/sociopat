@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux"
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { compose } from "redux";
 import {  getDataForLoadProfilePage, getProfileAndSetVisitedUser, getStatus, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
 
@@ -51,7 +51,7 @@ class ProfileContainer extends React.Component {
 
     getUserId = (params) => {
 
-        if (this.props.params.userId) {
+        if (this.props.params.userId ) {
             this.userId = this.props.params.userId;
             this.isAuthUser = false
 
@@ -88,6 +88,7 @@ class ProfileContainer extends React.Component {
     }
     render() {
         
+       if(this.props.params.userId && this.props.params.userId !== this.props.auth.id) return <Navigate replace to={'../profile'} />
         return (
 
             <Profile {...this.props}

@@ -5,9 +5,11 @@ import Icon from '../Elements/Icon';
 import { NavLink } from 'react-router-dom';
 
 import LogoutContainer from './Logout-Container';
+import Avatar from '../Elements/Avatar/Avatar';
 const Header = (props) => {
     let login = 'Login'
-    let ava = null
+    let avatar = null
+    let name = null
     // const logout = <NavLink to='../'>logout</NavLink>
     if (props.auth.login) {
         login = props.auth.login
@@ -15,7 +17,8 @@ const Header = (props) => {
     }
     if (props.user.userId) {
 
-        ava = props.user.photos.small
+        avatar = props.user.photos.small
+        name = props.user.fullName
     }
 
     return (
@@ -33,14 +36,23 @@ const Header = (props) => {
                 <div className={style.currentUser}>
                     <div className={style.name}>
                         <LogoutContainer />
-                        {/* <NavLink to='login' >
+                        {/* <NavLink to='profile' >
                             {login}
                         </NavLink> */}
 
                     </div>
 
                     <div className={style.icon__container}>
-                        <Icon img={ava} />
+                        {/* <Icon img={ava} /> */}
+                         
+                          <Avatar
+                        size={40}
+                        img={avatar}
+                        name={name}
+                        link={'profile'}
+                        />
+                        
+                       
                     </div>
 
 

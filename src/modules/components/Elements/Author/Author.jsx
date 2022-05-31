@@ -1,9 +1,16 @@
 import style from './Author.module.css'
 import Icon from '../Icon'
+import Avatar from '../Avatar/Avatar'
 
 const Author = (props) => {
+    let link = false
+    props.userId 
+    ? link = `../profile/${props.userId }`
+    : link = false
+    
+
     let fontSize = 14
-    let iconSize = 48
+    let iconSize = 48   
     let dateLineHeight = '22px'
     if (props.size === 56) {
         fontSize = 16
@@ -21,7 +28,13 @@ const Author = (props) => {
                     height: iconSize
                 }}
             >
-                <Icon user={props.user} />
+                {/* <Icon user={props.user} /> */}
+                <Avatar
+                {...props}
+                size={iconSize}
+                name={props.userName}
+                link={link}
+                />
             </div>
 
             <div className={style.user__info}>

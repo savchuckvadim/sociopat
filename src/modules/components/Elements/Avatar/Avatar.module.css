@@ -11,10 +11,16 @@
     justify-content: center;
     align-items: center;
     background-size: cover;
+    
 }
 
 
 .initials {
     color: white;
+    
   
+}
+.link{
+    cursor: pointer; 
+    text-decoration: none;
 }

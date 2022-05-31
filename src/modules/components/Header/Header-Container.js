@@ -1,17 +1,6 @@
 import React from "react"
-import {
-    connect
-} from "react-redux"
-import {
-    getAuth,
-    setAuthUserData,
-    setCurrentUser
-} from "../../redux/reducers/auth/auth-reducer"
-
-
-import {
-    usersAPI
-} from "../../services/api"
+import {connect} from "react-redux"
+import {getAuth,} from "../../redux/reducers/auth/auth-reducer"
 import Header from "./Header"
 
 
