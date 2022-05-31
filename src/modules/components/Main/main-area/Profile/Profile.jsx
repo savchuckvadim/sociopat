@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-
+import {LightLoadingPageContainer} from '../../../Elements/Loading/Light-Loading-Page-Container'
 import Post from './Posts/Post';
 // import { ProfileBaseContainer } from './Profile-Base/Profile-Base-Container';
 import ProfileInformation from './Profile-Information/Profile-Information';
@@ -31,9 +31,9 @@ export const Profile = (props) => {
   
     
     // if(!props.isAuth) {return <Navigate replace to='../login' />}
-    return (
-
-        <div className={style.profile__container}>
+let profile
+ props.profile 
+ ?  profile = <div className={style.profile__container}>
             <ProfileInformation {...props} userName={userName}  />
             <SendPostContainer />
             {props.posts.map((post, index) => {
@@ -45,11 +45,10 @@ export const Profile = (props) => {
                 body={post.body} 
                 postsImg={post.img} />
             })}
-
-
         </div>
-
-    )
+: profile = <LightLoadingPageContainer/>
+    
+    return profile
 
 };
 

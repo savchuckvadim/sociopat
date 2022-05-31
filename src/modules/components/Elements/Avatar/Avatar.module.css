@@ -1,0 +1,20 @@
+.avatar {
+    /* top: 88px; */
+    background-color: rgba(244, 72, 72, 1);
+    /* position: absolute; */
+    border-style: solid;
+    border-radius: 50%;
+    border-width: 4px;
+    border-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+}
+
+
+.initials {
+    color: white;
+  
+}

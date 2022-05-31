@@ -4,10 +4,11 @@ import hero from '../../../../../../assets/imgs/Vector.png'
 import ProfileButtons from './Buttons/Profile-Buttons';
 import ProfileStatus from './Status/Profile-Status';
 import ProfileStatistics from './Statistics/Profile-Statistics';
+import Avatar from '../../../../Elements/Avatar/Avatar';
 
 const ProfileInformation = (props) => {
 
-    
+    let img = 'https://images.unsplash.com/photo-1653923137746-747b2e979ce7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'
     return (
         <div className={style.wrapper}>
 
@@ -22,7 +23,7 @@ const ProfileInformation = (props) => {
                     <div className={style.about__wrapper}>
 
                         <h1 className={style.name}>{props.userName}</h1>
-                        
+
                         <ProfileStatus
                             status={props.status}
                             getStatus={props.getStatus}
@@ -35,7 +36,7 @@ const ProfileInformation = (props) => {
                     <div className={style.buttons__wrapper}>
                         <ProfileButtons
                             userId={props.params.userId}
-                           visitedUser={props.visitedUser}
+                            visitedUser={props.visitedUser}
                         />
                     </div>
 
@@ -43,12 +44,15 @@ const ProfileInformation = (props) => {
             </div>
 
 
-
-
             <div className={style.avatar}>
-                <h1 className={style.initials}>NF</h1>
-                {/* <Icon user={props.user} /> */}
+                <Avatar
+                    size={128}
+                    border={true}
+                    name={props.userName}
+                    img={props.profile.photos.small}
+                />
             </div>
+
 
         </div>
 
