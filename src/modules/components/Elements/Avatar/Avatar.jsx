@@ -27,11 +27,14 @@ const Avatar = (props) => {
             style={{
                 fontSize: props.size / 2.8
             }}
-        >{initials}</h1>}
+        >
+            {initials}
+        
+        </h1>}
 
     </div>
     if (props.link && props.link !== undefined) {
-        return <NavLink className={style.link} to={props.link}>{avatar}</NavLink>
+        return <NavLink className={style.link} replace to={`${props.link}`}>{avatar}</NavLink>
     } else {
         return avatar
     }

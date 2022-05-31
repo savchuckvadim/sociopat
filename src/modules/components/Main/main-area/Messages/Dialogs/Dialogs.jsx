@@ -4,7 +4,7 @@ import style from './Dialogs.module.css'
 
 const Dialogs = (props) => {
  
-    debugger
+    
     let dialogs =
         props.dialogs.map(dialog => (
             <DialogItem

@@ -64,7 +64,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 44px;
-    max-width: 50%;
+    max-width: 92%;
+    text-align: start;
 }
 
 .title {
