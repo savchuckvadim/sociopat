@@ -1,10 +1,10 @@
 
-import DialogItem from './Dialog-item'
+import DialogItem from './Dialog-Item/Dialog-item'
 import style from './Dialogs.module.css'
 
 const Dialogs = (props) => {
  
-   
+    debugger
     let dialogs =
         props.dialogs.map(dialog => (
             <DialogItem
@@ -13,7 +13,7 @@ const Dialogs = (props) => {
                 nameOfDialog={dialog.nameOfDialog}
                 iconOfDialog={dialog.iconOfDialog}
                 lastMessage={dialog.messages[dialog.messages.length-1].message_body +'...'}
-                // user={props.user}
+                userId={dialog.userId}
             />
         ))
 

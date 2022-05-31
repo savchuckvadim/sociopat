@@ -159,7 +159,7 @@ const DialogsContainer = (props) => {
 
     }, [])
 
-    if (props.dialogs) {
+    if (props.dialogs.length > 0) {
         return <Dialogs {...props} />
     }
     return <LightLoadingPageContainer />

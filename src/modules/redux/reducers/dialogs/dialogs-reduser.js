@@ -45,6 +45,7 @@ export const getDialogs = () => async (dispatch) => {
 
         return {
             id: i,
+            userId: u.id,
             nameOfDialog: u.name,
             iconOfDialog: u.photos.small,
             messages: messages
@@ -70,5 +71,5 @@ const dialogsReducer = (state = initialState, action) => {
 
 }
 
-    export default dialogsReducer;
+export default dialogsReducer;
 

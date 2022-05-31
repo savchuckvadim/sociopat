@@ -2,12 +2,19 @@ import { NavLink } from 'react-router-dom'
 import style from './Avatar.module.css'
 
 const Avatar = (props) => {
+
+    // size={68}
+    // border={false}
+    // name={props.nameOfDialog}
+    // link={`../profile/${props.uerId}`}
+    // img={props.iconOfDialog}
+
     let initials = 'SP.'
     props.name
         ? initials = (props.name.substring(0, 1) + props.name.slice(-1)).toUpperCase()
         : initials = 'SP.'
 
-    
+
     let cursor = props.link && 'pointer'
     let avatar = <div className={style.avatar}
         style={{
@@ -24,7 +31,7 @@ const Avatar = (props) => {
 
     </div>
     if (props.link && props.link !== undefined) {
-        return <NavLink className={style.link} replace to={props.link}>{avatar}</NavLink>
+        return <NavLink className={style.link} to={props.link}>{avatar}</NavLink>
     } else {
         return avatar
     }

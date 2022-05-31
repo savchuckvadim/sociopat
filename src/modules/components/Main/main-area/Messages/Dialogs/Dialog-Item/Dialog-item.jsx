@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import Icon from "../../../../Elements/Icon";
+import Avatar from "../../../../../Elements/Avatar/Avatar";
 import style from './Dialog-item.module.css';
-import status from '../../../../../../assets/imgs/dialogs/message-status-red.svg'
+import status from '../../../../../../../assets/imgs/dialogs/message-status-red.svg'
 
 const DialogItem = (props) => {
     //id
@@ -17,7 +17,15 @@ const DialogItem = (props) => {
             // activeClassname='activeDialog'
             className={style.dialog}>
             <div className={style.icon__wrapper}>
-                <Icon user={props.user} />
+                {/* <Icon user={props.user} /> */}
+                <Avatar
+                size={68}
+                border={false}
+                name={props.nameOfDialog}
+                link={`../profile/${props.userId}`}
+                img={props.iconOfDialog}
+
+                />
             </div>
 
             <div className={style.lastMessage}>
