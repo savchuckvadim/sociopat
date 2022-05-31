@@ -8,7 +8,7 @@ const Paginator = (props) => {
         pages.push(i)
     }
 
-    debugger
+    
     return (
         <>
             {pages.map(p => {

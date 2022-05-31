@@ -22,7 +22,7 @@ const DialogItem = (props) => {
                 size={68}
                 border={false}
                 name={props.nameOfDialog}
-                link={`../profile/${props.userId}`}
+                link={`../../profile/${props.userId}`}
                 img={props.iconOfDialog}
 
                 />

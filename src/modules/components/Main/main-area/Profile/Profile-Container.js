@@ -88,7 +88,7 @@ class ProfileContainer extends React.Component {
     }
     render() {
         
-       if(this.props.params.userId && this.props.params.userId !== this.props.auth.id) return <Navigate replace to={'../profile'} />
+       if(this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth.id}`) return <Navigate replace to={'../profile'} />
         return (
 
             <Profile {...this.props}
