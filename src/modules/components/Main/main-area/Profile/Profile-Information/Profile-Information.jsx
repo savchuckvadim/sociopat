@@ -1,6 +1,6 @@
 import style from './Profile-Information.module.css'
 import hero from '../../../../../../assets/imgs/Vector.png'
-
+import camera from '../../../../../../assets/imgs/posts/camera-photo.svg'
 import ProfileButtons from './Buttons/Profile-Buttons';
 import ProfileStatus from './Status/Profile-Status';
 import ProfileStatistics from './Statistics/Profile-Statistics';
@@ -51,13 +51,16 @@ const ProfileInformation = (props) => {
                     name={props.userName}
                     img={props.profile.photos.small}
                 />
-               
-            </div>
-            <div 
-            // onMouseOver={()=>{}}
-             className={style.changePhoto}>
 
-             </div>
+            </div>
+            <div
+                // onMouseOver={()=>{}}
+                className={style.changePhoto}>
+                    <img className={style.camera}  src={camera} alt="camera" />
+                <p className={style.title__changePhoto}>
+                   load photo
+                </p>
+            </div>
 
 
         </div>
