@@ -51,7 +51,13 @@ const ProfileInformation = (props) => {
                     name={props.userName}
                     img={props.profile.photos.small}
                 />
+               
             </div>
+            <div 
+            // onMouseOver={()=>{}}
+             className={style.changePhoto}>
+
+             </div>
 
 
         </div>
