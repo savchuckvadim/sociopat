@@ -1,8 +1,10 @@
-.background{
+.cover{
+    top: 90px;
+    
+    width: 33.3vw;
+    height: calc(100vh - 90px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 7%;
     position: absolute;
-    min-height: 30000px;
-    min-width: 100vh;
-    margin: 0;
-    padding: 0;
-    background-color: '#F4F4F4';
 }

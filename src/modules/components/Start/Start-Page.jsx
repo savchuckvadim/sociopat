@@ -9,12 +9,16 @@ import { Route, Routes } from "react-router-dom"
 
 import ProfileContainer from '../Main/main-area/Profile/Profile-Container'
 import LoginPage from '../Login-Page/Login-Page'
+import Background from '../Elements/Backgounds/Background'
 const Start = () => {
 
     return (
 
-        <div className={style.start__page}>
-            <div className={style.wrapper} >
+        <div className={style.start__page}
+
+        >
+           <Background dark={true} />
+                <div className={style.wrapper} >
                 <div className={style.logo__wrapper}>
                     <img className={style.redLogo} src={redLogo} alt='img-logo' />
                     <img className={style.inscriptionLogog} src={inscriptionLogog} alt='inscription-logo' />
@@ -46,9 +50,12 @@ const Start = () => {
                 <div>
                     <p>© 2022 Sociopath. All rights reserved</p>
                 </div>
-            </div>
+            
 
-            <img className={style.greyLogo} src={redLogo} alt='img-logo' />
+            </div>
+            
+
+            {/* <img className={style.greyLogo} src={redLogo} alt='img-logo' /> */}
 
         </div>
 
