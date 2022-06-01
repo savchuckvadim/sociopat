@@ -10,6 +10,8 @@ const SET_VISITED_USER = 'SET_VISITED_USER'
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_PROFILE_PAGE_DATA = 'SET_PROFILE_PAGE_DATA'
+const SET_PHOTO = 'SET_PHOTO'
+
 
 let initialState = {
     profile: null,
@@ -56,6 +58,7 @@ export const addPostActionCreator = (value) => {
 
 export const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
 const setStatus = (status) => ({ type: SET_STATUS, status })
+const setPhotos = (photos) => ({ type: SET_PHOTO, photos })
 const setVisitedUser = (user) => ({ type: SET_VISITED_USER, user })
 const setProfilePageData = (status, profile, user) => (
     {
@@ -85,32 +88,6 @@ const profileReducer = (state = initialState, action) => {
 
             return state
 
-        case SET_VISITED_USER:
-
-
-            if (result.visitedUser) {
-
-
-                if (result.visitedUser.name !== action.user.name) {
-
-                    result = {
-                        ...state
-                    }
-
-                    result.visitedUser = action.user
-                    return result
-                }
-            } else {
-
-                result = {
-                    ...state
-                }
-                result.visitedUser = action.user
-                return result
-
-            }
-
-            return state
 
         case FOLLOW:
 
@@ -144,8 +121,14 @@ const profileReducer = (state = initialState, action) => {
             }
             return state
 
+        case SET_PHOTO:
+           
+                result.profile = { ...state.profile }
+                result.profile.photos = action.photos
+                return result
+       
         case SET_PROFILE_PAGE_DATA:
-            
+
 
             if (result.status !== action.status) {      //status
                 result = { ...state }
@@ -166,7 +149,7 @@ const profileReducer = (state = initialState, action) => {
 
                 if (state.visitedUser.name !== action.user.name) {
                     result = { ...state }
-                    result.visitedUser = action.user 
+                    result.visitedUser = action.user
                 }
             } else {
 
@@ -199,7 +182,7 @@ const profileReducer = (state = initialState, action) => {
 };
 
 export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
-    
+
     const resProfile = await profileAPI.getProfile(userId)
     const profile = resProfile.data;
     const users = await usersAPI.getUser(profile.fullName)
@@ -220,9 +203,6 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
 }
 export const getProfileAndSetVisitedUser = (userId) => async (dispatch) => {
-
-
-
 
     const res = await profileAPI.getProfile(userId)
     const profile = res.data;
@@ -256,6 +236,17 @@ export const updateStatus = (status) => async (dispatch) => {
 
     if (res.data.resultCode === 0) {
         dispatch(setStatus(status))
+    }
+
+}
+export const loadPhoto = (photo) => async (dispatch) => {
+
+    const res = await profileAPI.loadPhoto(photo)
+    debugger
+    if (res.data.resultCode === 0) {
+        let photos = res.data
+        debugger
+        dispatch(setPhotos(photos))
     }
 
 }

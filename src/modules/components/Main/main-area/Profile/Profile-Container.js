@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux"
 import { Navigate, useParams } from "react-router-dom";
 import { compose } from "redux";
-import {  getDataForLoadProfilePage, getProfileAndSetVisitedUser, getStatus, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
+import {  getDataForLoadProfilePage, getProfileAndSetVisitedUser, getStatus, loadPhoto, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
 
 
 
@@ -110,7 +110,8 @@ export default compose(
         getProfileAndSetVisitedUser,
         getStatus,
         updateStatus,
-        getDataForLoadProfilePage
+        getDataForLoadProfilePage,
+        loadPhoto
 
     }),
     withRouter,

@@ -12,13 +12,13 @@ const instance = axios.create({
 
 export const usersAPI = {
 
-    
+
 
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
     },
     getUser(name) {
-        
+
         return instance.get(`users?term=${name}`).then(res => res.data)
     },
 
@@ -52,36 +52,57 @@ export const profileAPI = {
     },
 
     updateStatus(status) {
-      
+
         return instance.put(`profile/status`, {
             status: status
         })
+    },
+    loadPhoto(photo) {
+
+        let formData = new FormData()
+
+        formData.append('image', photo)
+
+        // const res = axios({
+        //     method: 'put',
+        //     url: 'https://social-network.samuraijs.com/api/1.0/profile/photo',
+        //     data: formData,
+        //     headers: {
+        //         'API-KEY': 'a4d4d821-994c-44e2-8c4d-82bd68d24d0f',
+        //         'Content-Type': `multipart/form-data`,
+        //     },
+        // });
+        // debugger
+        // return res
+            return instance.put(`profile/photo`, formData,  
+            {headers: { "Content-Type": "multipart/form-data" }}
+        )
+        
+
     }
-
-
 }
 
 export const authAPI = {
-    me() {
-        return instance.get(`auth/me`).then(res => res.data)
-    },
-    login(email, password, rememberMe = true) {
-      
-        return instance.post( 'auth/login', {
-            email: email,
-            password: password,
-            rememberMe: rememberMe
+        me() {
+            return instance.get(`auth/me`).then(res => res.data)
+        },
+        login(email, password, rememberMe = true) {
 
-        })
-    },
-    logout() {
-      
-        return instance.delete( 'auth/login')
+            return instance.post('auth/login', {
+                email: email,
+                password: password,
+                rememberMe: rememberMe
+
+            })
+        },
+        logout() {
+
+            return instance.delete('auth/login')
+        }
     }
-}
 
 export const  fishAPI = {
-    get(){
-        return axios.get('https://fish-text.ru/get?type=sentence&number=20&format=json').then(res => res.data.text)
+        get() {
+            return axios.get('https://fish-text.ru/get?type=sentence&number=20&format=json').then(res => res.data.text)
+        }
     }
-}
