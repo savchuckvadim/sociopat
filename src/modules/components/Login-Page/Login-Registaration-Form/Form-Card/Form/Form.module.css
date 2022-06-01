@@ -6,6 +6,13 @@
     text-align: center;
     align-self: center;
 }
+@media screen and (max-width: 520px) {
+    .button__container{
+        min-width: 550px;
+        width: calc(100% + 32px);
+        
+    }
+}
 .registration{
     display: flex;
     flex-direction: column;
@@ -33,6 +40,7 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
+    min-width: 100%;
 }
 .login
 {
@@ -61,7 +69,8 @@ margin: 0;
     margin: 8px 0;
     padding: 0 16px;
     height: 56px;
-    min-width: 438px;
+    min-width: 97%;
+    /* max-width: 406px; */
     display: flex;
     justify-content: center;
     align-items: center;

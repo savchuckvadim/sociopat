@@ -73,14 +73,26 @@ align-items: center;
 .slogan__text{
 font-size: larger;
 }
+
+@media screen and (max-width: 450px ){
+    .button__wrapper{
+        width: 100px;
+    }
+    .wrapper{
+        min-width: 300px;
+    }
+}
 .buttons__wrapper{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 .button__wrapper{
     height: 56px;
     width: 219px;
-    margin: 0 5px;
+    margin: 10px 5px;
+    
 }
 .button__link{
     text-decoration: none;

@@ -1,12 +1,54 @@
 .cover{
     margin: 0;
     padding: 0;
-    top: 90px;
+    top: 70px;
     
-    width: 33.3vw;
-    height: calc(100vh - 90px);
+    width: 650px;
+    height: calc(100vh - 70px);
     background-size: 100%;
     background-repeat: no-repeat;
-    opacity: 7%;
+    opacity: 5%;
     position: absolute;
+}
+
+@media screen and (max-width: 991px) {
+    .cover{
+        top: 100px;
+        width: 600px;
+        height: calc(100vh - 90px);
+       
+    }
+}
+@media screen and (max-width: 600px) {
+    .cover{
+        top: 150px;   
+        width: 550px;
+        height: calc(100vh - 150px);
+
+
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .cover{
+        top: 150px;    
+        width: 450px;
+        height: calc(100vh - 180px);
+
+
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .cover{
+        top: 33vh;      
+        width: 300px;
+        height: calc(67vh);
+       
+    }
+}
+@media screen and (max-width: 300px) {
+    .cover{
+       display: none;
+    }
 }

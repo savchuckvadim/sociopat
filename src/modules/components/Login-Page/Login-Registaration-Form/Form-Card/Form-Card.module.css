@@ -6,6 +6,22 @@
     text-align: center;
     align-self: center;
 }
+@media screen and (max-width: 520px) {
+    .line__wrapper, .description, .link__container{
+        width: 70vw;
+    }
+    .form__container, .line__wrapper{
+       max-width: 79vw;
+    }
+    .line {
+        width: 73vw;
+    }
+    .button__container{
+        min-width:  73vw;
+        width:  73vw;
+    }
+   
+}
 .line__wrapper{
     margin: 8px 0;
     padding: 0;
