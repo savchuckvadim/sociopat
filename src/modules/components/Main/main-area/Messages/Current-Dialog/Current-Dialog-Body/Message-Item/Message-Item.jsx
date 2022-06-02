@@ -8,13 +8,14 @@ const Message = (props) => {
     let userId = props.userId
     let iconOfDialog = props.iconOfDialog
 
-    debugger
+    
 if(props.message.send === 'to'){
     nameOfDialog = props.currentAuthUser.fullName
     userId = props.currentAuthUser.userId
     iconOfDialog = props.currentAuthUser.photos.small
 
 }
+
     return (
         <div key={`${props.userId}-${props.id}`} className={style.wrapper}>
             <Avatar

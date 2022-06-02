@@ -15,7 +15,7 @@ const CurrentDialogsCard = (props) => {
         dispatch(reset('sendMessage'))
     }
 
-    
+   
     return (
         <div className={style.container}>
             <div className={style.header}>
@@ -25,7 +25,11 @@ const CurrentDialogsCard = (props) => {
                     src={arrow}
                     alt="arrow" />
                 <div className={style.author}>
-                    <Author userName={'Fake Name'} siz={46} />
+                    <Author 
+                    userName={props.dialog.nameOfDialog} 
+                    size={46} 
+                    userId={props.dialog.userId}
+                    />
                 </div>
 
             </div>

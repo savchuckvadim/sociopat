@@ -5,7 +5,7 @@ import Avatar from '../Avatar/Avatar'
 const Author = (props) => {
     let link = false
     props.userId 
-    ? link = `../profile/${props.userId }`
+    ? link = `../../profile/${props.userId }`
     : link = false
     
 
