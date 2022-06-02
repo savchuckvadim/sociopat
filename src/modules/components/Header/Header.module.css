@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  /* z-index: 3; */
 }
 
 .container {
@@ -22,7 +22,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-   z-index: 3;
+   /* z-index: 3; */
 }
 .menu{
   display: none;
@@ -60,11 +60,12 @@
   margin: 0 10px;
 }
 
-.icon__container{
+.avatar{
   margin: 0;
   padding: 0;
   width:  40px;
   height: 40px;
+
   
  
 }

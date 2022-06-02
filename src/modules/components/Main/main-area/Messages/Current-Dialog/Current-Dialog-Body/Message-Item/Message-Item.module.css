@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    
 }
 
 .message, .author {
@@ -15,7 +16,48 @@
 .author {
     font-weight: 600;
 }
-.text__wrapper{
+.avatar{
+    padding: 0;
     margin: 0;
-    margin-left: 8px;
+    margin-top: 2px;
+}
+.text__wrapper {
+    margin: 0;
+    margin-left: 16px;
+    margin-right: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.date__wrapper {
+    min-width: 36px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.date {
+
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: right;
+    color:  rgba(33, 33, 33, 1);
+    opacity: 50%;
+    display: block;
+    padding: 0;
+    margin: 0;
+
+}
+
+.nameAndStatus__wrapper{
+    padding: 0;
+    margin: 0;
+    margin-right: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-width: 100%;
 }

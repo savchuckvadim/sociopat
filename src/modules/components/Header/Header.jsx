@@ -34,7 +34,7 @@ const Header = (props) => {
 
                     </div>
 
-                    <div className={style.icon__container}>
+                    {/* <div className={style.avatar}> */}
                         {/* <Icon img={ava} /> */}
                          
                           <Avatar
@@ -45,7 +45,7 @@ const Header = (props) => {
                         />
                         
                        
-                    </div>
+                    {/* </div> */}
 
 
                 </div>

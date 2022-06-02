@@ -39,6 +39,7 @@ const ProfileInformation = (props) => {
                         <ProfileButtons
                             userId={props.params.userId}
                             visitedUser={props.visitedUser}
+                            loadPhoto={props.loadPhoto}
                         />
                     </div>
 
