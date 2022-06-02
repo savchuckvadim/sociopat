@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/sociopat/static/css/main.44d9b1f1.css",
+    "main.js": "/sociopat/static/js/main.287845f7.js",
+    "static/js/787.b8bac2a7.chunk.js": "/sociopat/static/js/787.b8bac2a7.chunk.js",
+    "static/media/no-messages.svg": "/sociopat/static/media/no-messages.f2942bc548652fc9ebb075aa7c5a5031.svg",
+    "static/media/Vector.png": "/sociopat/static/media/Vector.fcb121cc094871d967be.png",
+    "static/media/Sociopath.svg": "/sociopat/static/media/Sociopath.1949d6d74507bf67b969f7c5e97babbc.svg",
+    "static/media/logo.svg": "/sociopat/static/media/logo.dfe22fc86c986936d67976ad980f02bf.svg",
+    "static/media/grey-logo.svg": "/sociopat/static/media/grey-logo.ccacd5dc0c8050eb49178d54bbe41583.svg",
+    "static/media/knife.svg": "/sociopat/static/media/knife.2f40f11391d745f8a7ef489e4d71398c.svg",
+    "index.html": "/sociopat/index.html",
+    "static/media/dots-menu.svg": "/sociopat/static/media/dots-menu.99c2d791af3aa69943c718a822eff93b.svg",
+    "static/media/camera-photo.svg": "/sociopat/static/media/camera-photo.6be030ed03230d1c95cf358ff79b8063.svg",
+    "static/media/eye.svg": "/sociopat/static/media/eye.de06e7f0adfbecc27f9fe69deeaaabad.svg",
+    "static/media/menu-burger.svg": "/sociopat/static/media/menu-burger.f737d3ffb844c9d6ac75e2b5fc02a05e.svg",
+    "static/media/message-status-red.svg": "/sociopat/static/media/message-status-red.24bce13e3950f38bc88b35cf7dd01f91.svg",
+    "static/media/status-readed.svg": "/sociopat/static/media/status-readed.24bce13e3950f38bc88b35cf7dd01f91.svg",
+    "static/media/reply-share-circle.svg": "/sociopat/static/media/reply-share-circle.975253e7d552bc25af89d57c24c7743b.svg",
+    "static/media/arrow-up.svg": "/sociopat/static/media/arrow-up.df5c3c0daa5516a54e113bd92593a774.svg",
+    "static/media/arrow.svg": "/sociopat/static/media/arrow.adfed45a10ccde70cf8e9bc81dae6bae.svg",
+    "main.44d9b1f1.css.map": "/sociopat/static/css/main.44d9b1f1.css.map",
+    "main.287845f7.js.map": "/sociopat/static/js/main.287845f7.js.map",
+    "787.b8bac2a7.chunk.js.map": "/sociopat/static/js/787.b8bac2a7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.44d9b1f1.css",
+    "static/js/main.287845f7.js"
+  ]
+}
