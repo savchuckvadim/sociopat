@@ -1,7 +1,6 @@
 .menu {
-    /* margin-top: 10px; */
-    min-width: 100%;
  
+    min-width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -15,52 +14,49 @@
     align-items: center;
     text-decoration: none;
     color: black;
-    /* font-family: 'Inter', sans-serif; */
+  
     padding: 0 16px;
    
     height: 40px;
     width: 100%;
     border-radius: 16px;
 }
+.item svg path{
+    stroke:  rgba(33, 33, 33, 1);
+
+
+}
 
 .name{
     margin: 15px ;
 }
 
-.icon, .iconRed {
+.icon {
     width: 24px;
     height: 24px;
-    /* margin-right: 8px; */
+    margin-right: 8px;
 }
 
-.icon {
-    /* opacity: 1000%; */
-}
 
-/* .item svg path{
-    stroke: rgb(255, 0, 0);
-    opacity: 100%;
-} */
-.iconRed path {
-    stroke: rgb(255, 0, 0);
 
-}
-
-.active{
-    color: red;
-
-}
 .activeItem {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     text-decoration: none;
-    color: red;
+    color:  rgba(244, 72, 72, 1);
+
     background-color: white;
     /* font-family: 'Inter', sans-serif; */
     padding: 0 16px;
     height: 40px;
     width: 100%;
     border-radius: 16px;
+}
+
+.activeItem svg path{
+    stroke: rgba(244, 72, 72, 1);
+
+    opacity: 100%;
 }

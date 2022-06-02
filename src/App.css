@@ -49,7 +49,7 @@ p, textarea{
 }
 
 
-.active {
+/* .active {
   
   margin: 0px;
   background-color: white;
@@ -64,9 +64,9 @@ p, textarea{
 
 .active path{
   stroke: rgb(255, 0, 0);
-  opacity: 1150%;
-  z-index: 100;
-}
+  opacity: 110%;
+  
+} */
 
 .test-container{
   margin: 0 auto;

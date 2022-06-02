@@ -6,14 +6,10 @@ import burger from '../../../assets/imgs/header/menu-burger.svg'
 import LogoutContainer from './Logout-Container';
 import Avatar from '../Elements/Avatar/Avatar';
 const Header = (props) => {
-    let login = 'Login'
+   
     let avatar = null
     let name = null
-    // const logout = <NavLink to='../'>logout</NavLink>
-    if (props.auth.login) {
-        login = props.auth.login
 
-    }
     if (props.user.userId) {
 
         avatar = props.user.photos.small

@@ -79,8 +79,6 @@ export const login = (email, password, rememberMe) => (dispatch) => {
     authAPI.login(email, password, rememberMe)
         .then(res => {
             const resultCode = res.data.resultCode;
-            // const data = res.data;
-            console.log(resultCode)
 
             if (resultCode === 0) {
 
@@ -103,7 +101,6 @@ export const logout = () => (dispatch) => {
     authAPI.logout()
         .then(res => {
             const resultCode = res.data.resultCode;
-            // const data = res.data;
 
             if (resultCode === 0) {
                 dispatch(setAuthUserData(null, null, null, false))

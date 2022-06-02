@@ -1,11 +1,11 @@
-import './Input.css';
+import style from './Input.module.css';
 import React from 'react';
 import getLoginRegistrationIcon from '../../../../../../../assets/imgs/login-form/login-registartion-imgs';
 
  const Input = (field) => {
 
     let index = 0
-    let containerClasses = ['container', 'containerFocus']
+    let containerClasses = [style.container, style.containerFocus]
     let error = null
 
     if (field.meta.active || field.input.value) {
@@ -27,7 +27,7 @@ import getLoginRegistrationIcon from '../../../../../../../assets/imgs/login-for
                 <input
                     {...field.input}
                     key={field.placeholder}
-                    className='input'
+                    className={style.input}
                     type={`${field.type}`}
                     placeholder={field.placeholder} />
                 {error}

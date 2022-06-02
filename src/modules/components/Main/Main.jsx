@@ -1,7 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import style from './Main.module.css';
-import Messages from "./main-area/Messages/Messages";
-import { NavMenuContainer } from "./Nav-Menu/Nav-Menu-Container";
+import NavMenuContainer from "./Nav-Menu/Nav-Menu-Container";
 import ProfileContainer from "./main-area/Profile/Profile-Container";
 import UsersContainer from "./main-area/Users/Users-Container";
 import MessagesContainer from "./main-area/Messages/Messages-Container";

@@ -10,18 +10,6 @@
     margin:  5px 0px;
  
 }
-.item p, .itemFocus p {
+.item p {
 font-weight: 600;
-}
-.item{
-    background-color: none;
-    
-} 
-.itemFocus{
-  
-    background-color: white;
-    color: red;
-}
-.itemFocus p{
-    color: red;
 }
