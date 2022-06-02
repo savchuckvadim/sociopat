@@ -1,4 +1,4 @@
-import Icon from '../../../../Elements/Icon';
+
 import style from './Post.module.css';
 import dislike from '../../../../../../assets/imgs/posts/knife.svg';
 import repost from '../../../../../../assets/imgs/posts/reply-share-circle.svg';

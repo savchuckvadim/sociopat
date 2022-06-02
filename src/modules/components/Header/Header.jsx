@@ -1,8 +1,7 @@
 import style from './Header.module.css';
 import logo from '../../../assets/imgs/logo.svg'
 import burger from '../../../assets/imgs/header/menu-burger.svg'
-import Icon from '../Elements/Icon';
-import { NavLink } from 'react-router-dom';
+
 
 import LogoutContainer from './Logout-Container';
 import Avatar from '../Elements/Avatar/Avatar';

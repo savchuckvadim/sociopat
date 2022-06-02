@@ -1,18 +1,22 @@
 import { NavLink } from 'react-router-dom';
-import Icon from '../../../Elements/Icon';
+import logo from '../../../../../assets/imgs/grey-logo.svg'
 import style from './User-Card.module.css';
 import FollowUnfollowButtons from '../../../Elements/Button/Follow-Unfollow-Buttons/Follow-Unfollow-Buttons';
+import Avatar from '../../../Elements/Avatar/Avatar';
 
 const UserCard = (props) => {
 
-
-    let ava = props.user.photos.small
+debugger
     return (
         <div className={style.frame}>
-            <div className={style.icon__wrapper}>
-                <Icon user={ava} />
+           
+                <Avatar
+                size={68}
+                name={props.name}
+                link={`../profile/${props.user.id}`}
+                img={props.user.photos.small}
+                />
 
-            </div>
             <NavLink className={style.login} to={'../profile/' + props.user.id}>
                 <p onClick={() => {
                     // props.setVisitedUser(props.user)

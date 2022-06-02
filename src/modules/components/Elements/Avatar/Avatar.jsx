@@ -15,7 +15,7 @@ const Avatar = (props) => {
         : initials = 'SP.'
 
 
-    let cursor = props.link && 'pointer'
+
     let avatar = <div className={style.avatar}
         style={{
             backgroundImage: ` url(${props.img || null})`,

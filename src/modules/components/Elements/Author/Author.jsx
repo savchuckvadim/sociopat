@@ -1,5 +1,5 @@
 import style from './Author.module.css'
-import Icon from '../Icon'
+
 import Avatar from '../Avatar/Avatar'
 
 const Author = (props) => {
@@ -28,7 +28,7 @@ const Author = (props) => {
                     height: iconSize
                 }}
             >
-                {/* <Icon user={props.user} /> */}
+               
                 <Avatar
                 {...props}
                 size={iconSize}
