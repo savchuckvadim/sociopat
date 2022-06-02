@@ -1,0 +1,39 @@
+.changePhoto{
+    position: absolute;
+    top: 175px;
+    border-radius: 10% 10% 50% 50% / 0 0 100% 100%;
+    height: 45px;
+    width: 122px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    /* background-color: white;  */
+    
+}
+.changePhoto:hover{
+    background-color: rgb(255, 255, 255); 
+    opacity: 60%;
+    cursor: pointer;
+   
+}
+.changePhoto:hover p, image {
+display: inline-block;
+   
+}
+.changePhoto:hover img {
+    display: block;
+       
+    }
+.title__changePhoto{
+    color: #595959;
+    display: none;
+    font-size: xx-small;
+    margin-left: 3px;
+
+}
+.camera{
+    display: none;
+    width: 10px;
+}

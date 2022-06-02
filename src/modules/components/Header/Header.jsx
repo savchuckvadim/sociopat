@@ -36,9 +36,6 @@ const Header = (props) => {
                 <div className={style.currentUser}>
                     <div className={style.name}>
                         <LogoutContainer />
-                        {/* <NavLink to='profile' >
-                            {login}
-                        </NavLink> */}
 
                     </div>
 

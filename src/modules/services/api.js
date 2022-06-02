@@ -63,17 +63,6 @@ export const profileAPI = {
 
         formData.append('image', photo)
 
-        // const res = axios({
-        //     method: 'put',
-        //     url: 'https://social-network.samuraijs.com/api/1.0/profile/photo',
-        //     data: formData,
-        //     headers: {
-        //         'API-KEY': 'a4d4d821-994c-44e2-8c4d-82bd68d24d0f',
-        //         'Content-Type': `multipart/form-data`,
-        //     },
-        // });
-        // debugger
-        // return res
             return instance.put(`profile/photo`, formData,  
             {headers: { "Content-Type": "multipart/form-data" }}
         )

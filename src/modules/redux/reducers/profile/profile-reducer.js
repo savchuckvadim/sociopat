@@ -122,11 +122,12 @@ const profileReducer = (state = initialState, action) => {
             return state
 
         case SET_PHOTO:
-           
-                result.profile = { ...state.profile }
-                result.profile.photos = action.photos
-                return result
-       
+            
+            result = { ...state }
+            result.profile = { ...state.profile }
+            result.profile.photos = { ...action.photos }
+            return result
+
         case SET_PROFILE_PAGE_DATA:
 
 
@@ -242,10 +243,10 @@ export const updateStatus = (status) => async (dispatch) => {
 export const loadPhoto = (photo) => async (dispatch) => {
 
     const res = await profileAPI.loadPhoto(photo)
-    debugger
+
     if (res.data.resultCode === 0) {
-        let photos = res.data
-        debugger
+        let photos = res.data.data.photos
+
         dispatch(setPhotos(photos))
     }
 

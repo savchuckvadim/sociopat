@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
-
+import React from 'react';
 import {LightLoadingPageContainer} from '../../../Elements/Loading/Light-Loading-Page-Container'
 import Post from './Posts/Post';
-// import { ProfileBaseContainer } from './Profile-Base/Profile-Base-Container';
 import ProfileInformation from './Profile-Information/Profile-Information';
 import style from './Profile.module.css';
 import { SendPostContainer } from './Send-Post/Send-Post-Container';
 
 
 export const Profile = (props) => {
- 
+  
    let userName = null
    let img = null
    
@@ -31,7 +29,6 @@ export const Profile = (props) => {
   }
   
     
-    // if(!props.isAuth) {return <Navigate replace to='../login' />}
 let profile
  props.profile 
  ?  profile = <div className={style.profile__container}>

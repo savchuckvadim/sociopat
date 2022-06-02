@@ -4,7 +4,7 @@ import { profileAPI, authAPI } from "../../../services/api";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 const SET_AUTH_CURRENT_USER = 'SET_AUTH_CURRENT_USER';
-
+const SET_PHOTO ='SET_PHOTO'
 let initialState = {
     auth: {
         "id": null,
@@ -17,8 +17,8 @@ let initialState = {
 
 export const setAuthUserData = (id = null, login = null, email = null, isAuth = false) =>
 ({
-    type: SET_USER_DATA, 
-    data: { id, login, email }, 
+    type: SET_USER_DATA,
+    data: { id, login, email },
     isAuth
 })
 
@@ -39,7 +39,15 @@ const authReducer = (state = initialState, action) => {
 
             return result;
         case SET_AUTH_CURRENT_USER:
-            return {...state, currentUser: action.userProfile};
+            return { ...state, currentUser: action.userProfile };
+
+        case SET_PHOTO:
+
+            result = { ...state }
+            result.currentUser = { ...state.currentUser }
+            result.currentUser.photos = { ...action.photos }
+            return result
+
         default:
             return result;
     }
