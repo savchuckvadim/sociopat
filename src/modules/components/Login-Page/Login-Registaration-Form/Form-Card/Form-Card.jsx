@@ -5,22 +5,34 @@ import Form from './Form/Form'
 const FormCard = (props) => {
     let type = props.type
     const onSubmit = (values) => {
-      
-        props.login(values.email, values.password, true)
-        return <Navigate replace to='/hbvhk'/>
+        console.log(props.type)
+        switch (props.type) {
+            case 'login':
+
+                props.login(values.email, values.password, true)
+                return <Navigate replace to='/hbvhk' />
+
+            case 'registration':
+                debugger
+                props.setNewUser(values.name, values.surname, values.email, values.password, values.repeatPassword)
+                break;
+            default:
+                break;
+        }
+
     }
- 
-    if(props.isAuth) {return <Navigate replace to='../profile' />}
+
+    if (props.isAuth) { return <Navigate replace to='../profile' /> }
     return (
         <div className={style.wrapper}>
-          
+
             <div className={style.form__title}>
                 <h1>
                     {props.title}
                 </h1>
-                <p>{props.error 
-                ? <span className={style.error}>{props.error}</span>  
-                : props.instruction}</p>
+                <p>{props.error
+                    ? <span className={style.error}>{props.error}</span>
+                    : props.instruction}</p>
             </div>
 
             <div className={style.form__container}>

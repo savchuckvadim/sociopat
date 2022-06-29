@@ -1,10 +1,11 @@
 import { stopSubmit } from "redux-form";
 import { profileAPI, authAPI } from "../../../services/api";
+import { laravelAPI } from "../../../services/api-laravel";
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
 const SET_AUTH_CURRENT_USER = 'SET_AUTH_CURRENT_USER';
-const SET_PHOTO ='SET_PHOTO'
+const SET_PHOTO = 'SET_PHOTO'
 let initialState = {
     auth: {
         "id": null,
@@ -76,7 +77,26 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 
 
 
-    authAPI.login(email, password, rememberMe)
+    // authAPI.login(email, password, rememberMe)
+    //     .then(res => {
+    //         const resultCode = res.data.resultCode;
+
+    //         if (resultCode === 0) {
+
+    //             dispatch(getAuth())
+
+    //         } else {
+    //             let message = res.data.messages.length > 0 ? res.data.messages[0] : 'Email or Password was wrong !'
+
+    //             let action = stopSubmit('login', {
+    //                 _error: message
+    //             })
+    //             dispatch(action)
+    //         }
+
+    //     })
+
+    laravelAPI.login(email, password, rememberMe)
         .then(res => {
             const resultCode = res.data.resultCode;
 

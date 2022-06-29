@@ -1,3 +1,4 @@
+import { laravelAPI } from '../../services/api-laravel'
 import {
     getAuth
 } from './auth/auth-reducer'
@@ -60,6 +61,7 @@ export const initialize = () => (dispatch) => {
     })
 
 
+    laravelAPI.me()
     
 }
 

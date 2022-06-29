@@ -6,19 +6,27 @@ import RedButton from '../Elements/Button/Red-Button'
 import WhiteButton from '../Elements/Button/White-Button'
 import { Navigate, NavLink } from 'react-router-dom'
 import { Route, Routes } from "react-router-dom"
-
-import ProfileContainer from '../Main/main-area/Profile/Profile-Container'
 import LoginPage from '../Login-Page/Login-Page'
 import Background from '../Elements/Backgounds/Background'
+import { laravelAPI } from '../../services/api-laravel'
+import RegistrationPage from '../Login-Page/Registration-Page'
+
+
 const Start = () => {
 
+    const requestToken = () => {
+        laravelAPI.createToken()
+    }
+    const getUsers = () => {
+        laravelAPI.getUsers()
+    }
     return (
 
         <div className={style.start__page}
 
         >
-           <Background dark={true} />
-                <div className={style.wrapper} >
+            <Background dark={true} />
+            <div className={style.wrapper} >
                 <div className={style.logo__wrapper}>
                     <img className={style.redLogo} src={redLogo} alt='img-logo' />
                     <img className={style.inscriptionLogog} src={inscriptionLogog} alt='inscription-logo' />
@@ -38,11 +46,18 @@ const Start = () => {
                             </NavLink>
                         </div>
                         <div className={style.button__wrapper}>
-                            <WhiteButton
-                                onClick={() => { return <Navigate redirect to='/' /> }}
+                        <NavLink className={style.button__link} to='../registration'>
+                                <WhiteButton border={16} name={'rEGISTRATION'} />
+                            </NavLink>
+                            {/* <WhiteButton
+                                onClick={() => {
+                                    requestToken()
+                                    getUsers()
+                                    return <Navigate redirect to='/' />
+                                }}
                                 name={'Sign up'}
                                 border={16}
-                            />
+                            /> */}
                         </div>
                     </div>
 
@@ -50,10 +65,10 @@ const Start = () => {
                 <div>
                     <p>© 2022 Sociopath. All rights reserved</p>
                 </div>
-            
+
 
             </div>
-            
+
 
             {/* <img className={style.greyLogo} src={redLogo} alt='img-logo' /> */}
 
@@ -68,8 +83,11 @@ const StartPage = () => {
         <>
             <Routes>
                 <Route path="/" element={<Start />} />
+                <Route path="*" index element={<Start />} />
+                <Route path="start" element={<Start />} />
                 <Route path="login" element={<LoginPage />} />
-                <Route path="profile" element={<Navigate replace to='../'/> } />
+                <Route path="registration" element={<RegistrationPage />} />
+                <Route path="profile" element={<Navigate replace to='../' />} />
             </Routes>
 
         </>

@@ -7,7 +7,7 @@ export const symbol = type => value => {
             value.length < 8
                 ? error = 'Пароль неверный'
                 : error = undefined
-        } else {
+        } else if (type === 'email') {
 
             if (value && value.indexOf('@') !== -1) {
 
@@ -24,4 +24,17 @@ export const symbol = type => value => {
 
 export const emailValidate = symbol('email')
 export const passwordValidate = symbol('password')
+
+export const requiredFields = (value) => {
+    let error = undefined
+    if (!value) {
+
+        error = 'Не заполнено'
+    }
+
+
+       
+    return error
+}
+
 

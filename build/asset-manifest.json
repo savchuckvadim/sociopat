@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/sociopat/static/css/main.44d9b1f1.css",
-    "main.js": "/sociopat/static/js/main.287845f7.js",
+    "main.js": "/sociopat/static/js/main.b78bd580.js",
     "static/js/787.b8bac2a7.chunk.js": "/sociopat/static/js/787.b8bac2a7.chunk.js",
     "static/media/no-messages.svg": "/sociopat/static/media/no-messages.f2942bc548652fc9ebb075aa7c5a5031.svg",
     "static/media/Vector.png": "/sociopat/static/media/Vector.fcb121cc094871d967be.png",
@@ -20,11 +20,11 @@
     "static/media/arrow-up.svg": "/sociopat/static/media/arrow-up.df5c3c0daa5516a54e113bd92593a774.svg",
     "static/media/arrow.svg": "/sociopat/static/media/arrow.adfed45a10ccde70cf8e9bc81dae6bae.svg",
     "main.44d9b1f1.css.map": "/sociopat/static/css/main.44d9b1f1.css.map",
-    "main.287845f7.js.map": "/sociopat/static/js/main.287845f7.js.map",
+    "main.b78bd580.js.map": "/sociopat/static/js/main.b78bd580.js.map",
     "787.b8bac2a7.chunk.js.map": "/sociopat/static/js/787.b8bac2a7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.44d9b1f1.css",
-    "static/js/main.287845f7.js"
+    "static/js/main.b78bd580.js"
   ]
 }

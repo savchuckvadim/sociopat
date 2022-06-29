@@ -1,6 +1,6 @@
 import { reduxForm } from 'redux-form'
 import { Field } from 'redux-form'
-import { emailValidate, passwordValidate, required, symbol } from '../../../../../utils/Validators/validator'
+import { emailValidate, passwordValidate, required, requiredFields, symbol } from '../../../../../utils/Validators/validator'
 import RedButton from '../../../../Elements/Button/Red-Button'
 
 import style from './Form.module.css'
@@ -27,9 +27,13 @@ let Form = (props) => {
 
     inputs = props.fields.map(field => {
 
-        field.name === 'email'
-        ? validate = emailValidate
-        : validate = passwordValidate
+        if(field.name === 'email'){
+            validate = emailValidate
+        }else if(field.name === 'password'){
+            validate = passwordValidate
+        }else {
+            validate = requiredFields
+        }
       
         return <Field
             component={Input}

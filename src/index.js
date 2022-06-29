@@ -11,15 +11,16 @@ import AppContainer from './App-Container.jsx';
 
 
 
-ReactDOM.render( 
-<React.StrictMode>
-  <Provider store={store}>
-    <BrowserRouter>
-      <AppContainer />
-    </BrowserRouter>
-  </Provider>
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <Provider store={store}>
 
-</React.StrictMode>,
+        <AppContainer />
+
+      </Provider>
+    </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById("root"))
 
 
