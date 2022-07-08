@@ -5,7 +5,7 @@ import Form from './Form/Form'
 const FormCard = (props) => {
     let type = props.type
     const onSubmit = (values) => {
-        console.log(props.type)
+        
         switch (props.type) {
             case 'login':
 
@@ -13,7 +13,7 @@ const FormCard = (props) => {
                 return <Navigate replace to='/hbvhk' />
 
             case 'registration':
-                debugger
+                
                 props.setNewUser(values.name, values.surname, values.email, values.password, values.repeatPassword)
                 break;
             default:

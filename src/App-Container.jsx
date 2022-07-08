@@ -8,7 +8,8 @@ import withAuthRedirect from "./modules/components/HOC/Auth-Redirect";
 import StartPage from "./modules/components/Start/Start-Page";
 import {initialize} from "./modules/redux/reducers/app-reducer";
 import {getAuth} from "./modules/redux/reducers/auth/auth-reducer";
-
+import { useSanctum } from "react-sanctum";
+import { laravelAPI } from "./modules/services/api-laravel";
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -32,10 +33,12 @@ const AppContainer = (props) => {
 
     useEffect(() => {
         props.initialize()
+        // laravelAPI.me()
+
     }, [])
 
-
-
+//     const { authenticated, user, signIn } = useSanctum();
+// console.log(authenticated)
     let app = <LightLoadingPageContainer />
 
 

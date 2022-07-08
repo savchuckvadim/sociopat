@@ -14,12 +14,12 @@ import RegistrationPage from '../Login-Page/Registration-Page'
 
 const Start = () => {
 
-    const requestToken = () => {
-        laravelAPI.createToken()
-    }
-    const getUsers = () => {
-        laravelAPI.getUsers()
-    }
+    // const requestToken = () => {
+    //     laravelAPI.createToken()
+    // }
+    // const getUsers = () => {
+    //     laravelAPI.getUsers()
+    // }
     return (
 
         <div className={style.start__page}

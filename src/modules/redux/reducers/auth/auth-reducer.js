@@ -67,6 +67,20 @@ export const getAuth = () => async (dispatch) => {
         getCurrentUser(data.id, dispatch)
     }
 }
+//////////////////////////////////////////////////////////////////////////LARAVEL
+export const laraGetAuth = () => async (dispatch) => {
+
+    let authUser = await laravelAPI.getAuthUser()
+    
+    if (authUser.data) {
+        dispatch(setAuthUserData(authUser.data.id, authUser.data.email, authUser.data.email, true));
+    }else{
+        dispatch(setAuthUserData(null, null, null, false));
+    }
+
+
+}
+//////////////////////////////////////////////////////////////////////////LARAVEL
 const getCurrentUser = async (userId, dispatch) => {
     const res = await profileAPI.getProfile(userId)
 
@@ -95,17 +109,19 @@ export const login = (email, password, rememberMe) => (dispatch) => {
     //         }
 
     //     })
-
+    //////////////////////////////////////////////////////////////////////////LARAVEL
     laravelAPI.login(email, password, rememberMe)
         .then(res => {
-            const resultCode = res.data.resultCode;
+            
+            const resultCode = res.status;
 
-            if (resultCode === 0) {
+            if (resultCode === 200) {
 
-                dispatch(getAuth())
+
+                dispatch(laraGetAuth())
 
             } else {
-                let message = res.data.messages.length > 0 ? res.data.messages[0] : 'Email or Password was wrong !'
+                let message = 'Email or Password was wrong !'
 
                 let action = stopSubmit('login', {
                     _error: message
@@ -114,21 +130,35 @@ export const login = (email, password, rememberMe) => (dispatch) => {
             }
 
         })
+        // .then(res =>
+        //     laravelAPI.getAuthUser()
+        // )
+        .then(res => console.log(res.data.id))
 
 }
 export const logout = () => (dispatch) => {
 
-    authAPI.logout()
-        .then(res => {
-            const resultCode = res.data.resultCode;
+    // authAPI.logout()
+    //     .then(res => {
+    //         const resultCode = res.data.resultCode;
 
-            if (resultCode === 0) {
-                dispatch(setAuthUserData(null, null, null, false))
-                dispatch(setAuthCurrentUser({}))
-            }
+    //         if (resultCode === 0) {
+    //             dispatch(setAuthUserData(null, null, null, false))
+    //             dispatch(setAuthCurrentUser({}))
+    //         }
+
+    //     })
+
+    //////////////////////////////////////////////////////////////////////////LARAVEL
+    laravelAPI.logout()
+        .then(res => {
+
+
+
+            dispatch(setAuthUserData(null, null, null, false))
+            dispatch(setAuthCurrentUser({}))
 
         })
-
 }
 
 export default authReducer

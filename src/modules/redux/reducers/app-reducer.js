@@ -1,6 +1,6 @@
 import { laravelAPI } from '../../services/api-laravel'
 import {
-    getAuth
+    getAuth, laraGetAuth
 } from './auth/auth-reducer'
 const INITIALIZED_SUCCES = 'INITIALIZED_SUCCES'
 const INITIALIZING = 'INITIALIZING'
@@ -8,6 +8,8 @@ const INITIALIZING = 'INITIALIZING'
 let initialState = {
     initialized: false,
     inProgress: false,
+    // laraInitialized: false,
+    // laraInProgress: false,
 }
 
 export const initializedSuccess = () => ({
@@ -43,14 +45,15 @@ const appReducer = (state = initialState, action) => {
 
 export const initialize = () => (dispatch) => {
 
-    let dispatchInitializing = () => {
+    // let dispatchInitializing = () => {
 
-        return dispatch(initializing())
-    }
+    //     return dispatch(initializing())
+    // }
 
     let promiseAuth = () => {
-
-        return dispatch(getAuth())
+//////////////////////////////////////////////////////////////////////////LARAVEL
+        // return dispatch(getAuth())
+        return dispatch(laraGetAuth())
     }
     dispatch(initializing()) 
     

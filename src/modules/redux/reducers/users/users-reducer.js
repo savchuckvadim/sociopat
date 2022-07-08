@@ -1,4 +1,5 @@
 import { usersAPI } from "../../../services/api";
+import { usersAPILaravel } from "../../../services/api-laravel";
 
 
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
@@ -12,8 +13,8 @@ const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS';
 
 const initialState = {
     users: [],
-    pageSize: 100,
-    totalUsersCount: 1000,
+    pageSize: 21,
+    totalUsersCount: 1,
     currentPage: 1,
     count: 0,
     isFetching: false,
@@ -116,12 +117,26 @@ export const unFollow = (userId) => ({ type: UNFOLLOW, userId })
 export const toggleFollowingInProgress = (userId, isFetching) => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching })
 
 
+// export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
+
+//     dispatch(fetching(true))
+
+//     let res = await usersAPI.getUsers(currentPage, pageSize)
+//             const users = res.items;
+//             dispatch(setTotalUsersCount(res.totalCount))
+//             dispatch(setUsers(users))
+//             dispatch(fetching(false))
+
+// }
+
 export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
 
     dispatch(fetching(true))
+    
 
-    let res = await usersAPI.getUsers(currentPage, pageSize)
-            const users = res.items;
+    let res = await usersAPILaravel.getUsers(currentPage, pageSize)
+
+            const users = res.data.data;
             dispatch(setTotalUsersCount(res.totalCount))
             dispatch(setUsers(users))
             dispatch(fetching(false))
