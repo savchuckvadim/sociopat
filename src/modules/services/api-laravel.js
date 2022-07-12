@@ -32,9 +32,10 @@ export const laravelAPI = {
 
 
     async register(name, surname, email, password, passwordConfirmation) {
-
+        debugger
         await instance.get("/sanctum/csrf-cookie");
-        let result = instance.post('register', {
+
+        let result = await instance.post('register', {
             name: name,
             surname: surname,
             email: email,
@@ -42,31 +43,31 @@ export const laravelAPI = {
             password_confirmation: passwordConfirmation
 
         }).then(res => {
+            console.log('register')
             console.log(res)
+
         })
+
         return result
 
     },
-    me() {
-        // let result = instance.get('sanctum/csrf-cookie').then(response => {
-        //     console.log(response)
 
-        // });
-
-        return instance.get('sanctum/csrf-cookie')
-    },
     async login(email, password) {
         await instance.get("/sanctum/csrf-cookie")
-        
+
         return instance.post('login', {
             email: email,
             password: password,
             remember: true
         })
+
+
+
     },
     async getAuthUser() {
+
         // await instance.get("/sanctum/csrf-cookie")
-    let result = await instance.get("api/user/auth");
+        let result = await instance.get("api/user/auth");
         console.log(result)
         return result
     },
@@ -109,14 +110,18 @@ export const usersAPILaravel = {
         return instance.get(`api/users?page=${currentPage}&count=${pageSize}`).then(res => res);
     },
 
+    async getUser(id) {
+      
+        return instance.get(`api/users/${id}`).then(res => res.data)
+    },
     // getUser(name) {
 
     //     return instance.get(`users?term=${name}`).then(res => res.data)
     // },
 
-    // follow(userId) {
-    //     return instance.post(`follow/${userId}`).then(res => res.data.resultCode)
-    // },
+    follow(userId) {
+        return instance.get(`api/follow/${userId}`).then(res => res.data)
+    },
 
     // unfollow(userId) {
     //     return instance.delete(`follow/${userId}`).then(res => res.data.resultCode)
@@ -125,3 +130,9 @@ export const usersAPILaravel = {
 }
 // laravelAPI.logout()
 
+export const profileLaravelAPI = {
+
+    getProfile(userId) { 
+        return instance.get(`api/profile/${userId}`).then(res => res.data)
+    }
+} 

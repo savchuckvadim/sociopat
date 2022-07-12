@@ -1,6 +1,6 @@
 import { stopSubmit } from "redux-form";
 import { profileAPI, authAPI } from "../../../services/api";
-import { laravelAPI } from "../../../services/api-laravel";
+import { laravelAPI, profileLaravelAPI } from "../../../services/api-laravel";
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
@@ -69,16 +69,29 @@ export const getAuth = () => async (dispatch) => {
 }
 //////////////////////////////////////////////////////////////////////////LARAVEL
 export const laraGetAuth = () => async (dispatch) => {
-
+    // await laravelAPI.me();
     let authUser = await laravelAPI.getAuthUser()
     
+    
     if (authUser.data) {
-        dispatch(setAuthUserData(authUser.data.id, authUser.data.email, authUser.data.email, true));
+        
+        await dispatch(setAuthUserData(authUser.data.id, authUser.data.email, authUser.data.email, true));
+        //set auth users profile 
+        await laravelGetCurrentProfile(authUser.data.id, dispatch)
+       
+
     }else{
         dispatch(setAuthUserData(null, null, null, false));
     }
 
 
+}
+const laravelGetCurrentProfile = async (userId, dispatch) => {
+   
+    const res = await profileLaravelAPI.getProfile(userId)
+    
+    const userProfile = res
+    dispatch(setAuthCurrentUser(res))
 }
 //////////////////////////////////////////////////////////////////////////LARAVEL
 const getCurrentUser = async (userId, dispatch) => {

@@ -57,7 +57,7 @@ class ProfileContainer extends React.Component {
 
         }
         else {
-
+            
             this.userId = this.props.auth.id
             this.isAuthUser = true
 

@@ -143,17 +143,29 @@ export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
 
 }
 
+// export const followThunk = (userId) => async (dispatch) => {
+   
+//     dispatch(toggleFollowingInProgress(userId, true))
+
+//    let res = await  usersAPI.follow(userId)
+//         if (res === 0) {
+//             dispatch(follow(userId))
+//         }
+//         dispatch(toggleFollowingInProgress(userId, false))
+// }
 export const followThunk = (userId) => async (dispatch) => {
    
     dispatch(toggleFollowingInProgress(userId, true))
 
-   let res = await  usersAPI.follow(userId)
-        if (res === 0) {
+   
+     let res = await  usersAPILaravel.follow(userId)
+    console.log(res)
+        // if (res === 0) {
+            debugger
             dispatch(follow(userId))
-        }
+        // }
         dispatch(toggleFollowingInProgress(userId, false))
 }
-
 
 export const unFollowThunk = (userId) => async (dispatch) => {
     dispatch(toggleFollowingInProgress(userId, true))

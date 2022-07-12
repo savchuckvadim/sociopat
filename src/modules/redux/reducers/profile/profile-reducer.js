@@ -1,6 +1,7 @@
 import {
     profileAPI, usersAPI
 } from "../../../services/api"
+import { profileLaravelAPI, usersAPILaravel } from "../../../services/api-laravel";
 
 
 const ADD_POST = 'ADD_POST';
@@ -183,18 +184,24 @@ const profileReducer = (state = initialState, action) => {
 };
 
 export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
+    
+    // const resProfile = await profileAPI.getProfile(userId)
+    const profile = await profileLaravelAPI.getProfile(userId);/////////////////////////LARAVEL
+   
+    // const profile = resProfile.data;
+    let id = profile.user_id;
+   
+    const user  = await usersAPILaravel.getUser(id);
+    debugger
+    // const users = await usersAPI.getUser(profile.fullName)
 
-    const resProfile = await profileAPI.getProfile(userId)
-    const profile = resProfile.data;
-    const users = await usersAPI.getUser(profile.fullName)
+    // let user = null
 
-    let user = null
-
-    users.items.forEach(u => {
-        if (u.name === profile.fullName) {
-            user = u
-        }
-    });
+    // users.items.forEach(u => {
+    //     if (u.name === profile.fullName) {
+    //         user = u
+    //     }
+    // });
     const resStatus = await profileAPI.getStatus(userId)
     const status = resStatus.data
     dispatch(setProfilePageData(status, profile, user))
@@ -204,8 +211,10 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
 }
 export const getProfileAndSetVisitedUser = (userId) => async (dispatch) => {
-
-    const res = await profileAPI.getProfile(userId)
+    debugger
+    // const res = await profileAPI.getProfile(userId)
+    const res = await profileLaravelAPI.getProfile(userId);/////////////////////////////////////////////LARAVEL
+    
     const profile = res.data;
     const users = await usersAPI.getUser(profile.fullName)
 
@@ -216,6 +225,9 @@ export const getProfileAndSetVisitedUser = (userId) => async (dispatch) => {
             user = u
         }
     });
+
+
+
     dispatch(setProfile(profile))
     dispatch(setVisitedUser(user))
 

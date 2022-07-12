@@ -31,14 +31,14 @@ const appReducer = (state = initialState, action) => {
                 initialized: true,
                     inProgress: false
             }
-            case INITIALIZING:
+        case INITIALIZING:
 
-                return {
-                    ...state,
-                    inProgress: true
-                }
-                default:
-                    return state;
+            return {
+                ...state,
+                inProgress: true
+            }
+            default:
+                return state;
     }
 
 }
@@ -58,13 +58,14 @@ export const initialize = () => (dispatch) => {
     dispatch(initializing()) 
     
     promiseAuth().then(responses => {
+        
 
-       
         dispatch(initializedSuccess())
+       
     })
 
 
-    laravelAPI.me()
+    // laravelAPI.me()
     
 }
 
