@@ -40,7 +40,8 @@ const authReducer = (state = initialState, action) => {
 
             return result;
         case SET_AUTH_CURRENT_USER:
-            return { ...state, currentUser: action.userProfile };
+            let user = {...action.userProfile, photos: { small: null, large: null } }
+            return { ...state, currentUser: user };
 
         case SET_PHOTO:
 

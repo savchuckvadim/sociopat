@@ -123,7 +123,7 @@ const profileReducer = (state = initialState, action) => {
             return state
 
         case SET_PHOTO:
-            
+
             result = { ...state }
             result.profile = { ...state.profile }
             result.profile.photos = { ...action.photos }
@@ -158,7 +158,7 @@ const profileReducer = (state = initialState, action) => {
                 result = { ...state }
                 result.visitedUser = action.user
             }
-
+            debugger
             return result
 
         case ADD_POST:
@@ -184,15 +184,15 @@ const profileReducer = (state = initialState, action) => {
 };
 
 export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
-    
+
     // const resProfile = await profileAPI.getProfile(userId)
-    const profile = await profileLaravelAPI.getProfile(userId);/////////////////////////LARAVEL
-   
+    const profileRes = await profileLaravelAPI.getProfile(userId);/////////////////////////LARAVEL
+    const profile = { ...profileRes, photos: { small: null, large: null } }
     // const profile = resProfile.data;
     let id = profile.user_id;
-   
-    const user  = await usersAPILaravel.getUser(id);
-    debugger
+
+    const user = await usersAPILaravel.getUser(id);
+
     // const users = await usersAPI.getUser(profile.fullName)
 
     // let user = null
@@ -202,8 +202,12 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
     //         user = u
     //     }
     // });
-    const resStatus = await profileAPI.getStatus(userId)
+    // const resStatus = await profileAPI.getStatus(userId)
+
+    const resStatus = await profileLaravelAPI.getAboutMe(userId)   //////////////////////////////LARVEL
+
     const status = resStatus.data
+    debugger
     dispatch(setProfilePageData(status, profile, user))
     // dispatch(setStatus(status))
     // dispatch(setProfile(profile))
@@ -211,10 +215,10 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
 }
 export const getProfileAndSetVisitedUser = (userId) => async (dispatch) => {
-    debugger
+
     // const res = await profileAPI.getProfile(userId)
     const res = await profileLaravelAPI.getProfile(userId);/////////////////////////////////////////////LARAVEL
-    
+
     const profile = res.data;
     const users = await usersAPI.getUser(profile.fullName)
 

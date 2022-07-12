@@ -7,7 +7,7 @@ import { SendPostContainer } from './Send-Post/Send-Post-Container';
 
 
 export const Profile = (props) => {
-  
+  debugger
    let userName = null
    let img = null
    
@@ -15,8 +15,11 @@ export const Profile = (props) => {
   if(props.isCurrentUser ){
       if(props.profile && JSON.stringify(props.profile) !== '{}' ){
 
-        userName = props.profile.fullName
-        img = props.profile.photos.small
+        // userName = props.profile.fullName /////old API
+        userName = props.profile.name         /////////LARAVEL
+        // img = props.profile.photos.small   /////old API
+        img = null /////////LARAVEL
+
       }
     
   }else {

@@ -134,5 +134,10 @@ export const profileLaravelAPI = {
 
     getProfile(userId) { 
         return instance.get(`api/profile/${userId}`).then(res => res.data)
-    }
+    },
+
+    getAboutMe(userId) {
+
+        return instance.get(`api/profile/aboutme/${userId}`)
+    },
 } 

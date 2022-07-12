@@ -91,7 +91,7 @@ class ProfileContainer extends React.Component {
 
     }
     render() {
-      
+        debugger
         if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth.id}`) return <Navigate replace to={'../profile'} />
         if(!this.props.profile) return <LightLoadingPageContainer/>
         return (
