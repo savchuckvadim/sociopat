@@ -7,7 +7,7 @@ import { SendPostContainer } from './Send-Post/Send-Post-Container';
 
 
 export const Profile = (props) => {
-  debugger
+  
    let userName = null
    let img = null
    

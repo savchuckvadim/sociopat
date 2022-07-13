@@ -158,7 +158,7 @@ const profileReducer = (state = initialState, action) => {
                 result = { ...state }
                 result.visitedUser = action.user
             }
-            debugger
+            
             return result
 
         case ADD_POST:
@@ -207,7 +207,7 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
     const resStatus = await profileLaravelAPI.getAboutMe(userId)   //////////////////////////////LARVEL
 
     const status = resStatus.data
-    debugger
+    
     dispatch(setProfilePageData(status, profile, user))
     // dispatch(setStatus(status))
     // dispatch(setProfile(profile))

@@ -40,7 +40,9 @@ const authReducer = (state = initialState, action) => {
 
             return result;
         case SET_AUTH_CURRENT_USER:
+            debugger
             let user = {...action.userProfile, photos: { small: null, large: null } }
+            
             return { ...state, currentUser: user };
 
         case SET_PHOTO:
@@ -71,21 +73,25 @@ export const getAuth = () => async (dispatch) => {
 //////////////////////////////////////////////////////////////////////////LARAVEL
 export const laraGetAuth = () => async (dispatch) => {
     // await laravelAPI.me();
-    let authUser = await laravelAPI.getAuthUser()
+    let response = await laravelAPI.getAuthUser()
+    let authUser = null
+    if(response.data){
+        authUser = response.data.data}
     
     
-    if (authUser.data) {
+    if (authUser) {
         
-        await dispatch(setAuthUserData(authUser.data.id, authUser.data.email, authUser.data.email, true));
+        await dispatch(setAuthUserData(authUser.id, authUser.email, authUser.email, true));
         //set auth users profile 
-        await laravelGetCurrentProfile(authUser.data.id, dispatch)
+        // await laravelGetCurrentProfile(authUser.id, dispatch)
+        dispatch(setAuthCurrentUser(authUser.profile))
        
 
     }else{
         dispatch(setAuthUserData(null, null, null, false));
     }
 
-
+debugger
 }
 const laravelGetCurrentProfile = async (userId, dispatch) => {
    

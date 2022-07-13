@@ -5,6 +5,7 @@ import { reduxForm, Field, reset } from 'redux-form'
 import InputSendPost from './Send-Post-Form-Controls'
 
 export const SendPost = (props) => {
+    debugger
     const submit = (values, dispatch) => {
        
         props.send(values.sendPost)
@@ -18,7 +19,7 @@ export const SendPost = (props) => {
     )
 }
 let SendPostForm = (props) => {
-    
+    debugger
     return (
         <form onSubmit={props.handleSubmit} className={style.frame}>
            

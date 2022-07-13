@@ -55,7 +55,7 @@ export const initialize = () => (dispatch) => {
         // return dispatch(getAuth())
         return dispatch(laraGetAuth())
     }
-    dispatch(initializing()) 
+    dispatch(initializing()) //inProgress-status
     
     promiseAuth().then(responses => {
         
