@@ -67,6 +67,16 @@ const usersReducer = (state = initialState, action) => {
             result.users = result.users.map(user => {
                 if (user.id === action.userId) {
                     user.followed = true
+                    let count = 0
+                    user.followers.forEach(f => {
+                        if(f.id === action.authUser.id){    //если среди массива объектов подписчиков содержится подписчик с id auth usera делает count больше нуля
+                            count++
+                        }
+                        
+                    });
+                    if(!count){ //если count = 0 значит в массиве отсутствует аутентифицированный пользователь
+                        user.followers.push(action.authUser)  //пушим аутентифицированного пользователя в массив подписчиков
+                    }
                     return user
                 } else {
                     return user
@@ -112,7 +122,7 @@ export const setCurrentPage = (page) => ({ type: SET_CURRENT_PAGE, page })
 export const setUsers = (users) => ({ type: SET_USERS, users })
 export const setTotalUsersCount = (count) => ({ type: SET_TOTAL_USERS_COUNT, count })
 export const fetching = (bool) => ({ type: FETCHING, bool })
-export const follow = (userId) => ({ type: FOLLOW, userId })
+export const follow = (authUser, userId) => ({ type: FOLLOW, authUser, userId })
 export const unFollow = (userId) => ({ type: UNFOLLOW, userId })
 export const toggleFollowingInProgress = (userId, isFetching) => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching })
 
@@ -152,7 +162,7 @@ export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
 //         }
 //         dispatch(toggleFollowingInProgress(userId, false))
 // }
-export const followThunk = (userId) => async (dispatch) => {
+export const followThunk = (authUser, userId) => async (dispatch) => {
    
     dispatch(toggleFollowingInProgress(userId, true))
 
@@ -161,7 +171,7 @@ export const followThunk = (userId) => async (dispatch) => {
    
         // if (res === 0) {
             
-            dispatch(follow(userId))
+            dispatch(follow(authUser, userId))
         // }
         dispatch(toggleFollowingInProgress(userId, false))
 }

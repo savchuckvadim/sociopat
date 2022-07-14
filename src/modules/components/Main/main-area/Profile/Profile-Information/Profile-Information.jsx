@@ -43,6 +43,7 @@ const ProfileInformation = (props) => {
                             userId={props.params.userId}
                             visitedUser={props.visitedUser}
                             loadPhoto={props.loadPhoto}
+                            //current user for set in users->user->folowwers.push() andvisitedUser->followers.push() in profile and user reducer
                         />
                     </div>
 

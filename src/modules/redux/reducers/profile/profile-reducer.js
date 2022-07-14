@@ -73,6 +73,7 @@ const setProfilePageData = (status, profile, user) => (
 
 
 const profileReducer = (state = initialState, action) => {
+    
     let result = state
     switch (action.type) {
 
@@ -98,6 +99,19 @@ const profileReducer = (state = initialState, action) => {
                 }
                 result.visitedUser = { ...result.visitedUser }
                 result.visitedUser.followed = true
+                let count = 0
+                result.visitedUser.followers.forEach(f => {
+                    if(f.id === action.authUser.id){    //если среди массива объектов подписчиков содержится подписчик с id auth usera делает count больше нуля
+                        count++
+                    }
+                });
+
+                if(!count){ //если count = 0 значит в массиве отсутствует аутентифицированный пользователь
+                    
+                    result.visitedUser.followers.push(action.authUser)  //пушим аутентифицированного пользователя в массив подписчиков.push(action.authUser)
+                    
+                }
+                
                 return result
             }
             return result
@@ -185,61 +199,21 @@ const profileReducer = (state = initialState, action) => {
 
 export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
-    // const resProfile = await profileAPI.getProfile(userId)
-    // const profileRes = await profileLaravelAPI.getProfile(userId);/////////////////////////LARAVEL
-    
-    // const profile = { ...profileRes, photos: { small: null, large: null } }
-    // const profile = resProfile.data;
     let id = userId
-    // profile.user_id;
 
     const userRes = await usersAPILaravel.getUser(id);
     const user = userRes.data
     const profile = { ...user.profile, photos: { small: null, large: null } }
-    // const users = await usersAPI.getUser(profile.fullName)
-
-    // let user = null
-
-    // users.items.forEach(u => {
-    //     if (u.name === profile.fullName) {
-    //         user = u
-    //     }
-    // });
-    // const resStatus = await profileAPI.getStatus(userId)
 
     const resStatus = await profileLaravelAPI.getAboutMe(userId)   //////////////////////////////LARVEL
 
     const status = resStatus.data
     
     dispatch(setProfilePageData(status, profile, user))
-    // dispatch(setStatus(status))
-    // dispatch(setProfile(profile))
-    // dispatch(setVisitedUser(user))
+   
 
 }
-// export const getProfileAndSetVisitedUser = (userId) => async (dispatch) => {
-   
-//     // const res = await profileAPI.getProfile(userId)
-//     const res = await profileLaravelAPI.getProfile(userId);/////////////////////////////////////////////LARAVEL
 
-//     const profile = res.data;
-//     const users = await usersAPI.getUser(profile.fullName)
-
-//     let user = null
-
-//     users.items.forEach(u => {
-//         if (u.name === profile.fullName) {
-//             user = u
-//         }
-//     });
-
-
-
-//     dispatch(setProfile(profile))
-//     dispatch(setVisitedUser(user))
-
-
-// }
 
 export const getStatus = (userId) => async (dispatch) => {
 

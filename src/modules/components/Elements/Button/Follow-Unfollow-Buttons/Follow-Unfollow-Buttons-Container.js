@@ -14,12 +14,13 @@ import FollowUnfollowButtons from "./Follow-Unfollow-Buttons"
 
 
 const mapStateToProps = (state, ownProps) => {
-    
-  
+
+
     return {
 
         followingInProgress: getIsFollowing(state),
-        user: ownProps.user
+        user: ownProps.user,
+        authUser: state.auth.authUser
     }
 }
 

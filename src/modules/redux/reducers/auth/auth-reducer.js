@@ -13,12 +13,14 @@ let initialState = {
         "email": null,
         isAuth: false
     },
-    currentProfile: {}
+    currentProfile: {},
+    authUser: null
 }
 
-export const setAuthUserData = (id = null, login = null, email = null, isAuth = false) =>
+export const setAuthUserData = (authUser, id = null, login = null, email = null, isAuth = false) =>
 ({
     type: SET_USER_DATA,
+    authUser,
     data: { id, login, email },
     isAuth
 })
@@ -37,12 +39,13 @@ const authReducer = (state = initialState, action) => {
                 ...action.data,
                 isAuth: action.isAuth
             }
+            result.authUser = action.authUser  //запоминаем аутентифицированного пользователя в state чтобы потом его вставлять в список подписчиков
 
             return result;
         case SET_AUTH_CURRENT_USER:
-            
-            let user = {...action.userProfile, photos: { small: null, large: null } }
-            
+
+            let user = { ...action.userProfile, photos: { small: null, large: null } }
+
             return { ...state, currentProfile: user };
 
         case SET_PHOTO:
@@ -59,35 +62,36 @@ const authReducer = (state = initialState, action) => {
 }
 
 
-export const getAuth = () => async (dispatch) => {
+// export const getAuth = () => async (dispatch) => {
 
-    const res = await authAPI.me();
-    const resultCode = res.resultCode;
-    const data = res.data;
-    if (resultCode === 0) {
+//     const res = await authAPI.me();
+//     const resultCode = res.resultCode;
+//     const data = res.data;
+//     if (resultCode === 0) {
 
-        dispatch(setAuthUserData(data.id, data.login, data.email, true));
-        getcurrentProfile(data.id, dispatch)
-    }
-}
+//         dispatch(setAuthUserData(data.id, data.login, data.email, true));
+//         getcurrentProfile(data.id, dispatch)
+//     }
+// }
 
 export const laraGetAuth = () => async (dispatch) => {
     // await laravelAPI.me();
     let response = await laravelAPI.getAuthUser()
     let authUser = null
-    if(response.data){
-        authUser = response.data.data}
-    
-    
+    if (response.data) {
+        authUser = response.data.data
+    }
+
+
     if (authUser) {
-        
-        await dispatch(setAuthUserData(authUser.id, authUser.email, authUser.email, true));
+
+        dispatch(setAuthUserData(authUser, authUser.id, authUser.email, authUser.email, true));
         //set auth users profile 
         // await laravelGetCurrentProfile(authUser.id, dispatch)
         dispatch(setAuthcurrentProfile(authUser.profile))
-       
 
-    }else{
+
+    } else {
         dispatch(setAuthUserData(null, null, null, false));
     }
 
@@ -105,7 +109,7 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 
     laravelAPI.login(email, password, rememberMe)
         .then(res => {
-            
+
             const resultCode = res.status;
 
             if (resultCode === 200) {
@@ -124,7 +128,7 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 
         })
 
-        // .then(res => console.log(res.data.id))
+    // .then(res => console.log(res.data.id))
 
 }
 export const logout = () => (dispatch) => {

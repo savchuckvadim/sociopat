@@ -12,6 +12,7 @@ const ProfileButtons = (props) => {
                 <div className={style.button__wrapper}>
                     <FollowUnfollowButtonsContainer
                         user={props.visitedUser}
+                        
                     />
                 </div>
 

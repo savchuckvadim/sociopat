@@ -7,7 +7,7 @@ import {LightLoadingPageContainer} from "./modules/components/Elements/Loading/L
 // import withAuthRedirect from "./modules/components/HOC/Auth-Redirect";
 import StartPage from "./modules/components/Start/Start-Page";
 import {initialize} from "./modules/redux/reducers/app-reducer";
-import {getAuth} from "./modules/redux/reducers/auth/auth-reducer";
+import {laraGetAuth} from "./modules/redux/reducers/auth/auth-reducer";
 // import { useSanctum } from "react-sanctum";
 // import { laravelAPI } from "./modules/services/api-laravel";
 
@@ -61,7 +61,7 @@ const AppContainer = (props) => {
 export default compose(
 
     connect(mapStateToProps, {
-        getAuth,
+        laraGetAuth,
         initialize
     }),
 
