@@ -2,7 +2,10 @@ import { useState } from 'react'
 import style from './Profile-Statistics.module.css'
 import StatisticsItem from './Statistics-Item/Statistics-Item'
 
-const ProfileStatistics = () => {
+const ProfileStatistics = (props) => {
+    
+let followers = props.followers.length
+let followeds = props.followeds.length    
 const statistics =
     [
         {
@@ -11,11 +14,11 @@ const statistics =
         },
         {
             name: 'followers',
-            quantity: 45
+            quantity: followers
         },
         {
             name: 'following',
-            quantity: 56
+            quantity: followeds
         }
     ]
 

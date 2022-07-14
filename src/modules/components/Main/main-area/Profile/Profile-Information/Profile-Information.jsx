@@ -33,7 +33,10 @@ const ProfileInformation = (props) => {
                             isCurrentUser={props.isCurrentUser}
                         />
                     </div>
-                    <ProfileStatistics />
+                    <ProfileStatistics 
+                    followers={props.visitedUser.followers}
+                    followeds={props.visitedUser.followeds}
+                    />
 
                     <div className={style.buttons__wrapper}>
                         <ProfileButtons
