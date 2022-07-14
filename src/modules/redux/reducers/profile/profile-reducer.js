@@ -148,7 +148,7 @@ const profileReducer = (state = initialState, action) => {
             }
 
             if (state.visitedUser) {                                        //visiteduser
-                debugger
+                
                 if (state.visitedUser.name !== action.user.name) {
                     result = { ...state }
                     result.visitedUser = {...action.user, photos: { small: null, large: null }}

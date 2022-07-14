@@ -70,7 +70,7 @@ export const getAuth = () => async (dispatch) => {
         getcurrentProfile(data.id, dispatch)
     }
 }
-//////////////////////////////////////////////////////////////////////////LARAVEL
+
 export const laraGetAuth = () => async (dispatch) => {
     // await laravelAPI.me();
     let response = await laravelAPI.getAuthUser()
@@ -93,14 +93,8 @@ export const laraGetAuth = () => async (dispatch) => {
 
 
 }
-const laravelGetCurrentProfile = async (userId, dispatch) => {
-   
-    const res = await profileLaravelAPI.getProfile(userId)
-    
-    const userProfile = res
-    dispatch(setAuthcurrentProfile(res))
-}
-//////////////////////////////////////////////////////////////////////////LARAVEL
+
+
 const getcurrentProfile = async (userId, dispatch) => {
     const res = await profileAPI.getProfile(userId)
 
@@ -109,27 +103,6 @@ const getcurrentProfile = async (userId, dispatch) => {
 }
 export const login = (email, password, rememberMe) => (dispatch) => {
 
-
-
-    // authAPI.login(email, password, rememberMe)
-    //     .then(res => {
-    //         const resultCode = res.data.resultCode;
-
-    //         if (resultCode === 0) {
-
-    //             dispatch(getAuth())
-
-    //         } else {
-    //             let message = res.data.messages.length > 0 ? res.data.messages[0] : 'Email or Password was wrong !'
-
-    //             let action = stopSubmit('login', {
-    //                 _error: message
-    //             })
-    //             dispatch(action)
-    //         }
-
-    //     })
-    //////////////////////////////////////////////////////////////////////////LARAVEL
     laravelAPI.login(email, password, rememberMe)
         .then(res => {
             
@@ -150,26 +123,12 @@ export const login = (email, password, rememberMe) => (dispatch) => {
             }
 
         })
-        // .then(res =>
-        //     laravelAPI.getAuthUser()
-        // )
-        .then(res => console.log(res.data.id))
+
+        // .then(res => console.log(res.data.id))
 
 }
 export const logout = () => (dispatch) => {
 
-    // authAPI.logout()
-    //     .then(res => {
-    //         const resultCode = res.data.resultCode;
-
-    //         if (resultCode === 0) {
-    //             dispatch(setAuthUserData(null, null, null, false))
-    //             dispatch(setAuthcurrentProfile({}))
-    //         }
-
-    //     })
-
-    //////////////////////////////////////////////////////////////////////////LARAVEL
     laravelAPI.logout()
         .then(res => {
 
