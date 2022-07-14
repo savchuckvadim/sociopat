@@ -24,6 +24,7 @@ export const Profile = (props) => {
     
   }else {
     if(props.visitedUser ){
+     
         userName = props.visitedUser.name
         img = props.visitedUser.photos.small
         

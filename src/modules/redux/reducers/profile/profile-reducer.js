@@ -148,15 +148,15 @@ const profileReducer = (state = initialState, action) => {
             }
 
             if (state.visitedUser) {                                        //visiteduser
-
+                debugger
                 if (state.visitedUser.name !== action.user.name) {
                     result = { ...state }
-                    result.visitedUser = action.user
+                    result.visitedUser = {...action.user, photos: { small: null, large: null }}
                 }
             } else {
 
                 result = { ...state }
-                result.visitedUser = action.user
+                result.visitedUser = {...action.user, photos: { small: null, large: null }}
             }
             
             return result
@@ -187,11 +187,13 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
     // const resProfile = await profileAPI.getProfile(userId)
     const profileRes = await profileLaravelAPI.getProfile(userId);/////////////////////////LARAVEL
+    
     const profile = { ...profileRes, photos: { small: null, large: null } }
     // const profile = resProfile.data;
     let id = profile.user_id;
 
-    const user = await usersAPILaravel.getUser(id);
+    const userRes = await usersAPILaravel.getUser(id);
+    const user = userRes.data
 
     // const users = await usersAPI.getUser(profile.fullName)
 
@@ -207,7 +209,7 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
     const resStatus = await profileLaravelAPI.getAboutMe(userId)   //////////////////////////////LARVEL
 
     const status = resStatus.data
-    
+    debugger
     dispatch(setProfilePageData(status, profile, user))
     // dispatch(setStatus(status))
     // dispatch(setProfile(profile))

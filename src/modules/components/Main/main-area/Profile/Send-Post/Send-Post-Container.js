@@ -10,7 +10,7 @@ import SendPost from "./Send-Post"
 const mapStateToProps = (state) => {
 
     return {
-        user: state.auth.currentUser,
+        user: state.auth.currentProfile,
         value: state.currentPost.value
     }
 }

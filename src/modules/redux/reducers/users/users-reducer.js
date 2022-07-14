@@ -135,7 +135,6 @@ export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
     
 
     let res = await usersAPILaravel.getUsers(currentPage, pageSize)
-
             const users = res.data.data;
             dispatch(setTotalUsersCount(res.totalCount))
             dispatch(setUsers(users))
@@ -158,10 +157,10 @@ export const followThunk = (userId) => async (dispatch) => {
     dispatch(toggleFollowingInProgress(userId, true))
 
    
-     let res = await  usersAPILaravel.follow(userId)
-    console.log(res)
+      await  usersAPILaravel.follow(userId)
+   
         // if (res === 0) {
-            debugger
+            
             dispatch(follow(userId))
         // }
         dispatch(toggleFollowingInProgress(userId, false))
@@ -170,7 +169,7 @@ export const followThunk = (userId) => async (dispatch) => {
 export const unFollowThunk = (userId) => async (dispatch) => {
     dispatch(toggleFollowingInProgress(userId, true))
 
-   let res = await usersAPI.unfollow(userId)
+   let res = await usersAPILaravel.unfollow(userId)
         if (res === 0) {
             dispatch(unFollow(userId))
 

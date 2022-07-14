@@ -128,6 +128,11 @@ export const usersAPILaravel = {
         }).then(res => res.data)
     },
 
+    async unfollow(userId) {
+
+        return instance.delete(`api/follow/${userId}`)
+        // .then(res => res.data)
+    },
     // unfollow(userId) {
     //     return instance.delete(`follow/${userId}`).then(res => res.data.resultCode)
     // }

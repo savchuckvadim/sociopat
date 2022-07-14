@@ -52,6 +52,7 @@ class ProfileContainer extends React.Component {
     getUserId = (params) => {
 
         if (this.props.params.userId) {
+            
             this.userId = this.props.params.userId;
             this.isAuthUser = false
 
@@ -113,7 +114,7 @@ export default compose(
 
     connect(mapStateToProps, {
 
-        getProfileAndSetVisitedUser,
+        // getProfileAndSetVisitedUser,
         getStatus,
         updateStatus,
         getDataForLoadProfilePage,

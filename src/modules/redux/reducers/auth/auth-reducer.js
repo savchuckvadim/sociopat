@@ -13,7 +13,7 @@ let initialState = {
         "email": null,
         isAuth: false
     },
-    currentUser: {}
+    currentProfile: {}
 }
 
 export const setAuthUserData = (id = null, login = null, email = null, isAuth = false) =>
@@ -23,7 +23,7 @@ export const setAuthUserData = (id = null, login = null, email = null, isAuth = 
     isAuth
 })
 
-export const setAuthCurrentUser = (userProfile) => ({ type: SET_AUTH_CURRENT_USER, userProfile })
+export const setAuthcurrentProfile = (userProfile) => ({ type: SET_AUTH_CURRENT_USER, userProfile })
 
 const authReducer = (state = initialState, action) => {
     let result = state
@@ -40,16 +40,16 @@ const authReducer = (state = initialState, action) => {
 
             return result;
         case SET_AUTH_CURRENT_USER:
-            debugger
+            
             let user = {...action.userProfile, photos: { small: null, large: null } }
             
-            return { ...state, currentUser: user };
+            return { ...state, currentProfile: user };
 
         case SET_PHOTO:
 
             result = { ...state }
-            result.currentUser = { ...state.currentUser }
-            result.currentUser.photos = { ...action.photos }
+            result.currentProfile = { ...state.currentProfile }
+            result.currentProfile.photos = { ...action.photos }
             return result
 
         default:
@@ -67,7 +67,7 @@ export const getAuth = () => async (dispatch) => {
     if (resultCode === 0) {
 
         dispatch(setAuthUserData(data.id, data.login, data.email, true));
-        getCurrentUser(data.id, dispatch)
+        getcurrentProfile(data.id, dispatch)
     }
 }
 //////////////////////////////////////////////////////////////////////////LARAVEL
@@ -84,28 +84,28 @@ export const laraGetAuth = () => async (dispatch) => {
         await dispatch(setAuthUserData(authUser.id, authUser.email, authUser.email, true));
         //set auth users profile 
         // await laravelGetCurrentProfile(authUser.id, dispatch)
-        dispatch(setAuthCurrentUser(authUser.profile))
+        dispatch(setAuthcurrentProfile(authUser.profile))
        
 
     }else{
         dispatch(setAuthUserData(null, null, null, false));
     }
 
-debugger
+
 }
 const laravelGetCurrentProfile = async (userId, dispatch) => {
    
     const res = await profileLaravelAPI.getProfile(userId)
     
     const userProfile = res
-    dispatch(setAuthCurrentUser(res))
+    dispatch(setAuthcurrentProfile(res))
 }
 //////////////////////////////////////////////////////////////////////////LARAVEL
-const getCurrentUser = async (userId, dispatch) => {
+const getcurrentProfile = async (userId, dispatch) => {
     const res = await profileAPI.getProfile(userId)
 
     const userProfile = res.data
-    dispatch(setAuthCurrentUser(userProfile))
+    dispatch(setAuthcurrentProfile(userProfile))
 }
 export const login = (email, password, rememberMe) => (dispatch) => {
 
@@ -164,7 +164,7 @@ export const logout = () => (dispatch) => {
 
     //         if (resultCode === 0) {
     //             dispatch(setAuthUserData(null, null, null, false))
-    //             dispatch(setAuthCurrentUser({}))
+    //             dispatch(setAuthcurrentProfile({}))
     //         }
 
     //     })
@@ -176,7 +176,7 @@ export const logout = () => (dispatch) => {
 
 
             dispatch(setAuthUserData(null, null, null, false))
-            dispatch(setAuthCurrentUser({}))
+            dispatch(setAuthcurrentProfile({}))
 
         })
 }
