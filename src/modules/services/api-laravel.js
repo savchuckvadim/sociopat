@@ -32,7 +32,7 @@ export const laravelAPI = {
 
 
     async register(name, surname, email, password, passwordConfirmation) {
-        
+
         await instance.get("/sanctum/csrf-cookie");
 
         let result = await instance.post('register', {
@@ -113,7 +113,7 @@ export const usersAPILaravel = {
     },
 
     async getUser(id) {
-     
+
         return instance.get(`api/users/${id}`).then(res => res.data)
     },
     // getUser(name) {
@@ -123,8 +123,8 @@ export const usersAPILaravel = {
 
     async follow(userId) {
 
-        return instance.post(`api/follow`,{
-            userId:userId
+        return instance.post(`api/follow`, {
+            userId: userId
         }).then(res => res.data)
     },
 
@@ -142,7 +142,7 @@ export const usersAPILaravel = {
 
 export const profileLaravelAPI = {
 
-    getProfile(userId) { 
+    getProfile(userId) {
         return instance.get(`api/profile/${userId}`).then(res => res.data)
     },
 
@@ -150,4 +150,17 @@ export const profileLaravelAPI = {
 
         return instance.get(`api/profile/aboutme/${userId}`)
     },
-} 
+}
+
+export const postAPI = {
+
+    sendPost(userId, profileId, body, image) {
+        debugger
+        return instance.post('api/post', {
+            body,
+            image,
+            profileId,
+            userId
+        })
+    }
+}

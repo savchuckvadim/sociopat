@@ -1,7 +1,7 @@
 import {
     profileAPI, usersAPI
 } from "../../../services/api"
-import { profileLaravelAPI, usersAPILaravel } from "../../../services/api-laravel";
+import { postAPI, profileLaravelAPI, usersAPILaravel } from "../../../services/api-laravel";
 
 
 const ADD_POST = 'ADD_POST';
@@ -215,7 +215,6 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
 }
 
-
 export const getStatus = (userId) => async (dispatch) => {
 
     const res = await profileAPI.getStatus(userId)
@@ -244,5 +243,13 @@ export const loadPhoto = (photo) => async (dispatch) => {
         dispatch(setPhotos(photos))
     }
 
+}
+
+export const sendPost = (userId, profileId, body, img) => async (dispatch) => {
+debugger
+   const res = await postAPI.sendPost (userId, profileId, body, img);
+   console.log(res);
+   debugger
+   dispatch(addPostActionCreator(res.data.body))
 }
 export default profileReducer;
