@@ -66,7 +66,7 @@ class ProfileContainer extends React.Component {
 
     }
 
-    getProfileAndStatus = () => {
+    getProfileData = () => {
 
         // this.props.getProfileAndSetVisitedUser(this.userId)
         // this.props.getStatus(this.userId)
@@ -75,6 +75,8 @@ class ProfileContainer extends React.Component {
         if(this.props.profile){
             this.photo = this.props.profile.photos.small
         }
+      
+
         
 
 
@@ -84,13 +86,13 @@ class ProfileContainer extends React.Component {
             window.scrollTo(0, 0);
          
         this.getUserId()
-        this.getProfileAndStatus()
+        this.getProfileData()
 
     }
     componentDidUpdate() {
         
         this.getUserId()
-        this.getProfileAndStatus()
+        this.getProfileData()
 
     }
     render() {
@@ -120,7 +122,8 @@ export default compose(
         getStatus,
         updateStatus,
         getDataForLoadProfilePage,
-        loadPhoto
+        loadPhoto,
+       
 
     }),
     withRouter,

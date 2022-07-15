@@ -5,6 +5,7 @@ import { postAPI, profileLaravelAPI, usersAPILaravel } from "../../../services/a
 
 
 const ADD_POST = 'ADD_POST';
+const SET_POSTS = 'SET_POSTS';
 const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS'
 const SET_VISITED_USER = 'SET_VISITED_USER'
@@ -57,6 +58,8 @@ export const addPostActionCreator = (value) => {
         value: value
     }
 }
+
+export const setPosts = (posts) => ({ type: SET_POSTS, posts })
 
 export const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
 const setStatus = (status) => ({ type: SET_STATUS, status })
@@ -190,7 +193,12 @@ const profileReducer = (state = initialState, action) => {
             }
             posts.unshift(lastPost)
             result.posts = posts
-            return result
+            return result;
+
+        case SET_POSTS:
+            
+            state.posts = action.posts.map(post =>( {...post}))
+            return state 
 
 
         default:
@@ -209,9 +217,20 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
     const resStatus = await profileLaravelAPI.getAboutMe(userId)   //////////////////////////////LARVEL
 
     const status = resStatus.data
+   
 
+    const res = await postAPI.getPosts(userId)
+    console.log(res)
+    debugger
+    if (res.data) {
+        let posts = res.data.data
+        dispatch(setPosts(posts))
+    }
+    
     dispatch(setProfilePageData(status, profile, user))
-
+    
+    
+   
 
 }
 
@@ -246,10 +265,22 @@ export const loadPhoto = (photo) => async (dispatch) => {
 }
 
 export const sendPost = (userId, profileId, body, img) => async (dispatch) => {
-debugger
-   const res = await postAPI.sendPost (userId, profileId, body, img);
-   console.log(res);
-   debugger
-   dispatch(addPostActionCreator(res.data.body))
+
+    const res = await postAPI.sendPost(userId, profileId, body, img);
+    dispatch(addPostActionCreator(res.data.body))
+}
+
+const getPosts = (profileId) => async (dispatch) => {
+    debugger
+
+    const res = await postAPI.getPosts(profileId)
+    console.log(res)
+    debugger
+    if (res.data) {
+        let posts = res.data
+        dispatch(setPosts(posts))
+    }
+    
+
 }
 export default profileReducer;

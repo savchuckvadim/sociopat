@@ -155,12 +155,18 @@ export const profileLaravelAPI = {
 export const postAPI = {
 
     sendPost(userId, profileId, body, image) {
-        debugger
+
         return instance.post('api/post', {
             body,
             image,
             profileId,
             userId
         })
+    },
+
+    getPosts(profileId) {
+        return instance.get(`api/post/${profileId}`);
     }
+
+
 }
