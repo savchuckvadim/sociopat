@@ -1,6 +1,7 @@
 import React from 'react';
 import {LightLoadingPageContainer} from '../../../Elements/Loading/Light-Loading-Page-Container'
-import Post from './Posts/Post';
+import PostsArea from './Posts-Area/Posts-Area';
+// import Post from './Posts/Post';
 import ProfileInformation from './Profile-Information/Profile-Information';
 import style from './Profile.module.css';
 import { SendPostContainer } from './Send-Post/Send-Post-Container';
@@ -38,17 +39,12 @@ let profile
  ?  profile = <div className={style.profile__container}>
             <ProfileInformation {...props} userName={userName}  />
             <SendPostContainer />
-            {props.posts.map((post, index) => {
-
-                return <Post 
-                key={`post-${index}`}
-                img={img} 
-                userName={userName} 
-                body={post.body} 
-                postsImg={post.img}
-                userId={props.profile.userId}
-                />
-            })}
+            <PostsArea 
+            posts={props.posts}
+            img={img}
+            profile={props.profile}
+            />
+            
         </div>
 : profile = <LightLoadingPageContainer/>
 
