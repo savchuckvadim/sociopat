@@ -80,7 +80,9 @@ class ProfileContainer extends React.Component {
 
     }
     componentDidMount() {
-
+       
+            window.scrollTo(0, 0);
+         
         this.getUserId()
         this.getProfileAndStatus()
 

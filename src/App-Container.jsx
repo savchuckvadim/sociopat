@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import {  useParams} from "react-router-dom";
-import {compose} from "redux";
+import { useParams } from "react-router-dom";
+import { compose } from "redux";
 import App from "./App";
-import {LightLoadingPageContainer} from "./modules/components/Elements/Loading/Light-Loading-Page-Container";
+import { LightLoadingPageContainer } from "./modules/components/Elements/Loading/Light-Loading-Page-Container";
+import ScrollToTop from "./modules/components/HOC/Scroll";
 // import withAuthRedirect from "./modules/components/HOC/Auth-Redirect";
 import StartPage from "./modules/components/Start/Start-Page";
-import {initialize} from "./modules/redux/reducers/app-reducer";
-import {laraGetAuth} from "./modules/redux/reducers/auth/auth-reducer";
+import { initialize } from "./modules/redux/reducers/app-reducer";
+import { laraGetAuth } from "./modules/redux/reducers/auth/auth-reducer";
 // import { useSanctum } from "react-sanctum";
 // import { laravelAPI } from "./modules/services/api-laravel";
 
@@ -37,8 +38,8 @@ const AppContainer = (props) => {
 
     }, [])
 
-//     const { authenticated, user, signIn } = useSanctum();
-// console.log(authenticated)
+    //     const { authenticated, user, signIn } = useSanctum();
+    // console.log(authenticated)
     let app = <LightLoadingPageContainer />
 
 
@@ -55,6 +56,7 @@ const AppContainer = (props) => {
     }
 
     return app
+   
 }
 
 
