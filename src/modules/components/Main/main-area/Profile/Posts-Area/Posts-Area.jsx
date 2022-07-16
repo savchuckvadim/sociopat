@@ -11,7 +11,7 @@ const PostsArea = (props) => {
             return <Post
                 key={`post-${index}`}
                 img={props.img}
-                userName={'testName'}
+                userName={`${post.author.name} ${post.author.surname}`}
                 body={post.body}
                 postsImg={post.img}
                 userId={props.profile.userId}
