@@ -21,7 +21,8 @@ let name = 'Follow'
     disable={disable}
     color={colorOfButton}
     onClick={() => {
-        onButtonClick(props.authUser, props.user.id)
+        debugger
+        onButtonClick(props.user.id, props.authUser)
 
     }}
     />

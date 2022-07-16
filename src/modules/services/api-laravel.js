@@ -125,7 +125,7 @@ export const usersAPILaravel = {
 
         return instance.post(`api/follow`, {
             userId: userId
-        }).then(res => res.data)
+        })
     },
 
     async unfollow(userId) {

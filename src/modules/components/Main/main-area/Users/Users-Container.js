@@ -1,19 +1,5 @@
-import {
-    connect
-} from "react-redux"
-import {
-    fetching,
-
-    followThunk,
-    requestUsers,
-    setCurrentPage,
-  
-    setTotalUsersCount,
-    setUsers,
-    toggleFollowingInProgress,
-
-    unFollowThunk
-} from "../../../../redux/reducers/users/users-reducer"
+import {connect} from "react-redux"
+import {fetching, followThunk, requestUsers, setCurrentPage, setTotalUsersCount, setUsers, toggleFollowingInProgress, unFollowThunk} from "../../../../redux/reducers/users/users-reducer"
 import { getCount, getIsFetching, getIsFollowing, getPage, getPageSize, getTotalUsersCount, getUsers, getUsersSelector } from "../../../../redux/selectors/user-selectors"
 
 import UsersContainer from "./Users-API-Container"

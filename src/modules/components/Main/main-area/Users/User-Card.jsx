@@ -5,7 +5,7 @@ import Avatar from '../../../Elements/Avatar/Avatar';
 
 const UserCard = (props) => {
 
-debugger
+
     return (
         <div className={style.frame}>
            

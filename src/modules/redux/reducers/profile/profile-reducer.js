@@ -100,6 +100,22 @@ const profileReducer = (state = initialState, action) => {
                 }
                 result.visitedUser = { ...result.visitedUser }
                 result.visitedUser.followed = false
+                let count = 0
+                let indexOfAuthUser = undefined
+                result.visitedUser.followers.forEach((f, i) => {
+                            
+                    if (f.id === action.authUser.id) {    //если среди массива объектов подписчиков содержится подписчик с id auth usera делает count больше нуля
+                        count++
+                        indexOfAuthUser = i
+                    }
+
+                });
+
+                if (count) { //если count !== 0 значит в массиве Есть! аутентифицированный пользователь
+
+                    result.visitedUser.followers.splice(indexOfAuthUser, 1)  //удаляем аутентифицированного пользователя из массива подписчиков
+
+                }
                 return result
             }
             return state
