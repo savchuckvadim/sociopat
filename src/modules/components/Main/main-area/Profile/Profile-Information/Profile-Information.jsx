@@ -24,7 +24,7 @@ const ProfileInformation = (props) => {
                 <div className={style.info__wrapper}>
                     <div className={style.about__wrapper}>
 
-                        <h1 className={style.name}>{props.userName}</h1>
+                        <h1 className={style.name}>{`${props.visitedUser.profile.name} ${props.visitedUser.profile.surname}`}</h1>
 
                         <ProfileStatus
                             status={props.status}
