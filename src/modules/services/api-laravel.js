@@ -68,7 +68,7 @@ export const laravelAPI = {
 
         // await instance.get("/sanctum/csrf-cookie")
         let result = await instance.get("api/user/auth");
-        console.log(result)
+       
         return result
     },
     logout() {

@@ -4,13 +4,14 @@ import StatisticsItem from './Statistics-Item/Statistics-Item'
 
 const ProfileStatistics = (props) => {
     
-let followers = props.followers.length
-let followeds = props.followeds.length    
+const followers = props.followers.length
+const followeds = props.followeds.length   
+const postsCount=props.postsCount 
 const statistics =
     [
         {
             name: 'posts',
-            quantity: 4
+            quantity: postsCount
         },
         {
             name: 'followers',

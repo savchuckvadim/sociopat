@@ -9,7 +9,7 @@ import UploadAvatar from './UploadAvatar/UploadAvatar';
 
 const ProfileInformation = (props) => {
    
-    
+    debugger
    
     return (
         <div className={style.wrapper}>
@@ -36,6 +36,7 @@ const ProfileInformation = (props) => {
                     <ProfileStatistics 
                     followers={props.visitedUser.followers}
                     followeds={props.visitedUser.followeds}
+                    postsCount={props.visitedUser.postsCount}
                     />
 
                     <div className={style.buttons__wrapper}>
