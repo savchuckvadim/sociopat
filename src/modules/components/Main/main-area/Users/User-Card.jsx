@@ -5,7 +5,7 @@ import Avatar from '../../../Elements/Avatar/Avatar';
 
 const UserCard = (props) => {
 
-
+debugger
     return (
         <div className={style.frame}>
            
@@ -19,7 +19,7 @@ const UserCard = (props) => {
             <NavLink className={style.login} to={'../profile/' + props.user.id}>
                 <p onClick={() => {
                     // props.setVisitedUser(props.user)
-                    }} >{props.name}</p>
+                    }} >{`${props.user.profile.name} ${props.user.profile.surname}`}</p>
             </NavLink>
 
             <div className={style.follow__wrapper}>
