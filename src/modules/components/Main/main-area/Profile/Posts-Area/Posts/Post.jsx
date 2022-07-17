@@ -9,7 +9,7 @@ import Author from '../../../../../Elements/Author/Author';
 // let postsImg = `https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80`
 
 const Post = (props) => {
-    
+    debugger
     let postsImg = null
     if (props.postsImg) {
         postsImg = <div key={`post-img-container`} className={style.img__wrapper}>
@@ -42,8 +42,18 @@ const Post = (props) => {
             </div>
             <div className={style.footer}>
                 <div className={style.actions__wrapper}>
-                    <button className={style.action_button}>
-                        <img className={style.action} src={dislike} alt="dislike" />
+                    <button className={style.action_button}
+                    onClick={() => {
+                        debugger
+                        props.like(props.id)
+                    }}
+                    >
+                        <img 
+                        className={style.action} 
+                        src={dislike} 
+                        alt="dislike" 
+                        
+                        />
                     </button>
                     <button className={style.action_button}>
                         <img className={style.action} src={repost} alt="repost" />

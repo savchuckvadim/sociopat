@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux"
 import { Navigate, useParams } from "react-router-dom";
 import { compose } from "redux";
-import { getDataForLoadProfilePage, getStatus, loadPhoto, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
+import { getDataForLoadProfilePage, getStatus, like, loadPhoto, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container";
 
 
@@ -123,6 +123,7 @@ export default compose(
         updateStatus,
         getDataForLoadProfilePage,
         loadPhoto,
+        like
        
 
     }),

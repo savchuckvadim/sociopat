@@ -68,7 +68,7 @@ export const laravelAPI = {
 
         // await instance.get("/sanctum/csrf-cookie")
         let result = await instance.get("api/user/auth");
-       
+
         return result
     },
     logout() {
@@ -166,7 +166,12 @@ export const postAPI = {
 
     getPosts(profileId) {
         return instance.get(`api/post/${profileId}`);
-    }
+    },
 
+    like(postId) {
+        return instance.post('api/like', {
+            postId
+        })
+    }
 
 }

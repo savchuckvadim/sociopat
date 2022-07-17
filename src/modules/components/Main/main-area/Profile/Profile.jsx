@@ -43,6 +43,7 @@ let profile
             posts={props.posts}
             img={img}
             profile={props.profile}
+            like={props.like}
             />
             
         </div>

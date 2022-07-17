@@ -82,7 +82,6 @@ export const laraGetAuth = () => async (dispatch) => {
         authUser = response.data.data
     }
 
-debugger
     if (authUser) {
 
         dispatch(setAuthUserData(authUser, authUser.id, authUser.email, authUser.email, true));

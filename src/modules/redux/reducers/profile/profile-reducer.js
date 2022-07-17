@@ -13,7 +13,7 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_PROFILE_PAGE_DATA = 'SET_PROFILE_PAGE_DATA'
 const SET_PHOTO = 'SET_PHOTO'
-
+const LIKE = 'LIKE'
 
 let initialState = {
     profile: null,
@@ -47,7 +47,7 @@ const setProfilePageData = (status, profile, user) => (
 
     }
 )
-
+const setLike = (postId) => ({type:LIKE, postId})
 
 const profileReducer = (state = initialState, action) => {
 
@@ -103,7 +103,7 @@ const profileReducer = (state = initialState, action) => {
                 let count = 0
                 let indexOfAuthUser = undefined
                 result.visitedUser.followers.forEach((f, i) => {
-                            
+
                     if (f.id === action.authUser.id) {    //если среди массива объектов подписчиков содержится подписчик с id auth usera делает count больше нуля
                         count++
                         indexOfAuthUser = i
@@ -185,10 +185,19 @@ const profileReducer = (state = initialState, action) => {
             return result;
 
         case SET_POSTS:
-            
-            state.posts = action.posts.map(post =>( {...post}))
-            return state 
 
+            state.posts = action.posts.map(post => ({ ...post }))
+            return state
+        //LIKE
+        case LIKE:
+
+            state.posts = action.posts.map(post => {
+                if (post.id === action.postId) {
+                    post.isAuthLikes = true
+                }
+
+            })
+            return state
 
         default:
             return result;
@@ -206,19 +215,19 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
     const resStatus = await profileLaravelAPI.getAboutMe(userId)   //////////////////////////////LARVEL
 
     const status = resStatus.data
-   
+
 
     const res = await postAPI.getPosts(userId) //get posts from backend and set to state
-    
+    debugger
     if (res.data) {
         let posts = res.data.data
         dispatch(setPosts(posts))
     }
-    
+
     dispatch(setProfilePageData(status, profile, user))
-    
-    
-   
+
+
+
 
 }
 
@@ -258,5 +267,11 @@ export const sendPost = (userId, profileId, body, img) => async (dispatch) => {
     dispatch(addPostActionCreator(res.data.body))
 }
 
+export const like = (postId) => async (dispatch) => {
 
+    const res = await postAPI.like(postId);
+    debugger
+    console.log(res)
+    dispatch(setLike(postId))
+}
 export default profileReducer;
