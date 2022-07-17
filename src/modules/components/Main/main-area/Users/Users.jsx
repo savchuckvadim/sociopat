@@ -8,7 +8,7 @@ import style from './Users.module.css'
 
 
 const Users = (props) => {
-    
+    debugger
     // let isFetching = false
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = [];
@@ -33,8 +33,8 @@ const Users = (props) => {
                         unFollowThunk={props.unFollowThunk}
                         toggleFollowingInProgress={props.toggleFollowingInProgress}
                         followingInProgress={props.followingInProgress}
-                        setVisitedUser={props.setVisitedUser}
-
+                        // setVisitedUser={props.setVisitedUser}
+                        authUser={props.authUser}
                         
                     />)}
             </div>

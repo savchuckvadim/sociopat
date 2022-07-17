@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 
         followingInProgress: getIsFollowing(state),
         user: ownProps.user,
-        authUser: state.auth.authUser
+        authUser: state.auth.auth
     }
 }
 

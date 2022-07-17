@@ -4,7 +4,7 @@ import FollowUnfollowButtons from '../../../Elements/Button/Follow-Unfollow-Butt
 import Avatar from '../../../Elements/Avatar/Avatar';
 
 const UserCard = (props) => {
-
+debugger
 
     return (
         <div className={style.frame}>
@@ -30,6 +30,7 @@ const UserCard = (props) => {
                 followThunk={props.followThunk}
                 unFollowThunk={props.unFollowThunk}
                 followingInProgress={props.followingInProgress}
+                authUser={props.authUser}
                 />
             </div>
         </div>

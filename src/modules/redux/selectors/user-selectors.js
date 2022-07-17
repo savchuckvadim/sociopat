@@ -11,6 +11,10 @@ export const getPageSize = (state) => {
     return state.users.pageSize
 }
 
+export const getAuthUser = (state) => {
+    return state.auth.auth
+}
+
 export const getTotalUsersCount = (state) => {
     return state.users.totalUsersCount
 }
