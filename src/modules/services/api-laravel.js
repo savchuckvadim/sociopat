@@ -108,7 +108,7 @@ export const usersAPILaravel = {
     async getUsers(currentPage = 1, pageSize = 10) {
         await instance.get("/sanctum/csrf-cookie");
         // let testUsers = await instance.get(`api/users?page=${currentPage}&count=${pageSize}`);
-        // debugger
+        // 
         return instance.get(`api/users?page=${currentPage}&count=${pageSize}`).then(res => res);
     },
 

@@ -64,7 +64,7 @@ const usersReducer = (state = initialState, action) => {
             result = {
                 ...state
             }
-            debugger
+            
             if (result.users.length > 0) {
                 result.users = result.users.map(user => {
                     if (user.id === action.userId) {
@@ -92,7 +92,7 @@ const usersReducer = (state = initialState, action) => {
             result = {
                 ...state
             }
-            debugger
+            
 
             if (result.users.length > 0) {
                 result.users = result.users.map(user => {
@@ -111,7 +111,7 @@ const usersReducer = (state = initialState, action) => {
                         if (count) { //если count !== 0 значит в массиве Есть! аутентифицированный пользователь
 
                             user.followers.splice(indexOfAuthUser, 1)  //удаляем аутентифицированного пользователя из массива подписчиков
-                            debugger
+                            
                         }
                         return user
                     } else {
@@ -191,7 +191,7 @@ export const followThunk = (userId, authUser) => async (dispatch) => {
 
 
     await usersAPILaravel.follow(userId)
-    debugger
+    
     // if (res === 0) {
 
     dispatch(follow(userId, authUser))

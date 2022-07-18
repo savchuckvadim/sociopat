@@ -25,7 +25,7 @@ let initialState = {
     posts: []
 };
 export const addPostActionCreator = (value) => {
-
+    
     return {
         type: ADD_POST,
         value: value
@@ -175,18 +175,15 @@ const profileReducer = (state = initialState, action) => {
 
             let posts = [...state.posts]
 
-            let lastPost = {
-                id: posts.length + 1,
-                body: action.value,
-                img: ''
-            }
+            let lastPost = action.value
+            
             posts.unshift(lastPost)
             result.posts = posts
             return result;
 
         case SET_POSTS:
 
-            state.posts = action.posts.map(post => ({ ...post }))
+            state.posts = action.posts.reverse(post => ({ ...post }))
             return state
         //LIKE
         case LIKE:
@@ -218,9 +215,9 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
 
     const res = await postAPI.getPosts(userId) //get posts from backend and set to state
-    debugger
+    
     if (res.data) {
-        let posts = res.data.data
+        let posts = res.data
         dispatch(setPosts(posts))
     }
 
@@ -262,15 +259,16 @@ export const loadPhoto = (photo) => async (dispatch) => {
 }
 
 export const sendPost = (userId, profileId, body, img) => async (dispatch) => {
-
+    
     const res = await postAPI.sendPost(userId, profileId, body, img);
-    dispatch(addPostActionCreator(res.data.body))
+    
+    dispatch(addPostActionCreator(res.data.data))
 }
 
 export const like = (postId) => async (dispatch) => {
 
     const res = await postAPI.like(postId);
-    debugger
+    
     console.log(res)
     dispatch(setLike(postId))
 }

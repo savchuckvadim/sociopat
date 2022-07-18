@@ -9,7 +9,7 @@ import UploadAvatar from './UploadAvatar/UploadAvatar';
 
 const ProfileInformation = (props) => {
    
-    debugger
+    
    
     return (
         <div className={style.wrapper}>

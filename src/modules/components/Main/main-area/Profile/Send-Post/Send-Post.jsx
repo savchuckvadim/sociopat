@@ -7,7 +7,7 @@ import InputSendPost from './Send-Post-Form-Controls'
 export const SendPost = (props) => {
     
     const submit = (values, dispatch) => {
-       debugger
+       
         // props.send(values.sendPost)
         props.sendPost(props.user.id, props.visitedProfileId, values.sendPost, null)
         dispatch(reset('sendPost'))
