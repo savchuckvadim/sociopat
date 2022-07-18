@@ -15,8 +15,8 @@ const PostsArea = (props) => {
                 userName={`${post.author.name} ${post.author.surname}`}
                 body={post.body}
                 postsImg={post.img}
-                userId={props.profile.userId}
-                // like={props.like}
+                userId={post.author.id}
+                like={props.like}
                 isAuthUserLikes={post.isAuthLikes}
                 likesCount={post.likesCount}
             />

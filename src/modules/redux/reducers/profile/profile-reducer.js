@@ -25,7 +25,7 @@ let initialState = {
     posts: []
 };
 export const addPostActionCreator = (value) => {
-    
+
     return {
         type: ADD_POST,
         value: value
@@ -47,7 +47,7 @@ const setProfilePageData = (status, profile, user) => (
 
     }
 )
-const setLike = (postId) => ({type:LIKE, postId})
+const setLike = (postId, like) => ({ type: LIKE, postId, like })
 
 const profileReducer = (state = initialState, action) => {
 
@@ -176,7 +176,7 @@ const profileReducer = (state = initialState, action) => {
             let posts = [...state.posts]
 
             let lastPost = action.value
-            
+
             posts.unshift(lastPost)
             result.posts = posts
             return result;
@@ -187,14 +187,21 @@ const profileReducer = (state = initialState, action) => {
             return state
         //LIKE
         case LIKE:
-
-            state.posts = action.posts.map(post => {
+         result = { ...state }
+         debugger
+            result.posts = state.posts.map(post => {
+               
                 if (post.id === action.postId) {
                     post.isAuthLikes = true
+                    post.likes = [...post.likes]
+                    post.likes.push(action.like)
+                    post.likesCount = post.likes.length
                 }
+                debugger
+                return post
 
             })
-            return state
+            return result
 
         default:
             return result;
@@ -215,7 +222,7 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
 
     const res = await postAPI.getPosts(userId) //get posts from backend and set to state
-    
+
     if (res.data) {
         let posts = res.data
         dispatch(setPosts(posts))
@@ -259,17 +266,17 @@ export const loadPhoto = (photo) => async (dispatch) => {
 }
 
 export const sendPost = (userId, profileId, body, img) => async (dispatch) => {
-    
+
     const res = await postAPI.sendPost(userId, profileId, body, img);
-    
+
     dispatch(addPostActionCreator(res.data.data))
 }
 
 export const like = (postId) => async (dispatch) => {
 
     const res = await postAPI.like(postId);
-    
+    debugger
     console.log(res)
-    dispatch(setLike(postId))
+    dispatch(setLike(postId, res.data.like))
 }
 export default profileReducer;
