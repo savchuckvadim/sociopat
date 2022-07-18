@@ -188,7 +188,7 @@ const profileReducer = (state = initialState, action) => {
         //LIKE
         case LIKE:
          result = { ...state }
-         debugger
+         
             result.posts = state.posts.map(post => {
                
                 if (post.id === action.postId) {
@@ -197,7 +197,7 @@ const profileReducer = (state = initialState, action) => {
                     post.likes.push(action.like)
                     post.likesCount = post.likes.length
                 }
-                debugger
+                
                 return post
 
             })
@@ -275,7 +275,7 @@ export const sendPost = (userId, profileId, body, img) => async (dispatch) => {
 export const like = (postId) => async (dispatch) => {
 
     const res = await postAPI.like(postId);
-    debugger
+    
     console.log(res)
     dispatch(setLike(postId, res.data.like))
 }
