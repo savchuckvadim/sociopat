@@ -8,7 +8,7 @@ import Avatar from '../../../../Elements/Avatar/Avatar';
 import UploadAvatar from './UploadAvatar/UploadAvatar';
 
 const ProfileInformation = (props) => {
-   
+   debugger
     
    
     return (
@@ -44,6 +44,7 @@ const ProfileInformation = (props) => {
                             userId={props.params.userId}
                             visitedUser={props.visitedUser}
                             loadPhoto={props.loadPhoto}
+                           
                             //current user for set in users->user->folowwers.push() andvisitedUser->followers.push() in profile and user reducer
                         />
                     </div>
@@ -59,6 +60,7 @@ const ProfileInformation = (props) => {
                     name={props.userName}
                     // img={props.profile.photos.small}   /// old API
                     img={null} ///////////////LARAVEL
+                    user={props.visitedUser.profile}
                 />
 
             </div>

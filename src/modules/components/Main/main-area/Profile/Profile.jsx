@@ -44,6 +44,8 @@ let profile
             img={img}
             profile={props.profile}
             like={props.like}
+            dislike={props.dislike}
+            likeInProgress={props.likeInProgress}
             />
             
         </div>

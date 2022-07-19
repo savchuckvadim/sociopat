@@ -3,6 +3,7 @@ import style from './Author.module.css'
 import Avatar from '../Avatar/Avatar'
 
 const Author = (props) => {
+    
     let link = false
     props.userId 
     ? link = `../../profile/${props.userId }`
@@ -30,10 +31,11 @@ const Author = (props) => {
             >
                
                 <Avatar
-                {...props}
+                // {...props}
                 size={iconSize}
                 name={props.userName}
                 link={link}
+                user={props.author}
                 />
             </div>
 

@@ -13,10 +13,13 @@ const PostsArea = (props) => {
                 key={`post-${index}`}
                 img={props.img}
                 userName={`${post.author.name} ${post.author.surname}`}
+                author={post.author}
                 body={post.body}
                 postsImg={post.img}
                 userId={post.author.id}
                 like={props.like}
+                dislike={props.dislike}
+                likeInProgress={props.likeInProgress}
                 isAuthUserLikes={post.isAuthLikes}
                 likesCount={post.likesCount}
             />

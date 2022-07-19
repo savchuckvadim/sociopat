@@ -13,6 +13,7 @@ const UserCard = (props) => {
                 size={68}
                 name={props.name}
                 link={`../profile/${props.user.id}`}
+                user={props.user}
                 // img={props.user.photos.small}
                 />
 

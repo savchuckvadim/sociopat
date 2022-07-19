@@ -54,6 +54,7 @@ let user= props.user
                             link={false}
                             img={props.user.photos.small}
                             name={props.user.fullName}
+                            user={props.user}
                             />
                         {/* <Icon 
                         user={props} 

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux"
 import { Navigate, useParams } from "react-router-dom";
 import { compose } from "redux";
-import { getDataForLoadProfilePage, getStatus, like, loadPhoto, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
+import { dislike, getDataForLoadProfilePage, getStatus, like, loadPhoto, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container";
 
 
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
         visitedUser: state.profileReducer.visitedUser,
         posts: state.profileReducer.posts,
         status: state.profileReducer.status,
-
+        likeInProgress: state.profileReducer.likeInProgress,
 
     }
 }
@@ -123,7 +123,8 @@ export default compose(
         updateStatus,
         getDataForLoadProfilePage,
         loadPhoto,
-        like
+        like,
+        dislike
        
 
     }),

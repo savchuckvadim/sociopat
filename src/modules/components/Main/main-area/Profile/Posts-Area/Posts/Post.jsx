@@ -56,8 +56,15 @@ const Post = (props) => {
                 <div className={style.actions__wrapper}>
                     <button className={style.action_button}
                     onClick={() => {
+                        if(!props.likeInProgress){
+                            if(!props.isAuthUserLikes){
+                                props.like(props.id)
+                            }else{
+                                props.dislike(props.id)
+                            }
+                           
+                        }
                         
-                        props.like(props.id)
                     }}
                     >
                         <img 

@@ -14,6 +14,9 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_PROFILE_PAGE_DATA = 'SET_PROFILE_PAGE_DATA'
 const SET_PHOTO = 'SET_PHOTO'
 const LIKE = 'LIKE'
+const LIKE_IN_PROGRESS = 'LIKE_IN_PROGRESS'
+const DISLIKE = 'DISLIKE'
+
 
 let initialState = {
     profile: null,
@@ -22,7 +25,8 @@ let initialState = {
     login: 'Super User',
     about: 'Российский предприниматель. По данным Forbes, на 5 февраля 2022 года занимал 608-е место в списке наиболее состоятельных людей мира, в списке богатейших бизнесменов России в 2021 году занимал 32-е место с состоянием 4,7 миллиарда долларов. Известен как основатель «Тинькофф банка»',
     img: 'https://avatars.mds.yandex.net/i?id=9d717e4eaa6e7edfbea31ddfc889103e_l-4728599-images-thumbs&n=13',
-    posts: []
+    posts: [],
+    likeInProgress: false
 };
 export const addPostActionCreator = (value) => {
 
@@ -47,7 +51,11 @@ const setProfilePageData = (status, profile, user) => (
 
     }
 )
+
 const setLike = (postId, like) => ({ type: LIKE, postId, like })
+const setDislike = (like) => ({ type: DISLIKE, like })
+
+const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool })
 
 const profileReducer = (state = initialState, action) => {
 
@@ -187,21 +195,40 @@ const profileReducer = (state = initialState, action) => {
             return state
         //LIKE
         case LIKE:
-         result = { ...state }
-         
+            result = { ...state }
+
             result.posts = state.posts.map(post => {
-               
+
                 if (post.id === action.postId) {
                     post.isAuthLikes = true
                     post.likes = [...post.likes]
                     post.likes.push(action.like)
                     post.likesCount = post.likes.length
                 }
-                
+
                 return post
 
             })
             return result
+            case DISLIKE:
+                result = { ...state }
+    
+                result.posts = state.posts.map(post => {
+    
+                    if (post.id === action.postId) {
+                        post.isAuthLikes = true
+                        post.likes = [...post.likes]
+                        post.likes.push(action.like)
+                        post.likesCount = post.likes.length
+                    }
+    
+                    return post
+    
+                })
+                return result    
+        case LIKE_IN_PROGRESS:
+            state.likeInProgress = action.bool
+            return { ...state }
 
         default:
             return result;
@@ -273,10 +300,19 @@ export const sendPost = (userId, profileId, body, img) => async (dispatch) => {
 }
 
 export const like = (postId) => async (dispatch) => {
-
-    const res = await postAPI.like(postId);
     
-    console.log(res)
+    dispatch(likeInProgress(true))
+    const res = await postAPI.like(postId);
     dispatch(setLike(postId, res.data.like))
+    dispatch(likeInProgress(false))
+}
+export const dislike = (postId) => async (dispatch) => {
+    
+    dispatch(likeInProgress(true))
+    debugger
+    const res = await postAPI.dislike(postId);
+debugger
+    dispatch(setDislike(res.data.removedLike))
+    dispatch(likeInProgress(false))
 }
 export default profileReducer;

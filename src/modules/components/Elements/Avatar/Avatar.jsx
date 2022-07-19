@@ -10,8 +10,8 @@ const Avatar = (props) => {
     // img={props.iconOfDialog}
 
     let initials = 'SP.'
-    props.name
-        ? initials = (props.name.substring(0, 1) + props.name.slice(-1)).toUpperCase()
+    props.user
+        ? initials = (props.user.name.substring(0, 1) + props.user.surname.substring(0, 1)).toUpperCase()
         : initials = 'SP.'
 
 

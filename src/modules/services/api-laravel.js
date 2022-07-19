@@ -172,6 +172,9 @@ export const postAPI = {
         return instance.post('api/like', {
             postId
         })
+    },
+    dislike(postId) {
+        return instance.delete(`api/like/${postId}`)
     }
 
 }

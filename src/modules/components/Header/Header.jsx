@@ -42,6 +42,7 @@ const Header = (props) => {
                         img={avatar}
                         name={name}
                         link={'profile'}
+                        user={props.user}
                         />
                         
                        
