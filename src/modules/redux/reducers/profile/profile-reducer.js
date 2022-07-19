@@ -210,22 +210,22 @@ const profileReducer = (state = initialState, action) => {
 
             })
             return result
-            case DISLIKE:
-                result = { ...state }
-    
-                result.posts = state.posts.map(post => {
-    
-                    if (post.id === action.postId) {
-                        post.isAuthLikes = true
-                        post.likes = [...post.likes]
-                        post.likes.push(action.like)
-                        post.likesCount = post.likes.length
-                    }
-    
-                    return post
-    
-                })
-                return result    
+        case DISLIKE:
+            result = { ...state }
+
+            result.posts = state.posts.map(post => {
+
+                if (post.id === action.postId) {
+                    post.isAuthLikes = true
+                    post.likes = [...post.likes]
+                    post.likes.push(action.like)
+                    post.likesCount = post.likes.length
+                }
+
+                return post
+
+            })
+            return result
         case LIKE_IN_PROGRESS:
             state.likeInProgress = action.bool
             return { ...state }
@@ -243,9 +243,9 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
     const user = userRes.data
     const profile = { ...user.profile, photos: { small: null, large: null } }
 
-    const resStatus = await profileLaravelAPI.getAboutMe(userId)   //////////////////////////////LARVEL
-
-    const status = resStatus.data
+    const resStatus = await profileLaravelAPI.getAboutMe(userId)  //////////////////////////////LARVEL
+debugger
+    const status = resStatus.data.aboutMe
 
 
     const res = await postAPI.getPosts(userId) //get posts from backend and set to state
@@ -264,19 +264,22 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
 export const getStatus = (userId) => async (dispatch) => {
 
-    const res = await profileAPI.getStatus(userId)
-    const status = res.data
+    // const res = await profileAPI.getStatus(userId)
+    const res = await profileLaravelAPI.getStatus(userId)
+    debugger
+    const status = res.data.aboutMe
 
     dispatch(setStatus(status))
 
 }
 
-export const updateStatus = (status) => async (dispatch) => {
+export const updateStatus = (aboutMe) => async (dispatch) => {
 
-    const res = await profileAPI.updateStatus(status)
-
+    // const res = await profileAPI.updateStatus(status)
+    const res = await profileLaravelAPI.updateAboutMe(aboutMe)
+    debugger
     if (res.data.resultCode === 0) {
-        dispatch(setStatus(status))
+        dispatch(setStatus(aboutMe))
     }
 
 }
@@ -300,18 +303,17 @@ export const sendPost = (userId, profileId, body, img) => async (dispatch) => {
 }
 
 export const like = (postId) => async (dispatch) => {
-    
+
     dispatch(likeInProgress(true))
     const res = await postAPI.like(postId);
     dispatch(setLike(postId, res.data.like))
     dispatch(likeInProgress(false))
 }
 export const dislike = (postId) => async (dispatch) => {
-    
+
     dispatch(likeInProgress(true))
-    debugger
     const res = await postAPI.dislike(postId);
-debugger
+
     dispatch(setDislike(res.data.removedLike))
     dispatch(likeInProgress(false))
 }

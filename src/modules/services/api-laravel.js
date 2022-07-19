@@ -150,6 +150,13 @@ export const profileLaravelAPI = {
 
         return instance.get(`api/profile/aboutme/${userId}`)
     },
+
+    updateAboutMe(aboutMe) {
+
+        return instance.put(`api/profile/aboutme`, {
+            aboutMe
+        })
+    },
 }
 
 export const postAPI = {
