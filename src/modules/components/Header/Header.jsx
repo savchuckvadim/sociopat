@@ -10,12 +10,12 @@ const Header = (props) => {
     let avatar = null
     let name = null
 
-    if (props.user.userId) {
+    if (props.user) {
 
         avatar = props.user.photos.small
-        name = props.user.fullName
+        name = props.user.name
     }
-
+debugger
     return (
         <header className={style.header}>
             <div className={style.container}>
@@ -39,8 +39,8 @@ const Header = (props) => {
                          
                           <Avatar
                         size={40}
-                        img={avatar}
-                        name={name}
+                        // img={avatar}
+                        // name={name}
                         link={'profile'}
                         user={props.user}
                         />

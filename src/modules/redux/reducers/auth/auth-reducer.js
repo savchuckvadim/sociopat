@@ -1,6 +1,6 @@
 import { stopSubmit } from "redux-form";
 import { profileAPI, authAPI } from "../../../services/api";
-import { laravelAPI, profileLaravelAPI } from "../../../services/api-laravel";
+import { laravelAPI, profileLaravelAPI, usersAPILaravel } from "../../../services/api-laravel";
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
@@ -13,7 +13,7 @@ let initialState = {
         "email": null,
         isAuth: false
     },
-    currentProfile: {},
+    // currentProfile: {},
     authUser: null
 }
 
@@ -25,7 +25,7 @@ export const setAuthUserData = (authUser, id = null, login = null, email = null,
     isAuth
 })
 
-export const setAuthcurrentProfile = (userProfile) => ({ type: SET_AUTH_CURRENT_USER, userProfile })
+// export const setAuthcurrentProfile = (userProfile, avatar) => ({ type: SET_AUTH_CURRENT_USER, userProfile, avatar })
 
 const authReducer = (state = initialState, action) => {
     let result = state
@@ -44,7 +44,7 @@ const authReducer = (state = initialState, action) => {
             return result;
         case SET_AUTH_CURRENT_USER:
 
-            let user = { ...action.userProfile, photos: { small: null, large: null } }
+            let user = { ...action.userProfile, photos: { small: action.avatar, large: null } }
 
             return { ...state, currentProfile: user };
 
@@ -77,17 +77,19 @@ const authReducer = (state = initialState, action) => {
 export const laraGetAuth = () => async (dispatch) => {
     // await laravelAPI.me();
     let response = await laravelAPI.getAuthUser()
+   
     let authUser = null
     if (response.data) {
         authUser = response.data.data
     }
 
     if (authUser) {
-
+        let avatar = await usersAPILaravel.getAvatar(authUser.id) 
+        
         dispatch(setAuthUserData(authUser, authUser.id, authUser.email, authUser.email, true));
         //set auth users profile 
         // await laravelGetCurrentProfile(authUser.id, dispatch)
-        dispatch(setAuthcurrentProfile(authUser.profile))
+        // dispatch(setAuthcurrentProfile(authUser.profile, avatar.data))
 
 
     } else {
@@ -102,7 +104,7 @@ const getcurrentProfile = async (userId, dispatch) => {
     const res = await profileAPI.getProfile(userId)
 
     const userProfile = res.data
-    dispatch(setAuthcurrentProfile(userProfile))
+    // dispatch(setAuthcurrentProfile(userProfile))
 }
 export const login = (email, password, rememberMe) => (dispatch) => {
 
@@ -138,7 +140,7 @@ export const logout = () => (dispatch) => {
 
 
             dispatch(setAuthUserData(null, null, null, false))
-            dispatch(setAuthcurrentProfile({}))
+            // dispatch(setAuthcurrentProfile({}))
 
         })
 }

@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.auth.isAuth,
         auth: state.auth.auth,
-        profile: state.profileReducer.profile,
+        // profile: state.profileReducer.visitedUser.profile,
         visitedUser: state.profileReducer.visitedUser,
         posts: state.profileReducer.posts,
         status: state.profileReducer.status,
@@ -72,8 +72,8 @@ class ProfileContainer extends React.Component {
         // this.props.getStatus(this.userId)
 
         this.props.getDataForLoadProfilePage(this.userId)
-        if(this.props.profile){
-            this.photo = this.props.profile.photos.small
+        if(this.props.visitedUser){
+            this.photo = this.props.visitedUser.photos.small
         }
       
 
@@ -98,7 +98,7 @@ class ProfileContainer extends React.Component {
     render() {
         
         if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth.id}`) return <Navigate replace to={'../profile'} />
-        if(!this.props.profile) return <LightLoadingPageContainer/>
+        if(!this.props.visitedUser) return <LightLoadingPageContainer/>
         return (
 
             <Profile {...this.props}

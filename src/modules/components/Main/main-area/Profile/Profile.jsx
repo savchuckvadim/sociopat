@@ -13,36 +13,33 @@ export const Profile = (props) => {
    let img = null
    
    
-  if(props.isCurrentUser ){
-      if(props.profile && JSON.stringify(props.profile) !== '{}' ){
-
-        // userName = props.profile.fullName /////old API
-        userName = props.profile.name         /////////LARAVEL
-        // img = props.profile.photos.small   /////old API
-        img = null /////////LARAVEL
+  // if(props.isCurrentUser ){
+      if(props.visitedUser){
+        userName = props.visitedUser.profile.name        
+        img = null 
 
       }
     
-  }else {
-    if(props.visitedUser ){
+  // }else {
+    // if(props.visitedUser ){
      
-        userName = props.visitedUser.name
-        img = props.visitedUser.photos.small
+    //     userName = props.visitedUser.name
+    //     img = props.visitedUser.photos.small
         
-    }
+    // }
     
-  }
+  // }
   
     
 let profile
- props.profile 
+ props.visitedUser.profile 
  ?  profile = <div className={style.profile__container}>
-            <ProfileInformation {...props} userName={userName}  />
+            <ProfileInformation {...props}/>
             <SendPostContainer />
             <PostsArea 
             posts={props.posts}
-            img={img}
-            profile={props.profile}
+            // img={img}
+            profile={props.visitedUser.profile}
             like={props.like}
             dislike={props.dislike}
             likeInProgress={props.likeInProgress}

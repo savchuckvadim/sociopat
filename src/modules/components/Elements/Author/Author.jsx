@@ -3,6 +3,9 @@ import style from './Author.module.css'
 import Avatar from '../Avatar/Avatar'
 
 const Author = (props) => {
+    //props:
+    //userId
+    //size
     
     let link = false
     props.userId 
@@ -31,9 +34,7 @@ const Author = (props) => {
             >
                
                 <Avatar
-                // {...props}
                 size={iconSize}
-                name={props.userName}
                 link={link}
                 user={props.author}
                 />
@@ -45,7 +46,7 @@ const Author = (props) => {
                         fontSize: fontSize
                     }}
                 >
-                  {props.userName}
+                  {props.author.profile.name +' '+ props.author.profile.surname}
                 </p>
                 <p className={style.date}
                 style={{

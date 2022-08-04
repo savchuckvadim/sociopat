@@ -4,7 +4,9 @@ import axios from "axios";
 
 const instance = axios.create({
     withCredentials: true,
-    baseURL: 'http://localhost:8000/',
+    // baseURL: 'http://localhost:8000/',
+    baseURL: ' http://185.225.35.6/',
+   
     headers: {
         'content-type': 'application/json',
         'accept': 'application/json',
@@ -137,6 +139,12 @@ export const usersAPILaravel = {
     //     return instance.delete(`follow/${userId}`).then(res => res.data.resultCode)
     // }
 
+    async getAvatar(userId) {
+        const result = await instance.get(`api/garavatar/${userId}`)
+        
+        return result
+        // .then(res => res.data)
+    },
 }
 // laravelAPI.logout()
 

@@ -8,7 +8,7 @@ import Avatar from '../../../../Elements/Avatar/Avatar';
 import UploadAvatar from './UploadAvatar/UploadAvatar';
 
 const ProfileInformation = (props) => {
-   debugger
+    
     
    
     return (
@@ -57,10 +57,10 @@ const ProfileInformation = (props) => {
                 <Avatar
                     size={128}
                     border={true}
-                    name={props.userName}
+                    // name={props.userName}
                     // img={props.profile.photos.small}   /// old API
-                    img={null} ///////////////LARAVEL
-                    user={props.visitedUser.profile}
+                    // img={null} ///////////////LARAVEL
+                    user={props.visitedUser}
                 />
 
             </div>

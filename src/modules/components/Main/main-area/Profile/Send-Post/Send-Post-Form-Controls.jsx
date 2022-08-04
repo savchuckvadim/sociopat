@@ -52,8 +52,8 @@ let user= props.user
                             <Avatar
                             size={40}
                             link={false}
-                            img={props.user.photos.small}
-                            name={props.user.fullName}
+                            // img={props.user.photos.small}
+                            // name={props.user.fullName}
                             user={props.user}
                             />
                         {/* <Icon 

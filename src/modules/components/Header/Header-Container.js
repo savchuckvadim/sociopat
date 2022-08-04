@@ -8,7 +8,7 @@ import Header from "./Header"
 const mapStateToProps = (state) => {
     return {
         auth: state.auth.auth,
-        user: state.auth.currentProfile,
+        user: state.auth.authUser,
         theme: state.theme
     }
 }

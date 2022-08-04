@@ -6,26 +6,26 @@ import { postAPI, profileLaravelAPI, usersAPILaravel } from "../../../services/a
 
 const ADD_POST = 'ADD_POST';
 const SET_POSTS = 'SET_POSTS';
-const SET_PROFILE = 'SET_PROFILE';
+// const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS'
-const SET_VISITED_USER = 'SET_VISITED_USER'
+// const SET_VISITED_USER = 'SET_VISITED_USER'
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
-const SET_PROFILE_PAGE_DATA = 'SET_PROFILE_PAGE_DATA'
-const SET_PHOTO = 'SET_PHOTO'
-const LIKE = 'LIKE'
-const LIKE_IN_PROGRESS = 'LIKE_IN_PROGRESS'
-const DISLIKE = 'DISLIKE'
+const SET_PROFILE_PAGE_DATA = 'SET_PROFILE_PAGE_DATA';
+const SET_PHOTO = 'SET_PHOTO';
+const LIKE = 'LIKE';
+const LIKE_IN_PROGRESS = 'LIKE_IN_PROGRESS';
+const DISLIKE = 'DISLIKE';
 
 
 let initialState = {
-    profile: null,
+    // profile: null,
     visitedUser: null,
     status: '',
     login: 'Super User',
-    about: 'Российский предприниматель. По данным Forbes, на 5 февраля 2022 года занимал 608-е место в списке наиболее состоятельных людей мира, в списке богатейших бизнесменов России в 2021 году занимал 32-е место с состоянием 4,7 миллиарда долларов. Известен как основатель «Тинькофф банка»',
-    img: 'https://avatars.mds.yandex.net/i?id=9d717e4eaa6e7edfbea31ddfc889103e_l-4728599-images-thumbs&n=13',
-    posts: [],
+    // about: 'Российский предприниматель. По данным Forbes, на 5 февраля 2022 года занимал 608-е место в списке наиболее состоятельных людей мира, в списке богатейших бизнесменов России в 2021 году занимал 32-е место с состоянием 4,7 миллиарда долларов. Известен как основатель «Тинькофф банка»',
+    // img: 'https://avatars.mds.yandex.net/i?id=9d717e4eaa6e7edfbea31ddfc889103e_l-4728599-images-thumbs&n=13',
+    // posts: [],
     likeInProgress: false
 };
 export const addPostActionCreator = (value) => {
@@ -34,46 +34,47 @@ export const addPostActionCreator = (value) => {
         type: ADD_POST,
         value: value
     }
-}
+};
 
-export const setPosts = (posts) => ({ type: SET_POSTS, posts })
+export const setPosts = (posts) => ({ type: SET_POSTS, posts });
 
-export const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
-const setStatus = (status) => ({ type: SET_STATUS, status })
-const setPhotos = (photos) => ({ type: SET_PHOTO, photos })
-const setVisitedUser = (user) => ({ type: SET_VISITED_USER, user })
-const setProfilePageData = (status, profile, user) => (
+// const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
+const setStatus = (status) => ({ type: SET_STATUS, status });
+const setPhotos = (photos) => ({ type: SET_PHOTO, photos });
+// const setVisitedUser = (user) => ({ type: SET_VISITED_USER, user })
+const setProfilePageData = (status, profile, user, avatar) => (
     {
         type: SET_PROFILE_PAGE_DATA,
         status,
         profile,
-        user
+        user,
+        avatar
 
     }
-)
+);
 
-const setLike = (postId, like) => ({ type: LIKE, postId, like })
-const setDislike = (like) => ({ type: DISLIKE, like })
+const setLike = (postId, like) => ({ type: LIKE, postId, like });
+const setDislike = (like) => ({ type: DISLIKE, like });
 
-const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool })
+const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool });
 
 const profileReducer = (state = initialState, action) => {
 
     let result = state
     switch (action.type) {
 
-        case SET_PROFILE:
+        // case SET_PROFILE:
 
-            if (state.profile) {
-                if (state.profile.userId !== action.profile.userId) {
+        //     if (state.profile) {
+        //         if (state.profile.userId !== action.profile.userId) {
 
 
-                }
-            } else {
-                return { ...state, profile: action.profile }
-            }
+        //         }
+        //     } else {
+        //         return { ...state, profile: action.profile }
+        //     }
 
-            return state
+        //     return state
 
 
         case FOLLOW:
@@ -152,26 +153,26 @@ const profileReducer = (state = initialState, action) => {
                 result.status = action.status
             }
 
-            if (state.profile) {                                         //profile
-                if (state.profile.user_id !== action.profile.user_id) {
-                    result = { ...state }
-                    result.profile = action.profile
+            // if (state.profile) {                                         //profile
+            //     if (state.profile.user_id !== action.profile.user_id) {
+            //         result = { ...state }
+            //         result.profile = action.profile
 
-                }
-            } else {
-                result.profile = action.profile
-            }
+            //     }
+            // } else {
+            //     result.profile = action.profile
+            // }
 
             if (state.visitedUser) {                                        //visiteduser
 
                 if (state.visitedUser.name !== action.user.name) {
                     result = { ...state }
-                    result.visitedUser = { ...action.user, photos: { small: null, large: null } }
+                    result.visitedUser = { ...action.user, photos: { small: action.avatar, large: null } }
                 }
             } else {
 
                 result = { ...state }
-                result.visitedUser = { ...action.user, photos: { small: null, large: null } }
+                result.visitedUser = { ...action.user, photos: { small: action.avatar, large: null } }
             }
 
             return result
@@ -244,45 +245,50 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
     const profile = { ...user.profile, photos: { small: null, large: null } }
 
     const resStatus = await profileLaravelAPI.getAboutMe(userId)  //////////////////////////////LARVEL
-debugger
+
     const status = resStatus.data.aboutMe
 
 
     const res = await postAPI.getPosts(userId) //get posts from backend and set to state
-
+    const avatarUrl = await usersAPILaravel.getAvatar(userId)
+    const photos = {
+        small: avatarUrl.data,
+        large: null
+    }
+    profile.photos = photos
+    
     if (res.data) {
         let posts = res.data
         dispatch(setPosts(posts))
     }
 
-    dispatch(setProfilePageData(status, profile, user))
+    dispatch(setProfilePageData(status, profile, user, avatarUrl.data))
 
 
 
 
-}
+};
 
 export const getStatus = (userId) => async (dispatch) => {
 
     // const res = await profileAPI.getStatus(userId)
     const res = await profileLaravelAPI.getStatus(userId)
-    debugger
     const status = res.data.aboutMe
 
     dispatch(setStatus(status))
 
-}
+};
 
 export const updateStatus = (aboutMe) => async (dispatch) => {
 
     // const res = await profileAPI.updateStatus(status)
     const res = await profileLaravelAPI.updateAboutMe(aboutMe)
-    debugger
+
     if (res.data.resultCode === 0) {
         dispatch(setStatus(aboutMe))
     }
 
-}
+};
 export const loadPhoto = (photo) => async (dispatch) => {
 
     const res = await profileAPI.loadPhoto(photo)
@@ -293,14 +299,14 @@ export const loadPhoto = (photo) => async (dispatch) => {
         dispatch(setPhotos(photos))
     }
 
-}
+};
 
 export const sendPost = (userId, profileId, body, img) => async (dispatch) => {
 
     const res = await postAPI.sendPost(userId, profileId, body, img);
 
     dispatch(addPostActionCreator(res.data.data))
-}
+};
 
 export const like = (postId) => async (dispatch) => {
 
@@ -308,7 +314,7 @@ export const like = (postId) => async (dispatch) => {
     const res = await postAPI.like(postId);
     dispatch(setLike(postId, res.data.like))
     dispatch(likeInProgress(false))
-}
+};
 export const dislike = (postId) => async (dispatch) => {
 
     dispatch(likeInProgress(true))
@@ -316,5 +322,5 @@ export const dislike = (postId) => async (dispatch) => {
 
     dispatch(setDislike(res.data.removedLike))
     dispatch(likeInProgress(false))
-}
+};
 export default profileReducer;
