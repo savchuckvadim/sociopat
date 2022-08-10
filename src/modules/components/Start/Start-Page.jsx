@@ -47,7 +47,7 @@ const Start = () => {
                         </div>
                         <div className={style.button__wrapper}>
                         <NavLink className={style.button__link} to='../registration'>
-                                <WhiteButton border={16} name={'rEGISTRATION'} />
+                                <WhiteButton border={16} name={'registaration'} />
                             </NavLink>
                             {/* <WhiteButton
                                 onClick={() => {

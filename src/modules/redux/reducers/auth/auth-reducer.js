@@ -1,6 +1,6 @@
 import { stopSubmit } from "redux-form";
-import { profileAPI, authAPI } from "../../../services/api";
-import { laravelAPI, profileLaravelAPI, usersAPILaravel } from "../../../services/api-laravel";
+import { profileAPI } from "../../../services/api";
+import { laravelAPI, usersAPILaravel } from "../../../services/api-laravel";
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
