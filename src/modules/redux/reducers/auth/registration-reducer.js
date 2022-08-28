@@ -18,7 +18,7 @@ export const setNewUser = (name, surname, email, password, password_confirmation
     registratingInProgress();
     let res = await laravelAPI.register(name, surname, email, password, password_confirmation)
 
-    if(res.statusText === 'created'){
+    if(res.statusText === 'Created'){
         registrationSuccess()
     }
 }
