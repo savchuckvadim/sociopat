@@ -1,4 +1,3 @@
-
 import axios from "axios";
 
 
@@ -6,7 +5,7 @@ const instance = axios.create({
     withCredentials: true,
     // baseURL: 'http://localhost/',
     baseURL: ' http://185.225.35.6/',
-   
+
     headers: {
         'content-type': 'application/json',
         'accept': 'application/json',
@@ -63,7 +62,7 @@ export const laravelAPI = {
 
     },
     async getAuthUser() {
-
+        await this.logout()
         // await instance.get("/sanctum/csrf-cookie")
         let result = await instance.get("api/user/auth");
 
@@ -137,7 +136,7 @@ export const usersAPILaravel = {
 
     async getAvatar(userId) {
         const result = await instance.get(`api/garavatar/${userId}`)
-        
+
         return result
         // .then(res => res.data)
     },
