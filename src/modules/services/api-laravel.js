@@ -62,7 +62,7 @@ export const laravelAPI = {
 
     },
     async getAuthUser() {
-        await this.logout()
+        // await this.logout()
         // await instance.get("/sanctum/csrf-cookie")
         let result = await instance.get("api/user/auth");
 
