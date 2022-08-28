@@ -7,8 +7,6 @@ import reportWebVitals from './reportWebVitals';
 import store from './modules/redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import AppContainer from './App-Container.jsx';
-import { Sanctum } from 'react-sanctum';
-import { sanctumConfig } from './modules/services/sanctum/sunctumConfig';
 
 
 
@@ -16,13 +14,11 @@ import { sanctumConfig } from './modules/services/sanctum/sunctumConfig';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      {/* <Sanctum config={sanctumConfig}> */}
         <Provider store={store}>
 
           <AppContainer />
 
         </Provider>
-      {/* </Sanctum> */}
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root"))

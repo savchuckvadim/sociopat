@@ -44,10 +44,6 @@ export const laravelAPI = {
             password: password,
             password_confirmation: passwordConfirmation
 
-        }).then(res => {
-            console.log('register')
-            console.log(res)
-
         })
 
         return result

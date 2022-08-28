@@ -1,6 +1,13 @@
-import { stopSubmit } from "redux-form";
-import { profileAPI } from "../../../services/api";
-import { laravelAPI, usersAPILaravel } from "../../../services/api-laravel";
+import {
+    stopSubmit
+} from "redux-form";
+import {
+    profileAPI
+} from "../../../services/api";
+import {
+    laravelAPI,
+    usersAPILaravel
+} from "../../../services/api-laravel";
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
@@ -18,12 +25,16 @@ let initialState = {
 }
 
 export const setAuthUserData = (authUser, id = null, login = null, email = null, isAuth = false) =>
-({
-    type: SET_USER_DATA,
-    authUser,
-    data: { id, login, email },
-    isAuth
-})
+    ({
+        type: SET_USER_DATA,
+        authUser,
+        data: {
+            id,
+            login,
+            email
+        },
+        isAuth
+    })
 
 // export const setAuthcurrentProfile = (userProfile, avatar) => ({ type: SET_AUTH_CURRENT_USER, userProfile, avatar })
 
@@ -39,20 +50,34 @@ const authReducer = (state = initialState, action) => {
                 ...action.data,
                 isAuth: action.isAuth
             }
-            result.authUser = action.authUser  //запоминаем аутентифицированного пользователя в state чтобы потом его вставлять в список подписчиков
+            result.authUser = action.authUser //запоминаем аутентифицированного пользователя в state чтобы потом его вставлять в список подписчиков
 
             return result;
         case SET_AUTH_CURRENT_USER:
 
-            let user = { ...action.userProfile, photos: { small: action.avatar, large: null } }
+            let user = {
+                ...action.userProfile,
+                photos: {
+                    small: action.avatar,
+                    large: null
+                }
+            }
 
-            return { ...state, currentProfile: user };
+            return {
+                ...state, currentProfile: user
+            };
 
         case SET_PHOTO:
 
-            result = { ...state }
-            result.currentProfile = { ...state.currentProfile }
-            result.currentProfile.photos = { ...action.photos }
+            result = {
+                ...state
+            }
+            result.currentProfile = {
+                ...state.currentProfile
+            }
+            result.currentProfile.photos = {
+                ...action.photos
+            }
             return result
 
         default:
@@ -77,15 +102,15 @@ const authReducer = (state = initialState, action) => {
 export const laraGetAuth = () => async (dispatch) => {
     // await laravelAPI.me();
     let response = await laravelAPI.getAuthUser()
-   
+
     let authUser = null
     if (response.data) {
         authUser = response.data.data
     }
 
     if (authUser) {
-        let avatar = await usersAPILaravel.getAvatar(authUser.id) 
-        
+        let avatar = await usersAPILaravel.getAvatar(authUser.id)
+
         dispatch(setAuthUserData(authUser, authUser.id, authUser.email, authUser.email, true));
         //set auth users profile 
         // await laravelGetCurrentProfile(authUser.id, dispatch)
@@ -110,7 +135,8 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 
     laravelAPI.login(email, password, rememberMe)
         .then(res => {
-
+            console.log('login')
+            console.log(res)
             const resultCode = res.status;
 
             if (resultCode === 200) {

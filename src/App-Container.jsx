@@ -9,7 +9,6 @@ import { LightLoadingPageContainer } from "./modules/components/Elements/Loading
 import StartPage from "./modules/components/Start/Start-Page";
 import { initialize } from "./modules/redux/reducers/app-reducer";
 import { laraGetAuth } from "./modules/redux/reducers/auth/auth-reducer";
-// import { useSanctum } from "react-sanctum";
 // import { laravelAPI } from "./modules/services/api-laravel";
 
 const withRouter = WrappedComponent => props => {
