@@ -1,5 +1,5 @@
 import {
-    profileAPI, usersAPI
+    profileAPI
 } from "../../../services/api"
 import { postAPI, profileLaravelAPI, usersAPILaravel } from "../../../services/api-laravel";
 

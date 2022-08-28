@@ -9,16 +9,16 @@ import { SendPostContainer } from './Send-Post/Send-Post-Container';
 
 export const Profile = (props) => {
   
-   let userName = null
-   let img = null
+  //  let userName = null
+  //  let img = null
    
    
   // if(props.isCurrentUser ){
-      if(props.visitedUser){
-        userName = props.visitedUser.profile.name        
-        img = null 
+      // if(props.visitedUser){
+      //   userName = props.visitedUser.profile.name        
+      //   img = null 
 
-      }
+      // }
     
   // }else {
     // if(props.visitedUser ){

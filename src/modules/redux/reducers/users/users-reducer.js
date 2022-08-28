@@ -1,4 +1,3 @@
-import { usersAPI } from "../../../services/api";
 import { usersAPILaravel } from "../../../services/api-laravel";
 
 

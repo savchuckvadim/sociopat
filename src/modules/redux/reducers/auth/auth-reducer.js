@@ -2,11 +2,7 @@ import {
     stopSubmit
 } from "redux-form";
 import {
-    profileAPI
-} from "../../../services/api";
-import {
-    laravelAPI,
-    usersAPILaravel
+    laravelAPI
 } from "../../../services/api-laravel";
 
 
@@ -109,7 +105,7 @@ export const laraGetAuth = () => async (dispatch) => {
     }
 
     if (authUser) {
-        let avatar = await usersAPILaravel.getAvatar(authUser.id)
+        // let avatar = await usersAPILaravel.getAvatar(authUser.id)
 
         dispatch(setAuthUserData(authUser, authUser.id, authUser.email, authUser.email, true));
         //set auth users profile 
@@ -125,12 +121,12 @@ export const laraGetAuth = () => async (dispatch) => {
 }
 
 
-const getcurrentProfile = async (userId, dispatch) => {
-    const res = await profileAPI.getProfile(userId)
+// const getcurrentProfile = async (userId, dispatch) => {
+//     const res = await profileAPI.getProfile(userId)
 
-    const userProfile = res.data
-    // dispatch(setAuthcurrentProfile(userProfile))
-}
+//     const userProfile = res.data
+   
+// }
 export const login = (email, password, rememberMe) => (dispatch) => {
 
     laravelAPI.login(email, password, rememberMe)

@@ -1,6 +1,5 @@
-import { laravelAPI } from '../../services/api-laravel'
-import {
-    getAuth, laraGetAuth
+
+import { laraGetAuth
 } from './auth/auth-reducer'
 const INITIALIZED_SUCCES = 'INITIALIZED_SUCCES'
 const INITIALIZING = 'INITIALIZING'

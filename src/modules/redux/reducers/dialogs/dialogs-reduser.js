@@ -1,6 +1,5 @@
 import { fishAPI, usersAPI } from "../../../services/api";
 
-const DIALOGS = 'DIALOGS';
 const SET_DIALOGS = 'SET_DIALOGS'
 
 const initialState = {

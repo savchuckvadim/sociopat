@@ -33,7 +33,7 @@ const AppContainer = (props) => {
 
     useEffect(() => {
         props.initialize();
-        // laravelAPI.me()
+       console.log('initialize')
 
     }, [])
 
@@ -43,6 +43,9 @@ const AppContainer = (props) => {
 
 
     if (!props.isAuth && !props.initialInProgress) {
+        console.log('isAuth')
+        console.log(props.isAuth)
+        
         app = <StartPage />
 
     }
