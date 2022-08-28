@@ -98,7 +98,8 @@ const authReducer = (state = initialState, action) => {
 export const laraGetAuth = () => async (dispatch) => {
     // await laravelAPI.me();
     let response = await laravelAPI.getAuthUser()
-
+console.log('get auth user response')
+console.log(response)
     let authUser = null
     if (response.data) {
         authUser = response.data.data
@@ -106,6 +107,8 @@ export const laraGetAuth = () => async (dispatch) => {
 
     if (authUser) {
         // let avatar = await usersAPILaravel.getAvatar(authUser.id)
+console.log('authUser')
+console.log(authUser)
 
         dispatch(setAuthUserData(authUser, authUser.id, authUser.email, authUser.email, true));
         //set auth users profile 
