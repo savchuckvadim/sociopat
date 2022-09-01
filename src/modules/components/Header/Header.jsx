@@ -15,7 +15,7 @@ const Header = (props) => {
         avatar = props.user.photos.small
         name = props.user.name
     }
-debugger
+
     return (
         <header className={style.header}>
             <div className={style.container}>

@@ -28,7 +28,7 @@ const Post = (props) => {
     if(props.likesCount){
         likesCount = props.likesCount
     }
-    debugger
+    
 
     return (
 

@@ -16,6 +16,12 @@ let initialState = [
         link: 'users',
        
 
+    },
+    {
+        name: 'Beautiful',
+        link: 'beautiful',
+       
+
     }
 
 ]

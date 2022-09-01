@@ -1,5 +1,6 @@
 
 import React from "react";
+import { useEffect } from "react";
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container";
 import Title from "../../../Elements/Title/Title";
 import Paginator from "./Paginator/Paginator";
@@ -8,6 +9,10 @@ import style from './Users.module.css'
 
 
 const Users = (props) => {
+
+    useEffect(() => { 
+        props.requestUsers(props.currentPage, props.pageSize)
+    }, [])
     
     // let isFetching = false
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -35,17 +40,17 @@ const Users = (props) => {
                         followingInProgress={props.followingInProgress}
                         // setVisitedUser={props.setVisitedUser}
                         authUser={props.authUser}
-                        
+
                     />)}
             </div>
 
             <div className={style.pages}>
 
-                <Paginator 
-                totalUsersCount={props.totalUsersCount}
-                pageSize={props.pageSize}
-                currentPage={props.currentPage}
-                onPageChanged={props.onPageChanged}
+                <Paginator
+                    totalUsersCount={props.totalUsersCount}
+                    pageSize={props.pageSize}
+                    currentPage={props.currentPage}
+                    onPageChanged={props.onPageChanged}
 
                 />
             </div>

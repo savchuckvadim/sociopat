@@ -27,13 +27,9 @@ const mapStateToProps = (state) => {
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
-    // etc... other react-router-dom v6 hooks
 
     return (
-        <WrappedComponent
-            {...props}
-            params={params}
-        // etc...
+        <WrappedComponent {...props} params={params}
         />
     );
 };
@@ -52,7 +48,7 @@ class ProfileContainer extends React.Component {
     getUserId = (params) => {
 
         if (this.props.params.userId) {
-            
+            debugger
             this.userId = this.props.params.userId;
             this.isAuthUser = false
 

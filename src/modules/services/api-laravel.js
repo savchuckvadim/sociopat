@@ -3,8 +3,8 @@ import axios from "axios";
 
 const instance = axios.create({
     withCredentials: true,
-    // baseURL: 'http://localhost/',
-    baseURL: ' http://185.225.35.6/',
+    baseURL: 'http://localhost:8000/',
+    // baseURL: ' http://185.225.35.6/',
 
     headers: {
         'content-type': 'application/json',
