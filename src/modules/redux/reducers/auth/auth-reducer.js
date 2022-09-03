@@ -1,101 +1,29 @@
-import {stopSubmit} from "redux-form";
-import {eventsAPI, laravelAPI} from "../../../services/api-laravel";
+import { stopSubmit } from "redux-form";
+import { laravelAPI } from "../../../services/api-laravel";
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
-const SET_AUTH_CURRENT_USER = 'SET_AUTH_CURRENT_USER';
+// const SET_AUTH_CURRENT_USER = 'SET_AUTH_CURRENT_USER';
 const SET_PHOTO = 'SET_PHOTO'
+
+//STATE
 let initialState = {
-    auth: {
-        "id": null,
-        "login": null,
-        "email": null,
-        isAuth: false
-    },
-    // currentProfile: {},
+    auth: { "id": null, "login": null, "email": null, isAuth: false },
     authUser: null
 }
 
+//ACION CREATORS
 export const setAuthUserData = (authUser, id = null, login = null, email = null, isAuth = false) =>
-    ({
-        type: SET_USER_DATA,
-        authUser,
-        data: {
-            id,
-            login,
-            email
-        },
-        isAuth
-    })
-
-// export const setAuthcurrentProfile = (userProfile, avatar) => ({ type: SET_AUTH_CURRENT_USER, userProfile, avatar })
-
-const authReducer = (state = initialState, action) => {
-    let result = state
-
-    switch (action.type) {
-        case SET_USER_DATA:
-            result = {
-                ...state,
-            }
-            result.auth = {
-                ...action.data,
-                isAuth: action.isAuth
-            }
-            result.authUser = action.authUser //запоминаем аутентифицированного пользователя в state чтобы потом его вставлять в список подписчиков
-
-            return result;
-        case SET_AUTH_CURRENT_USER:
-
-            let user = {
-                ...action.userProfile,
-                photos: {
-                    small: action.avatar,
-                    large: null
-                }
-            }
-
-            return {
-                ...state, currentProfile: user
-            };
-
-        case SET_PHOTO:
-
-            result = {
-                ...state
-            }
-            result.currentProfile = {
-                ...state.currentProfile
-            }
-            result.currentProfile.photos = {
-                ...action.photos
-            }
-            return result
-
-        default:
-            return result;
-    }
-
-}
+    ({ type: SET_USER_DATA, authUser, data: { id, login, email }, isAuth })
 
 
-// export const getAuth = () => async (dispatch) => {
 
-//     const res = await authAPI.me();
-//     const resultCode = res.resultCode;
-//     const data = res.data;
-//     if (resultCode === 0) {
 
-//         dispatch(setAuthUserData(data.id, data.login, data.email, true));
-//         getcurrentProfile(data.id, dispatch)
-//     }
-// }
-
+//THUNKS
 export const laraGetAuth = () => async (dispatch) => {
     // await laravelAPI.me();
     let response = await laravelAPI.getAuthUser()
-console.log('get auth user response')
-console.log(response)
+
     let authUser = null
     if (response.data) {
         authUser = response.data.data
@@ -103,8 +31,6 @@ console.log(response)
 
     if (authUser) {
         // let avatar = await usersAPILaravel.getAvatar(authUser.id)
-console.log('authUser')
-console.log(authUser)
 
         dispatch(setAuthUserData(authUser, authUser.id, authUser.email, authUser.email, true));
         // await eventsAPI.event();
@@ -119,14 +45,6 @@ console.log(authUser)
 
 
 }
-
-
-// const getcurrentProfile = async (userId, dispatch) => {
-//     const res = await profileAPI.getProfile(userId)
-
-//     const userProfile = res.data
-   
-// }
 export const login = (email, password, rememberMe) => (dispatch) => {
 
     laravelAPI.login(email, password, rememberMe)
@@ -158,13 +76,37 @@ export const logout = () => (dispatch) => {
 
     laravelAPI.logout()
         .then(res => {
-
-
-
             dispatch(setAuthUserData(null, null, null, false))
             // dispatch(setAuthcurrentProfile({}))
 
         })
 }
 
+
+//REDUCER
+const authReducer = (state = initialState, action) => {
+    let result = state
+
+    switch (action.type) {
+        case SET_USER_DATA:
+            result = { ...state, }
+            result.auth = { ...action.data, isAuth: action.isAuth }
+            result.authUser = action.authUser //запоминаем аутентифицированного пользователя в state чтобы потом его вставлять в список подписчиков
+            return result;
+
+        // case SET_AUTH_CURRENT_USER:
+        //     let user = { ...action.userProfile, photos: { small: action.avatar, large: null } }
+        //     return { ...state, currentProfile: user };
+
+        case SET_PHOTO:
+            result = { ...state }
+            result.currentProfile = { ...state.currentProfile }
+            result.currentProfile.photos = { ...action.photos }
+            return result
+
+        default:
+            return result;
+    }
+
+}
 export default authReducer
