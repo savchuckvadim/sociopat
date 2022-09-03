@@ -1,4 +1,5 @@
 import axios from "axios";
+import Echo from "laravel-echo";
 
 
 const instance = axios.create({
@@ -187,4 +188,49 @@ export const postAPI = {
         return instance.delete(`api/like/${postId}`)
     }
 
+}
+
+export const eventsAPI = {
+
+    async event() {
+        let res = await instance.get(`api/testingevent`)
+        window.Pusher = require('pusher-js');
+        let echo = new Echo({
+
+            broadcaster: 'pusher',
+            key: 'socket_key',
+            cluster: 'mt1',
+            forceTLS: true,
+            wsHost: '127.0.0.1',
+            wsPort: 6001,
+            authorizer: (channel, options) => {
+                console.log(options);
+                return {
+                    authorize: (socketId, callback) => {
+                        axios({
+                                method: "POST",
+                                url: "http://localhost:8000/api/broadcasting/auth",
+                                data: {
+                                    socket_id: socketId,
+                                    channel_name: channel.name,
+                                },
+                            })
+                            .then((response) => {
+                                callback(false, response.data);
+                            })
+                            .catch((error) => {
+                                callback(true, error);
+                            });
+                    }
+                };
+            }
+
+        })
+        // echo.private(`test-chanel.${21}`)
+        //     .listen('LoginEvent', (e) => {
+        //         alert(e.data);
+        //     });
+        debugger
+        return res
+    },
 }

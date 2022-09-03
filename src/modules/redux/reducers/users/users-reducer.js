@@ -1,4 +1,5 @@
-import { usersAPILaravel } from "../../../services/api-laravel";
+import {  usersAPILaravel} from "../../../services/api-laravel";
+import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
 
 
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
@@ -28,108 +29,46 @@ const usersReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case SET_CURRENT_PAGE:
-            result = {
-                ...state
-            }
+            result = {...state}
             result.currentPage = action.page
-
             return result
 
         case SET_USERS:
-            result = {
-                ...state
-            }
+            result = {...state}
             result.users = action.users
 
             return result
 
         case SET_TOTAL_USERS_COUNT:
-            result = {
-                ...state
-            }
+            result = {...state}
             result.count = action.count
 
             return result
 
         case FETCHING:
-            result = {
-                ...state
-            }
+            result = {    ...state}
             result.isFetching = action.bool
 
             return result
 
         case FOLLOW:
-            result = {
-                ...state
-            }
-            
-            if (result.users.length > 0) {
-                result.users = result.users.map(user => {
-                    if (user.id === action.userId) {
-                        user.followed = true
-                        let count = 0
-                        user.followers.forEach(f => {
-                            if (f.id === action.authUser.id) {    //если среди массива объектов подписчиков содержится подписчик с id auth usera делает count больше нуля
-                                count++
-                            }
-
-                        });
-                        if (!count) { //если count = 0 значит в массиве отсутствует аутентифицированный пользователь
-                            user.followers.push(action.authUser)  //пушим аутентифицированного пользователя в массив подписчиков
-                        }
-                        return user
-                    } else {
-                        return user
-                    }
-                })
-            }
-
+            result = {...state}
+result.users = followUnfollow(state.users,action.userId, action.authUser, true)
             return result
 
         case UNFOLLOW:
-            result = {
-                ...state
-            }
-            
-
-            if (result.users.length > 0) {
-                result.users = result.users.map(user => {
-                    if (user.id === action.userId) {
-                        user.followed = false
-                        let count = 0
-                        let indexOfAuthUser = undefined
-                        user.followers.forEach((f, i) => {
-                            
-                            if (f.id === action.authUser.id) {    //если среди массива объектов подписчиков содержится подписчик с id auth usera делает count больше нуля
-                                count++
-                                indexOfAuthUser = i
-                            }
-
-                        });
-                        if (count) { //если count !== 0 значит в массиве Есть! аутентифицированный пользователь
-
-                            user.followers.splice(indexOfAuthUser, 1)  //удаляем аутентифицированного пользователя из массива подписчиков
-                            
-                        }
-                        return user
-                    } else {
-                        return user
-                    }
-                })
-            }
+            result = {...state }
+            result.users = followUnfollow(state.users,action.userId, action.authUser, false)
 
             return result
 
         case FOLLOWING_IN_PROGRESS:
-            result = {
-                ...state
-            }
+            result = {...state }
             result.followingInProgress = [...state.followingInProgress]
 
-            action.isFetching
-                ? result.followingInProgress.push(action.userId)
-                : result.followingInProgress = state.followingInProgress.filter(id => id !== action.userId)
+            action.isFetching ?
+                result.followingInProgress.push(action.userId) :
+                result.followingInProgress = state.followingInProgress.filter(id => id !== action.userId)
 
             return result
 
@@ -140,13 +79,13 @@ const usersReducer = (state = initialState, action) => {
     }
 
 }
-export const setCurrentPage = (page) => ({ type: SET_CURRENT_PAGE, page })
-export const setUsers = (users) => ({ type: SET_USERS, users })
-export const setTotalUsersCount = (count) => ({ type: SET_TOTAL_USERS_COUNT, count })
-export const fetching = (bool) => ({ type: FETCHING, bool })
-export const follow = (userId, authUser) => ({ type: FOLLOW, userId, authUser })
-export const unFollow = (userId, authUser) => ({ type: UNFOLLOW, userId, authUser })
-export const toggleFollowingInProgress = (userId, isFetching) => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching })
+export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE,page})
+export const setUsers = (users) => ({type: SET_USERS,users})
+export const setTotalUsersCount = (count) => ({type: SET_TOTAL_USERS_COUNT,count})
+export const fetching = (bool) => ({type: FETCHING,bool})
+export const follow = (userId, authUser) => ({ type: FOLLOW, userId, authUser})
+export const unFollow = (userId, authUser) => ({ type: UNFOLLOW, userId, authUser})
+export const toggleFollowingInProgress = (userId, isFetching) => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching})
 
 
 // export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
@@ -190,7 +129,7 @@ export const followThunk = (userId, authUser) => async (dispatch) => {
 
 
     await usersAPILaravel.follow(userId)
-    
+
     // if (res === 0) {
 
     dispatch(follow(userId, authUser))

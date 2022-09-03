@@ -1,9 +1,5 @@
-import {
-    stopSubmit
-} from "redux-form";
-import {
-    laravelAPI
-} from "../../../services/api-laravel";
+import {stopSubmit} from "redux-form";
+import {eventsAPI, laravelAPI} from "../../../services/api-laravel";
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
@@ -111,6 +107,7 @@ console.log('authUser')
 console.log(authUser)
 
         dispatch(setAuthUserData(authUser, authUser.id, authUser.email, authUser.email, true));
+        // await eventsAPI.event();
         //set auth users profile 
         // await laravelGetCurrentProfile(authUser.id, dispatch)
         // dispatch(setAuthcurrentProfile(authUser.profile, avatar.data))
