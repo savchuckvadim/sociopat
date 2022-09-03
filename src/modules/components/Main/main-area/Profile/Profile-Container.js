@@ -48,7 +48,7 @@ class ProfileContainer extends React.Component {
     getUserId = (params) => {
 
         if (this.props.params.userId) {
-            debugger
+            
             this.userId = this.props.params.userId;
             this.isAuthUser = false
 

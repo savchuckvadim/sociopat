@@ -230,7 +230,6 @@ export const eventsAPI = {
         //     .listen('LoginEvent', (e) => {
         //         alert(e.data);
         //     });
-        debugger
         return res
     },
 }
