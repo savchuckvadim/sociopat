@@ -8,7 +8,7 @@ import Avatar from '../../../../Elements/Avatar/Avatar';
 import UploadAvatar from './UploadAvatar/UploadAvatar';
 
 const ProfileInformation = (props) => {
-    
+    debugger
     
    
     return (

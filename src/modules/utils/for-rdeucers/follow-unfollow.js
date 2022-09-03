@@ -15,7 +15,7 @@ export const followUnfollow = (usersArray, userId, authUser, bool) => {
                 }else{                          //если отписываемся
                     user.followers = user.followers.filter(follower => follower.id !== authUser.id)
                 }
-                return user
+                return {...user}
 
             } else {
                 return user

@@ -1,7 +1,6 @@
-import {
-    profileAPI
-} from "../../../services/api"
+import { profileAPI } from "../../../services/api"
 import { postAPI, profileLaravelAPI, usersAPILaravel } from "../../../services/api-laravel";
+import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
 
 
 const ADD_POST = 'ADD_POST';
@@ -19,222 +18,29 @@ const DISLIKE = 'DISLIKE';
 
 
 let initialState = {
-    // profile: null,
     visitedUser: null,
     status: '',
     login: 'Super User',
-    // about: 'Российский предприниматель. По данным Forbes, на 5 февраля 2022 года занимал 608-е место в списке наиболее состоятельных людей мира, в списке богатейших бизнесменов России в 2021 году занимал 32-е место с состоянием 4,7 миллиарда долларов. Известен как основатель «Тинькофф банка»',
-    // img: 'https://avatars.mds.yandex.net/i?id=9d717e4eaa6e7edfbea31ddfc889103e_l-4728599-images-thumbs&n=13',
-    // posts: [],
+    posts: [],
     likeInProgress: false
 };
-export const addPostActionCreator = (value) => {
 
-    return {
-        type: ADD_POST,
-        value: value
-    }
-};
-
+//ACTION CREATORS
+export const addPostActionCreator = (value) => ({ type: ADD_POST, value: value });
 export const setPosts = (posts) => ({ type: SET_POSTS, posts });
-
-// const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
 const setStatus = (status) => ({ type: SET_STATUS, status });
 const setPhotos = (photos) => ({ type: SET_PHOTO, photos });
-// const setVisitedUser = (user) => ({ type: SET_VISITED_USER, user })
 const setProfilePageData = (status, profile, user, avatar) => (
-    {
-        type: SET_PROFILE_PAGE_DATA,
-        status,
-        profile,
-        user,
-        avatar
-
-    }
+    { type: SET_PROFILE_PAGE_DATA, status, profile, user, avatar }
 );
-
 const setLike = (postId, like) => ({ type: LIKE, postId, like });
 const setDislike = (like) => ({ type: DISLIKE, like });
-
 const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool });
-
-const profileReducer = (state = initialState, action) => {
-
-    let result = state
-    switch (action.type) {
-
-        // case SET_PROFILE:
-
-        //     if (state.profile) {
-        //         if (state.profile.userId !== action.profile.userId) {
+// const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
+// const setVisitedUser = (user) => ({ type: SET_VISITED_USER, user })
 
 
-        //         }
-        //     } else {
-        //         return { ...state, profile: action.profile }
-        //     }
-
-        //     return state
-
-
-        case FOLLOW:
-
-            if (state.visitedUser) {
-                result = {
-                    ...state
-                }
-                result.visitedUser = { ...result.visitedUser }
-                result.visitedUser.followed = true
-                let count = 0
-                result.visitedUser.followers.forEach(f => {
-                    if (f.id === action.authUser.id) {    //если среди массива объектов подписчиков содержится подписчик с id auth usera делает count больше нуля
-                        count++
-                    }
-                });
-
-                if (!count) { //если count = 0 значит в массиве отсутствует аутентифицированный пользователь
-
-                    result.visitedUser.followers.push(action.authUser)  //пушим аутентифицированного пользователя в массив подписчиков.push(action.authUser)
-
-                }
-
-                return result
-            }
-            return result
-
-        case UNFOLLOW:
-            if (state.visitedUser) {
-                result = {
-                    ...state
-                }
-                result.visitedUser = { ...result.visitedUser }
-                result.visitedUser.followed = false
-                let count = 0
-                let indexOfAuthUser = undefined
-                result.visitedUser.followers.forEach((f, i) => {
-
-                    if (f.id === action.authUser.id) {    //если среди массива объектов подписчиков содержится подписчик с id auth usera делает count больше нуля
-                        count++
-                        indexOfAuthUser = i
-                    }
-
-                });
-
-                if (count) { //если count !== 0 значит в массиве Есть! аутентифицированный пользователь
-
-                    result.visitedUser.followers.splice(indexOfAuthUser, 1)  //удаляем аутентифицированного пользователя из массива подписчиков
-
-                }
-                return result
-            }
-            return state
-
-        case SET_STATUS:
-            if (result.status !== action.status) {
-
-                result = { ...state }
-                result.status = action.status
-                return result
-            }
-            return state
-
-        case SET_PHOTO:
-
-            result = { ...state }
-            result.profile = { ...state.profile }
-            result.profile.photos = { ...action.photos }
-            return result
-
-        case SET_PROFILE_PAGE_DATA:
-
-
-            if (result.status !== action.status) {      //status
-                result = { ...state }
-                result.status = action.status
-            }
-
-            // if (state.profile) {                                         //profile
-            //     if (state.profile.user_id !== action.profile.user_id) {
-            //         result = { ...state }
-            //         result.profile = action.profile
-
-            //     }
-            // } else {
-            //     result.profile = action.profile
-            // }
-
-            if (state.visitedUser) {                                        //visiteduser
-
-                if (state.visitedUser.name !== action.user.name) {
-                    result = { ...state }
-                    result.visitedUser = { ...action.user, photos: { small: action.avatar, large: null } }
-                }
-            } else {
-
-                result = { ...state }
-                result.visitedUser = { ...action.user, photos: { small: action.avatar, large: null } }
-            }
-
-            return result
-
-        case ADD_POST:
-            result = {
-                ...state
-            }
-
-            let posts = [...state.posts]
-
-            let lastPost = action.value
-
-            posts.unshift(lastPost)
-            result.posts = posts
-            return result;
-
-        case SET_POSTS:
-
-            state.posts = action.posts.reverse(post => ({ ...post }))
-            return state
-        //LIKE
-        case LIKE:
-            result = { ...state }
-
-            result.posts = state.posts.map(post => {
-
-                if (post.id === action.postId) {
-                    post.isAuthLikes = true
-                    post.likes = [...post.likes]
-                    post.likes.push(action.like)
-                    post.likesCount = post.likes.length
-                }
-
-                return post
-
-            })
-            return result
-        case DISLIKE:
-            result = { ...state }
-
-            result.posts = state.posts.map(post => {
-
-                if (post.id === action.postId) {
-                    post.isAuthLikes = true
-                    post.likes = [...post.likes]
-                    post.likes.push(action.like)
-                    post.likesCount = post.likes.length
-                }
-
-                return post
-
-            })
-            return result
-        case LIKE_IN_PROGRESS:
-            state.likeInProgress = action.bool
-            return { ...state }
-
-        default:
-            return result;
-    }
-};
+//THUNKS
 
 export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
@@ -256,7 +62,7 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
         large: null
     }
     profile.photos = photos
-    
+
     if (res.data) {
         let posts = res.data
         dispatch(setPosts(posts))
@@ -323,4 +129,106 @@ export const dislike = (postId) => async (dispatch) => {
     dispatch(setDislike(res.data.removedLike))
     dispatch(likeInProgress(false))
 };
+
+//REDUCER
+const profileReducer = (state = initialState, action) => {
+
+    let result = state
+    switch (action.type) {
+
+        case FOLLOW:
+            if (state.visitedUser) {
+                result = { ...state }
+                result.visitedUser = followUnfollow([state.visitedUser], action.userId, action.authUser, true)[0];
+            }
+            return result
+
+        case UNFOLLOW:
+            if (state.visitedUser) {
+                result = { ...state }
+                result.visitedUser = followUnfollow([state.visitedUser], action.userId, action.authUser, false)[0];
+            }
+            return result
+
+        case SET_STATUS:
+            if (result.status !== action.status) {
+
+                result = { ...state }
+                result.status = action.status
+                return result
+            }
+            return state
+
+        case SET_PHOTO:
+
+            result = { ...state }
+            result.profile = { ...state.profile }
+            result.profile.photos = { ...action.photos }
+            return result
+
+        case SET_PROFILE_PAGE_DATA:
+            if (result.status !== action.status) {      //status
+                result = { ...state }
+                result.status = action.status
+            }
+            if (state.visitedUser) {                                        //visiteduser
+                if (state.visitedUser.name !== action.user.name) {
+                    result = { ...state }
+                    result.visitedUser = { ...action.user, photos: { small: action.avatar, large: null } }
+                }
+            } else {
+                result = { ...state }
+                result.visitedUser = { ...action.user, photos: { small: action.avatar, large: null } }
+            }
+            return result
+
+        case ADD_POST:
+            result = {...state }
+            let posts = [...state.posts]
+            let lastPost = action.value
+            posts.unshift(lastPost)
+            result.posts = posts
+            return result;
+
+        case SET_POSTS:
+            state.posts = action.posts.reverse(post => ({ ...post }))
+            return state
+        
+        case LIKE:
+            result = { ...state }
+            result.posts = state.posts.map(post => {
+                if (post.id === action.postId) {
+                    post.isAuthLikes = true
+                    post.likes = [...post.likes]
+                    post.likes.push(action.like)
+                    post.likesCount = post.likes.length
+                }
+
+                return post
+
+            })
+            return result
+
+        case DISLIKE:
+            result = { ...state }
+            result.posts = state.posts.map(post => {
+                if (post.id === action.postId) {
+                    post.isAuthLikes = true
+                    post.likes = [...post.likes]
+                    post.likes.push(action.like)
+                    post.likesCount = post.likes.length
+                }
+                return post
+            })
+            return result
+
+        case LIKE_IN_PROGRESS:
+            state.likeInProgress = action.bool
+            return { ...state }
+
+        default:
+            return result;
+    }
+};
+
 export default profileReducer;
