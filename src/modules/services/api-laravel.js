@@ -208,13 +208,13 @@ export const eventsAPI = {
                 return {
                     authorize: (socketId, callback) => {
                         axios({
-                                method: "POST",
-                                url: "http://localhost:8000/api/broadcasting/auth",
-                                data: {
-                                    socket_id: socketId,
-                                    channel_name: channel.name,
-                                },
-                            })
+                            method: "POST",
+                            url: "http://localhost:8000/api/broadcasting/auth",
+                            data: {
+                                socket_id: socketId,
+                                channel_name: channel.name,
+                            },
+                        })
                             .then((response) => {
                                 callback(false, response.data);
                             })

@@ -1,4 +1,4 @@
-import {  usersAPILaravel} from "../../../services/api-laravel";
+import { usersAPILaravel } from "../../../services/api-laravel";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
 
 
@@ -28,42 +28,20 @@ const usersReducer = (state = initialState, action) => {
     let result = state
 
     switch (action.type) {
-        case SET_CURRENT_PAGE:
-            result = {...state}
-            result.currentPage = action.page
-            return result
+        case SET_CURRENT_PAGE: result = { ...state }; result.currentPage = action.page; return result;
 
-        case SET_USERS:
-            result = {...state}
-            result.users = action.users
+        case SET_USERS: result = { ...state }; result.users = action.users; return result;
 
-            return result
+        case SET_TOTAL_USERS_COUNT: result = { ...state }; result.count = action.count; return result
 
-        case SET_TOTAL_USERS_COUNT:
-            result = {...state}
-            result.count = action.count
+        case FETCHING: result = { ...state }; result.isFetching = action.bool; return result;
 
-            return result
+        case FOLLOW: result = { ...state }; result.users = followUnfollow(state.users, action.userId, action.authUser, true); return result;
 
-        case FETCHING:
-            result = {    ...state}
-            result.isFetching = action.bool
-
-            return result
-
-        case FOLLOW:
-            result = {...state}
-result.users = followUnfollow(state.users,action.userId, action.authUser, true)
-            return result
-
-        case UNFOLLOW:
-            result = {...state }
-            result.users = followUnfollow(state.users,action.userId, action.authUser, false)
-
-            return result
+        case UNFOLLOW: result = { ...state }; result.users = followUnfollow(state.users, action.userId, action.authUser, false); return result;
 
         case FOLLOWING_IN_PROGRESS:
-            result = {...state }
+            result = { ...state }
             result.followingInProgress = [...state.followingInProgress]
 
             action.isFetching ?
@@ -79,13 +57,13 @@ result.users = followUnfollow(state.users,action.userId, action.authUser, true)
     }
 
 }
-export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE,page})
-export const setUsers = (users) => ({type: SET_USERS,users})
-export const setTotalUsersCount = (count) => ({type: SET_TOTAL_USERS_COUNT,count})
-export const fetching = (bool) => ({type: FETCHING,bool})
-export const follow = (userId, authUser) => ({ type: FOLLOW, userId, authUser})
-export const unFollow = (userId, authUser) => ({ type: UNFOLLOW, userId, authUser})
-export const toggleFollowingInProgress = (userId, isFetching) => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching})
+export const setCurrentPage = (page) => ({ type: SET_CURRENT_PAGE, page })
+export const setUsers = (users) => ({ type: SET_USERS, users })
+export const setTotalUsersCount = (count) => ({ type: SET_TOTAL_USERS_COUNT, count })
+export const fetching = (bool) => ({ type: FETCHING, bool })
+export const follow = (userId, authUser) => ({ type: FOLLOW, userId, authUser })
+export const unFollow = (userId, authUser) => ({ type: UNFOLLOW, userId, authUser })
+export const toggleFollowingInProgress = (userId, isFetching) => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching })
 
 
 // export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
