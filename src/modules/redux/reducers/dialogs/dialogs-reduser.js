@@ -1,4 +1,5 @@
-import { fishAPI, usersAPI } from "../../../services/api";
+import { fishAPI } from "../../../services/api";
+import { usersAPILaravel } from "../../../services/api-laravel";
 
 const SET_DIALOGS = 'SET_DIALOGS'
 
@@ -36,10 +37,16 @@ const getMessages = async () => {
     return returnedMessages
 }
 export const getDialogs = () => async (dispatch) => {
-    let users = await usersAPI.getUsers()
+    let usersResponse = await usersAPILaravel.getUsers()
+    
+    let users = []
+    if(usersResponse.data){
+        users = usersResponse.data.data
+    }
+     
     let messages = await getMessages()
 
-    let dialogs = await users.items.map((u, i) => {
+    let dialogs = users.map((u, i) => {
 
 
         return {
