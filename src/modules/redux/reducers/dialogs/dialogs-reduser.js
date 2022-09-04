@@ -1,5 +1,5 @@
 import { fishAPI } from "../../../services/api";
-import { usersAPILaravel } from "../../../services/api-laravel";
+import { usersAPI } from "../../../services/api-laravel";
 
 const SET_DIALOGS = 'SET_DIALOGS'
 
@@ -37,7 +37,7 @@ const getMessages = async () => {
     return returnedMessages
 }
 export const getDialogs = () => async (dispatch) => {
-    let usersResponse = await usersAPILaravel.getUsers()
+    let usersResponse = await usersAPI.getUsers()
     
     let users = []
     if(usersResponse.data){

@@ -86,37 +86,27 @@ export const authAPI = {
 
 }
 
-export const usersAPILaravel = {
+export const usersAPI = {
 
 
 
     async getUsers(currentPage = 1, pageSize = 10) {
         await instance.get("/sanctum/csrf-cookie");
-        // let testUsers = await instance.get(`api/users?page=${currentPage}&count=${pageSize}`);
-        // 
         return instance.get(`api/users?page=${currentPage}&count=${pageSize}`).then(res => res);
     },
 
     async getUser(id) {
-
         return instance.get(`api/users/${id}`).then(res => res.data)
     },
-    // getUser(name) {
-
-    //     return instance.get(`users?term=${name}`).then(res => res.data)
-    // },
 
     async follow(userId) {
-
         return instance.post(`api/follow`, {
             userId: userId
         })
     },
 
     async unfollow(userId) {
-
         return instance.delete(`api/follow/${userId}`)
-        // .then(res => res.data)
     },
     // unfollow(userId) {
     //     return instance.delete(`follow/${userId}`).then(res => res.data.resultCode)
@@ -129,9 +119,9 @@ export const usersAPILaravel = {
         // .then(res => res.data)
     },
 }
-// laravelAPI.logout()
 
-export const profileLaravelAPI = {
+
+export const profileAPI = {
 
     async getProfile(userId) {
         const res = await instance.get(`api/profile/${userId}`);
@@ -214,10 +204,10 @@ export const eventsAPI = {
             }
 
         })
-        // echo.private(`test-chanel.${21}`)
-        //     .listen('LoginEvent', (e) => {
-        //         alert(e.data);
-        //     });
+        echo.private(`test-chanel.${21}`)
+            .listen('LoginEvent', (e) => {
+                alert(e.data);
+            });
         return res
     },
 }

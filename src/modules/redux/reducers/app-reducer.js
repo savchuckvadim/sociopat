@@ -1,4 +1,3 @@
-import { authAPI } from '../../services/api'
 import { laraGetAuth } from './auth/auth-reducer'
 const INITIALIZED_SUCCES = 'INITIALIZED_SUCCES'
 const INITIALIZING = 'INITIALIZING'
@@ -16,16 +15,15 @@ export const initializing = () => ({ type: INITIALIZING })
 
 //THUNKS
 export const initialize = () => async (dispatch) => {
-    // await authAPI.initial();
+    dispatch(initializing()) //inProgress-status
     let promiseAuth = () => {
         return dispatch(laraGetAuth())
+
     }
 
-    dispatch(initializing()) //inProgress-status
 
     await promiseAuth()
     dispatch(initializedSuccess())
-    // laravelAPI.me()
 
 }
 

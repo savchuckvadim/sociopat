@@ -1,4 +1,4 @@
-import { usersAPILaravel } from "../../../services/api-laravel";
+import { usersAPI } from "../../../services/api-laravel";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
 
 
@@ -41,7 +41,7 @@ export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
     dispatch(fetching(true))
 
 
-    let res = await usersAPILaravel.getUsers(currentPage, pageSize)
+    let res = await usersAPI.getUsers(currentPage, pageSize)
     const users = res.data.data;
     dispatch(setTotalUsersCount(res.totalCount))
     dispatch(setUsers(users))
@@ -53,7 +53,7 @@ export const followThunk = (userId, authUser) => async (dispatch) => {
     dispatch(toggleFollowingInProgress(userId, true))
 
 
-    await usersAPILaravel.follow(userId)
+    await usersAPI.follow(userId)
 
     // if (res === 0) {
 
@@ -64,7 +64,7 @@ export const followThunk = (userId, authUser) => async (dispatch) => {
 export const unFollowThunk = (userId, authUser) => async (dispatch) => {
     dispatch(toggleFollowingInProgress(userId, true))
 
-    let res = await usersAPILaravel.unfollow(userId)
+    let res = await usersAPI.unfollow(userId)
 
     if (res) {
         if (res.data.resultCode === 1) {

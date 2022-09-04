@@ -1,13 +1,9 @@
-import { profileAPI } from "../../../services/api"
-import { postAPI, profileLaravelAPI, usersAPILaravel } from "../../../services/api-laravel";
+import { postAPI, profileAPI, usersAPI } from "../../../services/api-laravel";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
-
 
 const ADD_POST = 'ADD_POST';
 const SET_POSTS = 'SET_POSTS';
-// const SET_PROFILE = 'SET_PROFILE';
 const SET_STATUS = 'SET_STATUS'
-// const SET_VISITED_USER = 'SET_VISITED_USER'
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_PROFILE_PAGE_DATA = 'SET_PROFILE_PAGE_DATA';
@@ -46,41 +42,33 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
     let id = userId
 
-    const userRes = await usersAPILaravel.getUser(id);
-    const user = userRes.data
-    const profile = { ...user.profile, photos: { small: null, large: null } }
+    const userRes = await usersAPI.getUser(id);
+    const resPosts = await postAPI.getPosts(userId); //get posts from backend and set to state
+    const avatarUrl = await usersAPI.getAvatar(userId);
 
-    // const resStatus = await profileLaravelAPI.getAboutMe(userId)  //////////////////////////////LARVEL
+    const user = userRes.data;
+    const profile = { ...user.profile, photos: { small: null, large: null } };
+    const status = profile.about_me;
 
-    const status = profile.about_me
-
-
-    const res = await postAPI.getPosts(userId) //get posts from backend and set to state
-    const avatarUrl = await usersAPILaravel.getAvatar(userId)
     const photos = {
         small: avatarUrl.data,
         large: null
-    }
-    profile.photos = photos
+    };
+    profile.photos = photos;
 
-    if (res.data) {
-        let posts = res.data
-        dispatch(setPosts(posts))
-    }
+    if (resPosts.data) {
+        let posts = resPosts.data;
+        dispatch(setPosts(posts));
+    };
 
-    dispatch(setProfilePageData(status, profile, user, avatarUrl.data))
-
-
-
+    dispatch(setProfilePageData(status, profile, user, avatarUrl.data));
 
 };
 
 export const getStatus = (userId) => async (dispatch) => {
 
-    // const res = await profileAPI.getStatus(userId)
-    const res = await profileLaravelAPI.getStatus(userId)
+    const res = await profileAPI.getStatus(userId)
     const status = res.data.aboutMe
-
     dispatch(setStatus(status))
 
 };
@@ -88,13 +76,14 @@ export const getStatus = (userId) => async (dispatch) => {
 export const updateStatus = (aboutMe) => async (dispatch) => {
 
     // const res = await profileAPI.updateStatus(status)
-    const res = await profileLaravelAPI.updateAboutMe(aboutMe)
+    const res = await profileAPI.updateAboutMe(aboutMe)
 
     if (res.data.resultCode === 0) {
         dispatch(setStatus(aboutMe))
     }
 
 };
+//TODO REFACTORING TO LARAVEL
 export const loadPhoto = (photo) => async (dispatch) => {
 
     const res = await profileAPI.loadPhoto(photo)
@@ -183,7 +172,7 @@ const profileReducer = (state = initialState, action) => {
             return result
 
         case ADD_POST:
-            result = {...state }
+            result = { ...state }
             let posts = [...state.posts]
             let lastPost = action.value
             posts.unshift(lastPost)
@@ -193,7 +182,7 @@ const profileReducer = (state = initialState, action) => {
         case SET_POSTS:
             state.posts = action.posts.reverse(post => ({ ...post }))
             return state
-        
+
         case LIKE:
             result = { ...state }
             result.posts = state.posts.map(post => {
