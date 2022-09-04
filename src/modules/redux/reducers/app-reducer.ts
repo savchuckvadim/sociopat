@@ -2,16 +2,15 @@ import { getAuth } from './auth/auth-reducer'
 const INITIALIZED_SUCCES = 'INITIALIZED_SUCCES'
 const INITIALIZING = 'INITIALIZING'
 
-let initialState: state = {
+let initialState = {
     initialized: false,
     inProgress: false,
 }
 
-type state = {
-    initialized: boolean
-    inProgress: boolean
+type initialStateType = typeof initialState
+type actionType = {
+    type: string
 }
-
 //ACTION CREATORS
 export const initializedSuccess = () => ({ type: INITIALIZED_SUCCES })
 export const initializing = () => ({ type: INITIALIZING })
@@ -24,8 +23,6 @@ export const initialize = () => async (dispatch) => {
         return dispatch(getAuth())
 
     }
-
-
     await promiseAuth()
     dispatch(initializedSuccess())
 
@@ -33,7 +30,7 @@ export const initialize = () => async (dispatch) => {
 
 
 //REDUCER
-const appReducer = (state = initialState, action) => {
+const appReducer = (state: initialStateType = initialState, action: actionType) => {
 
     switch (action.type) {
         case INITIALIZED_SUCCES: return { ...state, initialized: true, inProgress: false }
