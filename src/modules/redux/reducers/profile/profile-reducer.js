@@ -50,9 +50,9 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
     const user = userRes.data
     const profile = { ...user.profile, photos: { small: null, large: null } }
 
-    const resStatus = await profileLaravelAPI.getAboutMe(userId)  //////////////////////////////LARVEL
+    // const resStatus = await profileLaravelAPI.getAboutMe(userId)  //////////////////////////////LARVEL
 
-    const status = resStatus.data.aboutMe
+    const status = profile.about_me
 
 
     const res = await postAPI.getPosts(userId) //get posts from backend and set to state

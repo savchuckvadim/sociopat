@@ -16,7 +16,7 @@ export const initializing = () => ({ type: INITIALIZING })
 
 //THUNKS
 export const initialize = () => async (dispatch) => {
-    await authAPI.initial();
+    // await authAPI.initial();
     let promiseAuth = () => {
         return dispatch(laraGetAuth())
     }

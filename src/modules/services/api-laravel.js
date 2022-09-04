@@ -23,7 +23,7 @@ export const authAPI = {
     },
 
     async register(name, surname, email, password, passwordConfirmation) {
-
+        await instance.get("/sanctum/csrf-cookie");
         let result = await instance.post('register', {
             name: name,
             surname: surname,
