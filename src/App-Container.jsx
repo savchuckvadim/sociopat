@@ -4,12 +4,9 @@ import { useParams } from "react-router-dom";
 import { compose } from "redux";
 import App from "./App";
 import { LightLoadingPageContainer } from "./modules/components/Elements/Loading/Light-Loading-Page-Container";
-
-// import withAuthRedirect from "./modules/components/HOC/Auth-Redirect";
 import StartPage from "./modules/components/Start/Start-Page";
-import { initialize } from "./modules/redux/reducers/app-reducer";
-import { laraGetAuth } from "./modules/redux/reducers/auth/auth-reducer";
-// import { laravelAPI } from "./modules/services/api-laravel";
+import { initialize } from "./modules/redux/reducers/app-reducer.ts";
+import { getAuth } from "./modules/redux/reducers/auth/auth-reducer";
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -65,7 +62,7 @@ const AppContainer = (props) => {
 export default compose(
 
     connect(mapStateToProps, {
-        laraGetAuth,
+        getAuth,
         initialize
     }),
 

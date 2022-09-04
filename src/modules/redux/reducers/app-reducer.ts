@@ -1,12 +1,16 @@
-import { laraGetAuth } from './auth/auth-reducer'
+import { getAuth } from './auth/auth-reducer'
 const INITIALIZED_SUCCES = 'INITIALIZED_SUCCES'
 const INITIALIZING = 'INITIALIZING'
 
-let initialState = {
+let initialState: state = {
     initialized: false,
     inProgress: false,
 }
 
+type state = {
+    initialized: boolean
+    inProgress: boolean
+}
 
 //ACTION CREATORS
 export const initializedSuccess = () => ({ type: INITIALIZED_SUCCES })
@@ -17,7 +21,7 @@ export const initializing = () => ({ type: INITIALIZING })
 export const initialize = () => async (dispatch) => {
     dispatch(initializing()) //inProgress-status
     let promiseAuth = () => {
-        return dispatch(laraGetAuth())
+        return dispatch(getAuth())
 
     }
 

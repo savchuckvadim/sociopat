@@ -1,5 +1,6 @@
 import { stopSubmit } from "redux-form";
 import { authAPI } from "../../../services/api-laravel";
+// import {getAuth} from "../../redux/reducers/auth/auth-reducer"
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
@@ -20,7 +21,7 @@ export const setAuthUserData = (authUser, id = null, login = null, email = null,
 
 
 //THUNKS
-export const laraGetAuth = () => async (dispatch) => {
+export const getAuth = () => async (dispatch) => {
     // await laravelAPI.me();
     let response = await authAPI.getAuthUser()
 debugger
@@ -51,7 +52,7 @@ export const login = (email, password, rememberMe) => (dispatch) => {
             if (resultCode === 200) {
 
 
-                dispatch(laraGetAuth())
+                dispatch(getAuth())
 
             } else {
                 let message = 'Email or Password was wrong !'

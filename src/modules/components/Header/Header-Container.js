@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import {laraGetAuth} from "../../redux/reducers/auth/auth-reducer"
+// import {getAuth} from "../../redux/reducers/auth/auth-reducer"
 import Header from "./Header"
 
 
@@ -32,5 +32,5 @@ class HeaderContainer extends React.Component {
     }
 }
 export default connect(mapStateToProps, {
-    laraGetAuth
+    // getAuth
 })(HeaderContainer)

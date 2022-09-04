@@ -9,7 +9,7 @@ import usersReducer from "./reducers/users/users-reducer";
 import authReducer from "./reducers/auth/auth-reducer";
 import { reducer as formReducer } from 'redux-form'
 import LoginRegistrationReducer from "./reducers/login-registaration/login-registration-reducer";
-import appReducer from "./reducers/app-reducer";
+import appReducer from "./reducers/app-reducer.ts";
 
 
 let reducers = combineReducers({
