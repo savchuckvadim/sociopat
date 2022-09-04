@@ -14,28 +14,15 @@ const instance = axios.create({
     },
 
 })
-// instance.interceptors.response.use(
-//     (response) => {
-//       return response;
-//     },
-//     function (error) {
-//       if (
-//         error.response &&
-//         [401, 419].includes(error.response.status) &&
-//         store.getters["auth/authUser"] &&
-//         !store.getters["auth/guest"]
-//       ) {
-//         store.dispatch("auth/logout");
-//       }
-//       return Promise.reject(error);
-//     }
-//   );
-export const laravelAPI = {
 
+export const authAPI = {
+
+    async initial() {
+        let res = await instance.get("/sanctum/csrf-cookie");
+        return res
+    },
 
     async register(name, surname, email, password, passwordConfirmation) {
-
-        await instance.get("/sanctum/csrf-cookie");
 
         let result = await instance.post('register', {
             name: name,
@@ -146,8 +133,9 @@ export const usersAPILaravel = {
 
 export const profileLaravelAPI = {
 
-    getProfile(userId) {
-        return instance.get(`api/profile/${userId}`).then(res => res.data)
+    async getProfile(userId) {
+        const res = await instance.get(`api/profile/${userId}`);
+        return res.data;
     },
 
     getAboutMe(userId) {

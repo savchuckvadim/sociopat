@@ -1,4 +1,4 @@
-import { laravelAPI } from "../../../services/api-laravel";
+import { authAPI } from "../../../services/api-laravel";
 
 const REGISTRATING_IN_PROGRESS = 'REGISTRATING_IN_PROGRESS';
 const REGISTRATION_SUCSESS = 'REGISTRATION_SUCSESS';
@@ -16,7 +16,7 @@ const registrationSuccess = () => ({ type: REGISTRATION_SUCSESS });
 
 export const setNewUser = (name, surname, email, password, password_confirmation) => async (dispatch) => {
     registratingInProgress();
-    let res = await laravelAPI.register(name, surname, email, password, password_confirmation)
+    let res = await authAPI.register(name, surname, email, password, password_confirmation)
 console.log(res)
     // if(res.statusText === 'Created'){
         registrationSuccess()
