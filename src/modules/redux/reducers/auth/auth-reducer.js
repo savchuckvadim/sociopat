@@ -23,21 +23,16 @@ export const setAuthUserData = (authUser, id = null, login = null, email = null,
 export const laraGetAuth = () => async (dispatch) => {
     // await laravelAPI.me();
     let response = await authAPI.getAuthUser()
-
+debugger
     let authUser = null
-    if (response.data) {
-        authUser = response.data.data
+    if (response.resultCode) {
+        authUser = response.authUser
+    }else{
+        alert(response.message)
     }
 
     if (authUser) {
-        // let avatar = await usersAPILaravel.getAvatar(authUser.id)
-
         dispatch(setAuthUserData(authUser, authUser.id, authUser.email, authUser.email, true));
-        // await eventsAPI.event();
-        //set auth users profile 
-        // await laravelGetCurrentProfile(authUser.id, dispatch)
-        // dispatch(setAuthcurrentProfile(authUser.profile, avatar.data))
-
 
     } else {
         dispatch(setAuthUserData(null, null, null, false));

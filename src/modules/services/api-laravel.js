@@ -30,7 +30,6 @@ export const authAPI = {
             email: email,
             password: password,
             password_confirmation: passwordConfirmation
-
         })
 
         return result
@@ -39,7 +38,6 @@ export const authAPI = {
 
     async login(email, password) {
         await instance.get("/sanctum/csrf-cookie")
-
         return instance.post('login', {
             email: email,
             password: password,
@@ -50,16 +48,17 @@ export const authAPI = {
 
     },
     async getAuthUser() {
-        // await this.logout()
-        // await instance.get("/sanctum/csrf-cookie")
-        let result = await instance.get("api/user/auth");
+        try {
+            let response = await instance.get("api/user/auth");
+            return response.data
+        } catch (error) {
+            alert(error)
+        }
 
-        return result
     },
     logout() {
-        let result = instance.post('logout').then(res => console.log(res))
-
-        return result
+        let response = instance.post('logout').then(res => console.log(res))
+        return response
     },
 
     updatePassword(payload) {
