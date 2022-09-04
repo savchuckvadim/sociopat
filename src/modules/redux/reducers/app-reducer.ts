@@ -9,7 +9,7 @@ let initialState = {
 
 type initialStateType = typeof initialState
 type actionType = {
-    type: string
+    type: typeof INITIALIZED_SUCCES | typeof INITIALIZING
 }
 //ACTION CREATORS
 export const initializedSuccess = () => ({ type: INITIALIZED_SUCCES })
