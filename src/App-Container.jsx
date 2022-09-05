@@ -6,7 +6,7 @@ import App from "./App";
 import { LightLoadingPageContainer } from "./modules/components/Elements/Loading/Light-Loading-Page-Container";
 import StartPage from "./modules/components/Start/Start-Page";
 import { initialize } from "./modules/redux/reducers/app-reducer.ts";
-import { getAuth } from "./modules/redux/reducers/auth/auth-reducer";
+import { getAuth } from "./modules/redux/reducers/auth/auth-reducer.ts";
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -20,7 +20,7 @@ const withRouter = WrappedComponent => props => {
 const mapStateToProps = (state) => {
 
     return {
-        isAuth: state.auth.auth.isAuth,
+        isAuth: state.auth.isAuth,
         initialized: state.app.initialized,
         initialInProgress: state.app.inProgress,
         registrationStatus: state.registration.registrationStatus,

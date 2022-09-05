@@ -1,6 +1,6 @@
 import { authAPI } from "../../../services/api-laravel";
 import { inProgress } from "../preloader/preloader-reducer.ts";
-import { getAuth, logout } from "./auth-reducer";
+import { getAuth, logout } from "./auth-reducer.ts";
 
 const REGISTRATION_SUCSESS = 'REGISTRATION_SUCSESS';
 

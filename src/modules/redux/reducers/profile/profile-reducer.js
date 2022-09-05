@@ -157,12 +157,11 @@ const profileReducer = (state = initialState, action) => {
             
             if (state.visitedUser) {                                        //visiteduser
                 if (state.visitedUser.name !== action.user.name) {
-                    debugger
                     result = { ...state }
                     result.visitedUser = { ...action.user }
                 }
             } else {
-                debugger
+
                 result = { ...state }
                 result.visitedUser = { ...action.user }
             }

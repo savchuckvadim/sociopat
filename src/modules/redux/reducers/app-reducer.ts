@@ -1,10 +1,10 @@
-import { getAuth } from './auth/auth-reducer'
+import { getAuth } from './auth/auth-reducer.ts'
 const INITIALIZED_SUCCES = 'INITIALIZED_SUCCES'
 const INITIALIZING = 'INITIALIZING'
 
 let initialState = {
-    initialized: false,
-    inProgress: false,
+    initialized: false as boolean,
+    inProgress: false as boolean,
 }
 
 type InitialStateType = typeof initialState

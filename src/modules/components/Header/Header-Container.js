@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-// import {getAuth} from "../../redux/reducers/auth/auth-reducer"
+// import {getAuth} from "../../redux/reducers/auth/auth-reducer.ts"
 import Header from "./Header"
 
 

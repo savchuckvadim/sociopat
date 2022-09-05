@@ -6,7 +6,7 @@ import profileReducer from "./reducers/profile/profile-reducer";
 import { themeReducer } from "./reducers/theme/style-reducer";
 import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer";
 import usersReducer from "./reducers/users/users-reducer";
-import authReducer from "./reducers/auth/auth-reducer";
+import authReducer from "./reducers/auth/auth-reducer.ts";
 import { reducer as formReducer } from 'redux-form'
 import LoginRegistrationReducer from "./reducers/login-registaration/login-registration-reducer";
 import appReducer from "./reducers/app-reducer.ts";

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { logout } from "../../redux/reducers/auth/auth-reducer";
+import { logout } from "../../redux/reducers/auth/auth-reducer.ts";
 import Logout from "./Logout";
 
 

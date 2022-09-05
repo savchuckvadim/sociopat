@@ -11,23 +11,46 @@ const SET_USER_DATA = 'SET_USER_DATA'
 
 //STATE
 let initialState = {
-    auth: { "id": null, "login": null, "email": null, isAuth: false },
-    authUser: null,
+    isAuth: false,
+    authUser: null as UserType
 
 }
+export type UserType = {
+    id: number | null
+    email: string 
+    name: string
+    followed: 0 | 1
+    followers: Array<UserType>
+    followeds: Array<UserType>
+    profile: ProfileType
+    postsCount: number | null
+
+} | null
+export type ProfileType = {
+    about_me: string | null
+    avatar: string | null
+    created_at: string
+    email: string
+    hero: string | null
+    id: number | null
+    name: string
+    surname: string
+    updated_at: string
+    user_id: number | null
+} | null
+
 
 //ACION CREATORS
-export const setAuthUserData = (authUser, id = null, login = null, email = null, isAuth = false) =>
-    ({ type: SET_USER_DATA, authUser, data: { id, login, email }, isAuth })
+export const setAuthUserData = (authUser: UserType, isAuth: boolean = false) =>
+    ({ type: SET_USER_DATA, authUser, isAuth })
 
 
 
 
 //THUNKS
-export const getAuth = () => async (dispatch) => {
+export const getAuth = () => async (dispatch:any) => {
 
     let response = await authAPI.getAuthUser()
-
     let authUser = null
     if (response.resultCode) {
         authUser = response.authUser
@@ -36,17 +59,17 @@ export const getAuth = () => async (dispatch) => {
     }
 
     if (authUser) {
-        dispatch(setAuthUserData(authUser, authUser.id, authUser.email, authUser.email, true));
+        dispatch(setAuthUserData(authUser, true));
 
     } else {
-        dispatch(setAuthUserData(null, null, null, false));
+        dispatch(setAuthUserData(null, false));
     }
 
 
 }
-export const login = (email, password, rememberMe) => (dispatch) => {
+export const login = (email: string, password: string,) => (dispatch) => {
     dispatch(inProgress(true));
-    authAPI.login(email, password, rememberMe)
+    authAPI.login(email, password)
         .then(res => {
             dispatch(getAuth());
             dispatch(inProgress(false));
@@ -64,11 +87,11 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 
 
 }
-export const logout = () => (dispatch) => {
+export const logout = () => (dispatch: any) => {
     dispatch(inProgress(true));
     authAPI.logout()
         .then(res => {
-            dispatch(setAuthUserData(null, null, null, false))
+            dispatch(setAuthUserData(null, false))
 
         })
     dispatch(inProgress(false));
@@ -82,8 +105,8 @@ const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
             result = { ...state, }
-            result.auth = { ...action.data, isAuth: action.isAuth }
-            result.authUser = action.authUser //запоминаем аутентифицированного пользователя в state чтобы потом его вставлять в список подписчиков
+            result.isAuth = action.isAuth
+            result.authUser = action.authUser //запоминаем аутентифицированного пользователя в state
             return result;
 
 

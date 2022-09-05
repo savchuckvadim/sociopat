@@ -12,8 +12,8 @@ import Profile from "./Profile"
 const mapStateToProps = (state) => {
 
     return {
-        isAuth: state.auth.auth.isAuth,
-        auth: state.auth.auth,
+        isAuth: state.auth.isAuth,
+        auth: state.auth.authUser,
         // profile: state.profileReducer.visitedUser.profile,
         visitedUser: state.profileReducer.visitedUser,
         posts: state.profileReducer.posts,
@@ -100,7 +100,7 @@ class ProfileContainer extends React.Component {
 
     }
     render() {
-        debugger
+        
         if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth.id}`) return <Navigate replace to={'../profile'} />
         if (!this.props.visitedUser) return <LightLoadingPageContainer />
         return (

@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Navigate } from "react-router-dom"
-import { getAuth } from "../../redux/reducers/auth/auth-reducer"
+import { getAuth } from "../../redux/reducers/auth/auth-reducer.ts"
 import Sociopath from "../Sociopath-App/Sociopath"
 import StartPage from "../Start/Start-Page"
 
