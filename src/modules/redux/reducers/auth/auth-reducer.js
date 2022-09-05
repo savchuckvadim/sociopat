@@ -22,9 +22,8 @@ export const setAuthUserData = (authUser, id = null, login = null, email = null,
 
 //THUNKS
 export const getAuth = () => async (dispatch) => {
-    // await laravelAPI.me();
+   
     let response = await authAPI.getAuthUser()
-debugger
     let authUser = null
     if (response.resultCode) {
         authUser = response.authUser

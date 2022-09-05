@@ -39,12 +39,15 @@ export const toggleFollowingInProgress = (userId, isFetching) => ({ type: FOLLOW
 export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
 
     dispatch(fetching(true))
-
-
     let res = await usersAPI.getUsers(currentPage, pageSize)
-    const users = res.data.data;
-    dispatch(setTotalUsersCount(res.totalCount))
-    dispatch(setUsers(users))
+    if(res.resultCode === 1){
+        const users = res.data.users;
+        dispatch(setTotalUsersCount(res.data.totalCount))
+        dispatch(setUsers(users))
+       
+    }else{
+        alert(res.message)
+    }
     dispatch(fetching(false))
 
 }

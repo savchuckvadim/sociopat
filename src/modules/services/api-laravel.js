@@ -87,11 +87,15 @@ export const authAPI = {
 
 export const usersAPI = {
 
-
-
     async getUsers(currentPage = 1, pageSize = 10) {
-        await instance.get("/sanctum/csrf-cookie");
-        return instance.get(`api/users?page=${currentPage}&count=${pageSize}`).then(res => res);
+        try {
+            const res = await  instance.get(`api/users?page=${currentPage}&count=${pageSize}`);
+            return res.data
+        } catch (error) {
+            alert(error)
+        }
+        
+        
     },
 
     async getUser(id) {

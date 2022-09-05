@@ -7,14 +7,14 @@ let initialState = {
     inProgress: false,
 }
 
-type initialStateType = typeof initialState
+type InitialStateType = typeof initialState
 
-type actionType = {
+type InitialActionType = {
     type: typeof INITIALIZED_SUCCES | typeof INITIALIZING
 }
 //ACTION CREATORS
-export const initializedSuccess = (): actionType => ({ type: INITIALIZED_SUCCES })
-export const initializing = (): actionType => ({ type: INITIALIZING })
+export const initializedSuccess = (): InitialActionType => ({ type: INITIALIZED_SUCCES })
+export const initializing = (): InitialActionType => ({ type: INITIALIZING })
 
 
 //THUNKS
@@ -31,7 +31,7 @@ export const initialize = () => async (dispatch) => {
 
 
 //REDUCER
-const appReducer = (state: initialStateType = initialState, action: actionType): initialStateType => {
+const appReducer = (state: InitialStateType = initialState, action: InitialActionType): InitialStateType => {
 
     switch (action.type) {
         case INITIALIZED_SUCCES: return { ...state, initialized: true, inProgress: false }
