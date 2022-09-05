@@ -16,7 +16,11 @@ const preloader = (state: InitialStateInProgressType = initialState, action: InP
     switch (action.type) {
         case IN_PROGRESS:
 
-            return { ...state, inProgress: action.bool };
+            if (state.inProgress !== action.bool) {
+                return { ...state, inProgress: action.bool };
+            };
+            return state
+
 
         default:
             return state;

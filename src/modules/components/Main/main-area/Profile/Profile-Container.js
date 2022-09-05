@@ -10,7 +10,7 @@ import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loadi
 import Profile from "./Profile"
 
 const mapStateToProps = (state) => {
- 
+
     return {
         isAuth: state.auth.auth.isAuth,
         auth: state.auth.auth,
@@ -48,13 +48,13 @@ class ProfileContainer extends React.Component {
     getUserId = (params) => {
 
         if (this.props.params.userId) {
-            
+
             this.userId = this.props.params.userId;
             this.isAuthUser = false
 
         }
         else {
-            
+
             this.userId = this.props.auth.id
             this.isAuthUser = true
 
@@ -66,35 +66,43 @@ class ProfileContainer extends React.Component {
 
         // this.props.getProfileAndSetVisitedUser(this.userId)
         // this.props.getStatus(this.userId)
-
-        this.props.getDataForLoadProfilePage(this.userId)
-        if(this.props.visitedUser){
-            this.photo = this.props.visitedUser.photos.small
-        }
-      
-
         
+        if (!this.props.visitedUser) {
+            this.props.getDataForLoadProfilePage(this.userId)
+
+        } else {
+            if (this.props.params.userId) {
+                if (`${this.props.params.userId}` !== `${this.props.visitedUser.id}`) {
+                    this.props.getDataForLoadProfilePage(this.userId)
+                }
+            } else {
+                if (this.props.visitedUser.id !== this.props.auth.id) {
+                    this.props.getDataForLoadProfilePage(this.userId)
+                }
+            }
+
+        }
 
 
     }
     componentDidMount() {
-       
-            window.scrollTo(0, 0);
-         
+
+        window.scrollTo(0, 0);
+
         this.getUserId()
         this.getProfileData()
 
     }
     componentDidUpdate() {
-        
+
         this.getUserId()
         this.getProfileData()
 
     }
     render() {
-        
+        debugger
         if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth.id}`) return <Navigate replace to={'../profile'} />
-        if(!this.props.visitedUser) return <LightLoadingPageContainer/>
+        if (!this.props.visitedUser) return <LightLoadingPageContainer />
         return (
 
             <Profile {...this.props}
@@ -121,7 +129,7 @@ export default compose(
         loadPhoto,
         like,
         dislike
-       
+
 
     }),
     withRouter,

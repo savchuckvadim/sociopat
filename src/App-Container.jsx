@@ -31,8 +31,14 @@ const mapStateToProps = (state) => {
 const AppContainer = (props) => {
 
     useEffect(() => {
-        props.initialize();
-        console.log('initialize')
+        if (!props.isAuth) {
+            props.initialize();
+            console.log('initialize')
+        } else {
+            console.log('allready initialized')
+        }
+
+
 
     }, [])
 

@@ -1,5 +1,6 @@
 import { postAPI, profileAPI, usersAPI } from "../../../services/api-laravel";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
+import { inProgress } from "../preloader/preloader-reducer.ts";
 
 const ADD_POST = 'ADD_POST';
 const SET_POSTS = 'SET_POSTS';
@@ -28,7 +29,7 @@ export const setPosts = (posts) => ({ type: SET_POSTS, posts });
 const setStatus = (status) => ({ type: SET_STATUS, status });
 const setPhotos = (photos) => ({ type: SET_PHOTO, photos });
 const setProfilePageData = (user) => (
-    { type: SET_PROFILE_PAGE_DATA, user}
+    { type: SET_PROFILE_PAGE_DATA, user }
 );
 const setLike = (postId, like) => ({ type: LIKE, postId, like });
 const setDislike = (like) => ({ type: DISLIKE, like });
@@ -40,14 +41,14 @@ const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool });
 //THUNKS
 
 export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
-
+    dispatch(inProgress(true))
     const userRes = await usersAPI.getUser(userId);
     const postsRes = await postAPI.getPosts(userId); //get posts from backend and set to state
 
     let user = null;
-    if(userRes.resultCode === 1){
+    if (userRes.resultCode === 1) {
         user = userRes.user;
-    }else{
+    } else {
         alert(userRes.message)
     }
 
@@ -55,8 +56,9 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
         let posts = postsRes.data;
         dispatch(setPosts(posts));
     };
-
+    dispatch(inProgress(false))
     dispatch(setProfilePageData(user));
+   
 
 };
 
@@ -130,14 +132,14 @@ const profileReducer = (state = initialState, action) => {
             return result
 
         case SET_STATUS:
-            if(state.visitedUser){
+            if (state.visitedUser) {
                 if (result.visitedUser.profile.about_me !== action.status) {
                     result = { ...state }
-                    result.visitedUser.profile.about_me  = action.status
+                    result.visitedUser.profile.about_me = action.status
                     return result
                 }
             }
-            
+
             return state
 
         case SET_PHOTO:
@@ -148,17 +150,19 @@ const profileReducer = (state = initialState, action) => {
             return result
 
         case SET_PROFILE_PAGE_DATA:
-            if (result.status !== action.status) {      //status
-                result = { ...state }
-                result.status = action.status
-            }
-            debugger
+            // if (result.status !== action.status) {      //status
+            //     result = { ...state }
+            //     result.status = action.status
+            // }
+            
             if (state.visitedUser) {                                        //visiteduser
                 if (state.visitedUser.name !== action.user.name) {
+                    debugger
                     result = { ...state }
-                    result.visitedUser = { ...action.user}
+                    result.visitedUser = { ...action.user }
                 }
             } else {
+                debugger
                 result = { ...state }
                 result.visitedUser = { ...action.user }
             }

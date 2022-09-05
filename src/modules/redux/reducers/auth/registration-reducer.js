@@ -16,6 +16,7 @@ const initialState = {
 const registrationSuccess = () => ({ type: REGISTRATION_SUCSESS });
 
 export const setNewUser = (name, surname, email, password, password_confirmation) => async (dispatch) => {
+    dispatch(inProgress(false));
     dispatch(inProgress(true));
     
     
@@ -31,10 +32,10 @@ export const setNewUser = (name, surname, email, password, password_confirmation
 
             }
         }
-        dispatch(inProgress(false));
+        // dispatch(inProgress(false));
     } catch (error) {
         
-        dispatch(inProgress(false));
+        dispatch(inProgress(false));  //from preloader-reducer
     }
 
 
