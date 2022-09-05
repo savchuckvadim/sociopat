@@ -80,17 +80,6 @@ export const unFollowThunk = (userId, authUser) => async (dispatch) => {
     dispatch(toggleFollowingInProgress(userId, false))
 
 }
-// export const requestUsers = (currentPage, pageSize) => async (dispatch) => {
-
-//     dispatch(fetching(true))
-
-//     let res = await usersAPI.getUsers(currentPage, pageSize)
-//             const users = res.items;
-//             dispatch(setTotalUsersCount(res.totalCount))
-//             dispatch(setUsers(users))
-//             dispatch(fetching(false))
-
-// }
 
 
 

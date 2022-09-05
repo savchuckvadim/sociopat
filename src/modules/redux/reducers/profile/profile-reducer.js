@@ -26,8 +26,8 @@ export const addPostActionCreator = (value) => ({ type: ADD_POST, value: value }
 export const setPosts = (posts) => ({ type: SET_POSTS, posts });
 const setStatus = (status) => ({ type: SET_STATUS, status });
 const setPhotos = (photos) => ({ type: SET_PHOTO, photos });
-const setProfilePageData = (status, profile, user, avatar) => (
-    { type: SET_PROFILE_PAGE_DATA, status, profile, user, avatar }
+const setProfilePageData = (status, user, avatar) => (
+    { type: SET_PROFILE_PAGE_DATA, status, user, avatar }
 );
 const setLike = (postId, like) => ({ type: LIKE, postId, like });
 const setDislike = (like) => ({ type: DISLIKE, like });
@@ -40,13 +40,17 @@ const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool });
 
 export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
-    let id = userId
-
-    const userRes = await usersAPI.getUser(id);
+    const userRes = await usersAPI.getUser(userId);
     const resPosts = await postAPI.getPosts(userId); //get posts from backend and set to state
     const avatarUrl = await usersAPI.getAvatar(userId);
-
-    const user = userRes.data;
+debugger
+    let user = null;
+    if(userRes.resultCode === 1){
+        user = userRes.user;
+    }else{
+        alert(userRes.message)
+    }
+     
     const profile = { ...user.profile, photos: { small: null, large: null } };
     const status = profile.about_me;
 
@@ -61,7 +65,7 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
         dispatch(setPosts(posts));
     };
 
-    dispatch(setProfilePageData(status, profile, user, avatarUrl.data));
+    dispatch(setProfilePageData(status, user, avatarUrl.data));
 
 };
 

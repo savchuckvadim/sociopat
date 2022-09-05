@@ -99,6 +99,7 @@ export const usersAPI = {
     },
 
     async getUser(id) {
+        debugger
         return instance.get(`api/users/${id}`).then(res => res.data)
     },
 
