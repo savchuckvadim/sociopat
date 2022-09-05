@@ -38,10 +38,11 @@ const getMessages = async () => {
 }
 export const getDialogs = () => async (dispatch) => {
     let usersResponse = await usersAPI.getUsers()
-    
     let users = []
-    if(usersResponse.data){
-        users = usersResponse.data.data
+    if(usersResponse.resultCode === 1){
+        users = usersResponse.data.users
+    }else{
+        alert(usersResponse.message)
     }
      
     let messages = await getMessages()
