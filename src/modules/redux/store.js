@@ -11,6 +11,7 @@ import { reducer as formReducer } from 'redux-form'
 import LoginRegistrationReducer from "./reducers/login-registaration/login-registration-reducer";
 import appReducer from "./reducers/app-reducer.ts";
 import registrationReducer from "./reducers/auth/registration-reducer";
+import preloader from "./reducers/preloader/preloader-reducer.ts";
 
 
 let reducers = combineReducers({
@@ -24,6 +25,7 @@ let reducers = combineReducers({
     dialogsReducer,
     profileReducer,
     newMessageReducer,
+    preloader,
     form: formReducer
 
 

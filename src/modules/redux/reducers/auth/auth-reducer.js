@@ -1,16 +1,19 @@
 import { stopSubmit } from "redux-form";
 import { authAPI } from "../../../services/api-laravel";
+import { inProgress } from "../preloader/preloader-reducer.ts";
 // import {getAuth} from "../../redux/reducers/auth/auth-reducer"
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
+
 // const SET_AUTH_CURRENT_USER = 'SET_AUTH_CURRENT_USER';
-const SET_PHOTO = 'SET_PHOTO'
+// const SET_PHOTO = 'SET_PHOTO'
 
 //STATE
 let initialState = {
     auth: { "id": null, "login": null, "email": null, isAuth: false },
-    authUser: null
+    authUser: null,
+
 }
 
 //ACION CREATORS
@@ -22,13 +25,13 @@ export const setAuthUserData = (authUser, id = null, login = null, email = null,
 
 //THUNKS
 export const getAuth = () => async (dispatch) => {
-   
+
     let response = await authAPI.getAuthUser()
-    
+
     let authUser = null
     if (response.resultCode) {
         authUser = response.authUser
-    }else{
+    } else {
         console.log(response.message)
     }
 
@@ -42,38 +45,33 @@ export const getAuth = () => async (dispatch) => {
 
 }
 export const login = (email, password, rememberMe) => (dispatch) => {
-
+    dispatch(inProgress(true));
     authAPI.login(email, password, rememberMe)
         .then(res => {
-            console.log('login')
-            console.log(res)
-            const resultCode = res.status;
+            dispatch(getAuth());
+            dispatch(inProgress(false));
 
-            if (resultCode === 200) {
+        })
+        .catch((e) => {
+            let message = 'Email or Password was wrong !'
 
-
-                dispatch(getAuth())
-
-            } else {
-                let message = 'Email or Password was wrong !'
-
-                let action = stopSubmit('login', {
-                    _error: message
-                })
-                dispatch(action)
-            }
-
+            let action = stopSubmit('login', {
+                _error: message
+            })
+            dispatch(action)
+            dispatch(inProgress(false));
         })
 
 
 }
 export const logout = () => (dispatch) => {
-
+    dispatch(inProgress(true));
     authAPI.logout()
         .then(res => {
             dispatch(setAuthUserData(null, null, null, false))
 
         })
+    dispatch(inProgress(false));
 }
 
 
@@ -89,11 +87,11 @@ const authReducer = (state = initialState, action) => {
             return result;
 
 
-        case SET_PHOTO:
-            result = { ...state }
-            result.currentProfile = { ...state.currentProfile }
-            result.currentProfile.photos = { ...action.photos }
-            return result
+        // case SET_PHOTO:
+        //     result = { ...state }
+        //     result.currentProfile = { ...state.currentProfile }
+        //     result.currentProfile.photos = { ...action.photos }
+        //     return result
 
         default:
             return result;

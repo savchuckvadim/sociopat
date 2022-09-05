@@ -23,7 +23,8 @@ const mapStateToProps = (state) => {
         isAuth: state.auth.auth.isAuth,
         initialized: state.app.initialized,
         initialInProgress: state.app.inProgress,
-        registrationStatus: state.registration.registrationStatus
+        registrationStatus: state.registration.registrationStatus,
+        preloader: state.preloader.inProgress
 
     }
 }
@@ -31,7 +32,7 @@ const AppContainer = (props) => {
 
     useEffect(() => {
         props.initialize();
-       console.log('initialize')
+        console.log('initialize')
 
     }, [])
 
@@ -40,14 +41,14 @@ const AppContainer = (props) => {
     let app = <LightLoadingPageContainer />
 
 
-    if (!props.isAuth && !props.initialInProgress && !props.registrationStatus) {
+    if (!props.isAuth && !props.preloader) {
         console.log('isAuth')
         console.log(props.isAuth)
-        
+
         app = <StartPage />
 
     }
-    else if (props.initialInProgress || props.registrationStatus) {
+    else if (props.preloader) {
         app = <LightLoadingPageContainer />
     }
 
@@ -56,7 +57,7 @@ const AppContainer = (props) => {
     }
 
     return app
-   
+
 }
 
 

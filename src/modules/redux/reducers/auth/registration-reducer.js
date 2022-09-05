@@ -1,7 +1,7 @@
 import { authAPI } from "../../../services/api-laravel";
+import { inProgress } from "../preloader/preloader-reducer.ts";
 import { getAuth, logout } from "./auth-reducer";
 
-const REGISTRATING_IN_PROGRESS = 'REGISTRATING_IN_PROGRESS';
 const REGISTRATION_SUCSESS = 'REGISTRATION_SUCSESS';
 
 const initialState = {
@@ -12,11 +12,11 @@ const initialState = {
     registrationStatus: false
 }
 
-const registratingInProgress = (bool) => ({ type: REGISTRATING_IN_PROGRESS, bool });
+
 const registrationSuccess = () => ({ type: REGISTRATION_SUCSESS });
 
 export const setNewUser = (name, surname, email, password, password_confirmation) => async (dispatch) => {
-    dispatch(registratingInProgress(true));
+    dispatch(inProgress(true));
     
     
     try {
@@ -31,19 +31,16 @@ export const setNewUser = (name, surname, email, password, password_confirmation
 
             }
         }
-        dispatch(registratingInProgress(false));
+        dispatch(inProgress(false));
     } catch (error) {
         
-        dispatch(registratingInProgress(false));
+        dispatch(inProgress(false));
     }
 
 
 }
 const registrationReducer = (state = initialState, action) => {
     switch (action.type) {
-        case REGISTRATING_IN_PROGRESS:
-
-            return { ...state, registrationStatus: action.bool };
 
         case REGISTRATION_SUCSESS:
 
