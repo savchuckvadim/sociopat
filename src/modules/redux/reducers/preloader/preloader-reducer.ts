@@ -1,7 +1,7 @@
 const IN_PROGRESS = 'IN_PROGRESS';
 
 const initialState = {
-    inProgress: false
+    inProgress: false as boolean
 };
 
 export const inProgress = (bool: boolean): InProgressType => ({ type: IN_PROGRESS, bool });
