@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import style from './Avatar.module.css'
 
 const Avatar = (props) => {
-
+    debugger
     // size={68}
     // border={false}
     // user={props.user} -> name, surname, photos->small
