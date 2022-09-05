@@ -18,7 +18,7 @@ export const initializing = (): InitialActionType => ({ type: INITIALIZING })
 
 
 //THUNKS
-export const initialize = () => async (dispatch) => {
+export const initialize = () => async (dispatch: any) => {
     dispatch(initializing()) //inProgress-status
     let promiseAuth = () => {
         return dispatch(getAuth())

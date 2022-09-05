@@ -24,11 +24,12 @@ export const setAuthUserData = (authUser, id = null, login = null, email = null,
 export const getAuth = () => async (dispatch) => {
    
     let response = await authAPI.getAuthUser()
+    
     let authUser = null
     if (response.resultCode) {
         authUser = response.authUser
     }else{
-        alert(response.message)
+        console.log(response.message)
     }
 
     if (authUser) {
@@ -64,7 +65,6 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 
         })
 
-    // .then(res => console.log(res.data.id))
 
 }
 export const logout = () => (dispatch) => {
@@ -72,7 +72,6 @@ export const logout = () => (dispatch) => {
     authAPI.logout()
         .then(res => {
             dispatch(setAuthUserData(null, null, null, false))
-            // dispatch(setAuthcurrentProfile({}))
 
         })
 }
@@ -89,9 +88,6 @@ const authReducer = (state = initialState, action) => {
             result.authUser = action.authUser //запоминаем аутентифицированного пользователя в state чтобы потом его вставлять в список подписчиков
             return result;
 
-        // case SET_AUTH_CURRENT_USER:
-        //     let user = { ...action.userProfile, photos: { small: action.avatar, large: null } }
-        //     return { ...state, currentProfile: user };
 
         case SET_PHOTO:
             result = { ...state }

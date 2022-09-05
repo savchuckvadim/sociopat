@@ -1,7 +1,4 @@
-import {
-    connect
-} from "react-redux"
-
+import { connect } from "react-redux"
 import { login } from "../../../redux/reducers/auth/auth-reducer"
 import { setError } from "../../../redux/reducers/login-registaration/login-registration-reducer"
 import FormCard from "./Form-Card/Form-Card"

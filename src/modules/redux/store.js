@@ -10,12 +10,14 @@ import authReducer from "./reducers/auth/auth-reducer";
 import { reducer as formReducer } from 'redux-form'
 import LoginRegistrationReducer from "./reducers/login-registaration/login-registration-reducer";
 import appReducer from "./reducers/app-reducer.ts";
+import registrationReducer from "./reducers/auth/registration-reducer";
 
 
 let reducers = combineReducers({
     app: appReducer,
     auth: authReducer,
     loginRegistration: LoginRegistrationReducer,
+    registration: registrationReducer,
     users: usersReducer,
     theme: themeReducer,
     navMenu: navMenuReducer,

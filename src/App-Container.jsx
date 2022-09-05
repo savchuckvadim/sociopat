@@ -22,7 +22,8 @@ const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.auth.isAuth,
         initialized: state.app.initialized,
-        initialInProgress: state.app.inProgress
+        initialInProgress: state.app.inProgress,
+        registrationStatus: state.registration.registrationStatus
 
     }
 }
@@ -39,14 +40,14 @@ const AppContainer = (props) => {
     let app = <LightLoadingPageContainer />
 
 
-    if (!props.isAuth && !props.initialInProgress) {
+    if (!props.isAuth && !props.initialInProgress && !props.registrationStatus) {
         console.log('isAuth')
         console.log(props.isAuth)
         
         app = <StartPage />
 
     }
-    else if (props.initialInProgress) {
+    else if (props.initialInProgress || props.registrationStatus) {
         app = <LightLoadingPageContainer />
     }
 

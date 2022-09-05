@@ -15,8 +15,9 @@ const DISLIKE = 'DISLIKE';
 
 let initialState = {
     visitedUser: null,
+    //avatar: string | null
+    //aboutMe: string |null
     status: '',
-    login: 'Super User',
     posts: [],
     likeInProgress: false
 };
