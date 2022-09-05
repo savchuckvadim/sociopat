@@ -13,10 +13,10 @@ const Avatar = (props) => {
     let img = null
     if (props.user) {
         initials = (props.user.profile.name.substring(0, 1) + props.user.profile.surname.substring(0, 1)).toUpperCase()
-        if(props.user.photos.small){
+        if(props.user.profile.avatar){
             initials = null
         }
-        img = props.user.photos.small
+        img = props.user.profile.avatar
 
     } else {
         initials = 'SP'

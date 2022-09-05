@@ -14,7 +14,7 @@ const UserCard = (props) => {
                 name={props.name}
                 link={`../profile/${props.user.id}`}
                 user={props.user}
-                img={props.user.photos.small}
+                img={props.user.profile.avatar}
                 />
 
             <NavLink className={style.login} to={'../profile/' + props.user.id}>

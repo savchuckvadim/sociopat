@@ -12,7 +12,7 @@ const Message = (props) => {
     if (props.message.send === 'to') {
         nameOfDialog = props.currentAuthUser.fullName
         userId = props.currentAuthUser.userId
-        iconOfDialog = props.currentAuthUser.photos.small
+        iconOfDialog = props.currentAuthUser.profile.avatar
 
     }
 

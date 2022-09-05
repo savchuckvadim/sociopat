@@ -17,10 +17,10 @@ const registrationSuccess = () => ({ type: REGISTRATION_SUCSESS });
 export const setNewUser = (name, surname, email, password, password_confirmation) => async (dispatch) => {
     registratingInProgress();
     let res = await authAPI.register(name, surname, email, password, password_confirmation)
-console.log(res)
-    // if(res.statusText === 'Created'){
-        registrationSuccess()
-    // }
+// console.log(res)
+    if(res.statusText === 'Created'){
+        dispatch(registrationSuccess())
+    }
 }
 const registrationReducer = (state = initialState, action) => {
     switch (action.type) {

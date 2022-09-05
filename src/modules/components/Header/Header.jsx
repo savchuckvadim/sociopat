@@ -12,7 +12,7 @@ const Header = (props) => {
 
     if (props.user) {
 
-        avatar = props.user.photos.small
+        avatar = props.user.profile.avatar
         name = props.user.name
     }
 
