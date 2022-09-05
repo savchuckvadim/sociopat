@@ -37,6 +37,7 @@ const Author = (props) => {
                 size={iconSize}
                 link={link}
                 user={props.author}
+                img={props.author.profile.avatar}
                 />
             </div>
 

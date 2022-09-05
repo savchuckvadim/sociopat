@@ -52,7 +52,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
                             <Avatar
                             size={40}
                             link={false}
-                            // img={props.user.photos.small}
+                            img={props.user.profile.avatar}
                             // name={props.user.fullName}
                             user={props.user}
                             />

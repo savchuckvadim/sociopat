@@ -55,8 +55,7 @@ const ProfileInformation = (props) => {
                     size={128}
                     border={true}
                     // name={props.userName}
-                    // img={props.profile.photos.small}   /// old API
-                    // img={null} ///////////////LARAVEL
+                    img={props.visitedUser.profile.avatar}   /// old API
                     user={props.visitedUser}
                 />
 
