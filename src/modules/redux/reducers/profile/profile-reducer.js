@@ -43,7 +43,6 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
     const userRes = await usersAPI.getUser(userId);
     const resPosts = await postAPI.getPosts(userId); //get posts from backend and set to state
     const avatarUrl = await usersAPI.getAvatar(userId);
-debugger
     let user = null;
     if(userRes.resultCode === 1){
         user = userRes.user;
@@ -69,13 +68,14 @@ debugger
 
 };
 
-export const getStatus = (userId) => async (dispatch) => {
+// export const getAboutMe = (userId) => async (dispatch) => {
 
-    const res = await profileAPI.getStatus(userId)
-    const status = res.data.aboutMe
-    dispatch(setStatus(status))
+//     const res = await profileAPI.getAboutMe(userId)
+//     const status = res.data.aboutMe
+    
+//     dispatch(setStatus(status))
 
-};
+// };
 
 export const updateStatus = (aboutMe) => async (dispatch) => {
 
