@@ -26,8 +26,8 @@ export const addPostActionCreator = (value) => ({ type: ADD_POST, value: value }
 export const setPosts = (posts) => ({ type: SET_POSTS, posts });
 const setStatus = (status) => ({ type: SET_STATUS, status });
 const setPhotos = (photos) => ({ type: SET_PHOTO, photos });
-const setProfilePageData = (status, user, avatar) => (
-    { type: SET_PROFILE_PAGE_DATA, status, user, avatar }
+const setProfilePageData = (user) => (
+    { type: SET_PROFILE_PAGE_DATA, user}
 );
 const setLike = (postId, like) => ({ type: LIKE, postId, like });
 const setDislike = (like) => ({ type: DISLIKE, like });
@@ -41,45 +41,28 @@ const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool });
 export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
     const userRes = await usersAPI.getUser(userId);
-    const resPosts = await postAPI.getPosts(userId); //get posts from backend and set to state
-    const avatarUrl = await usersAPI.getAvatar(userId);
+    const postsRes = await postAPI.getPosts(userId); //get posts from backend and set to state
+
     let user = null;
     if(userRes.resultCode === 1){
         user = userRes.user;
     }else{
         alert(userRes.message)
     }
-     
-    const profile = { ...user.profile, photos: { small: null, large: null } };
-    const status = profile.about_me;
 
-    const photos = {
-        small: avatarUrl.data,
-        large: null
-    };
-    profile.photos = photos;
-
-    if (resPosts.data) {
-        let posts = resPosts.data;
+    if (postsRes.data) {
+        let posts = postsRes.data;
         dispatch(setPosts(posts));
     };
 
-    dispatch(setProfilePageData(status, user, avatarUrl.data));
+    dispatch(setProfilePageData(user));
 
 };
 
-// export const getAboutMe = (userId) => async (dispatch) => {
 
-//     const res = await profileAPI.getAboutMe(userId)
-//     const status = res.data.aboutMe
-    
-//     dispatch(setStatus(status))
-
-// };
 
 export const updateStatus = (aboutMe) => async (dispatch) => {
 
-    // const res = await profileAPI.updateStatus(status)
     const res = await profileAPI.updateAboutMe(aboutMe)
 
     if (res.data.resultCode === 0) {
@@ -87,6 +70,8 @@ export const updateStatus = (aboutMe) => async (dispatch) => {
     }
 
 };
+
+
 //TODO REFACTORING TO LARAVEL
 export const loadPhoto = (photo) => async (dispatch) => {
 
@@ -144,12 +129,14 @@ const profileReducer = (state = initialState, action) => {
             return result
 
         case SET_STATUS:
-            if (result.status !== action.status) {
-
-                result = { ...state }
-                result.status = action.status
-                return result
+            if(state.visitedUser){
+                if (result.visitedUser.profile.about_me !== action.status) {
+                    result = { ...state }
+                    result.visitedUser.profile.about_me  = action.status
+                    return result
+                }
             }
+            
             return state
 
         case SET_PHOTO:
@@ -164,14 +151,15 @@ const profileReducer = (state = initialState, action) => {
                 result = { ...state }
                 result.status = action.status
             }
+            debugger
             if (state.visitedUser) {                                        //visiteduser
                 if (state.visitedUser.name !== action.user.name) {
                     result = { ...state }
-                    result.visitedUser = { ...action.user, photos: { small: action.avatar, large: null } }
+                    result.visitedUser = { ...action.user}
                 }
             } else {
                 result = { ...state }
-                result.visitedUser = { ...action.user, photos: { small: action.avatar, large: null } }
+                result.visitedUser = { ...action.user }
             }
             return result
 

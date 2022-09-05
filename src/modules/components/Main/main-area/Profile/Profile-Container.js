@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
         // profile: state.profileReducer.visitedUser.profile,
         visitedUser: state.profileReducer.visitedUser,
         posts: state.profileReducer.posts,
-        status: state.profileReducer.status,
+        // status: state.profileReducer.status,
         likeInProgress: state.profileReducer.likeInProgress,
 
     }

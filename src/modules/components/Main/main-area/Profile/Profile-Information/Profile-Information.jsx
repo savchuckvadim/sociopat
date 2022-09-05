@@ -24,8 +24,7 @@ const ProfileInformation = (props) => {
                         <h1 className={style.name}>{`${props.visitedUser.profile.name} ${props.visitedUser.profile.surname}`}</h1>
 
                         <ProfileStatus
-                            status={props.status}
-                            // getAboutMe={props.getAboutMe}
+                            status={props.visitedUser.profile.about_me}
                             updateStatus={props.updateStatus}
                             isCurrentUser={props.isCurrentUser}
                         />

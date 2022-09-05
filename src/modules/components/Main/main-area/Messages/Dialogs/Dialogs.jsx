@@ -1,4 +1,3 @@
-
 import DialogItem from './Dialog-Item/Dialog-item'
 import style from './Dialogs.module.css'
 
