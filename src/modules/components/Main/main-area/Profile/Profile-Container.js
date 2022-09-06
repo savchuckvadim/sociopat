@@ -50,11 +50,11 @@ class ProfileContainer extends React.Component {
 
 
     getUserId = (state, props) => {
-        debugger
+        
         this.setState((state, props) => {
             if (props.params.userId) {
                 if (state.userId !== Number(props.params.userId)) {
-                    debugger
+                    
                     return {
                         userId: Number(props.params.userId),
                         isAuthUser: false
@@ -64,7 +64,7 @@ class ProfileContainer extends React.Component {
             }
             else {
                 if (state.userId !== props.auth.id) {
-                    debugger
+                    
                     return {
                         userId: props.auth.id,
                         isAuthUser: true
@@ -73,7 +73,7 @@ class ProfileContainer extends React.Component {
             }
         })
         // if (this.props.params.userId) {
-        //     debugger
+        //     
         //     // this.userId = this.props.params.userId;
         //     // this.isAuthUser = false
         //     if(this.state.userId !== Number(this.props.params.userId)){
@@ -135,7 +135,7 @@ class ProfileContainer extends React.Component {
 
     }
     componentDidUpdate() {
-    //TODO logic for not request    
+//TODO logic for not request    
         this.getUserId(this.state, this.props)
         this.getProfileData()
 
