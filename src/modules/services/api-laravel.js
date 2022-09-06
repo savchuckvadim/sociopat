@@ -89,23 +89,23 @@ export const usersAPI = {
 
     async getUsers(currentPage = 1, pageSize = 10) {
         try {
-            const res = await  instance.get(`api/users?page=${currentPage}&count=${pageSize}`);
+            const res = await instance.get(`api/users?page=${currentPage}&count=${pageSize}`);
             return res.data
         } catch (error) {
             alert(error)
         }
-        
-        
+
+
     },
 
     async getUser(id) {
         try {
-            const res = await  instance.get(`api/users/${id}`)
+            const res = await instance.get(`api/users/${id}`)
             return res.data
         } catch (error) {
             alert(error)
         }
-  
+
     },
 
     async follow(userId) {
@@ -152,8 +152,8 @@ export const profileAPI = {
 
 export const postAPI = {
 
-    sendPost(userId, profileId, body, image) {
-
+    async sendPost(userId, profileId, body, image) {
+        let event = await eventsAPI.event()
         return instance.post('api/post', {
             body,
             image,
@@ -180,9 +180,9 @@ export const postAPI = {
 export const eventsAPI = {
 
     async event() {
-        let res = await instance.get(`api/testingevent`)
+        // let res = await instance.get(`api/testingevent`)
         window.Pusher = require('pusher-js');
-        let echo = new Echo({
+        window.Echo = new Echo({
 
             broadcaster: 'pusher',
             key: 'socket_key',
@@ -203,9 +203,11 @@ export const eventsAPI = {
                             },
                         })
                             .then((response) => {
+                                console.log(response)
                                 callback(false, response.data);
                             })
                             .catch((error) => {
+                                console.log(error)
                                 callback(true, error);
                             });
                     }
@@ -213,10 +215,10 @@ export const eventsAPI = {
             }
 
         })
-        echo.private(`test-chanel.${21}`)
-            .listen('LoginEvent', (e) => {
+        window.Echo.private(`send-post`)
+            .listen('SendPost', (e) => {
                 alert(e.data);
             });
-        return res
+      
     },
 }
