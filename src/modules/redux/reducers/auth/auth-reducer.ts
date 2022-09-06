@@ -11,10 +11,12 @@ const SET_USER_DATA = 'SET_USER_DATA'
 
 //STATE
 let initialState = {
-    isAuth: false,
+    isAuth: false as boolean,
     authUser: null as UserType
 
 }
+type InitialStateType = typeof initialState
+
 export type UserType = {
     id: number | null
     email: string
@@ -73,7 +75,7 @@ export const getAuth = () => async (dispatch: any) => {
 
 
 }
-export const login = (email: string, password: string,) => (dispatch) => {
+export const login = (email: string, password: string,) => (dispatch: any) => {
     dispatch(inProgress(true));
     authAPI.login(email, password)
         .then(res => {
@@ -105,7 +107,7 @@ export const logout = () => (dispatch: any) => {
 
 
 //REDUCER
-const authReducer = (state = initialState, action) => {
+const authReducer = (state: InitialStateType = initialState, action: SetAuthUserDataType) => {
     let result = state
 
     switch (action.type) {
@@ -115,7 +117,7 @@ const authReducer = (state = initialState, action) => {
             result.authUser = action.authUser //запоминаем аутентифицированного пользователя в state
             return result;
 
-    
+
         default:
             return result;
     }
