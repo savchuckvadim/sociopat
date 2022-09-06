@@ -17,7 +17,7 @@ let initialState = {
 }
 export type UserType = {
     id: number | null
-    email: string 
+    email: string
     name: string
     followed: 0 | 1
     followers: Array<UserType>
@@ -39,16 +39,22 @@ export type ProfileType = {
     user_id: number | null
 } | null
 
+type SetAuthUserDataType = {
+    type: typeof SET_USER_DATA
+    authUser: UserType
+    isAuth: boolean
+
+}
 
 //ACION CREATORS
-export const setAuthUserData = (authUser: UserType, isAuth: boolean = false) =>
+export const setAuthUserData = (authUser: UserType, isAuth: boolean = false): SetAuthUserDataType =>
     ({ type: SET_USER_DATA, authUser, isAuth })
 
 
 
 
 //THUNKS
-export const getAuth = () => async (dispatch:any) => {
+export const getAuth = () => async (dispatch: any) => {
 
     let response = await authAPI.getAuthUser()
     let authUser = null
@@ -109,13 +115,7 @@ const authReducer = (state = initialState, action) => {
             result.authUser = action.authUser //запоминаем аутентифицированного пользователя в state
             return result;
 
-
-        // case SET_PHOTO:
-        //     result = { ...state }
-        //     result.currentProfile = { ...state.currentProfile }
-        //     result.currentProfile.photos = { ...action.photos }
-        //     return result
-
+    
         default:
             return result;
     }

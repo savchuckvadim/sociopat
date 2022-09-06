@@ -2,18 +2,17 @@ import { authAPI } from "../../../services/api-laravel";
 import { inProgress } from "../preloader/preloader-reducer.ts";
 import { getAuth, logout } from "./auth-reducer.ts";
 
-const REGISTRATION_SUCSESS = 'REGISTRATION_SUCSESS';
+const REGISTRATION_SUCCSESS = 'REGISTRATION_SUCCSESS';
 
 const initialState = {
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
+    
     registrationStatus: false
 }
 
+//ACION CREATORS
 
-const registrationSuccess = () => ({ type: REGISTRATION_SUCSESS });
+const registrationSuccess = () => ({ type: REGISTRATION_SUCCSESS });
+//THUNKS
 
 export const setNewUser = (name, surname, email, password, password_confirmation) => async (dispatch) => {
     dispatch(inProgress(false));
@@ -23,8 +22,9 @@ export const setNewUser = (name, surname, email, password, password_confirmation
     try {
         let res = await authAPI.register(name, surname, email, password, password_confirmation)
         if (res.statusText === 'Created') {
-            dispatch(registrationSuccess());
+            // dispatch(registrationSuccess());
             dispatch(getAuth())            //from auth reducer
+        
         } else {
             
             if (res.data.error) {
@@ -40,10 +40,12 @@ export const setNewUser = (name, surname, email, password, password_confirmation
 
 
 }
+//REDUCER
+
 const registrationReducer = (state = initialState, action) => {
     switch (action.type) {
 
-        case REGISTRATION_SUCSESS:
+        case REGISTRATION_SUCCSESS:
 
             return { ...state, registrationStatus: 'success' };
         default:
