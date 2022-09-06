@@ -135,6 +135,8 @@ const profileReducer = (state = initialState, action) => {
             if (state.visitedUser) {
                 if (result.visitedUser.profile.about_me !== action.status) {
                     result = { ...state }
+                    result.visitedUser = {...state.visitedUser}
+                    result.visitedUser.profile = {...state.visitedUser.profile}
                     result.visitedUser.profile.about_me = action.status
                     return result
                 }
@@ -156,12 +158,13 @@ const profileReducer = (state = initialState, action) => {
             // }
             
             if (state.visitedUser) {                                        //visiteduser
-                if (state.visitedUser.name !== action.user.name) {
+                if (state.visitedUser.id !== action.user.id) {
                     result = { ...state }
                     result.visitedUser = { ...action.user }
+                }else{
+                    return state
                 }
             } else {
-
                 result = { ...state }
                 result.visitedUser = { ...action.user }
             }

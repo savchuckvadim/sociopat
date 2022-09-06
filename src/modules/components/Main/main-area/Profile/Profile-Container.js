@@ -38,6 +38,10 @@ const withRouter = WrappedComponent => props => {
 
 class ProfileContainer extends React.Component {
 
+    constructor(props) {
+        super(props)
+        this.state = { userId: undefined, isAuthUser: false }
+    }
     userId = null
     isAuthUser = true
     currentUser
@@ -45,69 +49,106 @@ class ProfileContainer extends React.Component {
 
 
 
-    getUserId = (params) => {
+    getUserId = (state, props) => {
+        debugger
+        this.setState((state, props) => {
+            if (props.params.userId) {
+                if (state.userId !== Number(props.params.userId)) {
+                    debugger
+                    return {
+                        userId: Number(props.params.userId),
+                        isAuthUser: false
+                    }
+                }
 
-        if (this.props.params.userId) {
+            }
+            else {
+                if (state.userId !== props.auth.id) {
+                    debugger
+                    return {
+                        userId: props.auth.id,
+                        isAuthUser: true
+                    };
+                }
+            }
+        })
+        // if (this.props.params.userId) {
+        //     debugger
+        //     // this.userId = this.props.params.userId;
+        //     // this.isAuthUser = false
+        //     if(this.state.userId !== Number(this.props.params.userId)){
+        //         this.setState({
+        //             userId: Number(this.props.params.userId),
+        //             isAuthUser: false
+        //         });
+        //     }
 
-            this.userId = this.props.params.userId;
-            this.isAuthUser = false
 
-        }
-        else {
 
-            this.userId = this.props.auth.id
-            this.isAuthUser = true
+        // }
+        // else {
 
-        }
+        //     // this.userId = this.props.auth.id
+        //     // this.isAuthUser = true
+        //     if(this.state.userId !== this.props.auth.id){
+        //         this.setState({
+        //             userId: this.props.auth.id,
+        //             isAuthUser: true
+        //         });
+        //     }
+
+        // }
 
     }
 
     getProfileData = () => {
-
+        
         // this.props.getProfileAndSetVisitedUser(this.userId)
         // this.props.getStatus(this.userId)
-        
-        if (!this.props.visitedUser) {
-            this.props.getDataForLoadProfilePage(this.userId)
+        if (this.state.userId) {
+            if (!this.props.visitedUser) {
+                this.props.getDataForLoadProfilePage(this.state.userId)
 
-        } else {
-            if (this.props.params.userId) {
-                if (`${this.props.params.userId}` !== `${this.props.visitedUser.id}`) {
-                    this.props.getDataForLoadProfilePage(this.userId)
-                }
             } else {
-                if (this.props.visitedUser.id !== this.props.auth.id) {
-                    this.props.getDataForLoadProfilePage(this.userId)
+                if (this.props.params.userId) {
+                    if (`${this.props.params.userId}` !== `${this.props.visitedUser.id}`) {
+                        this.props.getDataForLoadProfilePage(this.state.userId)
+                    }
+                } else {
+                    if (this.props.visitedUser.id !== this.props.auth.id) {
+                        this.props.getDataForLoadProfilePage(this.state.userId)
+                    }
                 }
-            }
 
+            }
         }
+
 
 
     }
     componentDidMount() {
-
+        
         window.scrollTo(0, 0);
 
-        this.getUserId()
+        this.getUserId(this.state, this.props)
         this.getProfileData()
 
     }
     componentDidUpdate() {
-
-        this.getUserId()
+    //TODO logic for not request    
+        this.getUserId(this.state, this.props)
         this.getProfileData()
 
     }
     render() {
-        
+
         if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth.id}`) return <Navigate replace to={'../profile'} />
         if (!this.props.visitedUser) return <LightLoadingPageContainer />
         return (
 
             <Profile {...this.props}
                 // profilePhoto={this.props.profile.photos.small}
-                isCurrentUser={this.isAuthUser}
+                isCurrentUser={this.state.isAuthUser}
 
 
             />
