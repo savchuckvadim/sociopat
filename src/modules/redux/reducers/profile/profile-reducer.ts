@@ -59,8 +59,8 @@ type SetLikeType = {
     authorId: number
 
 }
-// const setDislike = (likeId) => ({ type: DISLIKE, like });                                           //TODO with API 
-// const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool });                                //TODO with API 
+const setDislike = (likeId) => ({ type: DISLIKE, like });                                           //TODO with API 
+const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool });                                //TODO with API 
 
 
 // const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })

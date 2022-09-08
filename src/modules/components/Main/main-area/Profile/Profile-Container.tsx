@@ -3,10 +3,8 @@ import { connect } from "react-redux"
 import { Navigate, useParams } from "react-router-dom";
 import { compose } from "redux";
 import { dislike, getDataForLoadProfilePage, like, loadPhoto, updateStatus } from "../../../../redux/reducers/profile/profile-reducer.ts"
+import { PostType, UserType } from "../../../../types/types";
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container";
-
-
-
 import Profile from "./Profile"
 
 const mapStateToProps = (state) => {
@@ -33,10 +31,24 @@ const withRouter = WrappedComponent => props => {
         />
     );
 };
+type paramsType = {
+    userId: string | null
+}
+type PropsType = {
+    isAuth: boolean
+    auth: UserType
+    visitedUser: UserType
+    posts: Array<PostType>
+    likeInProgress: Array<number>
+    params: paramsType
+    updateStatus: (aboutMe: string) => void
+    getDataForLoadProfilePage: (userId: number) => void
+    like: (postId: number) => void
+    dislike: (postId: number) => void
 
+}
 
-
-class ProfileContainer extends React.Component {
+class ProfileContainer extends React.Component<PropsType> {
 
     constructor(props) {
         super(props)
@@ -50,11 +62,11 @@ class ProfileContainer extends React.Component {
 
 
     getUserId = (state, props) => {
-        
+
         this.setState((state, props) => {
             if (props.params.userId) {
                 if (state.userId !== Number(props.params.userId)) {
-                    
+
                     return {
                         userId: Number(props.params.userId),
                         isAuthUser: false
@@ -64,7 +76,7 @@ class ProfileContainer extends React.Component {
             }
             else {
                 if (state.userId !== props.auth.id) {
-                    
+
                     return {
                         userId: props.auth.id,
                         isAuthUser: true
@@ -76,7 +88,7 @@ class ProfileContainer extends React.Component {
     }
 
     getProfileData = () => {
-        
+
         // this.props.getProfileAndSetVisitedUser(this.userId)
         // this.props.getStatus(this.userId)
         if (this.state.userId) {
@@ -101,7 +113,7 @@ class ProfileContainer extends React.Component {
 
     }
     componentDidMount() {
-        
+
         window.scrollTo(0, 0);
 
         this.getUserId(this.state, this.props)
@@ -109,7 +121,7 @@ class ProfileContainer extends React.Component {
 
     }
     componentDidUpdate() {
-//TODO logic for not request    
+        //TODO logic for not request    
         this.getUserId(this.state, this.props)
         this.getProfileData()
 
