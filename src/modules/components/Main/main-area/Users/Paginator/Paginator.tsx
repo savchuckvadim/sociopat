@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
+import React from 'react';
+import { useState } from 'react';
 import style from './Paginator.module.css'
 
 type PropsType = {
@@ -15,17 +15,17 @@ type PropsType = {
 
 const Paginator: React.FC<PropsType> = ({ totalItemsCount, pageSize, currentPage, portionSize = 10, setCurrentPage, requestUsers, currentPortion }) => {
 
-    let pagesCount = Math.ceil(totalItemsCount / pageSize)
-    let pages = [] as Array<number>
+    let pagesCount = Math.ceil(totalItemsCount / pageSize);
+    let pages = [] as Array<number>;
 
-    for (let i = 1 i <= pagesCount i++) {
+    for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-    let portionCount = Math.ceil(pagesCount / portionSize)
-    const [portionNumber, setPortionNumber] = useState(currentPortion)
+    let portionCount = Math.ceil(pagesCount / portionSize);
+    const [portionNumber, setPortionNumber] = useState(currentPortion);
 
-    let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
-    let rightPortionPageNumber = portionNumber * portionSize
+    let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
+    let rightPortionPageNumber = portionNumber * portionSize;
 
 
     const onPageChanged = (pageNumber, portionNumber) => {

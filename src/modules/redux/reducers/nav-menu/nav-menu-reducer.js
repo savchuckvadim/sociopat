@@ -17,12 +17,7 @@ let initialState = [
        
 
     },
-    {
-        name: 'Beautiful',
-        link: 'beautiful',
-       
-
-    }
+   
 
 ]
 

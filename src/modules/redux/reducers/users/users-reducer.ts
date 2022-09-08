@@ -1,14 +1,14 @@
-import { usersAPI } from "../../../services/api-laravel"
-import { UserType } from "../../../types/types"
-import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow"
-import { setTotalItemsCount } from "../paginator/paginator-reducer.ts"
+import { usersAPI } from "../../../services/api-laravel";
+import { UserType } from "../../../types/types";
+import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
+import { setTotalItemsCount } from "../paginator/paginator-reducer.ts";
 
 
-const SET_USERS = 'SET_USERS'
-const FETCHING = 'FETCHING'
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS'
+const SET_USERS = 'SET_USERS';
+const FETCHING = 'FETCHING';
+const FOLLOW = 'FOLLOW';
+const UNFOLLOW = 'UNFOLLOW';
+const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS';
 
 
 const initialState = {
@@ -60,7 +60,7 @@ export const requestUsers = (currentPage: number, pageSize: number) => async (di
     let res = await usersAPI.getUsers(currentPage, pageSize)
 
     if (res.data.resultCode === 1) {
-        const users = res.data.users
+        const users = res.data.users;
         dispatch(setTotalItemsCount(res.meta.total)) //from paginator reducer
         dispatch(setUsers(users))
 
@@ -108,10 +108,10 @@ const usersReducer = (state: InitialStateType = initialState, action: any): Init
     let result = state
 
     switch (action.type) {
-        case SET_USERS: result = { ...state } result.users = action.users return result
-        case FETCHING: result = { ...state } result.isFetching = action.bool return result
-        case FOLLOW: result = { ...state } result.users = followUnfollow(state.users, action.userId, action.authUser, true) return result
-        case UNFOLLOW: result = { ...state } result.users = followUnfollow(state.users, action.userId, action.authUser, false) return result
+        case SET_USERS: result = { ...state }; result.users = action.users; return result;
+        case FETCHING: result = { ...state }; result.isFetching = action.bool; return result;
+        case FOLLOW: result = { ...state }; result.users = followUnfollow(state.users, action.userId, action.authUser, true); return result;
+        case UNFOLLOW: result = { ...state }; result.users = followUnfollow(state.users, action.userId, action.authUser, false); return result;
         case FOLLOWING_IN_PROGRESS:
             result = { ...state }
             result.followingInProgress = [...state.followingInProgress]
