@@ -18,7 +18,7 @@ const initialState = {
 
 
 }
-type InitialStateType = typeof initialState
+export type UsersStateType = typeof initialState
 
 // ACTION CREATORS
 
@@ -104,7 +104,7 @@ export const unFollowThunk = (userId: number, authUser: UserType) => async (disp
 
 
 //REDUCER
-const usersReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
+const usersReducer = (state: UsersStateType = initialState, action: any): UsersStateType => {
     let result = state
 
     switch (action.type) {

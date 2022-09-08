@@ -18,8 +18,9 @@ const initialState = {
         color: '#FFFFFF'
     }
 }
+export type ThemeStateType = typeof initialState
 
-export const themeReducer = (state = initialState, action) => {
+export const themeReducer = (state: ThemeStateType = initialState, action: any): ThemeStateType => {
 
     return state
 }

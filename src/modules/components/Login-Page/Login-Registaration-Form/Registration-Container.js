@@ -1,5 +1,6 @@
 import { connect } from "react-redux"
-import { setNewUser } from "../../../redux/reducers/auth/registration-reducer"
+import { setNewUser } from "../../../redux/reducers/auth/auth-reducer.ts"
+
 import FormCard from "./Form-Card/Form-Card"
 
 const mapStateToProps = (state) => {

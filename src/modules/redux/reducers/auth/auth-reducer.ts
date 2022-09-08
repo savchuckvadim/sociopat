@@ -83,7 +83,33 @@ export const logout = () => (dispatch: any) => {
         })
     dispatch(inProgress(false))
 }
+//registration
+export const setNewUser = (name, surname, email, password, password_confirmation) => async (dispatch) => {
+    dispatch(inProgress(false))
+    dispatch(inProgress(true))
+    
+    
+    try {
+        let res = await authAPI.register(name, surname, email, password, password_confirmation)
+        if (res.statusText === 'Created') {
+            // dispatch(registrationSuccess())
+            dispatch(getAuth())            //from auth reducer
+        
+        } else {
+            
+            if (res.data.error) {
+                alert(res.data.error)
 
+            }
+        }
+        // dispatch(inProgress(false))
+    } catch (error) {
+        
+        dispatch(inProgress(false))  //from preloader-reducer
+    }
+
+
+}
 
 //REDUCER
 const authReducer = (state: AuthStateType = initialState, action: SetAuthUserDataType): AuthStateType => {
