@@ -1,3 +1,5 @@
+import { type } from "os"
+
 export type UserType = {
     id: number | null
     email: string
@@ -20,4 +22,21 @@ export type ProfileType = {
     surname: string
     updated_at: string
     user_id: number | null
-} 
+}
+
+export type PostType = {
+    author: UserType
+    body: string
+    id: number
+    img: string | null
+    isAuthLikes: boolean
+    likes: Array<LikeType>
+    likesCount: number
+    profile_id: number
+}
+
+export type LikeType = {
+    id: number
+    post_id: number,
+    author_id: number
+}

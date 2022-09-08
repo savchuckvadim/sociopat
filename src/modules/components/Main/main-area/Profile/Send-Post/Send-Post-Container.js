@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 
-import {  sendPost } from "../../../../../redux/reducers/profile/profile-reducer"
+import {  sendPost } from "../../../../../redux/reducers/profile/profile-reducer.ts"
 
 import SendPost from "./Send-Post"
 

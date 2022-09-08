@@ -1,4 +1,5 @@
 import { postAPI, profileAPI, usersAPI } from "../../../services/api-laravel";
+import { PostType, UserType } from "../../../types/types";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
 import { inProgress } from "../preloader/preloader-reducer.ts";
 
@@ -15,25 +16,53 @@ const DISLIKE = 'DISLIKE';
 
 
 let initialState = {
-    visitedUser: null,
+    visitedUser: null as UserType | null,
     //avatar: string | null
     //aboutMe: string |null
-    status: '',
-    posts: [],
-    likeInProgress: false
+    // status: '',
+    posts: [] as Array<PostType>,
+    likeInProgress: false as boolean
 };
 
+type InitialStateType = typeof initialState
+
 //ACTION CREATORS
-export const addPostActionCreator = (value) => ({ type: ADD_POST, value: value });
-export const setPosts = (posts) => ({ type: SET_POSTS, posts });
-const setStatus = (status) => ({ type: SET_STATUS, status });
-const setPhotos = (photos) => ({ type: SET_PHOTO, photos });
-const setProfilePageData = (user) => (
-    { type: SET_PROFILE_PAGE_DATA, user }
-);
-const setLike = (postId, like) => ({ type: LIKE, postId, like });
-const setDislike = (like) => ({ type: DISLIKE, like });
-const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool });
+export const addPostActionCreator = (value: PostType): AddPostActionCreatorType => ({ type: ADD_POST, value: value });
+type AddPostActionCreatorType = {
+    type: typeof ADD_POST,
+    value: PostType
+
+}
+export const setPosts = (posts: Array<PostType>): SetPostsActionCreatorType => ({ type: SET_POSTS, posts });
+type SetPostsActionCreatorType = {
+    type: typeof SET_POSTS,
+    posts: Array<PostType>
+
+}
+const setStatus = (status: string): SetStatusActionCreatorType => ({ type: SET_STATUS, status });
+type SetStatusActionCreatorType = {
+    type: typeof SET_STATUS,
+    status: string
+
+}
+// const setPhotos = (photos) => ({ type: SET_PHOTO, photos });  //TODO REFACTORING
+const setProfilePageData = (user: UserType): SetProfilePageDataActionCreatorType => ({ type: SET_PROFILE_PAGE_DATA, user });
+type SetProfilePageDataActionCreatorType = {
+    type: typeof SET_PROFILE_PAGE_DATA,
+    user: UserType
+
+}
+const setLike = (postId: number, authorId: number):SetLikeType => ({ type: LIKE, postId, authorId }); //TODO with API 
+type SetLikeType = {
+    type: typeof LIKE,
+    postId: number
+    authorId: number
+
+}
+// const setDislike = (likeId) => ({ type: DISLIKE, like });                                           //TODO with API 
+// const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool });                                //TODO with API 
+
+
 // const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
 // const setVisitedUser = (user) => ({ type: SET_VISITED_USER, user })
 
@@ -58,7 +87,7 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
     };
     dispatch(inProgress(false))
     dispatch(setProfilePageData(user));
-   
+
 
 };
 
@@ -76,17 +105,17 @@ export const updateStatus = (aboutMe) => async (dispatch) => {
 
 
 //TODO REFACTORING TO LARAVEL
-export const loadPhoto = (photo) => async (dispatch) => {
+// export const loadPhoto = (photo) => async (dispatch) => {
 
-    const res = await profileAPI.loadPhoto(photo)
+//     const res = await profileAPI.loadPhoto(photo)
 
-    if (res.data.resultCode === 0) {
-        let photos = res.data.data.photos
+//     if (res.data.resultCode === 0) {
+//         let photos = res.data.data.photos
 
-        dispatch(setPhotos(photos))
-    }
+//         dispatch(setPhotos(photos))
+//     }
 
-};
+// };
 
 export const sendPost = (userId, profileId, body, img) => async (dispatch) => {
 
@@ -112,7 +141,7 @@ export const dislike = (postId) => async (dispatch) => {
 };
 
 //REDUCER
-const profileReducer = (state = initialState, action) => {
+const profileReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
 
     let result = state
     switch (action.type) {
@@ -135,8 +164,8 @@ const profileReducer = (state = initialState, action) => {
             if (state.visitedUser) {
                 if (result.visitedUser.profile.about_me !== action.status) {
                     result = { ...state }
-                    result.visitedUser = {...state.visitedUser}
-                    result.visitedUser.profile = {...state.visitedUser.profile}
+                    result.visitedUser = { ...state.visitedUser }
+                    result.visitedUser.profile = { ...state.visitedUser.profile }
                     result.visitedUser.profile.about_me = action.status
                     return result
                 }
@@ -144,24 +173,24 @@ const profileReducer = (state = initialState, action) => {
 
             return state
 
-        case SET_PHOTO:
+        // case SET_PHOTO:
 
-            result = { ...state }
-            result.profile = { ...state.profile }
-            result.profile.photos = { ...action.photos }
-            return result
+        //     result = { ...state }
+        //     result.profile = { ...state.profile }
+        //     result.profile.photos = { ...action.photos }
+        //     return result
 
         case SET_PROFILE_PAGE_DATA:
             // if (result.status !== action.status) {      //status
             //     result = { ...state }
             //     result.status = action.status
             // }
-            
+
             if (state.visitedUser) {                                        //visiteduser
                 if (state.visitedUser.id !== action.user.id) {
                     result = { ...state }
                     result.visitedUser = { ...action.user }
-                }else{
+                } else {
                     return state
                 }
             } else {
@@ -181,38 +210,38 @@ const profileReducer = (state = initialState, action) => {
         case SET_POSTS:
             state.posts = action.posts.reverse(post => ({ ...post }))
             return state
+        //TODO 
+        // case LIKE:
+        //     result = { ...state }
+        //     result.posts = state.posts.map(post => {
+        //         if (post.id === action.postId) {
+        //             post.isAuthLikes = true
+        //             post.likes = [...post.likes]
+        //             post.likes.push(action.like)
+        //             post.likesCount = post.likes.length
+        //         }
 
-        case LIKE:
-            result = { ...state }
-            result.posts = state.posts.map(post => {
-                if (post.id === action.postId) {
-                    post.isAuthLikes = true
-                    post.likes = [...post.likes]
-                    post.likes.push(action.like)
-                    post.likesCount = post.likes.length
-                }
+        //         return post
 
-                return post
+        //     })
+        //     return result
 
-            })
-            return result
+        // case DISLIKE:
+        //     result = { ...state }
+        //     result.posts = state.posts.map(post => {
+        //         if (post.id === action.postId) {
+        //             post.isAuthLikes = true
+        //             post.likes = [...post.likes]
+        //             post.likes.push(action.like)
+        //             post.likesCount = post.likes.length
+        //         }
+        //         return post
+        //     })
+        //     return result
 
-        case DISLIKE:
-            result = { ...state }
-            result.posts = state.posts.map(post => {
-                if (post.id === action.postId) {
-                    post.isAuthLikes = true
-                    post.likes = [...post.likes]
-                    post.likes.push(action.like)
-                    post.likesCount = post.likes.length
-                }
-                return post
-            })
-            return result
-
-        case LIKE_IN_PROGRESS:
-            state.likeInProgress = action.bool
-            return { ...state }
+        // case LIKE_IN_PROGRESS:
+        //     state.likeInProgress = action.bool
+        //     return { ...state }
 
         default:
             return result;
