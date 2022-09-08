@@ -14,14 +14,11 @@ const Users = (props) => {
         props.requestUsers(props.currentPage, props.pageSize)
     }, [])
     
-    const onPageChanged = (pageNumber) => {
-        props.setCurrentPage(pageNumber)
-        props.requestUsers(pageNumber, props.pageSize)
-    }
+  
 
     let loader = <LightLoadingPageContainer />
     let users =
-        <>
+        <div className={style.wrapper}>
             <div className={style.title__container}>
                 <Title title={'People'} />
 
@@ -48,12 +45,15 @@ const Users = (props) => {
                     totalItemsCount={props.totalItemsCount}
                     pageSize={props.pageSize}
                     currentPage={props.currentPage}
-                    onPageChanged={onPageChanged}
+                   
                     portionSize={props.portionSize}
+                    setCurrentPage={props.setCurrentPage}
+                    requestUsers={props.requestUsers}
+                   
                 />
             </div>
 
-        </>
+        </div>
     return (
         <>
             {props.isFetching ? loader : users}

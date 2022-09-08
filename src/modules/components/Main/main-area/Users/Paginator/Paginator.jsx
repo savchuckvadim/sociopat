@@ -1,41 +1,52 @@
-import { useState } from 'react';
+import {  useState } from 'react';
 import style from './Paginator.module.css'
 
-const Paginator = (props) => {
+const Paginator = ({ totalItemsCount, pageSize, currentPage, portionSize = 10, setCurrentPage, requestUsers }) => {
 
-//props { totalItemsCount, pageSize, currentPage, portionSize = 10, onPageChanged }
-    let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize);
+    //props { totalItemsCount, pageSize, currentPage, portionSize = 10, onPageChanged }
+    let pagesCount = Math.ceil(totalItemsCount / pageSize);
     let pages = [];
-    
+
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-    let portionCount = Math.ceil(pagesCount / props.portionSize);
+    let portionCount = Math.ceil(pagesCount / portionSize);
     const [portionNumber, setPortionNumber] = useState(1);
-    let leftPortionPageNumber = (portionNumber - 1) * props.portionSize + 1;
-    let rightPortionPageNumber = portionNumber * props.pageSize;
-    
+
+    let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
+    let rightPortionPageNumber = portionNumber * portionSize;
+
+
+    const onPageChanged = (pageNumber) => {
+        setCurrentPage(pageNumber)
+        requestUsers(pageNumber, pageSize)
+
+    }
 
     return (
-        <div className={style.paginator}>
+        <div className={style.pages}>
             {portionNumber > 1 &&
-                <button onClick={() => {setPortionNumber(portionNumber - 1)}}>PREV</button>}
+                <button className={style.prev} onClick={() => { setPortionNumber(portionNumber - 1) }}>PREV</button>}
             {pages
-            .filter(p => p >= leftPortionPageNumber &&  p <= rightPortionPageNumber)
-            .map(p => {
-                let spanClassName = style.span
-                props.currentPage === p ? spanClassName = style.selectPage : spanClassName = style.span
-                return <span
-                    key={`user-page-${p}`}
-                    onClick={() => { props.onPageChanged(p, props.pageSize) }}
+                .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+                .map(p => {
+                    let spanClassName = style.span
+                    currentPage === p ? spanClassName = style.selectPage : spanClassName = style.span
+                    return <span
+                        key={`user-page-${p}`}
+                        onClick={() => {
+                            onPageChanged(p, pageSize)
+                            
+                            
+                        }}
 
-                    className={spanClassName}>
+                        className={spanClassName}>
 
-                    {p}
-                </span>
-            })}
-             {portionCount > portionNumber &&
-                <button onClick={() => {setPortionNumber(portionNumber + 1)}}>NEXT</button>}
+                        {p}
+                    </span>
+                })}
+            {portionCount > portionNumber &&
+                <button className={style.next} onClick={() => { setPortionNumber(portionNumber + 1) }}>NEXT</button>}
         </div>
     )
 }

@@ -58,9 +58,10 @@ export const requestUsers = (currentPage: number, pageSize: number) => async (di
 
     dispatch(fetching(true))
     let res = await usersAPI.getUsers(currentPage, pageSize)
-    if (res.resultCode === 1) {
+
+    if (res.data.resultCode === 1) {
         const users = res.data.users;
-        dispatch(setTotalItemsCount(res.data.totalCount)) //from paginator reducer
+        dispatch(setTotalItemsCount(res.meta.total)) //from paginator reducer
         dispatch(setUsers(users))
 
     } else {
