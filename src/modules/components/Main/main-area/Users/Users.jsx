@@ -14,12 +14,6 @@ const Users = (props) => {
         props.requestUsers(props.currentPage, props.pageSize)
     }, [])
     
-    // let isFetching = false
-    // let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
-    // let pages = [];
-    // for (let i = 1; i <= pagesCount; i++) {
-    //     pages.push(i)
-    // }
     const onPageChanged = (pageNumber) => {
         props.setCurrentPage(pageNumber)
         props.requestUsers(pageNumber, props.pageSize)
