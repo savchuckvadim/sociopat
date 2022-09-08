@@ -15,7 +15,7 @@ import preloader from "./reducers/preloader/preloader-reducer.ts";
 import paginatorReducer from "./reducers/paginator/paginator-reducer.ts";
 
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     app: appReducer,
     auth: authReducer,
     loginRegistration: LoginRegistrationReducer,
@@ -33,13 +33,17 @@ let reducers = combineReducers({
 
 });
 
+export type RootReducerType = typeof rootReducer
+export type RootState = ReturnType<RootReducerType>
+export type AppDispatch = typeof store.dispatch
 
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+//@ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
-// const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
+const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
 
-//     applyMiddleware(ThunkMiddleware)
-//   ));
+    applyMiddleware(ThunkMiddleware)
+  ));
 
-let store = createStore(reducers, applyMiddleware(ThunkMiddleware));
+// let store = createStore(rootReducer, applyMiddleware(ThunkMiddleware));
 export default store;
