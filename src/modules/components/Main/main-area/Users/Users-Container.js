@@ -16,6 +16,7 @@ const mapStateToProps = (state) => {
         totalItemsCount: state.paginator.totalItemsCount,
         currentPage: state.paginator.currentPage,
         portionSize: state.paginator.portionSize,
+        currentPortion: state.paginator.currentPortion,
         isFetching: getIsFetching(state) ,
         followingInProgress: getIsFollowing(state),
         

@@ -45,7 +45,7 @@ const Users = (props) => {
                     totalItemsCount={props.totalItemsCount}
                     pageSize={props.pageSize}
                     currentPage={props.currentPage}
-                   
+                    currentPortion={props.currentPortion}
                     portionSize={props.portionSize}
                     setCurrentPage={props.setCurrentPage}
                     requestUsers={props.requestUsers}

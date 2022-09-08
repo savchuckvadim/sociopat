@@ -1,9 +1,8 @@
 import {  useState } from 'react';
 import style from './Paginator.module.css'
 
-const Paginator = ({ totalItemsCount, pageSize, currentPage, portionSize = 10, setCurrentPage, requestUsers }) => {
+const Paginator = ({ totalItemsCount, pageSize, currentPage, portionSize = 10, setCurrentPage, requestUsers, currentPortion }) => {
 
-    //props { totalItemsCount, pageSize, currentPage, portionSize = 10, onPageChanged }
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
     let pages = [];
 
@@ -11,16 +10,16 @@ const Paginator = ({ totalItemsCount, pageSize, currentPage, portionSize = 10, s
         pages.push(i)
     }
     let portionCount = Math.ceil(pagesCount / portionSize);
-    const [portionNumber, setPortionNumber] = useState(1);
+    const [portionNumber, setPortionNumber] = useState(currentPortion);
 
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
     let rightPortionPageNumber = portionNumber * portionSize;
 
 
-    const onPageChanged = (pageNumber) => {
-        setCurrentPage(pageNumber)
+    const onPageChanged = (pageNumber, portionNumber) => {
+        setCurrentPage(pageNumber, portionNumber)
         requestUsers(pageNumber, pageSize)
-
+  
     }
 
     return (
@@ -35,8 +34,7 @@ const Paginator = ({ totalItemsCount, pageSize, currentPage, portionSize = 10, s
                     return <span
                         key={`user-page-${p}`}
                         onClick={() => {
-                            onPageChanged(p, pageSize)
-                            
+                            onPageChanged(p, portionNumber)
                             
                         }}
 
