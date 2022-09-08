@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 import {LightLoadingPageContainer} from '../../../Elements/Loading/Light-Loading-Page-Container'
-import PostsArea from './Posts-Area/Posts-Area';
-// import Post from './Posts/Post';
-import ProfileInformation from './Profile-Information/Profile-Information';
-import style from './Profile.module.css';
-import { SendPostContainer } from './Send-Post/Send-Post-Container';
+import PostsArea from './Posts-Area/Posts-Area'
+// import Post from './Posts/Post'
+import ProfileInformation from './Profile-Information/Profile-Information'
+import style from './Profile.module.css'
+import { SendPostContainer } from './Send-Post/Send-Post-Container'
 
 
 export const Profile = (props) => {
@@ -50,11 +50,11 @@ let profile
 
     return profile
 
-};
+}
 
 
 
 
 
 
-export default Profile;
+export default Profile

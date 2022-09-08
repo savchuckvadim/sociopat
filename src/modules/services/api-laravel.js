@@ -1,5 +1,5 @@
-import axios from "axios";
-import Echo from "laravel-echo";
+import axios from "axios"
+import Echo from "laravel-echo"
 
 
 const instance = axios.create({
@@ -14,17 +14,17 @@ const instance = axios.create({
     },
 
 })
-let token;
+let token
 
 export const authAPI = {
 
     async initial() {
-        let res = await instance.get("/sanctum/csrf-cookie");
+        let res = await instance.get("/sanctum/csrf-cookie")
         return res
     },
 
     async register(name, surname, email, password, passwordConfirmation) {
-        await instance.get("/sanctum/csrf-cookie");
+        await instance.get("/sanctum/csrf-cookie")
         let result = await instance.post('register', {
             name: name,
             surname: surname,
@@ -50,7 +50,7 @@ export const authAPI = {
     },
     async getAuthUser() {
         try {
-            let response = await instance.get("api/user/auth");
+            let response = await instance.get("api/user/auth")
             let tokensData = await instance.post("/api/sanctum/token", { /////////// Generate token for websocket
                 email: "savchuckvadim@gmail.com",
                 password: "Cfdxer131!",
@@ -70,13 +70,13 @@ export const authAPI = {
     },
 
     updatePassword(payload) {
-        return instance.put("/user/password", payload);
+        return instance.put("/user/password", payload)
     },
     sendVerification(payload) {
-        return instance.post("/email/verification-notification", payload);
+        return instance.post("/email/verification-notification", payload)
     },
     updateUser(payload) {
-        return instance.put("/user/profile-information", payload);
+        return instance.put("/user/profile-information", payload)
     },
     // getUsers() {
     //     let result = instance.get(`user`).then(res => res.data).then(res => console.log(res))
@@ -97,7 +97,7 @@ export const usersAPI = {
 
     async getUsers(currentPage = 1, pageSize = 10) {
         try {
-            const res = await instance.get(`api/users?page=${currentPage}&count=${pageSize}`);
+            const res = await instance.get(`api/users?page=${currentPage}&count=${pageSize}`)
             
             return res.data
         } catch (error) {
@@ -142,8 +142,8 @@ export const usersAPI = {
 export const profileAPI = {
 
     async getProfile(userId) {
-        const res = await instance.get(`api/profile/${userId}`);
-        return res.data;
+        const res = await instance.get(`api/profile/${userId}`)
+        return res.data
     },
 
     getAboutMe(userId) {
@@ -173,7 +173,7 @@ export const postAPI = {
     },
 
     getPosts(profileId) {
-        return instance.get(`api/post/${profileId}`);
+        return instance.get(`api/post/${profileId}`)
     },
 
     like(postId) {
@@ -191,7 +191,7 @@ export const eventsAPI = {
 
     async event() {
         // let res = await instance.get(`api/testingevent`)
-        window.Pusher = require('pusher-js');
+        window.Pusher = require('pusher-js')
         // instance.get("/sanctum/csrf-cookie").then(res => {
             
             // axios
@@ -201,7 +201,7 @@ export const eventsAPI = {
             // })
             // .then(({ data }) => {
             //     debugger
-            //     let token = data;
+            //     let token = data
                 //
                 axios({
                     method: "GET",
@@ -211,7 +211,7 @@ export const eventsAPI = {
                     },
                 }).then(({ data }) => {
                     
-                    console.log(data);
+                    console.log(data)
                     let echo = new Echo({
 
                         broadcaster: 'pusher',
@@ -224,7 +224,7 @@ export const eventsAPI = {
                         wsHost: '127.0.0.1',
                         wsPort: 6001,
                         authorizer: (channel, options) => {
-                            console.log(options);
+                            console.log(options)
                             debugger
                             return {
                                 authorize: (socketId, callback) => {
@@ -242,14 +242,14 @@ export const eventsAPI = {
                                     })
                                         .then((response) => {
                                             console.log(response)
-                                            callback(false, response.data);
+                                            callback(false, response.data)
                                         })
                                         .catch((error) => {
                                             console.log(error)
-                                            callback(true, error);
-                                        });
+                                            callback(true, error)
+                                        })
                                 }
-                            };
+                            }
                         }
 
                     })
@@ -257,11 +257,11 @@ export const eventsAPI = {
 
                     echo.private(`send-post`)
                         .listen('SendPost', (e) => {
-                            alert(e.data);
-                        });
+                            alert(e.data)
+                        })
 
-                });
-            // });
+                })
+            // })
         // })
        
     },

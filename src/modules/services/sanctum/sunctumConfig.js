@@ -5,4 +5,4 @@ export const sanctumConfig = {
   signInRoute: "login",
   signOutRoute: "logout",
   userObjectRoute: "user",
-};
+}

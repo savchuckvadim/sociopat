@@ -1,13 +1,13 @@
 import style from './Current-Dilogs-Card.module.css'
 import arrow from '../../../../../../assets/imgs/dialogs/arrow.svg'
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import SendMessageReduxForm from './Send-Message-Form/Send-Message-Form'
-import Author from '../../../../Elements/Author/Author';
+import Author from '../../../../Elements/Author/Author'
 import { reset } from 'redux-form'
-import BodyOfCurrentDialog from './Current-Dialog-Body/Current-Dialog-Body';
+import BodyOfCurrentDialog from './Current-Dialog-Body/Current-Dialog-Body'
 const CurrentDialogsCard = (props) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     const submit = (values, dispatch) => {
 

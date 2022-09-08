@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import store from './modules/redux/store.ts';
-import { BrowserRouter } from 'react-router-dom';
-import AppContainer from './App-Container.jsx';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import './index.css'
+import reportWebVitals from './reportWebVitals'
+import store from './modules/redux/store.ts'
+import { BrowserRouter } from 'react-router-dom'
+import AppContainer from './App-Container.jsx'
 
 
 
@@ -23,7 +23,7 @@ ReactDOM.render(
   document.getElementById("root"))
 
 
-// const root = ReactDOM.createRoot(document.getElementById("root"));
+// const root = ReactDOM.createRoot(document.getElementById("root"))
 
 
 // const startApp = (store) => {
@@ -37,12 +37,12 @@ ReactDOM.render(
 
 //     </React.StrictMode>
 //   )
-// };
+// }
 
 window.store = store
 // let state = store.getState()
-// startApp(store);
+// startApp(store)
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()

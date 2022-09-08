@@ -1,5 +1,5 @@
-import { fishAPI } from "../../../services/api";
-import { usersAPI } from "../../../services/api-laravel";
+import { fishAPI } from "../../../services/api"
+import { usersAPI } from "../../../services/api-laravel"
 
 const SET_DIALOGS = 'SET_DIALOGS'
 
@@ -73,10 +73,10 @@ const dialogsReducer = (state = initialState, action) => {
 
             return resultState
         default:
-            return state;
+            return state
     }
 
 }
 
-export default dialogsReducer;
+export default dialogsReducer
 

@@ -1,7 +1,7 @@
 
-import HeaderContainer from '../Header/Header-Container';
+import HeaderContainer from '../Header/Header-Container'
 import '../../../App.css'
-import Main from '../Main/Main';
+import Main from '../Main/Main'
 
 
 const Sociopath = () => {

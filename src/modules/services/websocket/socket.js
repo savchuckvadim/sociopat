@@ -1,6 +1,6 @@
-import Echo from "laravel-echo";
-import Pusher from "pusher-js";
-import axios from "axios";
+import Echo from "laravel-echo"
+import Pusher from "pusher-js"
+import axios from "axios"
 console.log(Pusher)
 
 axios
@@ -9,7 +9,7 @@ axios
     password: "secret",
   })
   .then(({ data }) => {
-    let token = data;
+    let token = data
     //
     axios({
       method: "GET",
@@ -18,7 +18,7 @@ axios
         Authorization: `Bearer ${token}`,
       },
     }).then(({ data }) => {
-      console.log(data);
+      console.log(data)
 
       let echo = new Echo({
         broadcaster: "pusher",
@@ -29,7 +29,7 @@ axios
         cluster: "mt1",
         disableStats: true,
         authorizer: (channel, options) => {
-          console.log(options);
+          console.log(options)
           return {
             authorize: (socketId, callback) => {
               axios({
@@ -44,18 +44,18 @@ axios
                 },
               })
                 .then((response) => {
-                  callback(false, response.data);
+                  callback(false, response.data)
                 })
                 .catch((error) => {
-                  callback(true, error);
-                });
+                  callback(true, error)
+                })
             },
-          };
+          }
         },
-      });
+      })
 
       echo.private(`App.User.${data.id}`).listen(".new-message-event", (message) => {
-        console.log(message);
-      });
-    });
-  });
+        console.log(message)
+      })
+    })
+  })

@@ -2,7 +2,7 @@ import Avatar from '../../../../Elements/Avatar/Avatar'
 import camera from '../../../../../../assets/imgs/posts//camera-photo.svg'
 import style from './Send-Post.module.css'
 
-import FooterSendPost from './Footer-send-Post/Footer-Send-Post.jsx';
+import FooterSendPost from './Footer-send-Post/Footer-Send-Post.jsx'
 
 const InputSendPost = ({ input, meta, ...props }) => {
     let height = 40

@@ -1,10 +1,10 @@
-import './App.css';
+import './App.css'
 
-import { Route, Routes } from 'react-router-dom';
-import Sociopath from './modules/components/Sociopath-App/Sociopath';
+import { Route, Routes } from 'react-router-dom'
+import Sociopath from './modules/components/Sociopath-App/Sociopath'
 
-import LoginRedirect from './modules/components/Login-Page/Login-Redirect';
-import React from "react";
+import LoginRedirect from './modules/components/Login-Page/Login-Redirect'
+import React from "react"
 
 function App(props) {
 
@@ -23,7 +23,7 @@ function App(props) {
       
     </div>
 
-  );
+  )
 }
 
-export default App;
+export default App

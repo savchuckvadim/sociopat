@@ -1,10 +1,10 @@
-import React from "react";
+import React from "react"
 import { connect } from "react-redux"
-import { Navigate, useParams } from "react-router-dom";
-import { compose } from "redux";
+import { Navigate, useParams } from "react-router-dom"
+import { compose } from "redux"
 import { dislike, getDataForLoadProfilePage, like, loadPhoto, updateStatus } from "../../../../redux/reducers/profile/profile-reducer.ts"
-import { PostType, UserType } from "../../../../types/types";
-import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container";
+import { PostType, UserType } from "../../../../types/types"
+import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container"
 import Profile from "./Profile"
 
 const mapStateToProps = (state) => {
@@ -24,13 +24,13 @@ const mapStateToProps = (state) => {
 
 
 const withRouter = WrappedComponent => props => {
-    const params = useParams();
+    const params = useParams()
 
     return (
         <WrappedComponent {...props} params={params}
         />
-    );
-};
+    )
+}
 type paramsType = {
     userId: string | null
 }
@@ -80,7 +80,7 @@ class ProfileContainer extends React.Component<PropsType> {
                     return {
                         userId: props.auth.id,
                         isAuthUser: true
-                    };
+                    }
                 }
             }
         })
@@ -114,7 +114,7 @@ class ProfileContainer extends React.Component<PropsType> {
     }
     componentDidMount() {
 
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0)
 
         this.getUserId(this.state, this.props)
         this.getProfileData()

@@ -36,7 +36,7 @@ const appReducer = (state: InitialStateType = initialState, action: InitialActio
     switch (action.type) {
         case INITIALIZED_SUCCES: return { ...state, initialized: true, inProgress: false }
         case INITIALIZING: return { ...state, inProgress: true }
-        default: return state;
+        default: return state
     }
 
 }

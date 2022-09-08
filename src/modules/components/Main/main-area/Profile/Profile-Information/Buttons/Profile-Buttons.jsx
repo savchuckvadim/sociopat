@@ -1,4 +1,4 @@
-import WhiteButton from '../../../../../Elements/Button/White-Button';
+import WhiteButton from '../../../../../Elements/Button/White-Button'
 import style from './Profile-Buttons.module.css'
 import FollowUnfollowButtonsContainer from '../../../../../Elements/Button/Follow-Unfollow-Buttons/Follow-Unfollow-Buttons-Container'
 

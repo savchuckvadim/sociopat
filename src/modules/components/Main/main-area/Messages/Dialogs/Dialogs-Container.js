@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 import { connect } from "react-redux"
 import { compose } from "redux"
-import { getDialogs } from "../../../../../redux/reducers/dialogs/dialogs-reduser";
-import { LightLoadingPageContainer } from "../../../../Elements/Loading/Light-Loading-Page-Container";
-import LoadingPage from "../../../../Elements/Loading/Loading-Page";
+import { getDialogs } from "../../../../../redux/reducers/dialogs/dialogs-reduser"
+import { LightLoadingPageContainer } from "../../../../Elements/Loading/Light-Loading-Page-Container"
+import LoadingPage from "../../../../Elements/Loading/Loading-Page"
 import Dialogs from "./Dialogs"
 
 const mapStateToProps = (state) => {

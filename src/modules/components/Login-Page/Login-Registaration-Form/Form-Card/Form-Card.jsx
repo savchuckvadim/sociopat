@@ -15,9 +15,9 @@ const FormCard = (props) => {
             case 'registration':
                 
                 props.setNewUser(values.name, values.surname, values.email, values.password, values.repeatPassword)
-                break;
+                break
             default:
-                break;
+                break
         }
 
     }

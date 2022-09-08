@@ -1,8 +1,8 @@
-const NEW_MESSAGE = 'NEW_MESSAGE';
+const NEW_MESSAGE = 'NEW_MESSAGE'
 
 const initialState = {
     messageBody: ''
-};
+}
 
 
 export const sendNewMessage = (messageBody) => {
@@ -13,7 +13,7 @@ export const sendNewMessage = (messageBody) => {
 
 
     }
-};
+}
 
 
 const newMessageReducer = (state = initialState, action) => {
@@ -30,4 +30,4 @@ const newMessageReducer = (state = initialState, action) => {
 
 }
 
-export default newMessageReducer;
+export default newMessageReducer

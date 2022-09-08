@@ -31,6 +31,6 @@ const navMenuReducer = (state = initialState, action) => {
     return  state
 
 
-};
+}
 
-export default navMenuReducer;
+export default navMenuReducer

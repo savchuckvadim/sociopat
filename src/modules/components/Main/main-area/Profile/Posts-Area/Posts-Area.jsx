@@ -1,5 +1,5 @@
-import Post from "./Posts/Post";
-import nopost from '../../../../../../assets/imgs/posts/nopost.svg';
+import Post from "./Posts/Post"
+import nopost from '../../../../../../assets/imgs/posts/nopost.svg'
 import style from './Posts-Area.module.css'
 
 const PostsArea = (props) => {

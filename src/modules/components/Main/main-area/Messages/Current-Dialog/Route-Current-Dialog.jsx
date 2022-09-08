@@ -1,5 +1,5 @@
-import { Route, Routes } from "react-router-dom";
-import CurrentDialogsCard from "./Current-Dilogs-Card";
+import { Route, Routes } from "react-router-dom"
+import CurrentDialogsCard from "./Current-Dilogs-Card"
 
 
 const RouteCurrentDialog = (props) => {

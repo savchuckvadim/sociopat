@@ -1,6 +1,6 @@
-import { NavLink } from "react-router-dom";
-import Avatar from "../../../../../Elements/Avatar/Avatar";
-import style from './Dialog-item.module.css';
+import { NavLink } from "react-router-dom"
+import Avatar from "../../../../../Elements/Avatar/Avatar"
+import style from './Dialog-item.module.css'
 import status from '../../../../../../../assets/imgs/dialogs/message-status-red.svg'
 
 const DialogItem = (props) => {
@@ -47,4 +47,4 @@ const DialogItem = (props) => {
     )
 }
 
-export default DialogItem;
+export default DialogItem

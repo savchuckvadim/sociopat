@@ -3,8 +3,8 @@ import LoginContainer from './Login-Registaration-Form/Login-Container'
 import RegistrationContainer from './Login-Registaration-Form/Registration-Container'
 import greyLogo from '../../../assets/imgs/grey-logo.svg'
 import redLogo from '../../../assets/imgs/logo.svg'
-import HeaderContainer from '../Header/Header-Container';
-import Background from '../Elements/Backgounds/Background';
+import HeaderContainer from '../Header/Header-Container'
+import Background from '../Elements/Backgounds/Background'
 const RegistrationPage = (props) => {
 
     return (

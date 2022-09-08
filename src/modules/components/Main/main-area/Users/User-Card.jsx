@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
-import style from './User-Card.module.css';
-import FollowUnfollowButtons from '../../../Elements/Button/Follow-Unfollow-Buttons/Follow-Unfollow-Buttons';
-import Avatar from '../../../Elements/Avatar/Avatar';
+import { NavLink } from 'react-router-dom'
+import style from './User-Card.module.css'
+import FollowUnfollowButtons from '../../../Elements/Button/Follow-Unfollow-Buttons/Follow-Unfollow-Buttons'
+import Avatar from '../../../Elements/Avatar/Avatar'
 
 const UserCard = (props) => {
 
@@ -36,6 +36,6 @@ const UserCard = (props) => {
             </div>
         </div>
     )
-};
+}
 
 export default UserCard

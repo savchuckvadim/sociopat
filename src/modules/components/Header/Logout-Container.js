@@ -1,6 +1,6 @@
-import { connect } from "react-redux";
-import { logout } from "../../redux/reducers/auth/auth-reducer.ts";
-import Logout from "./Logout";
+import { connect } from "react-redux"
+import { logout } from "../../redux/reducers/auth/auth-reducer.ts"
+import Logout from "./Logout"
 
 
 const mapStateToProps = (state) => {

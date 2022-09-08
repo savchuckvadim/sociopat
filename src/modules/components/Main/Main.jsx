@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import style from './Main.module.css';
-import NavMenuContainer from "./Nav-Menu/Nav-Menu-Container";
-import ProfileContainer from "./main-area/Profile/Profile-Container.tsx";
-import UsersContainer from "./main-area/Users/Users-Container.ts";
-import MessagesContainer from "./main-area/Messages/Messages-Container";
-import Beautiful from "./main-area/Beautiful/Beautiful";
+import style from './Main.module.css'
+import NavMenuContainer from "./Nav-Menu/Nav-Menu-Container"
+import ProfileContainer from "./main-area/Profile/Profile-Container.tsx"
+import UsersContainer from "./main-area/Users/Users-Container.ts"
+import MessagesContainer from "./main-area/Messages/Messages-Container"
+import Beautiful from "./main-area/Beautiful/Beautiful"
 
 
 const Main = () => {

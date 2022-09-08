@@ -1,6 +1,6 @@
-import style from './Input.module.css';
-import React from 'react';
-import getLoginRegistrationIcon from '../../../../../../../assets/imgs/login-form/login-registartion-imgs';
+import style from './Input.module.css'
+import React from 'react'
+import getLoginRegistrationIcon from '../../../../../../../assets/imgs/login-form/login-registartion-imgs'
 
  const Input = (field) => {
 

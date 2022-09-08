@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
-import { compose } from "redux";
-import App from "./App";
-import { LightLoadingPageContainer } from "./modules/components/Elements/Loading/Light-Loading-Page-Container";
-import StartPage from "./modules/components/Start/Start-Page";
-import { initialize } from "./modules/redux/reducers/app-reducer.ts";
-import { getAuth } from "./modules/redux/reducers/auth/auth-reducer.ts";
+import React, { useEffect } from "react"
+import { connect } from "react-redux"
+import { useParams } from "react-router-dom"
+import { compose } from "redux"
+import App from "./App"
+import { LightLoadingPageContainer } from "./modules/components/Elements/Loading/Light-Loading-Page-Container"
+import StartPage from "./modules/components/Start/Start-Page"
+import { initialize } from "./modules/redux/reducers/app-reducer.ts"
+import { getAuth } from "./modules/redux/reducers/auth/auth-reducer.ts"
 
 const withRouter = WrappedComponent => props => {
-    const params = useParams();
+    const params = useParams()
     // etc... other react-router-dom v6 hooks
 
     return (<WrappedComponent {...props} params={params} />
-    );
-};
+    )
+}
 
 
 const mapStateToProps = (state) => {
@@ -32,7 +32,7 @@ const AppContainer = (props) => {
 
     useEffect(() => {
         if (!props.isAuth) {
-            props.initialize();
+            props.initialize()
             console.log('initialize')
         } else {
             console.log('allready initialized')
@@ -42,7 +42,7 @@ const AppContainer = (props) => {
 
     }, [])
 
-    //     const { authenticated, user, signIn } = useSanctum();
+    //     const { authenticated, user, signIn } = useSanctum()
     // console.log(authenticated)
     let app = <LightLoadingPageContainer />
 

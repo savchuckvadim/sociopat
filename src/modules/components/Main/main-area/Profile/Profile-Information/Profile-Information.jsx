@@ -1,10 +1,10 @@
 import style from './Profile-Information.module.css'
 import hero from '../../../../../../assets/imgs/Vector.png'
-import ProfileButtons from './Buttons/Profile-Buttons';
-import ProfileStatus from './Status/Profile-Status';
-import ProfileStatistics from './Statistics/Profile-Statistics';
-import Avatar from '../../../../Elements/Avatar/Avatar';
-import UploadAvatar from './UploadAvatar/UploadAvatar';
+import ProfileButtons from './Buttons/Profile-Buttons'
+import ProfileStatus from './Status/Profile-Status'
+import ProfileStatistics from './Statistics/Profile-Statistics'
+import Avatar from '../../../../Elements/Avatar/Avatar'
+import UploadAvatar from './UploadAvatar/UploadAvatar'
 
 const ProfileInformation = (props) => {
    
@@ -65,6 +65,6 @@ const ProfileInformation = (props) => {
         </div>
 
     )
-};
+}
 
 export default ProfileInformation
