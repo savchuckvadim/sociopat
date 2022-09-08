@@ -15,10 +15,14 @@ const Users = (props) => {
     }, [])
     
     // let isFetching = false
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
+    // let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize)
+    // let pages = [];
+    // for (let i = 1; i <= pagesCount; i++) {
+    //     pages.push(i)
+    // }
+    const onPageChanged = (pageNumber) => {
+        props.setCurrentPage(pageNumber)
+        props.requestUsers(pageNumber, props.pageSize)
     }
 
     let loader = <LightLoadingPageContainer />
@@ -47,11 +51,11 @@ const Users = (props) => {
             <div className={style.pages}>
 
                 <Paginator
-                    totalUsersCount={props.totalUsersCount}
+                    totalItemsCount={props.totalItemsCount}
                     pageSize={props.pageSize}
                     currentPage={props.currentPage}
-                    onPageChanged={props.onPageChanged}
-
+                    onPageChanged={onPageChanged}
+                    portionSize={props.portionSize}
                 />
             </div>
 

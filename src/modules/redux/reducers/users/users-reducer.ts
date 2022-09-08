@@ -1,6 +1,7 @@
 import { usersAPI } from "../../../services/api-laravel";
 import { UserType } from "../../../types/types";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
+import { setTotalItemsCount } from "../paginator/paginator-reducer";
 
 
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
@@ -14,10 +15,10 @@ const FOLLOWING_IN_PROGRESS = 'FOLLOWING_IN_PROGRESS';
 
 const initialState = {
     users: [] as Array<UserType>,
-    pageSize: 21 as number,
-    totalUsersCount: 1 as number,
-    currentPage: 1 as number,
-    count: 0 as number,
+    // pageSize: 21 as number,
+    // totalUsersCount: 1 as number,
+    // currentPage: 1 as number,
+    // count: 0 as number,
     isFetching: false as boolean,
     followingInProgress: [] as Array<number>, //array of users ids
 
@@ -34,11 +35,7 @@ type SetUsersType = {
     users: Array<UserType>
 }
 
-export const setTotalUsersCount = (count: number): SetTotalUsersCountType => ({ type: SET_TOTAL_USERS_COUNT, count })
-type SetTotalUsersCountType = {
-    type: typeof SET_TOTAL_USERS_COUNT,
-    count: number
-}
+
 export const fetching = (bool: boolean): FetchingType => ({ type: FETCHING, bool })
 type FetchingType = {
     type: typeof FETCHING,
@@ -71,7 +68,7 @@ export const requestUsers = (currentPage: number, pageSize: number) => async (di
     let res = await usersAPI.getUsers(currentPage, pageSize)
     if (res.resultCode === 1) {
         const users = res.data.users;
-        dispatch(setTotalUsersCount(res.data.totalCount))
+        dispatch(setTotalItemsCount(res.data.totalCount))
         dispatch(setUsers(users))
 
     } else {
@@ -118,9 +115,9 @@ const usersReducer = (state: InitialStateType = initialState, action: any): Init
     let result = state
 
     switch (action.type) {
-        case SET_CURRENT_PAGE: result = { ...state }; result.currentPage = action.page; return result;
+        // case SET_CURRENT_PAGE: result = { ...state }; result.currentPage = action.page; return result;
         case SET_USERS: result = { ...state }; result.users = action.users; return result;
-        case SET_TOTAL_USERS_COUNT: result = { ...state }; result.count = action.count; return result
+        // case SET_TOTAL_USERS_COUNT: result = { ...state }; result.count = action.count; return result
         case FETCHING: result = { ...state }; result.isFetching = action.bool; return result;
         case FOLLOW: result = { ...state }; result.users = followUnfollow(state.users, action.userId, action.authUser, true); return result;
         case UNFOLLOW: result = { ...state }; result.users = followUnfollow(state.users, action.userId, action.authUser, false); return result;
