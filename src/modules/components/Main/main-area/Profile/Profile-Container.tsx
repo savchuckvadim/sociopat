@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { Navigate, useParams } from "react-router-dom"
 import { compose } from "redux"
+import PropTypes from "redux-form/lib/propTypes"
 import { dislike, getDataForLoadProfilePage, like, loadPhoto, updateStatus } from "../../../../redux/reducers/profile/profile-reducer.ts"
 import { RootStateType } from "../../../../redux/store"
 import { PostType, UserType } from "../../../../types/types"
@@ -24,7 +25,7 @@ const mapStateToProps = (state: RootStateType) => {
 
 
 
-const withRouter = WrappedComponent => props => {
+const withRouter = WrappedComponent => (props: PreviosPropsType) => {
     const params = useParams()
 
     return (
@@ -33,8 +34,23 @@ const withRouter = WrappedComponent => props => {
     )
 }
 type paramsType = {
-    userId: string | null
+    "*": string
+    userId: string | undefined
 }
+type PreviosPropsType = {
+    isAuth: boolean
+    auth: UserType
+    visitedUser: UserType
+    posts: Array<PostType>
+    likeInProgress: Array<number>
+    params: paramsType
+    updateStatus: (aboutMe: string) => void
+    getDataForLoadProfilePage: (userId: number) => void
+    like: (postId: number) => void
+    dislike: (postId: number) => void
+}
+
+//TODO объединение типов в один из двух
 type PropsType = {
     isAuth: boolean
     auth: UserType
@@ -46,28 +62,27 @@ type PropsType = {
     getDataForLoadProfilePage: (userId: number) => void
     like: (postId: number) => void
     dislike: (postId: number) => void
-
+    "*": string
+    userId: string | undefined
 }
 
-class ProfileContainer extends React.Component<PropsType> {
+type StateType = {
+    userId: number | undefined
+    isAuthUser: boolean
+}
 
-    constructor(props) {
+class ProfileContainer extends React.Component<PropsType, StateType> {
+
+    constructor(props: any) {
         super(props)
         this.state = { userId: undefined, isAuthUser: false }
     }
-    userId = null
-    isAuthUser = true
-    currentUser
-    photo = null
 
+    getUserId = (state: StateType, props: PropsType) => {
 
-
-    getUserId = (state, props) => {
-
-        this.setState((state, props) => {
-            if (props.params.userId) {
+        this.setState((state, props):StateType => {
+            if (props.params.userId !== undefined) {
                 if (state.userId !== Number(props.params.userId)) {
-
                     return {
                         userId: Number(props.params.userId),
                         isAuthUser: false
@@ -77,21 +92,19 @@ class ProfileContainer extends React.Component<PropsType> {
             }
             else {
                 if (state.userId !== props.auth.id) {
-
                     return {
-                        userId: props.auth.id,
+                        userId: Number(props.auth.id),
                         isAuthUser: true
                     }
                 }
             }
+            return this.state
         })
 
     }
 
     getProfileData = () => {
 
-        // this.props.getProfileAndSetVisitedUser(this.userId)
-        // this.props.getStatus(this.userId)
         if (this.state.userId) {
             if (!this.props.visitedUser) {
                 this.props.getDataForLoadProfilePage(this.state.userId)
@@ -161,11 +174,6 @@ export default compose(
 
     }),
     withRouter,
-    // withAuthRedirect
+    
 )(ProfileContainer)
 
-// export default connect(mapStateToProps, {
-
-//     getProfile
-
-// })(WithUrlDataContainerComponent)
