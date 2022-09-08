@@ -56,7 +56,7 @@ const initialState = {
 }
 export type LoginRegistrationType = typeof initialState
 
-export const setError = (error) => {
+export const setError = (error: string) => {
     return {
         type: SET_ERROR,
         error

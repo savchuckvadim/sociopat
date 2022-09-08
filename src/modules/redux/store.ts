@@ -4,7 +4,7 @@ import dialogsReducer from "./reducers/dialogs/dialogs-reduser"
 import newMessageReducer from "./reducers/dialogs/new-message-reducer"
 import profileReducer from "./reducers/profile/profile-reducer.ts"
 import { themeReducer } from "./reducers/theme/style-reducer"
-import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer"
+import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer.ts"
 import usersReducer from "./reducers/users/users-reducer.ts"
 import authReducer from "./reducers/auth/auth-reducer.ts"
 import { reducer as formReducer } from 'redux-form'
@@ -16,6 +16,7 @@ import paginatorReducer from "./reducers/paginator/paginator-reducer.ts"
 import { AuthStateType } from "./reducers/auth/auth-reducer"
 import { AppStateType } from "./reducers/app-reducer"
 import { LoginRegistrationType } from "./reducers/login-registaration/login-registration-reducer"
+import { NavMenuType } from "./reducers/nav-menu/nav-menu-reducer"
 
 
 let rootReducer = combineReducers({
@@ -25,7 +26,7 @@ let rootReducer = combineReducers({
   registration: registrationReducer,
   users: usersReducer,
   theme: themeReducer,
-  navMenu: navMenuReducer,
+  navMenu: navMenuReducer as () => NavMenuType,
   dialogsReducer,
   profileReducer,
   newMessageReducer,

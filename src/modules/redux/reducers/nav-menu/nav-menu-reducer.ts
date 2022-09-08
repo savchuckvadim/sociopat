@@ -14,18 +14,16 @@ let initialState = [
     {
         name: 'People',
         link: 'users',
-       
+
 
     },
-   
+
 
 ]
+export type NavMenuType = typeof initialState
 
-
-const navMenuReducer = (state = initialState, action) => {
-    return  state
-
-
+const navMenuReducer = (state: NavMenuType = initialState, action: any): NavMenuType => {
+    return state
 }
 
 export default navMenuReducer
