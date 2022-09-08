@@ -1,4 +1,4 @@
-import { type } from "os"
+
 
 export type UserType = {
     id: number | null
