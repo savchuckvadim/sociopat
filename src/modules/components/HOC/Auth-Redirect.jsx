@@ -8,7 +8,7 @@ import StartPage from "../Start/Start-Page"
 const mapStateToPropsRedirect = (state) => {
 
     return{
-        isAuth: state.auth.auth.isAuth
+        isAuth: state.auth.isAuth
     }
 }
 

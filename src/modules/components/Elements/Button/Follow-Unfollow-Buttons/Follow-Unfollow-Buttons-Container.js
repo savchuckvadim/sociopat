@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { followThunk, toggleFollowingInProgress, unFollowThunk } from "../../../../redux/reducers/users/users-reducer"
+import { followThunk, toggleFollowingInProgress, unFollowThunk } from "../../../../redux/reducers/users/users-reducer.ts"
 import { getIsFollowing } from "../../../../redux/selectors/user-selectors"
 import FollowUnfollowButtons from "./Follow-Unfollow-Buttons"
 

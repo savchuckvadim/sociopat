@@ -7,7 +7,7 @@ const mapStateToProps = (state) => {
     const login = state.loginRegistration.login
 
     return {
-        isAuth: state.auth.auth.isAuth,
+        isAuth: state.auth.isAuth,
         type: login.type,
         fields: login.fields,
         title: login.title,

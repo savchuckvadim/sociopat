@@ -1,5 +1,6 @@
 import { stopSubmit } from "redux-form";
 import { authAPI } from "../../../services/api-laravel";
+import { UserType } from "../../../types/types";
 import { inProgress } from "../preloader/preloader-reducer.ts";
 // import {getAuth} from "../../redux/reducers/auth/auth-reducer"
 
@@ -12,44 +13,22 @@ const SET_USER_DATA = 'SET_USER_DATA'
 //STATE
 let initialState = {
     isAuth: false as boolean,
-    authUser: null as UserType
+    authUser: null as UserType |null
 
 }
 type InitialStateType = typeof initialState
 
-export type UserType = {
-    id: number | null
-    email: string
-    name: string
-    followed: 0 | 1
-    followers: Array<UserType>
-    followeds: Array<UserType>
-    profile: ProfileType
-    postsCount: number | null
 
-} | null
-export type ProfileType = {
-    about_me: string | null
-    avatar: string | null
-    created_at: string
-    email: string
-    hero: string | null
-    id: number | null
-    name: string
-    surname: string
-    updated_at: string
-    user_id: number | null
-} | null
 
 type SetAuthUserDataType = {
     type: typeof SET_USER_DATA
-    authUser: UserType
+    authUser: UserType | null
     isAuth: boolean
 
 }
 
 //ACION CREATORS
-export const setAuthUserData = (authUser: UserType, isAuth: boolean = false): SetAuthUserDataType =>
+export const setAuthUserData = (authUser: UserType | null, isAuth: boolean = false): SetAuthUserDataType =>
     ({ type: SET_USER_DATA, authUser, isAuth })
 
 

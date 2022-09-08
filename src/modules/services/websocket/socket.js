@@ -1,52 +1,61 @@
-import Echo from 'laravel-echo';
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
+import axios from "axios";
+console.log(Pusher)
 
-window.Pusher = require('pusher-js');
-// let pusher = new Pusher('sp_socket', {});
+axios
+  .post("http://127.0.0.1:8000/api/sanctum/token", {
+    email: "johndoe@example.org",
+    password: "secret",
+  })
+  .then(({ data }) => {
+    let token = data;
+    //
+    axios({
+      method: "GET",
+      url: "http://127.0.0.1:8000/api/user",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(({ data }) => {
+      console.log(data);
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: 'socket_key',
-    cluster: 'mt1',
-    // forceTLS: true,
-    // wsHost: '127.0.0.1',
-    // wsPort: 6001,
-    // enabledTransports: ['ws', 'wss']
-
-    wsHost: window.location.hostname,
-    wssHost: window.location.hostname,
-    wsPort: 6001,
-    wssPort: 6001,
-    disableStats: true,
-    forceTLS: false,
-    enabledTransports: ['ws', 'wss'],
-    authorizer: (channel, options) => {
-        console.log(options);
-        return {
-          authorize: (socketId, callback) => {
-            axios({
-              method: "POST",
-              url: "http://localhost:8000/api/broadcasting/auth",
-              data: {
-                socket_id: socketId,
-                channel_name: channel.name,
-              },
-            })
-              .then((response) => {
-                callback(false, response.data);
+      let echo = new Echo({
+        broadcaster: "pusher",
+        key: "socket_key",
+        wsHost: "127.0.0.1",
+        wsPort: 6001,
+        forceTLS: false,
+        cluster: "mt1",
+        disableStats: true,
+        authorizer: (channel, options) => {
+          console.log(options);
+          return {
+            authorize: (socketId, callback) => {
+              axios({
+                method: "POST",
+                url: "http://127.0.0.1:8000/api/broadcasting/auth",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+                data: {
+                  socket_id: socketId,
+                  channel_name: channel.name,
+                },
               })
-              .catch((error) => {
-                callback(true, error);
-              });
-          }
-        };
-    }
-});
+                .then((response) => {
+                  callback(false, response.data);
+                })
+                .catch((error) => {
+                  callback(true, error);
+                });
+            },
+          };
+        },
+      });
 
-
-//prefences from laravel-websocket 
-// broadcaster: 'pusher',
-// key: 'your-pusher-key',
-// wsHost: window.location.hostname,
-// wsPort: 6001,
-// forceTLS: false,
-// disableStats: true,
+      echo.private(`App.User.${data.id}`).listen(".new-message-event", (message) => {
+        console.log(message);
+      });
+    });
+  });
