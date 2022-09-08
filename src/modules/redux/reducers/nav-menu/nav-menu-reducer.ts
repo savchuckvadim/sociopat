@@ -20,7 +20,7 @@ let initialState = [
 
 
 ]
-export type NavMenuType = typeof initialState
+export type NavMenuStateType = typeof initialState
 
 const navMenuReducer = (state: NavMenuType = initialState, action: any): NavMenuType => {
     return state

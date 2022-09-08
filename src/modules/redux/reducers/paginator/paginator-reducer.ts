@@ -10,7 +10,7 @@ const initialState = {
     currentPortion: 1 as number
 
 }
-type InitialStateType = typeof initialState
+export type PaginatorStateType = typeof initialState
 
 
 //ACTION CREATORS
@@ -34,7 +34,7 @@ type SetTotalItemsCountType = {
 
 
 //REDUCER
-const paginatorReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
+const paginatorReducer = (state: PaginatorStateType = initialState, action: any): PaginatorStateType => {
     let result = state
 
     switch (action.type) {

@@ -16,7 +16,8 @@ import paginatorReducer from "./reducers/paginator/paginator-reducer.ts"
 import { AuthStateType } from "./reducers/auth/auth-reducer"
 import { AppStateType } from "./reducers/app-reducer"
 import { LoginRegistrationType } from "./reducers/login-registaration/login-registration-reducer"
-import { NavMenuType } from "./reducers/nav-menu/nav-menu-reducer"
+import { NavMenuStateType } from "./reducers/nav-menu/nav-menu-reducer"
+import { PaginatorStateType } from "./reducers/paginator/paginator-reducer"
 
 
 let rootReducer = combineReducers({
@@ -26,12 +27,12 @@ let rootReducer = combineReducers({
   registration: registrationReducer,
   users: usersReducer,
   theme: themeReducer,
-  navMenu: navMenuReducer as () => NavMenuType,
+  navMenu: navMenuReducer as () => NavMenuStateType,
   dialogsReducer,
   profileReducer,
   newMessageReducer,
   preloader,
-  paginator: paginatorReducer,
+  paginator: paginatorReducer as () => PaginatorStateType,
   form: formReducer
 
 
