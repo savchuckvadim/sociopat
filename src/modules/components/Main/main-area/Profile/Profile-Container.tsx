@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { Navigate, useParams } from "react-router-dom"
 import { compose } from "redux"
 import PropTypes from "redux-form/lib/propTypes"
-import { dislike, getDataForLoadProfilePage, like, loadPhoto, updateStatus } from "../../../../redux/reducers/profile/profile-reducer.ts"
+import { dislike, getDataForLoadProfilePage, like, loadPhoto, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
 import { RootStateType } from "../../../../redux/store"
 import { PostType, UserType } from "../../../../types/types"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container"
@@ -33,17 +33,17 @@ const withRouter = WrappedComponent => (props: PreviosPropsType) => {
         />
     )
 }
-type paramsType = {
+type ParamsType = {
     "*": string
     userId: string | undefined
 }
-type PreviosPropsType = {
+type MapStatePropsType = {
     isAuth: boolean
     auth: UserType
     visitedUser: UserType
     posts: Array<PostType>
     likeInProgress: Array<number>
-    params: paramsType
+    params: ParamsType
     updateStatus: (aboutMe: string) => void
     getDataForLoadProfilePage: (userId: number) => void
     like: (postId: number) => void
@@ -51,20 +51,7 @@ type PreviosPropsType = {
 }
 
 //TODO объединение типов в один из двух
-type PropsType = {
-    isAuth: boolean
-    auth: UserType
-    visitedUser: UserType
-    posts: Array<PostType>
-    likeInProgress: Array<number>
-    params: paramsType
-    updateStatus: (aboutMe: string) => void
-    getDataForLoadProfilePage: (userId: number) => void
-    like: (postId: number) => void
-    dislike: (postId: number) => void
-    "*": string
-    userId: string | undefined
-}
+type PropsType = MapStatePropsType & ParamsType
 
 type StateType = {
     userId: number | undefined

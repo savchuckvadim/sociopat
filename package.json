@@ -13,6 +13,7 @@
     "@types/node": "^18.7.14",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
+    "@types/redux-form": "^8.3.5",
     "axios": "^0.26.1",
     "express": "^4.18.1",
     "install": "^0.13.0",

@@ -1,7 +1,8 @@
 import { postAPI, profileAPI, usersAPI } from "../../../services/api-laravel"
 import { PostType, UserType } from "../../../types/types"
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow"
-import { inProgress } from "../preloader/preloader-reducer.ts"
+import { inProgress } from "../preloader/preloader-reducer"
+import { FollowType, UnfollowType } from "../users/users-reducer"
 
 const ADD_POST = 'ADD_POST'
 const SET_POSTS = 'SET_POSTS'
@@ -52,13 +53,16 @@ type SetProfilePageDataActionCreatorType = {
     user: UserType
 
 }
-const setLike = (postId: number, authorId: number):SetLikeType => ({ type: LIKE, postId, authorId }) //TODO with API 
+const setLike = (postId: number, authorId: number): SetLikeType => ({ type: LIKE, postId, authorId }) //TODO with API 
 type SetLikeType = {
     type: typeof LIKE,
     postId: number
     authorId: number
 
 }
+type ActionType = AddPostActionCreatorType | SetPostsActionCreatorType | 
+SetStatusActionCreatorType | SetProfilePageDataActionCreatorType | 
+SetLikeType | FollowType | UnfollowType
 const setDislike = (likeId) => ({ type: DISLIKE, like })                                           //TODO with API 
 const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool })                                //TODO with API 
 
@@ -117,21 +121,21 @@ export const updateStatus = (aboutMe) => async (dispatch) => {
 
 // }
 
-export const sendPost = (userId, profileId, body, img) => async (dispatch) => {
+export const sendPost = (userId: number, profileId: number, body: string, img: string) => async (dispatch) => {
 
     const res = await postAPI.sendPost(userId, profileId, body, img)
 
     dispatch(addPostActionCreator(res.data.data))
 }
 
-export const like = (postId) => async (dispatch) => {
+export const like = (postId: number) => async (dispatch) => {
 
     dispatch(likeInProgress(true))
     const res = await postAPI.like(postId)
     dispatch(setLike(postId, res.data.like))
     dispatch(likeInProgress(false))
 }
-export const dislike = (postId) => async (dispatch) => {
+export const dislike = (postId: number) => async (dispatch) => {
 
     dispatch(likeInProgress(true))
     const res = await postAPI.dislike(postId)
@@ -141,7 +145,7 @@ export const dislike = (postId) => async (dispatch) => {
 }
 
 //REDUCER
-const profileReducer = (state: InitialStateType = initialState, action: any): InitialStateType => {
+const profileReducer = (state: ProfileStateType = initialState, action: ActionType): ProfileStateType => {
 
     let result = state
     switch (action.type) {
@@ -208,8 +212,12 @@ const profileReducer = (state: InitialStateType = initialState, action: any): In
             return result
 
         case SET_POSTS:
-            state.posts = action.posts.reverse(post => ({ ...post }))
-            return state
+            
+                // state.posts = action.posts.reverse(post => ({ ...post }))
+                state.posts = action.posts.reverse()
+                return state
+            
+            
         //TODO 
         // case LIKE:
         //     result = { ...state }

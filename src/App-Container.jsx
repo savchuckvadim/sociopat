@@ -5,8 +5,8 @@ import { compose } from "redux"
 import App from "./App"
 import { LightLoadingPageContainer } from "./modules/components/Elements/Loading/Light-Loading-Page-Container"
 import StartPage from "./modules/components/Start/Start-Page"
-import { initialize } from "./modules/redux/reducers/app-reducer.ts"
-import { getAuth } from "./modules/redux/reducers/auth/auth-reducer.ts"
+import { initialize } from "./modules/redux/reducers/app-reducer"
+import { getAuth } from "./modules/redux/reducers/auth/auth-reducer"
 
 const withRouter = WrappedComponent => props => {
     const params = useParams()

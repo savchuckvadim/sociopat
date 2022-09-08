@@ -3,7 +3,7 @@ import React from "react"
 import { useEffect } from "react"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container"
 import Title from "../../../Elements/Title/Title"
-import Paginator from "./Paginator/Paginator.tsx"
+import Paginator from "./Paginator/Paginator"
 import UserCard from "./User-Card"
 import style from './Users.module.css'
 import { UserType } from "../../../../types/types"

@@ -1,7 +1,7 @@
 import { stopSubmit } from "redux-form"
 import { authAPI } from "../../../services/api-laravel"
 import { UserType } from "../../../types/types"
-import { inProgress } from "../preloader/preloader-reducer.ts"
+import { inProgress } from "../preloader/preloader-reducer"
 // import {getAuth} from "../../redux/reducers/auth/auth-reducer"
 
 

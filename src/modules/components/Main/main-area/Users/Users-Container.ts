@@ -1,13 +1,14 @@
 import {connect} from "react-redux"
-import { setCurrentPage } from "../../../../redux/reducers/paginator/paginator-reducer.ts"
-import {followThunk, requestUsers,  unFollowThunk} from "../../../../redux/reducers/users/users-reducer.ts"
+import { setCurrentPage } from "../../../../redux/reducers/paginator/paginator-reducer"
+import {followThunk, requestUsers,  unFollowThunk} from "../../../../redux/reducers/users/users-reducer"
 import { getAuthUser, getIsFetching, getIsFollowing, getUsersSelector } from "../../../../redux/selectors/user-selectors"
-import Users from "./Users.tsx"
+import { RootStateType } from "../../../../redux/store"
+import Users from "./Users"
 
 
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootStateType) => {
 
     return {
         authUser:getAuthUser(state),

@@ -1,7 +1,7 @@
 import { usersAPI } from "../../../services/api-laravel";
 import { UserType } from "../../../types/types";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
-import { setTotalItemsCount } from "../paginator/paginator-reducer.ts";
+import { setTotalItemsCount } from "../paginator/paginator-reducer";
 
 
 const SET_USERS = 'SET_USERS';
@@ -34,13 +34,13 @@ type FetchingType = {
     bool: boolean
 }
 export const follow = (userId: number, authUser: UserType): FollowType => ({ type: FOLLOW, userId, authUser })
-type FollowType = {
+export type FollowType = {
     type: typeof FOLLOW,
     userId: number
     authUser: UserType
 }
 export const unFollow = (userId: number, authUser: UserType): UnfollowType => ({ type: UNFOLLOW, userId, authUser })
-type UnfollowType = {
+export type UnfollowType = {
     type: typeof UNFOLLOW,
     userId: number
     authUser: UserType
