@@ -14,10 +14,10 @@ const mapStateToProps = (state: RootStateType) => {
         isAuth: state.auth.isAuth,
         auth: state.auth.authUser,
         // profile: state.profileReducer.visitedUser.profile,
-        visitedUser: state.profileReducer.visitedUser,
-        posts: state.profileReducer.posts,
+        visitedUser: state.profile.visitedUser,
+        posts: state.profile.posts,
         // status: state.profileReducer.status,
-        likeInProgress: state.profileReducer.likeInProgress,
+        likeInProgress: state.profile.likeInProgress,
 
     }
 }

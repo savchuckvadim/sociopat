@@ -24,7 +24,7 @@ let initialState = {
     likeInProgress: false as boolean
 }
 
-type InitialStateType = typeof initialState
+export type ProfileStateType = typeof initialState
 
 //ACTION CREATORS
 export const addPostActionCreator = (value: PostType): AddPostActionCreatorType => ({ type: ADD_POST, value: value })

@@ -19,6 +19,7 @@ import { LoginRegistrationType } from "./reducers/login-registaration/login-regi
 import { NavMenuStateType } from "./reducers/nav-menu/nav-menu-reducer"
 import { PaginatorStateType } from "./reducers/paginator/paginator-reducer"
 import { PreloaderStateType } from "./reducers/preloader/preloader-reducer"
+import { ProfileStateType } from "./reducers/profile/profile-reducer"
 
 
 let rootReducer = combineReducers({
@@ -30,7 +31,7 @@ let rootReducer = combineReducers({
   theme: themeReducer,
   navMenu: navMenuReducer as () => NavMenuStateType,
   dialogsReducer,
-  profileReducer,
+  profile: profileReducer as () => ProfileStateType,
   newMessageReducer,
   preloader: preloader as () => PreloaderStateType,
   paginator: paginatorReducer as () => PaginatorStateType,
