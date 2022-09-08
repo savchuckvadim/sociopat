@@ -8,6 +8,7 @@ import UserCard from "./User-Card";
 import style from './Users.module.css'
 import { UserType } from "../../../../types/types";
 
+
 type PropsType = {
     authUser: UserType
     users: Array<UserType>

@@ -72,32 +72,6 @@ class ProfileContainer extends React.Component {
                 }
             }
         })
-        // if (this.props.params.userId) {
-        //     
-        //     // this.userId = this.props.params.userId;
-        //     // this.isAuthUser = false
-        //     if(this.state.userId !== Number(this.props.params.userId)){
-        //         this.setState({
-        //             userId: Number(this.props.params.userId),
-        //             isAuthUser: false
-        //         });
-        //     }
-
-
-
-        // }
-        // else {
-
-        //     // this.userId = this.props.auth.id
-        //     // this.isAuthUser = true
-        //     if(this.state.userId !== this.props.auth.id){
-        //         this.setState({
-        //             userId: this.props.auth.id,
-        //             isAuthUser: true
-        //         });
-        //     }
-
-        // }
 
     }
 
