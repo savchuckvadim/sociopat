@@ -6,13 +6,14 @@ const initialState = {
 
 export const inProgress = (bool: boolean): InProgressType => ({ type: IN_PROGRESS, bool })
 
-type InitialStateInProgressType = typeof initialState
+export type PreloaderStateType = typeof initialState
+
 type InProgressType = {
     type: typeof IN_PROGRESS,
     bool: boolean
 }
 
-const preloader = (state: InitialStateInProgressType = initialState, action: InProgressType) => {
+const preloader = (state: PreloaderStateType = initialState, action: InProgressType): PreloaderStateType => {
     switch (action.type) {
         case IN_PROGRESS:
 

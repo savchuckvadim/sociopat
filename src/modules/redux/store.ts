@@ -18,6 +18,7 @@ import { AppStateType } from "./reducers/app-reducer"
 import { LoginRegistrationType } from "./reducers/login-registaration/login-registration-reducer"
 import { NavMenuStateType } from "./reducers/nav-menu/nav-menu-reducer"
 import { PaginatorStateType } from "./reducers/paginator/paginator-reducer"
+import { PreloaderStateType } from "./reducers/preloader/preloader-reducer"
 
 
 let rootReducer = combineReducers({
@@ -31,7 +32,7 @@ let rootReducer = combineReducers({
   dialogsReducer,
   profileReducer,
   newMessageReducer,
-  preloader,
+  preloader: preloader as () => PreloaderStateType,
   paginator: paginatorReducer as () => PaginatorStateType,
   form: formReducer
 
