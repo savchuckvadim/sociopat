@@ -1,5 +1,5 @@
 import {connect} from "react-redux"
-import { setCurrentPage } from "../../../../redux/reducers/paginator/paginator-reducer"
+import { setCurrentPage } from "../../../../redux/reducers/paginator/paginator-reducer.ts"
 import {fetching, followThunk, requestUsers, setUsers, toggleFollowingInProgress, unFollowThunk} from "../../../../redux/reducers/users/users-reducer.ts"
 import { getAuthUser, getIsFetching, getIsFollowing, getUsersSelector } from "../../../../redux/selectors/user-selectors"
 import Users from "./Users"

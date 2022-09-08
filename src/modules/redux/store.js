@@ -12,7 +12,7 @@ import LoginRegistrationReducer from "./reducers/login-registaration/login-regis
 import appReducer from "./reducers/app-reducer.ts";
 import registrationReducer from "./reducers/auth/registration-reducer";
 import preloader from "./reducers/preloader/preloader-reducer.ts";
-import paginatorReducer from "./reducers/paginator/paginator-reducer";
+import paginatorReducer from "./reducers/paginator/paginator-reducer.ts";
 
 
 let reducers = combineReducers({

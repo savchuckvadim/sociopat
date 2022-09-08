@@ -1,7 +1,7 @@
 import { usersAPI } from "../../../services/api-laravel";
 import { UserType } from "../../../types/types";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
-import { setTotalItemsCount } from "../paginator/paginator-reducer";
+import { setTotalItemsCount } from "../paginator/paginator-reducer.ts";
 
 
 const SET_USERS = 'SET_USERS';
