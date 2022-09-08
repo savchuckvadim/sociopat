@@ -16,7 +16,7 @@ let initialState = {
     authUser: null as UserType |null
 
 }
-type InitialStateType = typeof initialState
+export type AuthStateType = typeof initialState
 
 
 
@@ -86,7 +86,7 @@ export const logout = () => (dispatch: any) => {
 
 
 //REDUCER
-const authReducer = (state: InitialStateType = initialState, action: SetAuthUserDataType) => {
+const authReducer = (state: AuthStateType = initialState, action: SetAuthUserDataType): AuthStateType => {
     let result = state
 
     switch (action.type) {

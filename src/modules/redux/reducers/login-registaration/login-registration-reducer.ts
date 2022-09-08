@@ -54,14 +54,16 @@ const initialState = {
     },
     error: ''
 }
+export type LoginRegistrationType = typeof initialState
+
 export const setError = (error) => {
     return {
         type: SET_ERROR,
         error
     }
 }
-const LoginRegistrationReducer = (state = initialState, action) => {
-    
+const LoginRegistrationReducer = (state: LoginRegistrationType = initialState, action: any): LoginRegistrationType => {
+
     switch (action.type) {
         case SET_ERROR:
             let result = { ...state }

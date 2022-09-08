@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { login } from "../../../redux/reducers/auth/auth-reducer.ts"
-import { setError } from "../../../redux/reducers/login-registaration/login-registration-reducer"
+import { setError } from "../../../redux/reducers/login-registaration/login-registration-reducer.ts"
 import FormCard from "./Form-Card/Form-Card"
 
 const mapStateToProps = (state) => {

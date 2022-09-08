@@ -8,42 +8,45 @@ import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer"
 import usersReducer from "./reducers/users/users-reducer.ts"
 import authReducer from "./reducers/auth/auth-reducer.ts"
 import { reducer as formReducer } from 'redux-form'
-import LoginRegistrationReducer from "./reducers/login-registaration/login-registration-reducer"
+import LoginRegistrationReducer from "./reducers/login-registaration/login-registration-reducer.ts"
 import appReducer from "./reducers/app-reducer.ts"
 import registrationReducer from "./reducers/auth/registration-reducer"
 import preloader from "./reducers/preloader/preloader-reducer.ts"
 import paginatorReducer from "./reducers/paginator/paginator-reducer.ts"
+import { AuthStateType } from "./reducers/auth/auth-reducer"
+import { AppStateType } from "./reducers/app-reducer"
+import { LoginRegistrationType } from "./reducers/login-registaration/login-registration-reducer"
 
 
 let rootReducer = combineReducers({
-    app: appReducer,
-    auth: authReducer,
-    loginRegistration: LoginRegistrationReducer,
-    registration: registrationReducer,
-    users: usersReducer,
-    theme: themeReducer,
-    navMenu: navMenuReducer,
-    dialogsReducer,
-    profileReducer,
-    newMessageReducer,
-    preloader,
-    paginator: paginatorReducer,
-    form: formReducer
+  app: appReducer as () => AppStateType,
+  auth: authReducer as () => AuthStateType,
+  loginRegistration: LoginRegistrationReducer as () => LoginRegistrationType,
+  registration: registrationReducer,
+  users: usersReducer,
+  theme: themeReducer,
+  navMenu: navMenuReducer,
+  dialogsReducer,
+  profileReducer,
+  newMessageReducer,
+  preloader,
+  paginator: paginatorReducer,
+  form: formReducer
 
 
 })
 
 export type RootReducerType = typeof rootReducer
-export type RootState = ReturnType<RootReducerType>
-export type AppDispatch = typeof store.dispatch
+export type RootStateType = ReturnType<RootReducerType>
+export type AppDispatchType = typeof store.dispatch
 
 //@ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 
 const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
 
-    applyMiddleware(ThunkMiddleware)
-  ))
+  applyMiddleware(ThunkMiddleware)
+))
 
 // let store = createStore(rootReducer, applyMiddleware(ThunkMiddleware))
 export default store

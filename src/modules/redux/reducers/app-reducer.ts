@@ -7,7 +7,7 @@ let initialState = {
     inProgress: false as boolean,
 }
 
-type InitialStateType = typeof initialState
+export type AppStateType = typeof initialState
 
 type InitialActionType = {
     type: typeof INITIALIZED_SUCCES | typeof INITIALIZING
@@ -31,7 +31,7 @@ export const initialize = () => async (dispatch: any) => {
 
 
 //REDUCER
-const appReducer = (state: InitialStateType = initialState, action: InitialActionType): InitialStateType => {
+const appReducer = (state: AppStateType = initialState, action: InitialActionType): AppStateType => {
 
     switch (action.type) {
         case INITIALIZED_SUCCES: return { ...state, initialized: true, inProgress: false }

@@ -3,11 +3,12 @@ import { connect } from "react-redux"
 import { Navigate, useParams } from "react-router-dom"
 import { compose } from "redux"
 import { dislike, getDataForLoadProfilePage, like, loadPhoto, updateStatus } from "../../../../redux/reducers/profile/profile-reducer.ts"
+import { RootStateType } from "../../../../redux/store"
 import { PostType, UserType } from "../../../../types/types"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container"
 import Profile from "./Profile"
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootStateType) => {
 
     return {
         isAuth: state.auth.isAuth,
