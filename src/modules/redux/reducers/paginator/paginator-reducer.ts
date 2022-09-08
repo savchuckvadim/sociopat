@@ -15,7 +15,7 @@ export type PaginatorStateType = typeof initialState
 
 //ACTION CREATORS
 export const setCurrentPage = (page: number, portion: number): SetCurrentPageType => ({ type: SET_CURRENT_PAGE, page, portion })
-type SetCurrentPageType = {
+export type SetCurrentPageType = {
     type: typeof SET_CURRENT_PAGE
     page: number
     portion: number

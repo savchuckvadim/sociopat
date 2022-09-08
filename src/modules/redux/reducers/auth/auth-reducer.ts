@@ -1,6 +1,7 @@
 import { stopSubmit } from "redux-form"
 import { authAPI } from "../../../services/api-laravel"
 import { UserType } from "../../../types/types"
+import { AppDispatchType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"
 // import {getAuth} from "../../redux/reducers/auth/auth-reducer"
 
@@ -13,7 +14,7 @@ const SET_USER_DATA = 'SET_USER_DATA'
 //STATE
 let initialState = {
     isAuth: false as boolean,
-    authUser: null as UserType |null
+    authUser: null as UserType | null
 
 }
 export type AuthStateType = typeof initialState
@@ -35,7 +36,7 @@ export const setAuthUserData = (authUser: UserType | null, isAuth: boolean = fal
 
 
 //THUNKS
-export const getAuth = () => async (dispatch: any) => {
+export const getAuth = () => async (dispatch: AppDispatchType) => {
 
     let response = await authAPI.getAuthUser()
     let authUser = null
@@ -54,11 +55,11 @@ export const getAuth = () => async (dispatch: any) => {
 
 
 }
-export const login = (email: string, password: string,) => (dispatch: any) => {
+export const login = (email: string, password: string,) => (dispatch: AppDispatchType) => {
     dispatch(inProgress(true))
     authAPI.login(email, password)
         .then(res => {
-            dispatch(getAuth())
+            getAuth()
             dispatch(inProgress(false))
 
         })
@@ -84,32 +85,34 @@ export const logout = () => (dispatch: any) => {
     dispatch(inProgress(false))
 }
 //registration
-export const setNewUser = (name, surname, email, password, password_confirmation) => async (dispatch) => {
-    dispatch(inProgress(false))
-    dispatch(inProgress(true))
-    
-    
-    try {
-        let res = await authAPI.register(name, surname, email, password, password_confirmation)
-        if (res.statusText === 'Created') {
-            // dispatch(registrationSuccess())
-            dispatch(getAuth())            //from auth reducer
-        
-        } else {
-            
-            if (res.data.error) {
-                alert(res.data.error)
+export const setNewUser = (
+    name: string, surname: string, email: string,
+    password: string, password_confirmation: string) => async (dispatch: AppDispatchType) => {
+        dispatch(inProgress(false))
+        dispatch(inProgress(true))
 
+
+        try {
+            let res = await authAPI.register(name, surname, email, password, password_confirmation)
+            if (res.statusText === 'Created') {
+                // dispatch(registrationSuccess())
+                getAuth()           //from auth reducer
+
+            } else {
+
+                if (res.data.error) {
+                    alert(res.data.error)
+
+                }
             }
+            // dispatch(inProgress(false))
+        } catch (error) {
+
+            dispatch(inProgress(false))  //from preloader-reducer
         }
-        // dispatch(inProgress(false))
-    } catch (error) {
-        
-        dispatch(inProgress(false))  //from preloader-reducer
+
+
     }
-
-
-}
 
 //REDUCER
 const authReducer = (state: AuthStateType = initialState, action: SetAuthUserDataType): AuthStateType => {

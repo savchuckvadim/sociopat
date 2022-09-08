@@ -7,9 +7,10 @@ import Paginator from "./Paginator/Paginator"
 import UserCard from "./User-Card"
 import style from './Users.module.css'
 import { UserType } from "../../../../types/types"
+import { SetCurrentPageType } from "../../../../redux/reducers/paginator/paginator-reducer"
 
 
-type PropsType = {
+export type PropsType = {
     authUser: UserType
     users: Array<UserType>
     pageSize: number
@@ -23,7 +24,7 @@ type PropsType = {
     requestUsers: (currentPage: number, pageSize: number) => void
     followThunk: (userId: number, authUser: UserType) => void
     unFollowThunk: (userId: number, authUser: UserType) => void
-    setCurrentPage: (page: number, portion: number) => void
+    setCurrentPage: (page: number, portion: number) => SetCurrentPageType
 }
 
 

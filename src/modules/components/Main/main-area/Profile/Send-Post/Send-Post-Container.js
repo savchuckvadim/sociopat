@@ -1,7 +1,5 @@
 import { connect } from "react-redux"
-
 import {  sendPost } from "../../../../../redux/reducers/profile/profile-reducer.ts"
-
 import SendPost from "./Send-Post"
 
 
@@ -15,23 +13,7 @@ const mapStateToProps = (state) => {
 
     }
 }
-// const mapDispatchToProps = (dispatch) => {
-//     // const change = (value) => {
-//     //     const action = changeCurrentPostActionCreator(value)
-//     //     dispatch(action)
-//     // }
 
-//     const send = (value)=> {
-//         const action = addPostActionCreator(value) 
-//         dispatch(action)
-//     }
-//     return {
-//         // change,
-//         send,
-//         sendPost
-
-//     }
-// }
 
 export const SendPostContainer = connect(mapStateToProps,
     {

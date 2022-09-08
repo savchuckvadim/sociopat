@@ -1,6 +1,7 @@
 import { postAPI, profileAPI, usersAPI } from "../../../services/api-laravel"
-import { PostType, UserType } from "../../../types/types"
+import { LikeType, PostType, UserType } from "../../../types/types"
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow"
+import { AppDispatchType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"
 import { FollowType, UnfollowType } from "../users/users-reducer"
 
@@ -60,11 +61,11 @@ type SetLikeType = {
     authorId: number
 
 }
-type ActionType = AddPostActionCreatorType | SetPostsActionCreatorType | 
-SetStatusActionCreatorType | SetProfilePageDataActionCreatorType | 
-SetLikeType | FollowType | UnfollowType
-const setDislike = (likeId) => ({ type: DISLIKE, like })                                           //TODO with API 
-const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool })                                //TODO with API 
+type ActionType = AddPostActionCreatorType | SetPostsActionCreatorType |
+    SetStatusActionCreatorType | SetProfilePageDataActionCreatorType |
+    SetLikeType | FollowType | UnfollowType
+const setDislike = (like: LikeType) => ({ type: DISLIKE, like })                                           //TODO with API 
+const likeInProgress = (bool: boolean) => ({ type: LIKE_IN_PROGRESS, bool })                                //TODO with API 
 
 
 // const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
@@ -73,7 +74,7 @@ const likeInProgress = (bool) => ({ type: LIKE_IN_PROGRESS, bool })             
 
 //THUNKS
 
-export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
+export const getDataForLoadProfilePage = (userId: number) => async (dispatch: AppDispatchType) => {
     dispatch(inProgress(true))
     const userRes = await usersAPI.getUser(userId)
     const postsRes = await postAPI.getPosts(userId) //get posts from backend and set to state
@@ -97,7 +98,7 @@ export const getDataForLoadProfilePage = (userId) => async (dispatch) => {
 
 
 
-export const updateStatus = (aboutMe) => async (dispatch) => {
+export const updateStatus = (aboutMe: string) => async (dispatch: AppDispatchType) => {
 
     const res = await profileAPI.updateAboutMe(aboutMe)
 
@@ -121,21 +122,21 @@ export const updateStatus = (aboutMe) => async (dispatch) => {
 
 // }
 
-export const sendPost = (userId: number, profileId: number, body: string, img: string) => async (dispatch) => {
+export const sendPost = (userId: number, profileId: number, body: string, img: string) => async (dispatch: AppDispatchType) => {
 
     const res = await postAPI.sendPost(userId, profileId, body, img)
 
     dispatch(addPostActionCreator(res.data.data))
 }
 
-export const like = (postId: number) => async (dispatch) => {
+export const like = (postId: number) => async (dispatch: AppDispatchType) => {
 
     dispatch(likeInProgress(true))
     const res = await postAPI.like(postId)
     dispatch(setLike(postId, res.data.like))
     dispatch(likeInProgress(false))
 }
-export const dislike = (postId: number) => async (dispatch) => {
+export const dislike = (postId: number) => async (dispatch: AppDispatchType) => {
 
     dispatch(likeInProgress(true))
     const res = await postAPI.dislike(postId)
@@ -166,7 +167,7 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionTy
 
         case SET_STATUS:
             if (state.visitedUser) {
-                if (result.visitedUser.profile.about_me !== action.status) {
+                if (result.visitedUser!.profile.about_me !== action.status) {
                     result = { ...state }
                     result.visitedUser = { ...state.visitedUser }
                     result.visitedUser.profile = { ...state.visitedUser.profile }
@@ -212,12 +213,12 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionTy
             return result
 
         case SET_POSTS:
-            
-                // state.posts = action.posts.reverse(post => ({ ...post }))
-                state.posts = action.posts.reverse()
-                return state
-            
-            
+
+            // state.posts = action.posts.reverse(post => ({ ...post }))
+            state.posts = action.posts.reverse()
+            return state
+
+
         //TODO 
         // case LIKE:
         //     result = { ...state }
