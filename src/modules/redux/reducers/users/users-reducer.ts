@@ -1,6 +1,7 @@
 import { usersAPI } from "../../../services/api-laravel";
 import { UserType } from "../../../types/types";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
+import { AppDispatchType } from "../../store";
 import { setTotalItemsCount } from "../paginator/paginator-reducer";
 
 
@@ -15,46 +16,32 @@ const initialState = {
     users: [] as Array<UserType>,
     isFetching: false as boolean,
     followingInProgress: [] as Array<number>, //array of users ids
-
-
 }
+
 export type UsersStateType = typeof initialState
 
 // ACTION CREATORS
 
 export const setUsers = (users: Array<UserType>): SetUsersType => ({ type: SET_USERS, users })
-type SetUsersType = {
-    type: typeof SET_USERS,
-    users: Array<UserType>
-}
+type SetUsersType = { type: typeof SET_USERS, users: Array<UserType>}
 
 export const fetching = (bool: boolean): FetchingType => ({ type: FETCHING, bool })
-type FetchingType = {
-    type: typeof FETCHING,
-    bool: boolean
-}
-export const follow = (userId: number, authUser: UserType): FollowType => ({ type: FOLLOW, userId, authUser })
-export type FollowType = {
-    type: typeof FOLLOW,
-    userId: number
-    authUser: UserType
-}
-export const unFollow = (userId: number, authUser: UserType): UnfollowType => ({ type: UNFOLLOW, userId, authUser })
-export type UnfollowType = {
-    type: typeof UNFOLLOW,
-    userId: number
-    authUser: UserType
-}
-export const toggleFollowingInProgress = (userId: number, isFetching: boolean): ToggleFollowingInProgressType => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching })
-type ToggleFollowingInProgressType = {
-    type: typeof FOLLOWING_IN_PROGRESS,
-    userId: number
-    isFetching: boolean
-}
+type FetchingType = { type: typeof FETCHING, bool: boolean}
 
+export const follow = (userId: number, authUser: UserType): FollowType => ({ type: FOLLOW, userId, authUser })
+export type FollowType = { type: typeof FOLLOW, userId: number, authUser: UserType}
+
+export const unFollow = (userId: number, authUser: UserType): UnfollowType => ({ type: UNFOLLOW, userId, authUser })
+export type UnfollowType = { type: typeof UNFOLLOW, userId: number, authUser: UserType}
+
+export const toggleFollowingInProgress = (userId: number, isFetching: boolean): ToggleFollowingInProgressType => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching })
+type ToggleFollowingInProgressType = { type: typeof FOLLOWING_IN_PROGRESS, userId: number, isFetching: boolean}
+
+
+type ActionsTypes = SetUsersType | FetchingType | FollowType | UnfollowType | ToggleFollowingInProgressType
 
 //THUNKS
-export const requestUsers = (currentPage: number, pageSize: number) => async (dispatch: any) => {
+export const requestUsers = (currentPage: number, pageSize: number) => async (dispatch: AppDispatchType) => {
 
     dispatch(fetching(true))
     let res = await usersAPI.getUsers(currentPage, pageSize)
@@ -70,7 +57,7 @@ export const requestUsers = (currentPage: number, pageSize: number) => async (di
     dispatch(fetching(false))
 
 }
-export const followThunk = (userId: number, authUser: UserType) => async (dispatch: any) => {
+export const followThunk = (userId: number, authUser: UserType) => async (dispatch: AppDispatchType) => {
 
     dispatch(toggleFollowingInProgress(userId, true))
 
@@ -83,7 +70,7 @@ export const followThunk = (userId: number, authUser: UserType) => async (dispat
     // }
     dispatch(toggleFollowingInProgress(userId, false))
 }
-export const unFollowThunk = (userId: number, authUser: UserType) => async (dispatch: any) => {
+export const unFollowThunk = (userId: number, authUser: UserType) => async (dispatch: AppDispatchType) => {
     dispatch(toggleFollowingInProgress(userId, true))
 
     let res = await usersAPI.unfollow(userId)
@@ -104,7 +91,7 @@ export const unFollowThunk = (userId: number, authUser: UserType) => async (disp
 
 
 //REDUCER
-const usersReducer = (state: UsersStateType = initialState, action: any): UsersStateType => {
+const usersReducer = (state: UsersStateType = initialState, action: ActionsTypes): UsersStateType => {
     let result = state
 
     switch (action.type) {

@@ -15,26 +15,18 @@ export type PaginatorStateType = typeof initialState
 
 //ACTION CREATORS
 export const setCurrentPage = (page: number, portion: number): SetCurrentPageType => ({ type: SET_CURRENT_PAGE, page, portion })
-export type SetCurrentPageType = {
-    type: typeof SET_CURRENT_PAGE
-    page: number
-    portion: number
-}
+export type SetCurrentPageType = { type: typeof SET_CURRENT_PAGE; page: number; portion: number}
 
 export const setTotalItemsCount = (count: number): SetTotalItemsCountType => ({ type: SET_TOTAL_ITEMS_COUNT, count })
+type SetTotalItemsCountType = { type: typeof SET_TOTAL_ITEMS_COUNT; count: number}
 
-type SetTotalItemsCountType = {
-    type: typeof SET_TOTAL_ITEMS_COUNT
-    count: number
-
-}
-
+type ActionsTypes = SetCurrentPageType | SetTotalItemsCountType
 
 //THUNKS
 
 
 //REDUCER
-const paginatorReducer = (state: PaginatorStateType = initialState, action: any): PaginatorStateType => {
+const paginatorReducer = (state: PaginatorStateType = initialState, action: ActionsTypes): PaginatorStateType => {
     let result = state
 
     switch (action.type) {
