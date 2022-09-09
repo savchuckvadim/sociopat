@@ -1,7 +1,8 @@
+import { ThunkAction } from "redux-thunk"
 import { postAPI, profileAPI, usersAPI } from "../../../services/api-laravel"
 import { LikeType, PostType, UserType } from "../../../types/types"
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow"
-import { AppDispatchType } from "../../store"
+import { AppDispatchType, RootStateType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"
 import { FollowType, UnfollowType } from "../users/users-reducer"
 
@@ -61,21 +62,26 @@ type SetLikeType = {
     authorId: number
 
 }
-type ActionType = AddPostActionCreatorType | SetPostsActionCreatorType |
-    SetStatusActionCreatorType | SetProfilePageDataActionCreatorType |
-    SetLikeType | FollowType | UnfollowType
-const setDislike = (like: LikeType) => ({ type: DISLIKE, like })                                           //TODO with API 
-const likeInProgress = (bool: boolean) => ({ type: LIKE_IN_PROGRESS, bool })                                //TODO with API 
 
+const setDislike = (like: LikeType):SetDislikeType => ({ type: DISLIKE, like })  //TODO with API     
+type SetDislikeType = { type: typeof DISLIKE, like: LikeType}  
+
+const likeInProgress = (bool: boolean):LikeInProgressType => ({ type: LIKE_IN_PROGRESS, bool }) //TODO with API  
+type LikeInProgressType = { type: typeof LIKE_IN_PROGRESS, bool: boolean} 
+
+type ActionsTypes = AddPostActionCreatorType | SetPostsActionCreatorType |
+    SetStatusActionCreatorType | SetProfilePageDataActionCreatorType |
+    SetLikeType | FollowType | UnfollowType | SetDislikeType |
+    LikeInProgressType
 
 // const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
 // const setVisitedUser = (user) => ({ type: SET_VISITED_USER, user })
 
 
 //THUNKS
-
+type ThunkType = ThunkAction<Promise<void>, RootStateType, unknown, ActionsTypes>
 export const getDataForLoadProfilePage = (userId: number) => async (dispatch: AppDispatchType) => {
-    dispatch(inProgress(true))
+    dispatch(inProgress(true)) //from inprogress refucer
     const userRes = await usersAPI.getUser(userId)
     const postsRes = await postAPI.getPosts(userId) //get posts from backend and set to state
 
@@ -96,12 +102,9 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
 
 }
 
-
-
-export const updateStatus = (aboutMe: string) => async (dispatch: AppDispatchType) => {
-
+export const updateStatus = (aboutMe: string):
+ThunkType => async (dispatch) => {
     const res = await profileAPI.updateAboutMe(aboutMe)
-
     if (res.data.resultCode === 0) {
         dispatch(setStatus(aboutMe))
     }
@@ -122,21 +125,24 @@ export const updateStatus = (aboutMe: string) => async (dispatch: AppDispatchTyp
 
 // }
 
-export const sendPost = (userId: number, profileId: number, body: string, img: string) => async (dispatch: AppDispatchType) => {
+export const sendPost = (userId: number, profileId: number, body: string, img: string): 
+ThunkType => async (dispatch, getState) => {
 
     const res = await postAPI.sendPost(userId, profileId, body, img)
-
     dispatch(addPostActionCreator(res.data.data))
 }
 
-export const like = (postId: number) => async (dispatch: AppDispatchType) => {
+export const like = (postId: number):
+ThunkType => async (dispatch) => {
 
     dispatch(likeInProgress(true))
     const res = await postAPI.like(postId)
     dispatch(setLike(postId, res.data.like))
     dispatch(likeInProgress(false))
 }
-export const dislike = (postId: number) => async (dispatch: AppDispatchType) => {
+
+export const dislike = (postId: number):
+ThunkType => async (dispatch) => {
 
     dispatch(likeInProgress(true))
     const res = await postAPI.dislike(postId)
@@ -146,7 +152,8 @@ export const dislike = (postId: number) => async (dispatch: AppDispatchType) => 
 }
 
 //REDUCER
-const profileReducer = (state: ProfileStateType = initialState, action: ActionType): ProfileStateType => {
+const profileReducer = (state: ProfileStateType = initialState, action: ActionsTypes): 
+ProfileStateType => {
 
     let result = state
     switch (action.type) {
@@ -154,14 +161,16 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionTy
         case FOLLOW:
             if (state.visitedUser) {
                 result = { ...state }
-                result.visitedUser = followUnfollow([state.visitedUser], action.userId, action.authUser, true)[0]
+                result.visitedUser = 
+                followUnfollow([state.visitedUser], action.userId, action.authUser, true)[0]
             }
             return result
 
         case UNFOLLOW:
             if (state.visitedUser) {
                 result = { ...state }
-                result.visitedUser = followUnfollow([state.visitedUser], action.userId, action.authUser, false)[0]
+                result.visitedUser = 
+                followUnfollow([state.visitedUser], action.userId, action.authUser, false)[0]
             }
             return result
 
