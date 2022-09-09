@@ -28,7 +28,7 @@ const Paginator: React.FC<PropsType> = ({ totalItemsCount, pageSize, currentPage
     let rightPortionPageNumber = portionNumber * portionSize;
 
 
-    const onPageChanged = (pageNumber, portionNumber) => {
+    const onPageChanged = (pageNumber: number, portionNumber: number) => {
         setCurrentPage(pageNumber, portionNumber)
         requestUsers(pageNumber, pageSize)
 

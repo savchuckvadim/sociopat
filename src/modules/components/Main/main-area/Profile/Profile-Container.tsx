@@ -25,7 +25,7 @@ const mapStateToProps = (state: RootStateType) => {
 
 
 
-const withRouter = WrappedComponent => (props: PreviosPropsType) => {
+const withRouter = (WrappedComponent:any)  => (props: MapStatePropsType) => {
     const params = useParams()
 
     return (

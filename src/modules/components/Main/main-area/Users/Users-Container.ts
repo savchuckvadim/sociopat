@@ -44,12 +44,13 @@ const mapStateToProps = (state: RootStateType) => {
     }
 }
 
-// Typical usage: `connect` is called after the component is defined
-
-export default connect<MapStateToPropsType, MapDispatchToPropsType>(mapStateToProps, {
+const connector = connect(mapStateToProps, {
     requestUsers,
     followThunk,
     unFollowThunk,
     setCurrentPage
- 
-})(Users)
+
+})
+export type PropsFromRedux = typeof connector
+debugger
+export default (Users)
