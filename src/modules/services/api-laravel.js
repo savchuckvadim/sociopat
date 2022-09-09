@@ -51,12 +51,12 @@ export const authAPI = {
     async getAuthUser() {
         try {
             let response = await instance.get("api/user/auth")
-            let tokensData = await instance.post("/api/sanctum/token", { /////////// Generate token for websocket
-                email: "savchuckvadim@gmail.com",
-                password: "Cfdxer131!",
-                device_name: 'iPhone_11'
-            })
-            token = tokensData.data.token
+            // let tokensData = await instance.post("/api/sanctum/token", { /////////// Generate token for websocket
+            //     email: "savchuckvadim@gmail.com",
+            //     password: "Cfdxer131!",
+            //     device_name: 'iPhone_11'
+            // })
+            // token = tokensData.data.token
             
             return response.data
         } catch (error) {

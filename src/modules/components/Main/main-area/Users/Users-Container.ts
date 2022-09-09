@@ -52,5 +52,5 @@ const connector = connect(mapStateToProps, {
 
 })
 export type PropsFromRedux = typeof connector
-debugger
+
 export default (Users)

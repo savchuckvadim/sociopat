@@ -84,7 +84,7 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
     dispatch(inProgress(true)) //from inprogress refucer
     const userRes = await usersAPI.getUser(userId)
     const postsRes = await postAPI.getPosts(userId) //get posts from backend and set to state
-
+    debugger
     let user = null
     if (userRes.resultCode === 1) {
         user = userRes.user
@@ -94,6 +94,7 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
 
     if (postsRes.data) {
         let posts = postsRes.data
+        debugger
         dispatch(setPosts(posts))
     }
     dispatch(inProgress(false))
@@ -200,11 +201,14 @@ ProfileStateType => {
             //     result.status = action.status
             // }
 
-            if (state.visitedUser) {                                        //visiteduser
+            if (state.visitedUser) {  
+                debugger
                 if (state.visitedUser.id !== action.user.id) {
+                    
                     result = { ...state }
                     result.visitedUser = { ...action.user }
                 } else {
+                    
                     return state
                 }
             } else {
@@ -222,7 +226,7 @@ ProfileStateType => {
             return result
 
         case SET_POSTS:
-
+            debugger
             // state.posts = action.posts.reverse(post => ({ ...post }))
             state.posts = action.posts.reverse()
             return state

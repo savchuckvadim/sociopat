@@ -25,7 +25,7 @@ const mapStateToProps = (state: RootStateType) => {
 
 
 
-const withRouter = (WrappedComponent:any)  => (props: MapStatePropsType) => {
+const withRouter = (WrappedComponent: any) => (props: MapStatePropsType) => {
     const params = useParams()
 
     return (
@@ -50,7 +50,6 @@ type MapStatePropsType = {
     dislike: (postId: number) => void
 }
 
-//TODO объединение типов в один из двух
 type PropsType = MapStatePropsType & ParamsType
 
 type StateType = {
@@ -63,72 +62,40 @@ class ProfileContainer extends React.Component<PropsType, StateType> {
     constructor(props: any) {
         super(props)
         this.state = { userId: undefined, isAuthUser: false }
-    }
-
-    getUserId = (state: StateType, props: PropsType) => {
-
-        this.setState((state, props):StateType => {
-            if (props.params.userId !== undefined) {
-                if (state.userId !== Number(props.params.userId)) {
-                    return {
-                        userId: Number(props.params.userId),
-                        isAuthUser: false
-                    }
-                }
-
-            }
-            else {
-                if (state.userId !== props.auth.id) {
-                    return {
-                        userId: Number(props.auth.id),
-                        isAuthUser: true
-                    }
-                }
-            }
-            return this.state
-        })
 
     }
 
-    getProfileData = () => {
-
-        if (this.state.userId) {
-            if (!this.props.visitedUser) {
-                this.props.getDataForLoadProfilePage(this.state.userId)
-
-            } else {
-                if (this.props.params.userId) {
-                    if (`${this.props.params.userId}` !== `${this.props.visitedUser.id}`) {
-                        this.props.getDataForLoadProfilePage(this.state.userId)
-                    }
-                } else {
-                    if (this.props.visitedUser.id !== this.props.auth.id) {
-                        this.props.getDataForLoadProfilePage(this.state.userId)
-                    }
-                }
-
-            }
+    getUserId = ():number => {
+        if (this.props.params.userId !== undefined) {
+            return Number(this.props.params.userId)
+        }
+        else {
+            return Number(this.props.auth.id)
         }
 
+    }
 
+    getProfileData = (userId:number) => {
+        
+            if (!this.props.visitedUser) {
+                this.props.getDataForLoadProfilePage(userId)
+            }
 
     }
     componentDidMount() {
-
         window.scrollTo(0, 0)
-
-        this.getUserId(this.state, this.props)
-        this.getProfileData()
+        let userId = this.getUserId()
+        this.getProfileData(userId)
 
     }
     componentDidUpdate() {
-        //TODO logic for not request    
-        this.getUserId(this.state, this.props)
-        this.getProfileData()
+
+      let userId = this.getUserId()
+        this.getProfileData(userId)
 
     }
     render() {
-
+        
         if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth.id}`) return <Navigate replace to={'../profile'} />
         if (!this.props.visitedUser) return <LightLoadingPageContainer />
         return (
@@ -136,8 +103,6 @@ class ProfileContainer extends React.Component<PropsType, StateType> {
             <Profile {...this.props}
                 // profilePhoto={this.props.profile.photos.small}
                 isCurrentUser={this.state.isAuthUser}
-
-
             />
         )
     }
@@ -150,7 +115,6 @@ export default compose(
 
     connect(mapStateToProps, {
 
-        // getProfileAndSetVisitedUser,
         // getAboutMe,
         updateStatus,
         getDataForLoadProfilePage,
@@ -161,6 +125,6 @@ export default compose(
 
     }),
     withRouter,
-    
+
 )(ProfileContainer)
 
