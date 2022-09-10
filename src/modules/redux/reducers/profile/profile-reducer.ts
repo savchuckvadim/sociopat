@@ -55,19 +55,19 @@ type SetProfilePageDataActionCreatorType = {
     user: UserType
 
 }
-const setLike = (postId: number, authorId: number): SetLikeType => ({ type: LIKE, postId, authorId }) //TODO with API 
+const setLike = (postId: number): SetLikeType => ({ type: LIKE, postId }) //TODO with API 
 type SetLikeType = {
     type: typeof LIKE,
     postId: number
-    authorId: number
+
 
 }
 
-const setDislike = (like: LikeType):SetDislikeType => ({ type: DISLIKE, like })  //TODO with API     
-type SetDislikeType = { type: typeof DISLIKE, like: LikeType}  
+const setDislike = (postId: number): SetDislikeType => ({ type: DISLIKE, postId })  //TODO with API     
+type SetDislikeType = { type: typeof DISLIKE, postId: number }
 
-const likeInProgress = (bool: boolean):LikeInProgressType => ({ type: LIKE_IN_PROGRESS, bool }) //TODO with API  
-type LikeInProgressType = { type: typeof LIKE_IN_PROGRESS, bool: boolean} 
+const likeInProgress = (bool: boolean): LikeInProgressType => ({ type: LIKE_IN_PROGRESS, bool }) //TODO with API  
+type LikeInProgressType = { type: typeof LIKE_IN_PROGRESS, bool: boolean }
 
 type ActionsTypes = AddPostActionCreatorType | SetPostsActionCreatorType |
     SetStatusActionCreatorType | SetProfilePageDataActionCreatorType |
@@ -79,12 +79,14 @@ type ActionsTypes = AddPostActionCreatorType | SetPostsActionCreatorType |
 
 
 //THUNKS
+type GetStateType = () => RootStateType
+
 type ThunkType = ThunkAction<Promise<void>, RootStateType, unknown, ActionsTypes>
 export const getDataForLoadProfilePage = (userId: number) => async (dispatch: AppDispatchType) => {
     dispatch(inProgress(true)) //from inprogress refucer
     const userRes = await usersAPI.getUser(userId)
     const postsRes = await postAPI.getPosts(userId) //get posts from backend and set to state
-    debugger
+
     let user = null
     if (userRes.resultCode === 1) {
         user = userRes.user
@@ -94,7 +96,7 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
 
     if (postsRes.data) {
         let posts = postsRes.data
-        debugger
+
         dispatch(setPosts(posts))
     }
     dispatch(inProgress(false))
@@ -104,13 +106,13 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
 }
 
 export const updateStatus = (aboutMe: string):
-ThunkType => async (dispatch) => {
-    const res = await profileAPI.updateAboutMe(aboutMe)
-    if (res.data.resultCode === 0) {
-        dispatch(setStatus(aboutMe))
-    }
+    ThunkType => async (dispatch) => {
+        const res = await profileAPI.updateAboutMe(aboutMe)
+        if (res.data.resultCode === 0) {
+            dispatch(setStatus(aboutMe))
+        }
 
-}
+    }
 
 
 //TODO REFACTORING TO LARAVEL
@@ -126,35 +128,43 @@ ThunkType => async (dispatch) => {
 
 // }
 
-export const sendPost = (userId: number, profileId: number, body: string, img: string): 
-ThunkType => async (dispatch, getState) => {
+export const sendPost = (userId: number, profileId: number, body: string, img: string):
+    ThunkType => async (dispatch, getState) => {
 
-    const res = await postAPI.sendPost(userId, profileId, body, img)
-    dispatch(addPostActionCreator(res.data.data))
-}
+        const res = await postAPI.sendPost(userId, profileId, body, img)
+        dispatch(addPostActionCreator(res.data.data))
+    }
 
+
+                                            //TODO like-dislike flow , Rename dislike to likeout
 export const like = (postId: number):
-ThunkType => async (dispatch) => {
+    ThunkType => async (dispatch, getState: GetStateType) => {
+        let state = getState()
+        if (!state.profile.likeInProgress) {
+            dispatch(likeInProgress(true))
+            const res = await postAPI.like(postId)
+            dispatch(setLike(postId))
+            dispatch(likeInProgress(false))
+        }
 
-    dispatch(likeInProgress(true))
-    const res = await postAPI.like(postId)
-    dispatch(setLike(postId, res.data.like))
-    dispatch(likeInProgress(false))
-}
+
+    }
 
 export const dislike = (postId: number):
-ThunkType => async (dispatch) => {
+    ThunkType => async (dispatch, getState: GetStateType) => {
+        let state = getState()
+        if (!state.profile.likeInProgress) {
+            dispatch(likeInProgress(true))
+            const res = await postAPI.dislike(postId)
+            dispatch(setDislike(postId))
+            dispatch(likeInProgress(false))
+        }
 
-    dispatch(likeInProgress(true))
-    const res = await postAPI.dislike(postId)
-
-    dispatch(setDislike(res.data.removedLike))
-    dispatch(likeInProgress(false))
-}
+    }
 
 //REDUCER
-const profileReducer = (state: ProfileStateType = initialState, action: ActionsTypes): 
-ProfileStateType => {
+const profileReducer = (state: ProfileStateType = initialState, action: ActionsTypes):
+    ProfileStateType => {
 
     let result = state
     switch (action.type) {
@@ -162,16 +172,16 @@ ProfileStateType => {
         case FOLLOW:
             if (state.visitedUser) {
                 result = { ...state }
-                result.visitedUser = 
-                followUnfollow([state.visitedUser], action.userId, action.authUser, true)[0]
+                result.visitedUser =
+                    followUnfollow([state.visitedUser], action.userId, action.authUser, true)[0]
             }
             return result
 
         case UNFOLLOW:
             if (state.visitedUser) {
                 result = { ...state }
-                result.visitedUser = 
-                followUnfollow([state.visitedUser], action.userId, action.authUser, false)[0]
+                result.visitedUser =
+                    followUnfollow([state.visitedUser], action.userId, action.authUser, false)[0]
             }
             return result
 
@@ -201,14 +211,14 @@ ProfileStateType => {
             //     result.status = action.status
             // }
 
-            if (state.visitedUser) {  
-                debugger
+            if (state.visitedUser) {
+
                 if (state.visitedUser.id !== action.user.id) {
-                    
+
                     result = { ...state }
                     result.visitedUser = { ...action.user }
                 } else {
-                    
+
                     return state
                 }
             } else {
@@ -226,44 +236,38 @@ ProfileStateType => {
             return result
 
         case SET_POSTS:
-            debugger
+
             // state.posts = action.posts.reverse(post => ({ ...post }))
             state.posts = action.posts.reverse()
             return state
 
 
         //TODO 
-        // case LIKE:
-        //     result = { ...state }
-        //     result.posts = state.posts.map(post => {
-        //         if (post.id === action.postId) {
-        //             post.isAuthLikes = true
-        //             post.likes = [...post.likes]
-        //             post.likes.push(action.like)
-        //             post.likesCount = post.likes.length
-        //         }
+        case LIKE:
+            result = { ...state }
+            result.posts = state.posts.map(post => {
+                if (post.id === action.postId) {
+                    post.isAuthLikes = true
+                    post.likesCount++
+                }
+                return { ...post }
+            })
+            return result
 
-        //         return post
+        case DISLIKE:
+            result = { ...state }
+            result.posts = state.posts.map(post => {
+                if (post.id === action.postId) {
+                    post.isAuthLikes = false
+                    post.likesCount > 0 && post.likesCount--
+                }
+                return { ...post }
+            })
+            return result
 
-        //     })
-        //     return result
-
-        // case DISLIKE:
-        //     result = { ...state }
-        //     result.posts = state.posts.map(post => {
-        //         if (post.id === action.postId) {
-        //             post.isAuthLikes = true
-        //             post.likes = [...post.likes]
-        //             post.likes.push(action.like)
-        //             post.likesCount = post.likes.length
-        //         }
-        //         return post
-        //     })
-        //     return result
-
-        // case LIKE_IN_PROGRESS:
-        //     state.likeInProgress = action.bool
-        //     return { ...state }
+        case LIKE_IN_PROGRESS:
+            state.likeInProgress = action.bool
+            return { ...state }
 
         default:
             return result

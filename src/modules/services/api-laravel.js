@@ -162,7 +162,7 @@ export const profileAPI = {
 export const postAPI = {
 
     async sendPost(userId, profileId, body, image) {
-        let event = await eventsAPI.event()
+        // let event = await eventsAPI.event()
         //
         return instance.post('api/post', {
             body,
@@ -225,7 +225,7 @@ export const eventsAPI = {
                         wsPort: 6001,
                         authorizer: (channel, options) => {
                             console.log(options)
-                            debugger
+                            
                             return {
                                 authorize: (socketId, callback) => {
                                     axios({

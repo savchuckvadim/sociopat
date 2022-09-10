@@ -30,7 +30,6 @@ export type PostType = {
     id: number
     img: string | null
     isAuthLikes: boolean
-    likes: Array<LikeType>
     likesCount: number
     profile_id: number
 }
