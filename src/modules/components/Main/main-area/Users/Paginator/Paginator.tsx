@@ -47,7 +47,6 @@ const Paginator: React.FC<PropsType> = ({ totalItemsCount, pageSize, currentPage
                         key={`user-page-${p}`}
                         onClick={() => {
                             onPageChanged(p, portionNumber)
-
                         }}
 
                         className={spanClassName}>

@@ -3,11 +3,7 @@ import { logout } from "../../redux/reducers/auth/auth-reducer.ts"
 import Logout from "./Logout"
 
 
-const mapStateToProps = (state) => {
-
-    return {}
-}
- const LogoutContainer = connect(mapStateToProps, {
+const LogoutContainer = connect(null, {
     logout: logout
 })(Logout)
 

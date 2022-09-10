@@ -16,7 +16,6 @@ const mapStateToProps = (state) => {
         footerInstruction: login.footerInstruction,
         footerLink: login.footerLink,
         error: state.loginRegistration.error
-
     }
 }
 

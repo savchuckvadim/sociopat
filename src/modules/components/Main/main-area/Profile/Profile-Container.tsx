@@ -22,8 +22,6 @@ const mapStateToProps = (state: RootStateType) => {
     }
 }
 
-
-
 const withRouter = (WrappedComponent: any) => (props: MapStatePropsType) => {
     const params = useParams()
 
@@ -32,6 +30,7 @@ const withRouter = (WrappedComponent: any) => (props: MapStatePropsType) => {
         />
     )
 }
+
 type ParamsType = {
     "*": string
     userId: string | undefined
@@ -58,12 +57,6 @@ type StateType = {
 
 class ProfileContainer extends React.Component<PropsType, StateType> {
 
-    // constructor(props: any) {
-    //     super(props)
-    //     this.state = { userId: undefined, isAuthUser: false }
-
-    // }
-
     getUserId = ():number => {
         if (this.props.params.userId !== undefined) {
             return Number(this.props.params.userId)
@@ -81,21 +74,20 @@ class ProfileContainer extends React.Component<PropsType, StateType> {
             }
 
     }
+
     componentDidMount() {
-      
         window.scrollTo(0, 0)
         let userId = this.getUserId()
         this.getProfileData(userId)
 
     }
     componentDidUpdate() {
-      
       let userId = this.getUserId()
         this.getProfileData(userId)
 
     }
-    render() {
-        
+
+    render() {    
         if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth && this.props.auth.id}`) return <Navigate replace to={'../profile'} />
         if (!this.props.visitedUser) return <LightLoadingPageContainer />
         return (
@@ -114,15 +106,12 @@ class ProfileContainer extends React.Component<PropsType, StateType> {
 export default compose(
 
     connect(mapStateToProps, {
-
         // getAboutMe,
         updateStatus,
         getDataForLoadProfilePage,
         // loadPhoto,                //TODO
         like,
         dislike
-
-
     }),
     withRouter,
 

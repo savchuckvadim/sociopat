@@ -13,7 +13,6 @@ const mapStateToProps = (state) => {
         privacy: registration.privacy,
         footerInstruction: registration.footerInstruction,
         footerLink: registration.footerLink,
-      
     }
 }
 
