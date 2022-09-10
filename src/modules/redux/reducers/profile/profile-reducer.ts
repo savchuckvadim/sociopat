@@ -2,6 +2,7 @@ import { ThunkAction } from "redux-thunk"
 import { postAPI, profileAPI, usersAPI } from "../../../services/api-laravel"
 import { LikeType, PostType, UserType } from "../../../types/types"
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow"
+import { likeDislikeFollow } from "../../../utils/for-rdeucers/like-dislike"
 import { AppDispatchType, RootStateType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"
 import { FollowType, UnfollowType } from "../users/users-reducer"
@@ -56,7 +57,7 @@ type SetProfilePageDataActionCreatorType = {
 
 }
 const setLike = (postId: number): SetLikeType => ({ type: LIKE, postId }) //TODO with API 
-type SetLikeType = {
+export type SetLikeType = {
     type: typeof LIKE,
     postId: number
 
@@ -64,10 +65,10 @@ type SetLikeType = {
 }
 
 const setDislike = (postId: number): SetDislikeType => ({ type: DISLIKE, postId })  //TODO with API     
-type SetDislikeType = { type: typeof DISLIKE, postId: number }
+export type SetDislikeType = { type: typeof DISLIKE, postId: number }
 
 const likeInProgress = (bool: boolean): LikeInProgressType => ({ type: LIKE_IN_PROGRESS, bool }) //TODO with API  
-type LikeInProgressType = { type: typeof LIKE_IN_PROGRESS, bool: boolean }
+export type LikeInProgressType = { type: typeof LIKE_IN_PROGRESS, bool: boolean }
 
 type ActionsTypes = AddPostActionCreatorType | SetPostsActionCreatorType |
     SetStatusActionCreatorType | SetProfilePageDataActionCreatorType |
@@ -136,29 +137,18 @@ export const sendPost = (userId: number, profileId: number, body: string, img: s
     }
 
 
-                                            //TODO like-dislike flow , Rename dislike to likeout
+//TODO like-dislike flow , Rename dislike to likeout
 export const like = (postId: number):
     ThunkType => async (dispatch, getState: GetStateType) => {
         let state = getState()
-        if (!state.profile.likeInProgress) {
-            dispatch(likeInProgress(true))
-            const res = await postAPI.like(postId)
-            dispatch(setLike(postId))
-            dispatch(likeInProgress(false))
-        }
-
+        likeDislikeFollow(true, dispatch, state, postId, likeInProgress, setLike, setDislike)
 
     }
 
 export const dislike = (postId: number):
     ThunkType => async (dispatch, getState: GetStateType) => {
         let state = getState()
-        if (!state.profile.likeInProgress) {
-            dispatch(likeInProgress(true))
-            const res = await postAPI.dislike(postId)
-            dispatch(setDislike(postId))
-            dispatch(likeInProgress(false))
-        }
+        likeDislikeFollow(false, dispatch, state, postId, likeInProgress, setLike, setDislike)
 
     }
 

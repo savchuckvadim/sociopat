@@ -44,12 +44,12 @@ export type RootStateType = ReturnType<RootReducerType>
 export type AppDispatchType = typeof store.dispatch
 
 //@ts-ignore
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 
-const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
+// const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
 
-  applyMiddleware(ThunkMiddleware)
-))
+//   applyMiddleware(ThunkMiddleware)
+// ))
 
-// let store = createStore(rootReducer, applyMiddleware(ThunkMiddleware))
+let store = createStore(rootReducer, applyMiddleware(ThunkMiddleware))
 export default store
