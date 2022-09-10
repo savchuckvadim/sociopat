@@ -54,8 +54,8 @@ axios
         },
       })
 
-      echo.private(`App.User.${data.id}`).listen(".new-message-event", (message) => {
-        console.log(message)
-      })
+      // echo.private(`App.User.${data.id}`).listen(".new-message-event", (message) => {
+      //   console.log(message)
+      // })
     })
   })

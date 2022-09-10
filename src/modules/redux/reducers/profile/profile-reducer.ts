@@ -96,9 +96,11 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
     }
 
     if (postsRes.data) {
-        let posts = postsRes.data
-
-        dispatch(setPosts(posts))
+        if(postsRes.data.resultCode === 1){
+            let posts = postsRes.data.posts   
+            dispatch(setPosts(posts))
+        }
+        
     }
     dispatch(inProgress(false))
     dispatch(setProfilePageData(user))
@@ -131,7 +133,6 @@ export const updateStatus = (aboutMe: string):
 
 export const sendPost = (userId: number, profileId: number, body: string, img: string):
     ThunkType => async (dispatch, getState) => {
-
         const res = await postAPI.sendPost(userId, profileId, body, img)
         dispatch(addPostActionCreator(res.data.data))
     }
@@ -218,15 +219,20 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionsT
             return result
 
         case ADD_POST:
+            debugger
             result = { ...state }
             let posts = [...state.posts]
             let lastPost = action.value
             posts.unshift(lastPost)
             result.posts = posts
+            if(state.visitedUser !== null){
+                result.visitedUser = {...state.visitedUser}
+                result.visitedUser.postsCount++
+            }
+            
             return result
 
         case SET_POSTS:
-
             // state.posts = action.posts.reverse(post => ({ ...post }))
             state.posts = action.posts.reverse()
             return state

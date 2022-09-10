@@ -1,15 +1,15 @@
 
 
 export type UserType = {
-    id: number | null
+    id: number | undefined
     email: string
     name: string
     followed: 0 | 1
     followers: Array<UserType>
     followeds: Array<UserType>
     profile: ProfileType
-    postsCount: number | null
-
+    postsCount: number 
+    isAuthUser:boolean
 }
 export type ProfileType = {
     about_me: string | null

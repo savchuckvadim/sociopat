@@ -61,17 +61,14 @@ const Post = (props) => {
                                 props.like(props.id)
                             }else{
                                 props.dislike(props.id)
-                            }
-                           
-                        }
-                        
+                            }  
+                        }      
                     }}
                     >
                         <img 
                         className={style.action} 
                         src={dislike} 
-                        alt="dislike" 
-                        
+                        alt="dislike"      
                         />
                         <p>{likesCount}</p>
                     </button>
@@ -81,10 +78,7 @@ const Post = (props) => {
 
                 </div>
                 <div className={style.views}>
-                   
                     <img className={style.icon} src={eye} alt="eye" />
-                 
-                    
                     <p className={style.quantity}>420</p>
                 </div>
             </div>

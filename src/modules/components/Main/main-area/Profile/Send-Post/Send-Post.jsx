@@ -10,6 +10,11 @@ export const SendPost = (props) => {
        
         // props.send(values.sendPost)
         props.sendPost(props.user.id, props.visitedUser.id, values.sendPost, null)
+        
+        console.log(props.user.id)
+        console.log(props.visitedUser.id)
+        console.log(values.sendPost)
+        debugger
         dispatch(reset('sendPost'))
        
     }
@@ -23,7 +28,6 @@ let SendPostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={style.frame}>
            
-
             <Field
                 component={InputSendPost}
                 name='sendPost'

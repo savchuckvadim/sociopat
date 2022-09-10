@@ -15,8 +15,6 @@ const ProfileInformation = (props) => {
                 <img className={style.hero} src={hero} alt='hero' />
             </div>
 
-
-
             <div className={style.information}>
                 <div className={style.info__wrapper}>
                     <div className={style.about__wrapper}>

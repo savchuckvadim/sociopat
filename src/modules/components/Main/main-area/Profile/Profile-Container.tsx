@@ -53,17 +53,17 @@ type MapStatePropsType = {
 type PropsType = MapStatePropsType & ParamsType
 
 type StateType = {
-    userId: number | undefined
+    userId: number 
     isAuthUser: boolean
 }
 
 class ProfileContainer extends React.Component<PropsType, StateType> {
 
-    constructor(props: any) {
-        super(props)
-        this.state = { userId: undefined, isAuthUser: false }
+    // constructor(props: any) {
+    //     super(props)
+    //     this.state = { userId: undefined, isAuthUser: false }
 
-    }
+    // }
 
     getUserId = ():number => {
         if (this.props.params.userId !== undefined) {
@@ -83,13 +83,14 @@ class ProfileContainer extends React.Component<PropsType, StateType> {
 
     }
     componentDidMount() {
+        debugger
         window.scrollTo(0, 0)
         let userId = this.getUserId()
         this.getProfileData(userId)
 
     }
     componentDidUpdate() {
-
+        debugger
       let userId = this.getUserId()
         this.getProfileData(userId)
 
@@ -102,7 +103,7 @@ class ProfileContainer extends React.Component<PropsType, StateType> {
 
             <Profile {...this.props}
                 // profilePhoto={this.props.profile.photos.small}
-                isCurrentUser={this.state.isAuthUser}
+                isCurrentUser={this.props.visitedUser.isAuthUser}
             />
         )
     }
