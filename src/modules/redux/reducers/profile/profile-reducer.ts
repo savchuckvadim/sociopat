@@ -20,7 +20,7 @@ const DISLIKE = 'DISLIKE'
 
 
 let initialState = {
-    visitedUser: null as UserType | null,
+    visitedUser: null as UserType,
     //avatar: string | null
     //aboutMe: string |null
     // status: '',
@@ -204,22 +204,22 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionsT
 
             if (state.visitedUser) {
 
-                if (state.visitedUser.id !== action.user.id) {
+                if (state.visitedUser.id !== (action.user && action.user.id)) {
 
                     result = { ...state }
-                    result.visitedUser = { ...action.user }
+                    result.visitedUser = action.user && { ...action.user }
                 } else {
 
                     return state
                 }
             } else {
                 result = { ...state }
-                result.visitedUser = { ...action.user }
+                result.visitedUser = action.user && { ...action.user }
             }
             return result
 
         case ADD_POST:
-            debugger
+            
             result = { ...state }
             let posts = [...state.posts]
             let lastPost = action.value

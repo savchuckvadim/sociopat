@@ -2,7 +2,6 @@ import React from "react"
 import { connect } from "react-redux"
 import { Navigate, useParams } from "react-router-dom"
 import { compose } from "redux"
-
 import { dislike, getDataForLoadProfilePage, like, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
 import { RootStateType } from "../../../../redux/store"
 import { PostType, UserType } from "../../../../types/types"
@@ -70,7 +69,7 @@ class ProfileContainer extends React.Component<PropsType, StateType> {
             return Number(this.props.params.userId)
         }
         else {
-            return Number(this.props.auth.id)
+            return Number(this.props.auth && this.props.auth.id)
         }
 
     }
@@ -83,21 +82,21 @@ class ProfileContainer extends React.Component<PropsType, StateType> {
 
     }
     componentDidMount() {
-        debugger
+      
         window.scrollTo(0, 0)
         let userId = this.getUserId()
         this.getProfileData(userId)
 
     }
     componentDidUpdate() {
-        debugger
+      
       let userId = this.getUserId()
         this.getProfileData(userId)
 
     }
     render() {
         
-        if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth.id}`) return <Navigate replace to={'../profile'} />
+        if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth && this.props.auth.id}`) return <Navigate replace to={'../profile'} />
         if (!this.props.visitedUser) return <LightLoadingPageContainer />
         return (
 

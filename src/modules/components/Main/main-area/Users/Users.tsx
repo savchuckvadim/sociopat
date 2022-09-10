@@ -1,4 +1,3 @@
-
 import React from "react"
 import { useEffect } from "react"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container"
@@ -8,27 +7,28 @@ import UserCard from "./User-Card"
 import style from './Users.module.css'
 import { UserType } from "../../../../types/types"
 import { SetCurrentPageType } from "../../../../redux/reducers/paginator/paginator-reducer"
+import {  UsersPropsType } from "./Users-Container"
+// PropsFromRedux
+
+// export interface PropsType  {
+//     authUser: UserType
+//     users: Array<UserType>
+//     pageSize: number
+//     totalItemsCount: number
+//     currentPage: number
+//     portionSize: number
+//     currentPortion: number
+//     isFetching: boolean
+//     followingInProgress: Array<number>
+//     //functions
+//     requestUsers: (currentPage: number, pageSize: number) => void
+//     followThunk: (userId: number, authUser: UserType) => void
+//     unFollowThunk: (userId: number, authUser: UserType) => void
+//     setCurrentPage: (page: number, portion: number) => SetCurrentPageType
+// }
 
 
-export type PropsType = {
-    authUser: UserType
-    users: Array<UserType>
-    pageSize: number
-    totalItemsCount: number
-    currentPage: number
-    portionSize: number
-    currentPortion: number
-    isFetching: boolean
-    followingInProgress: Array<number>
-    //functions
-    requestUsers: (currentPage: number, pageSize: number) => void
-    followThunk: (userId: number, authUser: UserType) => void
-    unFollowThunk: (userId: number, authUser: UserType) => void
-    setCurrentPage: (page: number, portion: number) => SetCurrentPageType
-}
-
-
-const Users: React.FC<PropsType> = ({
+const Users: React.FC<UsersPropsType> = ({
     authUser,
     users,
     pageSize,
@@ -49,8 +49,8 @@ const Users: React.FC<PropsType> = ({
         requestUsers(currentPage, pageSize)
     }, [])
 
-
-
+console.log(users)
+debugger
     let loader = <LightLoadingPageContainer />
     let usersPage =
         <div className={style.wrapper}>
@@ -59,7 +59,7 @@ const Users: React.FC<PropsType> = ({
 
             </div>
             <div className={style.container}>
-                {users.map(user =>
+                {users && users.map(user => user &&
                     <UserCard
                         key={`user-card-${user.id}`}
                         user={user}

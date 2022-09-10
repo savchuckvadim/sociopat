@@ -7,7 +7,7 @@ import { UserType } from "../../../../types/types"
 import Users from "./Users"
 
 interface MapStateToPropsType {
-    authUser: UserType | null
+    authUser: UserType 
     users: Array<UserType>
     pageSize: number
     isFetching: boolean
@@ -39,8 +39,6 @@ const mapStateToProps = (state: RootStateType) => {
         currentPage: state.paginator.currentPage,
         portionSize: state.paginator.portionSize,
         currentPortion: state.paginator.currentPortion,
-
-
     }
 }
 
@@ -53,4 +51,4 @@ const connector = connect(mapStateToProps, {
 })
 export type PropsFromRedux = typeof connector
 
-export default (Users)
+export default connector(Users)
