@@ -12,7 +12,6 @@ interface MapStateToPropsType {
     pageSize: number
     isFetching: boolean
     followingInProgress: Array<number>
-
     totalItemsCount: number
     currentPage: number
     portionSize: number

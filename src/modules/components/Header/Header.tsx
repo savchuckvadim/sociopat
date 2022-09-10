@@ -1,20 +1,17 @@
 import style from './Header.module.css'
 import logo from '../../../assets/imgs/logo.svg'
 import burger from '../../../assets/imgs/header/menu-burger.svg'
-
-
 import LogoutContainer from './Logout-Container'
 import Avatar from '../Elements/Avatar/Avatar'
-const Header = (props) => {
-   
+import { HeaderPropsType } from './Header-Container'
+
+
+const Header = (props: HeaderPropsType) => {
+
     let avatar = null
-    let name = null
+    props.user && (avatar = props.user.profile.avatar)
 
-    if (props.user) {
 
-        avatar = props.user.profile.avatar
-        name = props.user.name
-    }
 
     return (
         <header className={style.header}>
@@ -31,28 +28,15 @@ const Header = (props) => {
                 <div className={style.currentUser}>
                     <div className={style.name}>
                         <LogoutContainer />
-
                     </div>
-
-                    {/* <div className={style.avatar}> */}
-                        {/* <Icon img={ava} /> */}
-                         
-                          <Avatar
+                    <Avatar
                         size={40}
-                        img={props.user.profile.avatar}
-                        // name={name}
+                        img={avatar}
                         link={'profile'}
                         user={props.user}
-                        />
-                        
-                       
-                    {/* </div> */}
-
-
+                    />
                 </div>
             </div>
-
-
         </header>
     )
 }
