@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container"
 import Title from "../../../Elements/Title/Title"
 import Paginator from "./Paginator/Paginator"
-import UserCard from "./User-Card"
+import UserCard from "./User-Card/User-Card"
 import style from './Users.module.css'
 import { UserType } from "../../../../types/types"
 import { SetCurrentPageType } from "../../../../redux/reducers/paginator/paginator-reducer"
@@ -46,7 +46,6 @@ debugger
                     <UserCard
                         key={`user-card-${user.id}`}
                         user={user}
-                        name={user.name}
                         followThunk={followThunk}
                         unFollowThunk={unFollowThunk}
                         followingInProgress={followingInProgress}
