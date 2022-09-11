@@ -1,7 +1,8 @@
 import axios from "axios"
 import Echo from "laravel-echo"
+import { UserType } from "../types/types"
 
-
+//.then(res:AxiosResponse<any>) => ...
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'http://localhost:8000/',
@@ -14,12 +15,23 @@ const instance = axios.create({
     },
 
 })
+
+export enum ResultCodesEnum {
+    Error = 0,
+    Success = 1
+}
 let token: string
+type GetAuthUserType = {
+    resultCode: number
+    authUser: UserType
+    message: string
+}
 
 export const authAPI = {
 
     async initial() {
         let res = await instance.get("/sanctum/csrf-cookie")
+
         return res
     },
 
@@ -50,7 +62,9 @@ export const authAPI = {
     },
     async getAuthUser() {
         try {
-            let response = await instance.get("api/user/auth")
+            let response = await instance.get<GetAuthUserType>("api/user/auth")
+            console.log(response)
+            debugger
             // let tokensData = await instance.post("/api/sanctum/token", { /////////// Generate token for websocket
             //     email: "savchuckvadim@gmail.com",
             //     password: "Cfdxer131!",
@@ -64,20 +78,26 @@ export const authAPI = {
         }
 
     },
+
     logout() {
         let response = instance.post('logout').then(res => console.log(res))
         return response
     },
 
-    updatePassword(payload) {
-        return instance.put("/user/password", payload)
-    },
-    sendVerification(payload) {
-        return instance.post("/email/verification-notification", payload)
-    },
-    updateUser(payload) {
-        return instance.put("/user/profile-information", payload)
-    },
+    //TODO Verification
+
+    /*
+        updatePassword(payload) {
+            return instance.put("/user/password", payload)
+        },
+        sendVerification(payload) {
+            return instance.post("/email/verification-notification", payload)
+        },
+        updateUser(payload) {
+            return instance.put("/user/profile-information", payload)
+        },
+    
+        */
     // getUsers() {
     //     let result = instance.get(`user`).then(res => res.data).then(res => console.log(res))
 
@@ -172,16 +192,16 @@ export const postAPI = {
         })
     },
 
-    getPosts(profileId:number) {
+    getPosts(profileId: number) {
         return instance.get(`api/post/${profileId}`)
     },
 
-    like(postId:number) {
+    like(postId: number) {
         return instance.post('api/like', {
             postId
         })
     },
-    dislike(postId:number) {
+    dislike(postId: number) {
         return instance.delete(`api/like/${postId}`)
     }
 
@@ -226,12 +246,12 @@ export const eventsAPI = {
                 //
                 wsHost: '127.0.0.1',
                 wsPort: 6001,
-// @ts-ignore
+                // @ts-ignore
                 authorizer: (channel, options) => {
                     console.log(options)
 
                     return {
-// @ts-ignore
+                        // @ts-ignore
                         authorize: (socketId, callback) => {
                             axios({
                                 method: "POST",
@@ -261,7 +281,7 @@ export const eventsAPI = {
 
 
             echo.private(`send-post`)
-// @ts-ignore
+                // @ts-ignore
                 .listen('SendPost', (e) => {
                     alert(e.data)
                 })

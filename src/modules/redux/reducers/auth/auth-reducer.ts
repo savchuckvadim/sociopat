@@ -1,5 +1,5 @@
 import { stopSubmit } from "redux-form"
-import { authAPI } from "../../../services/api-laravel"
+import { authAPI, ResultCodesEnum } from "../../../services/api-laravel"
 import { UserType } from "../../../types/types"
 import { AppDispatchType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"
@@ -40,11 +40,14 @@ export const getAuth = () => async (dispatch: AppDispatchType) => {
 
     let response = await authAPI.getAuthUser()
     let authUser = null
-    if (response.resultCode) {
-        authUser = response.authUser
-    } else {
-        console.log(response.message)
-    }
+    if (response){
+        if (response.resultCode === ResultCodesEnum.Success) {
+            authUser = response.authUser && response.authUser
+        } else {
+            console.log(response.message)
+        }
+
+    } 
 
     if (authUser) {
         dispatch(setAuthUserData(authUser, true))
