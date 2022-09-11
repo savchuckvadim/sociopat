@@ -8,7 +8,7 @@ import { PostType, UserType } from "../../../../types/types"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container"
 import Profile from "./Profile"
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 
     return {
         isAuth: state.auth.isAuth,
@@ -40,24 +40,28 @@ type MapStatePropsType = {
     auth: UserType
     visitedUser: UserType
     posts: Array<PostType>
-    likeInProgress: Array<number>
-    params: ParamsType
+    likeInProgress: boolean
+
+
+}
+type MapDispatchPropsType = {
+   
     updateStatus: (aboutMe: string) => void
     getDataForLoadProfilePage: (userId: number) => void
     like: (postId: number) => void
     dislike: (postId: number) => void
 }
-
-type PropsType = MapStatePropsType & ParamsType
-
-type StateType = {
-    userId: number 
-    isAuthUser: boolean
+type ParamsForPropsType = {
+    params:ParamsType
 }
 
-class ProfileContainer extends React.Component<PropsType, StateType> {
+type PropsType = MapStatePropsType & MapDispatchPropsType & ParamsForPropsType
 
-    getUserId = ():number => {
+
+
+class ProfileContainer extends React.Component<PropsType> {
+
+    getUserId = (): number => {
         if (this.props.params.userId !== undefined) {
             return Number(this.props.params.userId)
         }
@@ -67,11 +71,11 @@ class ProfileContainer extends React.Component<PropsType, StateType> {
 
     }
 
-    getProfileData = (userId:number) => {
-        
-            if (!this.props.visitedUser) {
-                this.props.getDataForLoadProfilePage(userId)
-            }
+    getProfileData = (userId: number) => {
+
+        if (!this.props.visitedUser) {
+            this.props.getDataForLoadProfilePage(userId)
+        }
 
     }
 
@@ -82,12 +86,12 @@ class ProfileContainer extends React.Component<PropsType, StateType> {
 
     }
     componentDidUpdate() {
-      let userId = this.getUserId()
+        let userId = this.getUserId()
         this.getProfileData(userId)
 
     }
 
-    render() {    
+    render() {
         if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth && this.props.auth.id}`) return <Navigate replace to={'../profile'} />
         if (!this.props.visitedUser) return <LightLoadingPageContainer />
         return (
@@ -105,7 +109,7 @@ class ProfileContainer extends React.Component<PropsType, StateType> {
 
 export default compose(
 
-    connect(mapStateToProps, {
+    connect<MapStatePropsType, MapDispatchPropsType, ParamsForPropsType, RootStateType>(mapStateToProps, {
         // getAboutMe,
         updateStatus,
         getDataForLoadProfilePage,

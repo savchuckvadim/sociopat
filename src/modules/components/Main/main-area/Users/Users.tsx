@@ -10,23 +10,6 @@ import { SetCurrentPageType } from "../../../../redux/reducers/paginator/paginat
 import {  UsersPropsType } from "./Users-Container"
 // PropsFromRedux
 
-// export interface PropsType  {
-//     authUser: UserType
-//     users: Array<UserType>
-//     pageSize: number
-//     totalItemsCount: number
-//     currentPage: number
-//     portionSize: number
-//     currentPortion: number
-//     isFetching: boolean
-//     followingInProgress: Array<number>
-//     //functions
-//     requestUsers: (currentPage: number, pageSize: number) => void
-//     followThunk: (userId: number, authUser: UserType) => void
-//     unFollowThunk: (userId: number, authUser: UserType) => void
-//     setCurrentPage: (page: number, portion: number) => SetCurrentPageType
-// }
-
 
 const Users: React.FC<UsersPropsType> = ({
     authUser,

@@ -1,3 +1,4 @@
+import React from "react"
 import { connect } from "react-redux"
 import { setCurrentPage, SetCurrentPageType } from "../../../../redux/reducers/paginator/paginator-reducer"
 import { followThunk, requestUsers, unFollowThunk } from "../../../../redux/reducers/users/users-reducer"
@@ -6,8 +7,8 @@ import { AppDispatchType, RootStateType } from "../../../../redux/store"
 import { UserType } from "../../../../types/types"
 import Users from "./Users"
 
-interface MapStateToPropsType {
-    authUser: UserType 
+type MapStateToPropsType = {
+    authUser: UserType
     users: Array<UserType>
     pageSize: number
     isFetching: boolean
@@ -17,7 +18,7 @@ interface MapStateToPropsType {
     portionSize: number
     currentPortion: number
 }
-interface MapDispatchToPropsType {
+type MapDispatchToPropsType = {
     requestUsers: (currentPage: number, pageSize: number) => void
     followThunk: (userId: number, authUser: UserType) => void,
     unFollowThunk: (userId: number, authUser: UserType) => void
