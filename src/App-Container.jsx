@@ -33,9 +33,9 @@ const AppContainer = (props) => {
     useEffect(() => {
         if (!props.isAuth) {
             props.initialize()
-            console.log('initialize')
+            ('initialize')
         } else {
-            console.log('allready initialized')
+            ('allready initialized')
         }
 
 
@@ -43,13 +43,13 @@ const AppContainer = (props) => {
     }, [])
 
     //     const { authenticated, user, signIn } = useSanctum()
-    // console.log(authenticated)
+    // (authenticated)
     let app = <LightLoadingPageContainer />
 
 
     if (!props.isAuth && !props.preloader) {
-        console.log('isAuth')
-        console.log(props.isAuth)
+        ('isAuth')
+        (props.isAuth)
 
         app = <StartPage />
 

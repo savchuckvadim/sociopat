@@ -45,14 +45,14 @@ type MapStatePropsType = {
 
 }
 type MapDispatchPropsType = {
-   
+
     updateStatus: (aboutMe: string) => void
     getDataForLoadProfilePage: (userId: number) => void
     like: (postId: number) => void
     dislike: (postId: number) => void
 }
 type ParamsForPropsType = {
-    params:ParamsType
+    params: ParamsType
 }
 
 type PropsType = MapStatePropsType & MapDispatchPropsType & ParamsForPropsType
@@ -61,31 +61,35 @@ type PropsType = MapStatePropsType & MapDispatchPropsType & ParamsForPropsType
 
 class ProfileContainer extends React.Component<PropsType> {
 
-    getUserId = (): number => {
+    getUserId = (): number | undefined => {
+        
         if (this.props.params.userId !== undefined) {
             return Number(this.props.params.userId)
         }
         else {
-            return Number(this.props.auth && this.props.auth.id)
-        }
+            if (this.props.auth) {
+                return Number(this.props.auth.id)
+            }
 
+        }
+        
+        //TODO :
+        return undefined
     }
 
-    getProfileData = (userId: number) => {
-
-        if (!this.props.visitedUser) {
-            this.props.getDataForLoadProfilePage(userId)
-        }
-
+    getProfileData = (userId: number | undefined) => {
+        userId !== undefined && this.props.getDataForLoadProfilePage(userId)
     }
 
     componentDidMount() {
+        
         window.scrollTo(0, 0)
         let userId = this.getUserId()
         this.getProfileData(userId)
 
     }
     componentDidUpdate() {
+        
         let userId = this.getUserId()
         this.getProfileData(userId)
 

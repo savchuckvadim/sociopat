@@ -11,10 +11,10 @@ export const SendPost = (props) => {
         // props.send(values.sendPost)
         props.sendPost(props.user.id, props.visitedUser.id, values.sendPost, null)
         
-        console.log(props.user.id)
-        console.log(props.visitedUser.id)
-        console.log(values.sendPost)
-        debugger
+        (props.user.id)
+        (props.visitedUser.id)
+        (values.sendPost)
+        
         dispatch(reset('sendPost'))
        
     }

@@ -83,28 +83,34 @@ type ActionsTypes = AddPostActionCreatorType | SetPostsActionCreatorType |
 type GetStateType = () => RootStateType
 
 type ThunkType = ThunkAction<Promise<void>, RootStateType, unknown, ActionsTypes>
-export const getDataForLoadProfilePage = (userId: number) => async (dispatch: AppDispatchType) => {
-    dispatch(inProgress(true)) //from inprogress refucer
-    const userRes = await usersAPI.getUser(userId)
-    const postsRes = await postAPI.getPosts(userId) //get posts from backend and set to state
-    let user = null
-    if (userRes) {
-        if (userRes.resultCode === ResultCodesEnum.Success) {
-            user = userRes.user
-        } else {
-            alert(userRes.message)
-        }
-    }
 
-    if (postsRes.data) {
-        if (postsRes.data.resultCode === ResultCodesEnum.Success) {
-            let posts = postsRes.data.posts
-            dispatch(setPosts(posts))
+export const getDataForLoadProfilePage = (userId: number) => async (dispatch: AppDispatchType, getState: GetStateType) => {
+    const state = getState()
+    if ((state.profile.visitedUser && state.profile.visitedUser.id !== userId) || !state.profile.visitedUser) {
+        dispatch(inProgress(true)) //from inprogress refucer
+        const userRes = await usersAPI.getUser(userId)
+        const postsRes = await postAPI.getPosts(userId) //get posts from backend and set to state
+        let user = null
+        if (userRes) {
+            
+            if (userRes.resultCode === ResultCodesEnum.Success) {
+                user = userRes.user
+            } else {
+                alert(userRes.message)
+            }
         }
 
+        if (postsRes.data) {
+            if (postsRes.data.resultCode === ResultCodesEnum.Success) {
+                let posts = postsRes.data.posts
+                dispatch(setPosts(posts))
+            }
+
+        }
+        dispatch(inProgress(false))
+        dispatch(setProfilePageData(user))
     }
-    dispatch(inProgress(false))
-    dispatch(setProfilePageData(user))
+
 
 
 }
@@ -205,7 +211,10 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionsT
 
             if (state.visitedUser) {
                 if (action.user) {
+                    
                     if (state.visitedUser.id !== action.user.id) {
+                        (state.visitedUser.id)
+                        (action.user.id)
                         result = { ...state }
                         result.visitedUser = action.user
                     } else {

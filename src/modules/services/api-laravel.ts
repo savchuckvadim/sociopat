@@ -76,7 +76,7 @@ export const authAPI = {
     },
 
     logout() {
-        let res = instance.post('logout').then(res => console.log(res))
+        let res = instance.post('logout').then(res => (res))
         return res
     },
 
@@ -95,13 +95,13 @@ export const authAPI = {
     
         */
     // getUsers() {
-    //     let result = instance.get(`user`).then(res => res.data).then(res => console.log(res))
+    //     let result = instance.get(`user`).then(res => res.data).then(res => (res))
 
     //     return result
     // },
     // createToken() {
 
-    //     let result = instance.post(`token/create`).then(res => res.data).then(res => console.log(res))
+    //     let result = instance.post(`token/create`).then(res => res.data).then(res => (res))
     //     return result
     // },
 
@@ -212,7 +212,7 @@ export const eventsAPI = {
         //     password: "Cfdxer131!",
         // })
         // .then(({ data }) => {
-        //     debugger
+        //     
         //     let token = data
         //
         axios({
@@ -223,7 +223,7 @@ export const eventsAPI = {
             },
         }).then(({ data }) => {
 
-            console.log(data)
+            (data)
             let echo = new Echo({
 
                 broadcaster: 'pusher',
@@ -237,7 +237,7 @@ export const eventsAPI = {
                 wsPort: 6001,
                 // @ts-ignore
                 authorizer: (channel, options) => {
-                    console.log(options)
+                    (options)
 
                     return {
                         // @ts-ignore
@@ -255,11 +255,11 @@ export const eventsAPI = {
                                 },
                             })
                                 .then((response) => {
-                                    console.log(response)
+                                    (response)
                                     callback(false, response.data)
                                 })
                                 .catch((error) => {
-                                    console.log(error)
+                                    (error)
                                     callback(true, error)
                                 })
                         }

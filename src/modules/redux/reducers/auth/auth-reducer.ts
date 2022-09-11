@@ -44,7 +44,7 @@ export const getAuth = () => async (dispatch: AppDispatchType) => {
         if (response.resultCode === ResultCodesEnum.Success) {
             authUser = response.authUser && response.authUser
         } else {
-            console.log(response.message)
+            (response.message)
         }
 
     } 
