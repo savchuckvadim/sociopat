@@ -1,6 +1,7 @@
 import axios from "axios"
 import Echo from "laravel-echo"
 import { UserType } from "../types/types"
+import { GetAuthUserType, GetUsersType, GetUserType } from "./api-laravel-types"
 
 //.then(res:AxiosResponse<any>) => ...
 const instance = axios.create({
@@ -21,17 +22,13 @@ export enum ResultCodesEnum {
     Success = 1
 }
 let token: string
-type GetAuthUserType = {
-    resultCode: number
-    authUser: UserType
-    message: string
-}
+
+
 
 export const authAPI = {
 
     async initial() {
         let res = await instance.get("/sanctum/csrf-cookie")
-
         return res
     },
 
@@ -51,20 +48,19 @@ export const authAPI = {
 
     async login(email: string, password: string) {
         await instance.get("/sanctum/csrf-cookie")
-        return instance.post('login', {
+        let res = await instance.post('login', {
             email: email,
             password: password,
             remember: true
         })
-
-
+        return res
 
     },
     async getAuthUser() {
         try {
-            let response = await instance.get<GetAuthUserType>("api/user/auth")
-            console.log(response)
-            debugger
+            let res = await instance.get<GetAuthUserType>("api/user/auth")
+
+
             // let tokensData = await instance.post("/api/sanctum/token", { /////////// Generate token for websocket
             //     email: "savchuckvadim@gmail.com",
             //     password: "Cfdxer131!",
@@ -72,7 +68,7 @@ export const authAPI = {
             // })
             // token = tokensData.data.token
 
-            return response.data
+            return res.data
         } catch (error) {
             alert(error)
         }
@@ -80,8 +76,8 @@ export const authAPI = {
     },
 
     logout() {
-        let response = instance.post('logout').then(res => console.log(res))
-        return response
+        let res = instance.post('logout').then(res => console.log(res))
+        return res
     },
 
     //TODO Verification
@@ -117,8 +113,7 @@ export const usersAPI = {
 
     async getUsers(currentPage: number = 1, pageSize: number = 10) {
         try {
-            const res = await instance.get(`api/users?page=${currentPage}&count=${pageSize}`)
-
+            const res = await instance.get<GetUsersType>(`api/users?page=${currentPage}&count=${pageSize}`)
             return res.data
         } catch (error) {
             alert(error)
@@ -129,7 +124,8 @@ export const usersAPI = {
 
     async getUser(userId: number) {
         try {
-            const res = await instance.get(`api/users/${userId}`)
+            const res = await instance.get<GetUserType>(`api/users/${userId}`)
+
             return res.data
         } catch (error) {
             alert(error)
@@ -138,9 +134,12 @@ export const usersAPI = {
     },
 
     async follow(userId: number) {
-        return instance.post(`api/follow`, {
-            userId: userId
-        })
+        const res = await instance.post(`api/follow`, {
+        userId: userId
+    })
+        console.log(res)
+        debugger
+        return
     },
 
     async unfollow(userId: number) {

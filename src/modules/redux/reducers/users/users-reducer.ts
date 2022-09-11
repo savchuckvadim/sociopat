@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { usersAPI } from "../../../services/api-laravel";
+import { ResultCodesEnum, usersAPI } from "../../../services/api-laravel";
 import { UserType } from "../../../types/types";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
 import { AppDispatchType, RootStateType } from "../../store";
@@ -45,54 +45,57 @@ type LocalDispatchType = Dispatch<ActionsTypes>
 
 //THUNKS
 
-export const requestUsers = (currentPage: number, pageSize: number) => 
-async (dispatch: AppDispatchType, getState: GetStateType) => {
+export const requestUsers = (currentPage: number, pageSize: number) =>
+    async (dispatch: AppDispatchType, getState: GetStateType) => {
 
-    dispatch(fetching(true))
-    let res = await usersAPI.getUsers(currentPage, pageSize)
+        dispatch(fetching(true))
+        let res = await usersAPI.getUsers(currentPage, pageSize)
+        if (res && res.data) {
+            if (res.data.resultCode === ResultCodesEnum.Success) {
+                const users = res.data.users;
+                
+                dispatch(setTotalItemsCount(res.meta.total)) //from paginator reducer
+                dispatch(setUsers(users))
 
-    if (res.data.resultCode === 1) {
-        const users = res.data.users;
-        dispatch(setTotalItemsCount(res.meta.total)) //from paginator reducer
-        dispatch(setUsers(users))
-
-    } else {
-        alert(res.message)
-    }
-    dispatch(fetching(false))
-
-}
-export const followThunk = (userId: number, authUser: UserType) => 
-async (dispatch: LocalDispatchType, getState: GetStateType) => {
-
-    dispatch(toggleFollowingInProgress(userId, true))
-
-
-    await usersAPI.follow(userId)
-
-    // if (res === 0) {
-
-    dispatch(follow(userId, authUser))
-    // }
-    dispatch(toggleFollowingInProgress(userId, false))
-}
-export const unFollowThunk = (userId: number, authUser: UserType) => 
-async (dispatch: LocalDispatchType, getState: GetStateType) => {
-    dispatch(toggleFollowingInProgress(userId, true))
-
-    let res = await usersAPI.unfollow(userId)
-
-    if (res) {
-        if (res.data.resultCode === 1) {
-
-            dispatch(unFollow(userId, authUser))
+            } else {
+                alert(res.message)
+            }
+            dispatch(fetching(false))
         }
 
 
     }
-    dispatch(toggleFollowingInProgress(userId, false))
+export const followThunk = (userId: number, authUser: UserType) =>
+    async (dispatch: LocalDispatchType, getState: GetStateType) => {
 
-}
+        dispatch(toggleFollowingInProgress(userId, true))
+
+
+        await usersAPI.follow(userId)
+
+        // if (res === 0) {
+
+        dispatch(follow(userId, authUser))
+        // }
+        dispatch(toggleFollowingInProgress(userId, false))
+    }
+export const unFollowThunk = (userId: number, authUser: UserType) =>
+    async (dispatch: LocalDispatchType, getState: GetStateType) => {
+        dispatch(toggleFollowingInProgress(userId, true))
+
+        let res = await usersAPI.unfollow(userId)
+
+        if (res) {
+            if (res.data.resultCode === 1) {
+
+                dispatch(unFollow(userId, authUser))
+            }
+
+
+        }
+        dispatch(toggleFollowingInProgress(userId, false))
+
+    }
 
 //TODO refactoring follow-unfollow-flow
 

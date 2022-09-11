@@ -33,8 +33,7 @@ const Users: React.FC<UsersPropsType> = ({
         requestUsers(currentPage, pageSize)
     }, [])
 
-console.log(users)
-debugger
+
     let loader = <LightLoadingPageContainer />
     let usersPage =
         <div className={style.wrapper}>

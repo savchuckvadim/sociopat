@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk"
-import { postAPI, profileAPI, usersAPI } from "../../../services/api-laravel"
+import { postAPI, profileAPI, ResultCodesEnum, usersAPI } from "../../../services/api-laravel"
 import { LikeType, PostType, UserType } from "../../../types/types"
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow"
 import { likeDislikeFollow } from "../../../utils/for-rdeucers/like-dislike"
@@ -87,20 +87,21 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
     dispatch(inProgress(true)) //from inprogress refucer
     const userRes = await usersAPI.getUser(userId)
     const postsRes = await postAPI.getPosts(userId) //get posts from backend and set to state
-
     let user = null
-    if (userRes.resultCode === 1) {
-        user = userRes.user
-    } else {
-        alert(userRes.message)
+    if (userRes) {
+        if (userRes.resultCode === ResultCodesEnum.Success) {
+            user = userRes.user
+        } else {
+            alert(userRes.message)
+        }
     }
 
     if (postsRes.data) {
-        if(postsRes.data.resultCode === 1){
-            let posts = postsRes.data.posts   
+        if (postsRes.data.resultCode === ResultCodesEnum.Success) {
+            let posts = postsRes.data.posts
             dispatch(setPosts(posts))
         }
-        
+
     }
     dispatch(inProgress(false))
     dispatch(setProfilePageData(user))
@@ -203,33 +204,34 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionsT
             // }
 
             if (state.visitedUser) {
+                if (action.user) {
+                    if (state.visitedUser.id !== action.user.id) {
+                        result = { ...state }
+                        result.visitedUser = action.user
+                    } else {
 
-                if (state.visitedUser.id !== (action.user && action.user.id)) {
-
-                    result = { ...state }
-                    result.visitedUser = action.user && { ...action.user }
-                } else {
-
-                    return state
+                        return state
+                    }
                 }
+
             } else {
                 result = { ...state }
-                result.visitedUser = action.user && { ...action.user }
+                result.visitedUser = action.user
             }
             return result
 
         case ADD_POST:
-            
+
             result = { ...state }
             let posts = [...state.posts]
             let lastPost = action.value
             posts.unshift(lastPost)
             result.posts = posts
-            if(state.visitedUser !== null){
-                result.visitedUser = {...state.visitedUser}
+            if (state.visitedUser !== null) {
+                result.visitedUser = { ...state.visitedUser }
                 result.visitedUser.postsCount++
             }
-            
+
             return result
 
         case SET_POSTS:

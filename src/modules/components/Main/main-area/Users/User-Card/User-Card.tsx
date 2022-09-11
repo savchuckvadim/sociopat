@@ -35,13 +35,13 @@ const UserCard = (props: PropsType) => {
                 user={props.user}
                 img={props.user && props.user.profile.avatar}
             />
-
-            {/* <NavLink className={style.login} to={props.user && '../profile/' +  props.user.id}>
+{//@ts-ignore
+            <NavLink className={style.login} to={props.user && '../profile/' +  props.user.id}>
                 <p onClick={() => {
                     // props.setVisitedUser(props.user)
                 }} >{`${props.user && props.user.profile.name} ${props.user && props.user.profile.surname}`}</p>
-            </NavLink> */}
-
+            </NavLink>
+}
             <div className={style.follow__wrapper}>
 
                 <FollowUnfollowButtons {...FUProps} />
