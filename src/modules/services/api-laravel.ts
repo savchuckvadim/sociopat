@@ -14,7 +14,7 @@ const instance = axios.create({
     },
 
 })
-let token
+let token: string
 
 export const authAPI = {
 
@@ -23,7 +23,7 @@ export const authAPI = {
         return res
     },
 
-    async register(name, surname, email, password, passwordConfirmation) {
+    async register(name: string, surname: string, email: string, password: string, passwordConfirmation: string) {
         await instance.get("/sanctum/csrf-cookie")
         let result = await instance.post('register', {
             name: name,
@@ -37,7 +37,7 @@ export const authAPI = {
 
     },
 
-    async login(email, password) {
+    async login(email: string, password: string) {
         await instance.get("/sanctum/csrf-cookie")
         return instance.post('login', {
             email: email,
@@ -57,7 +57,7 @@ export const authAPI = {
             //     device_name: 'iPhone_11'
             // })
             // token = tokensData.data.token
-            
+
             return response.data
         } catch (error) {
             alert(error)
@@ -95,10 +95,10 @@ export const authAPI = {
 
 export const usersAPI = {
 
-    async getUsers(currentPage = 1, pageSize = 10) {
+    async getUsers(currentPage: number = 1, pageSize: number = 10) {
         try {
             const res = await instance.get(`api/users?page=${currentPage}&count=${pageSize}`)
-            
+
             return res.data
         } catch (error) {
             alert(error)
@@ -107,9 +107,9 @@ export const usersAPI = {
 
     },
 
-    async getUser(id) {
+    async getUser(userId: number) {
         try {
-            const res = await instance.get(`api/users/${id}`)
+            const res = await instance.get(`api/users/${userId}`)
             return res.data
         } catch (error) {
             alert(error)
@@ -117,20 +117,20 @@ export const usersAPI = {
 
     },
 
-    async follow(userId) {
+    async follow(userId: number) {
         return instance.post(`api/follow`, {
             userId: userId
         })
     },
 
-    async unfollow(userId) {
+    async unfollow(userId: number) {
         return instance.delete(`api/follow/${userId}`)
     },
     // unfollow(userId) {
     //     return instance.delete(`follow/${userId}`).then(res => res.data.resultCode)
     // }
 
-    async getAvatar(userId) {
+    async getAvatar(userId: number) {
         const result = await instance.get(`api/garavatar/${userId}`)
 
         return result
@@ -141,17 +141,17 @@ export const usersAPI = {
 
 export const profileAPI = {
 
-    async getProfile(userId) {
+    async getProfile(userId: number) {
         const res = await instance.get(`api/profile/${userId}`)
         return res.data
     },
 
-    getAboutMe(userId) {
+    getAboutMe(userId: number) {
 
         return instance.get(`api/profile/aboutme/${userId}`)
     },
 
-    updateAboutMe(aboutMe) {
+    updateAboutMe(aboutMe: string) {
 
         return instance.put(`api/profile/aboutme`, {
             aboutMe
@@ -161,7 +161,7 @@ export const profileAPI = {
 
 export const postAPI = {
 
-    async sendPost(userId, profileId, body, image) {
+    async sendPost(userId: number, profileId: number, body: string, image: string) {
         // let event = await eventsAPI.event()
         //
         return instance.post('api/post', {
@@ -172,98 +172,104 @@ export const postAPI = {
         })
     },
 
-    getPosts(profileId) {
+    getPosts(profileId:number) {
         return instance.get(`api/post/${profileId}`)
     },
 
-    like(postId) {
+    like(postId:number) {
         return instance.post('api/like', {
             postId
         })
     },
-    dislike(postId) {
+    dislike(postId:number) {
         return instance.delete(`api/like/${postId}`)
     }
 
 }
 
+
+//TODO TypeScript
 export const eventsAPI = {
 
     async event() {
         // let res = await instance.get(`api/testingevent`)
+        // @ts-ignore
         window.Pusher = require('pusher-js')
         // instance.get("/sanctum/csrf-cookie").then(res => {
-            
-            // axios
-            // .post("http://localhost:8000/api/tokens/create", {
-            //     email: "savchuckvadim@gmail.com",
-            //     password: "Cfdxer131!",
-            // })
-            // .then(({ data }) => {
-            //     debugger
-            //     let token = data
-                //
-                axios({
-                    method: "GET",
-                    url: "http://localhost:8000/api/user",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }).then(({ data }) => {
-                    
-                    console.log(data)
-                    let echo = new Echo({
 
-                        broadcaster: 'pusher',
-                        key: 'socket_key',
-                        cluster: 'mt1',
-                        //
-                        forceTLS: true, // TODO: false
-                        disableStats: true,
-                        //
-                        wsHost: '127.0.0.1',
-                        wsPort: 6001,
-                        authorizer: (channel, options) => {
-                            console.log(options)
-                            
-                            return {
-                                authorize: (socketId, callback) => {
-                                    axios({
-                                        method: "POST",
-                                        url: "http://localhost:8000/api/broadcasting/auth",
-                                        headers: {
-                                            Authorization: `Bearer ${token}`,
-                                          },
-                                        data: {
-                                            socket_id: socketId,
-                                            channel_name: channel.name,
-                                            
-                                        },
-                                    })
-                                        .then((response) => {
-                                            console.log(response)
-                                            callback(false, response.data)
-                                        })
-                                        .catch((error) => {
-                                            console.log(error)
-                                            callback(true, error)
-                                        })
-                                }
-                            }
-                        }
-
-                    })
-
-
-                    echo.private(`send-post`)
-                        .listen('SendPost', (e) => {
-                            alert(e.data)
-                        })
-
-                })
-            // })
+        // axios
+        // .post("http://localhost:8000/api/tokens/create", {
+        //     email: "savchuckvadim@gmail.com",
+        //     password: "Cfdxer131!",
         // })
-       
+        // .then(({ data }) => {
+        //     debugger
+        //     let token = data
+        //
+        axios({
+            method: "GET",
+            url: "http://localhost:8000/api/user",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then(({ data }) => {
+
+            console.log(data)
+            let echo = new Echo({
+
+                broadcaster: 'pusher',
+                key: 'socket_key',
+                cluster: 'mt1',
+                //
+                forceTLS: true, // TODO: false
+                disableStats: true,
+                //
+                wsHost: '127.0.0.1',
+                wsPort: 6001,
+// @ts-ignore
+                authorizer: (channel, options) => {
+                    console.log(options)
+
+                    return {
+// @ts-ignore
+                        authorize: (socketId, callback) => {
+                            axios({
+                                method: "POST",
+                                url: "http://localhost:8000/api/broadcasting/auth",
+                                headers: {
+                                    Authorization: `Bearer ${token}`,
+                                },
+                                data: {
+                                    socket_id: socketId,
+                                    channel_name: channel.name,
+
+                                },
+                            })
+                                .then((response) => {
+                                    console.log(response)
+                                    callback(false, response.data)
+                                })
+                                .catch((error) => {
+                                    console.log(error)
+                                    callback(true, error)
+                                })
+                        }
+                    }
+                }
+
+            })
+
+
+            echo.private(`send-post`)
+// @ts-ignore
+                .listen('SendPost', (e) => {
+                    alert(e.data)
+                })
+
+        })
+        // })
+        // })
+
     },
 
 }
