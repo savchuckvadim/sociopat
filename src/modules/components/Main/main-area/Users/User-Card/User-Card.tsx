@@ -3,6 +3,8 @@ import style from './User-Card.module.css'
 import FollowUnfollowButtons from '../../../../Elements/Button/Follow-Unfollow-Buttons/Follow-Unfollow-Buttons'
 import Avatar from '../../../../Elements/Avatar/Avatar'
 import { UserType } from "../../../../../types/types"
+import { FUPropsType } from '../../../../Elements/Button/Follow-Unfollow-Buttons/Follow-Unfollow-Buttons-Container'
+import { ToggleFollowingInProgressType } from '../../../../../redux/reducers/users/users-reducer'
 
 //TODO Navlink Typescripting
 
@@ -10,12 +12,20 @@ type PropsType = {
     user: UserType
     followThunk: (userId: number, authUser: UserType) => void
     unFollowThunk: (userId: number, authUser: UserType) => void
+    toggleFollowingInProgress: (userId: number, isFetching: boolean) => ToggleFollowingInProgressType
     followingInProgress: Array<number>
     authUser: UserType
 }
 const UserCard = (props: PropsType) => {
 
-
+    const FUProps: FUPropsType = {
+        user: props.user,
+        followThunk: props.followThunk,
+        unFollowThunk: props.unFollowThunk,
+        followingInProgress: props.followingInProgress,
+        authUser: props.authUser,
+        toggleFollowingInProgress: props.toggleFollowingInProgress
+    }
     return (
         <div className={style.frame}>
 
@@ -34,14 +44,7 @@ const UserCard = (props: PropsType) => {
 
             <div className={style.follow__wrapper}>
 
-
-                <FollowUnfollowButtons
-                    user={props.user}
-                    followThunk={props.followThunk}
-                    unFollowThunk={props.unFollowThunk}
-                    followingInProgress={props.followingInProgress}
-                    authUser={props.authUser}
-                />
+                <FollowUnfollowButtons {...FUProps} />
             </div>
         </div>
     )

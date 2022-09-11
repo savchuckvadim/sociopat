@@ -1,5 +1,4 @@
 import { Dispatch } from "react";
-
 import { usersAPI } from "../../../services/api-laravel";
 import { UserType } from "../../../types/types";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
@@ -37,7 +36,7 @@ export const unFollow = (userId: number, authUser: UserType): UnfollowType => ({
 export type UnfollowType = { type: typeof UNFOLLOW, userId: number, authUser: UserType }
 
 export const toggleFollowingInProgress = (userId: number, isFetching: boolean): ToggleFollowingInProgressType => ({ type: FOLLOWING_IN_PROGRESS, userId, isFetching })
-type ToggleFollowingInProgressType = { type: typeof FOLLOWING_IN_PROGRESS, userId: number, isFetching: boolean }
+export type ToggleFollowingInProgressType = { type: typeof FOLLOWING_IN_PROGRESS, userId: number, isFetching: boolean }
 
 
 type ActionsTypes = SetUsersType | FetchingType | FollowType | UnfollowType | ToggleFollowingInProgressType

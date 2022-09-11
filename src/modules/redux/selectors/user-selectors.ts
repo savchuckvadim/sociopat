@@ -30,6 +30,6 @@ export const getIsFetching = (state: RootStateType) => {
     return state.users.isFetching
 }
 
-export const getIsFollowing = (state: RootStateType) => {
+export const getIsFollowing = (state: RootStateType):Array<number> => {
     return state.users.followingInProgress
 }

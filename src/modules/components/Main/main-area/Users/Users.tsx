@@ -26,6 +26,7 @@ const Users: React.FC<UsersPropsType> = ({
     followThunk,
     unFollowThunk,
     setCurrentPage,
+    toggleFollowingInProgress
 }) => {
 
     useEffect(() => {
@@ -50,6 +51,7 @@ debugger
                         unFollowThunk={unFollowThunk}
                         followingInProgress={followingInProgress}
                         authUser={authUser}
+                        toggleFollowingInProgress={toggleFollowingInProgress}
 
                     />)}
             </div>
