@@ -211,10 +211,7 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionsT
 
             if (state.visitedUser) {
                 if (action.user) {
-                    
                     if (state.visitedUser.id !== action.user.id) {
-                        (state.visitedUser.id)
-                        (action.user.id)
                         result = { ...state }
                         result.visitedUser = action.user
                     } else {

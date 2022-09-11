@@ -1,7 +1,7 @@
 import Echo from "laravel-echo"
 import Pusher from "pusher-js"
 import axios from "axios"
-(Pusher)
+console.log(Pusher)
 
 axios
   .post("http://127.0.0.1:8000/api/sanctum/token", {
@@ -18,7 +18,7 @@ axios
         Authorization: `Bearer ${token}`,
       },
     }).then(({ data }) => {
-      (data)
+      console.log(data)
 
       let echo = new Echo({
         broadcaster: "pusher",
@@ -29,7 +29,7 @@ axios
         cluster: "mt1",
         disableStats: true,
         authorizer: (channel, options) => {
-          (options)
+          console.log(options)
           return {
             authorize: (socketId, callback) => {
               axios({
@@ -55,7 +55,7 @@ axios
       })
 
       // echo.private(`App.User.${data.id}`).listen(".new-message-event", (message) => {
-      //   (message)
+      //   console.log(message)
       // })
     })
   })

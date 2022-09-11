@@ -76,7 +76,7 @@ export const authAPI = {
     },
 
     logout() {
-        let res = instance.post('logout').then(res => (res))
+        let res = instance.post('logout').then(res => console.log(res))
         return res
     },
 
@@ -95,13 +95,13 @@ export const authAPI = {
     
         */
     // getUsers() {
-    //     let result = instance.get(`user`).then(res => res.data).then(res => (res))
+    //     let result = instance.get(`user`).then(res => res.data).then(res => console.log(res))
 
     //     return result
     // },
     // createToken() {
 
-    //     let result = instance.post(`token/create`).then(res => res.data).then(res => (res))
+    //     let result = instance.post(`token/create`).then(res => res.data).then(res => console.log(res))
     //     return result
     // },
 
@@ -223,7 +223,6 @@ export const eventsAPI = {
             },
         }).then(({ data }) => {
 
-            (data)
             let echo = new Echo({
 
                 broadcaster: 'pusher',
@@ -237,7 +236,7 @@ export const eventsAPI = {
                 wsPort: 6001,
                 // @ts-ignore
                 authorizer: (channel, options) => {
-                    (options)
+                    console.log(options)
 
                     return {
                         // @ts-ignore
@@ -255,11 +254,11 @@ export const eventsAPI = {
                                 },
                             })
                                 .then((response) => {
-                                    (response)
+                                    console.log(response)
                                     callback(false, response.data)
                                 })
                                 .catch((error) => {
-                                    (error)
+                                    console.log(error)
                                     callback(true, error)
                                 })
                         }

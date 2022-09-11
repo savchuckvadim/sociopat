@@ -43,9 +43,7 @@ export const getAuth = () => async (dispatch: AppDispatchType) => {
     if (response){
         if (response.resultCode === ResultCodesEnum.Success) {
             authUser = response.authUser && response.authUser
-        } else {
-            (response.message)
-        }
+        } 
 
     } 
 

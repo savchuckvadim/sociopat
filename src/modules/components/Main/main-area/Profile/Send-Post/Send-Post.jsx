@@ -11,10 +11,6 @@ export const SendPost = (props) => {
         // props.send(values.sendPost)
         props.sendPost(props.user.id, props.visitedUser.id, values.sendPost, null)
         
-        (props.user.id)
-        (props.visitedUser.id)
-        (values.sendPost)
-        
         dispatch(reset('sendPost'))
        
     }
