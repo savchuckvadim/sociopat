@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import style from './Status.module.css'
+import style from './About-Me.module.css'
 
-const ProfileStatus = (props) => {
+const AboutMe = (props) => {
 
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
@@ -73,4 +73,4 @@ const ProfileStatus = (props) => {
 
 }
 
-export default ProfileStatus
+export default AboutMe

@@ -1,7 +1,7 @@
 import style from './Profile-Information.module.css'
 import hero from '../../../../../../assets/imgs/Vector.png'
 import ProfileButtons from './Buttons/Profile-Buttons'
-import ProfileStatus from './Status/Profile-Status'
+import AboutMe from './AboutMe/About-Me'
 import ProfileStatistics from './Statistics/Profile-Statistics'
 import Avatar from '../../../../Elements/Avatar/Avatar'
 import UploadAvatar from './UploadAvatar/UploadAvatar'
@@ -21,7 +21,7 @@ const ProfileInformation = (props) => {
 
                         <h1 className={style.name}>{`${props.visitedUser.profile.name} ${props.visitedUser.profile.surname}`}</h1>
 
-                        <ProfileStatus
+                        <AboutMe
                             status={props.visitedUser.profile.about_me}
                             updateStatus={props.updateStatus}
                             isCurrentUser={props.isCurrentUser}
@@ -51,8 +51,7 @@ const ProfileInformation = (props) => {
                 <Avatar
                     size={128}
                     border={true}
-                    // name={props.userName}
-                    img={props.visitedUser.profile.avatar}   /// old API
+                    img={props.visitedUser.profile.avatar}   
                     user={props.visitedUser}
                 />
 
