@@ -86,8 +86,8 @@ class ProfileContainer extends React.Component<PropsType> {
 
     }
     componentDidUpdate() {
-        // let userId = this.getUserId()
-        // this.getProfileData(userId)
+        let userId = this.getUserId()
+        this.getProfileData(userId)
 
     }
 

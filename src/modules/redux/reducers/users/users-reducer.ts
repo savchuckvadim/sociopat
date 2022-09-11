@@ -70,28 +70,25 @@ export const followThunk = (userId: number, authUser: UserType) =>
 
         dispatch(toggleFollowingInProgress(userId, true))
 
-
-        await usersAPI.follow(userId)
-
-        // if (res === 0) {
-
+       const res = await usersAPI.follow(userId)
+        if (res.resultCode === ResultCodesEnum.Success) {
         dispatch(follow(userId, authUser))
-        // }
+        }else{
+            alert(res.message)
+        }
         dispatch(toggleFollowingInProgress(userId, false))
     }
 export const unFollowThunk = (userId: number, authUser: UserType) =>
     async (dispatch: LocalDispatchType, getState: GetStateType) => {
         dispatch(toggleFollowingInProgress(userId, true))
 
-        let res = await usersAPI.unfollow(userId)
-
+        const res = await usersAPI.unfollow(userId)
         if (res) {
-            if (res.data.resultCode === 1) {
-
+            if (res.resultCode === ResultCodesEnum.Success) {
                 dispatch(unFollow(userId, authUser))
+            }else{
+                alert(res.message)
             }
-
-
         }
         dispatch(toggleFollowingInProgress(userId, false))
 

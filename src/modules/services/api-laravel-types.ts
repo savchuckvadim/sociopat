@@ -10,7 +10,7 @@ export type GetUsersType = {
     data: UsersDataType
     links: UsersLinksType
     meta: UsersMetaType
-    message:string
+    message: string
 }
 
 type UsersDataType = {
@@ -40,5 +40,19 @@ type UsersLinksType = {
 export type GetUserType = {
     user: UserType
     resultCode: number
-    message:string
+    message: string
 }
+
+export type FollowType = {
+    followedUser: UserType
+    resultCode: number
+    message: string
+}
+export type UnfollowType = {
+    unfollowedUser: UserType
+    resultCode: number
+    message: string
+}
+
+
+

@@ -1,7 +1,7 @@
 import axios from "axios"
 import Echo from "laravel-echo"
 import { UserType } from "../types/types"
-import { GetAuthUserType, GetUsersType, GetUserType } from "./api-laravel-types"
+import { GetAuthUserType, GetUsersType, GetUserType, FollowType, UnfollowType } from "./api-laravel-types"
 
 //.then(res:AxiosResponse<any>) => ...
 const instance = axios.create({
@@ -134,27 +134,17 @@ export const usersAPI = {
     },
 
     async follow(userId: number) {
-        const res = await instance.post(`api/follow`, {
+        const res = await instance.post<FollowType>(`api/follow`, {
         userId: userId
     })
-        console.log(res)
-        debugger
-        return
+        return res.data
     },
 
     async unfollow(userId: number) {
-        return instance.delete(`api/follow/${userId}`)
+        const res = await instance.delete<UnfollowType>(`api/follow/${userId}`)       
+        return res.data
     },
-    // unfollow(userId) {
-    //     return instance.delete(`follow/${userId}`).then(res => res.data.resultCode)
-    // }
 
-    async getAvatar(userId: number) {
-        const result = await instance.get(`api/garavatar/${userId}`)
-
-        return result
-        // .then(res => res.data)
-    },
 }
 
 
