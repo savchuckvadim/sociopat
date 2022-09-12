@@ -70,3 +70,8 @@ export type SendtPostType = {
     post: PostType
     message: string
 }
+
+export type PostDeleteLikeType = {
+    resultCode: number
+    message: string
+}

@@ -1,7 +1,7 @@
 import axios from "axios"
 import Echo from "laravel-echo"
 import { UserType } from "../types/types"
-import { GetAuthUserType, GetUsersType, GetUserType, FollowType, UnfollowType, AboutMeType, GetPostsType, SendtPostType } from "./api-laravel-types"
+import { GetAuthUserType, GetUsersType, GetUserType, FollowType, UnfollowType, AboutMeType, GetPostsType, SendtPostType, PostDeleteLikeType } from "./api-laravel-types"
 
 //.then(res:AxiosResponse<any>) => ...
 const instance = axios.create({
@@ -184,14 +184,14 @@ export const postAPI = {
     
 
     async like(postId: number) {
-        const res = await instance.post('api/like', {
+        const res = await instance.post<PostDeleteLikeType>('api/like', {
             postId
         })
-        return res
+        return res.data
     },
     async dislike(postId: number) {
-        const res = await instance.delete(`api/like/${postId}`)
-        return res
+        const res = await instance.delete<PostDeleteLikeType>(`api/like/${postId}`)
+        return res.data
     }
 
 }
