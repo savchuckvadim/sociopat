@@ -60,13 +60,16 @@ export const authAPI = {
         try {
             let res = await instance.get<GetAuthUserType>("api/user/auth")
 
-
-            // let tokensData = await instance.post("/api/sanctum/token", { /////////// Generate token for websocket
-            //     email: "savchuckvadim@gmail.com",
-            //     password: "Cfdxer131!",
-            //     device_name: 'iPhone_11'
-            // })
-            // token = tokensData.data.token
+            //mounted websocket
+            let tokensData = await instance.post("/api/sanctum/token", { /////////// Generate token for websocket
+                email: "savchuckvadim@gmail.com",
+                password: "Cfdxer131!",
+                device_name: 'iPhone_11'
+            })
+            token = tokensData.data.token
+            // let event = await eventsAPI.event()
+            // console.log(event)
+            ///////////////////////
 
             return res.data
         } catch (error) {
@@ -135,13 +138,13 @@ export const usersAPI = {
 
     async follow(userId: number) {
         const res = await instance.post<FollowType>(`api/follow`, {
-        userId: userId
-    })
+            userId: userId
+        })
         return res.data
     },
 
     async unfollow(userId: number) {
-        const res = await instance.delete<UnfollowType>(`api/follow/${userId}`)       
+        const res = await instance.delete<UnfollowType>(`api/follow/${userId}`)
         return res.data
     },
 
@@ -171,14 +174,18 @@ export const profileAPI = {
 export const postAPI = {
 
     async sendPost(userId: number, profileId: number, body: string, image: string) {
-        // let event = await eventsAPI.event()
-        //
-        return instance.post('api/post', {
+        let csrf = await instance.get("/sanctum/csrf-cookie")
+        console.log(csrf)
+        let event = await eventsAPI.event()
+        console.log(event)
+        let send = await instance.post('api/post', {
             body,
             image,
             profileId,
             userId
         })
+        
+        return send
     },
 
     getPosts(profileId: number) {
@@ -204,17 +211,18 @@ export const eventsAPI = {
         // let res = await instance.get(`api/testingevent`)
         // @ts-ignore
         window.Pusher = require('pusher-js')
-        // instance.get("/sanctum/csrf-cookie").then(res => {
+         instance.get("/sanctum/csrf-cookie").then(res => {
 
         // axios
         // .post("http://localhost:8000/api/tokens/create", {
         //     email: "savchuckvadim@gmail.com",
         //     password: "Cfdxer131!",
+        //     device: 'iPhone'
         // })
         // .then(({ data }) => {
-        //     
+
         //     let token = data
-        //
+
         axios({
             method: "GET",
             url: "http://localhost:8000/api/user",
@@ -229,7 +237,7 @@ export const eventsAPI = {
                 key: 'socket_key',
                 cluster: 'mt1',
                 //
-                forceTLS: true, // TODO: false
+                forceTLS: false, // TODO: false
                 disableStats: true,
                 //
                 wsHost: '127.0.0.1',
@@ -241,18 +249,23 @@ export const eventsAPI = {
                     return {
                         // @ts-ignore
                         authorize: (socketId, callback) => {
-                            axios({
-                                method: "POST",
-                                url: "http://localhost:8000/api/broadcasting/auth",
-                                headers: {
-                                    Authorization: `Bearer ${token}`,
-                                },
-                                data: {
-                                    socket_id: socketId,
+                            instance.post('api/broadcasting/auth',{
+                                socket_id: socketId,
                                     channel_name: channel.name,
-
-                                },
                             })
+                            // axios({
+                            //     method: "POST",
+                            //     url: "http://localhost:8000/api/broadcasting/auth",
+                                
+                            //     headers: {
+                            //         Authorization: `Bearer ${token}`,
+                            //     },
+                            //     data: {
+                            //         socket_id: socketId,
+                            //         channel_name: channel.name,
+
+                            //     },
+                            // })
                                 .then((response) => {
                                     console.log(response)
                                     callback(false, response.data)
@@ -271,12 +284,13 @@ export const eventsAPI = {
             echo.private(`send-post`)
                 // @ts-ignore
                 .listen('SendPost', (e) => {
+                    console.log(e)
                     alert(e.data)
                 })
 
         })
         // })
-        // })
+        })
 
     },
 
