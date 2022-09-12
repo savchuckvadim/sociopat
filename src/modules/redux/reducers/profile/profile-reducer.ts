@@ -100,13 +100,15 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
             }
         }
 
-        if (postsRes.data) {
-            if (postsRes.data.resultCode === ResultCodesEnum.Success) {
-                let posts = postsRes.data.posts
+       
+            if (postsRes.resultCode === ResultCodesEnum.Success) {
+                let posts = postsRes.posts
                 dispatch(setPosts(posts))
+            }else{
+                alert(postsRes.message)
             }
 
-        }
+        
         dispatch(inProgress(false))
         dispatch(setProfilePageData(user))
     }
@@ -120,6 +122,8 @@ export const updateAboutMe = (aboutMe: string):
         const res = await profileAPI.updateAboutMe(aboutMe)
         if (res.resultCode === ResultCodesEnum.Success) {
             dispatch(setAboutMe(aboutMe))
+        }else{
+            alert(res.message)
         }
 
     }
@@ -141,7 +145,12 @@ export const updateAboutMe = (aboutMe: string):
 export const sendPost = (userId: number, profileId: number, body: string, img: string):
     ThunkType => async (dispatch, getState) => {
         const res = await postAPI.sendPost(userId, profileId, body, img)
-        dispatch(addPostActionCreator(res.data.data))
+        if(res.resultCode === ResultCodesEnum.Success){
+            dispatch(addPostActionCreator(res.post))
+        }else{
+            alert(res.message)
+        }
+        
     }
 
 
@@ -204,11 +213,7 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionsT
         //     return result
 
         case SET_PROFILE_PAGE_DATA:
-            // if (result.status !== action.status) {      //status
-            //     result = { ...state }
-            //     result.status = action.status
-            // }
-
+        
             if (state.visitedUser) {
                 if (action.user) {
                     if (state.visitedUser.id !== action.user.id) {
@@ -246,7 +251,7 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionsT
             return state
 
 
-        //TODO 
+         
         case LIKE:
             result = { ...state }
             result.posts = state.posts.map(post => {

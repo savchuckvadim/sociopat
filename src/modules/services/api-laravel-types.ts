@@ -1,4 +1,4 @@
-import { UserType } from "../types/types"
+import { PostType, UserType } from "../types/types"
 
 export type GetAuthUserType = {
     resultCode: number
@@ -57,5 +57,16 @@ export type UnfollowType = {
 export type AboutMeType = {
     resultCode: number
     aboutMe: string
+    message: string
 }
 
+export type GetPostsType = {
+    resultCode: number
+    posts: Array<PostType>
+    message: string
+}
+export type SendtPostType = {
+    resultCode: number
+    post: PostType
+    message: string
+}
