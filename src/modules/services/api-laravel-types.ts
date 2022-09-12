@@ -54,5 +54,8 @@ export type UnfollowType = {
     message: string
 }
 
-
+export type AboutMeType = {
+    resultCode: number
+    aboutMe: string
+}
 

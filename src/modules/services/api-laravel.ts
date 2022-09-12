@@ -1,7 +1,7 @@
 import axios from "axios"
 import Echo from "laravel-echo"
 import { UserType } from "../types/types"
-import { GetAuthUserType, GetUsersType, GetUserType, FollowType, UnfollowType } from "./api-laravel-types"
+import { GetAuthUserType, GetUsersType, GetUserType, FollowType, UnfollowType, AboutMeType } from "./api-laravel-types"
 
 //.then(res:AxiosResponse<any>) => ...
 const instance = axios.create({
@@ -97,18 +97,6 @@ export const authAPI = {
         },
     
         */
-    // getUsers() {
-    //     let result = instance.get(`user`).then(res => res.data).then(res => console.log(res))
-
-    //     return result
-    // },
-    // createToken() {
-
-    //     let result = instance.post(`token/create`).then(res => res.data).then(res => console.log(res))
-    //     return result
-    // },
-
-
 
 }
 
@@ -153,21 +141,22 @@ export const usersAPI = {
 
 export const profileAPI = {
 
-    async getProfile(userId: number) {
-        const res = await instance.get(`api/profile/${userId}`)
+    // async getProfile(userId: number) {
+    //     const res = await instance.get(`api/profile/${userId}`)
+    //     return res.data
+    // },
+
+    async getAboutMe(userId: number) {
+        const res = await instance.get<AboutMeType>(`api/profile/aboutme/${userId}`)
         return res.data
     },
 
-    getAboutMe(userId: number) {
-
-        return instance.get(`api/profile/aboutme/${userId}`)
-    },
-
-    updateAboutMe(aboutMe: string) {
-
-        return instance.put(`api/profile/aboutme`, {
+    async updateAboutMe(aboutMe: string) {
+        const res = await instance.put<AboutMeType>(`api/profile/aboutme`, {
             aboutMe
         })
+
+        return res.data
     },
 }
 

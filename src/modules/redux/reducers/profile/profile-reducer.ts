@@ -9,7 +9,7 @@ import { FollowType, UnfollowType } from "../users/users-reducer"
 
 const ADD_POST = 'ADD_POST'
 const SET_POSTS = 'SET_POSTS'
-const SET_STATUS = 'SET_STATUS'
+const SET_ABOUT_ME = 'SET_ABOUT_ME'
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_PROFILE_PAGE_DATA = 'SET_PROFILE_PAGE_DATA'
@@ -43,10 +43,10 @@ type SetPostsActionCreatorType = {
     posts: Array<PostType>
 
 }
-const setStatus = (status: string): SetStatusActionCreatorType => ({ type: SET_STATUS, status })
-type SetStatusActionCreatorType = {
-    type: typeof SET_STATUS,
-    status: string
+const setAboutMe = (aboutMe: string): setAboutMeActionCreatorType => ({ type: SET_ABOUT_ME, aboutMe })
+type setAboutMeActionCreatorType = {
+    type: typeof SET_ABOUT_ME,
+    aboutMe: string
 
 }
 // const setPhotos = (photos) => ({ type: SET_PHOTO, photos })  //TODO REFACTORING
@@ -71,7 +71,7 @@ const likeInProgress = (bool: boolean): LikeInProgressType => ({ type: LIKE_IN_P
 export type LikeInProgressType = { type: typeof LIKE_IN_PROGRESS, bool: boolean }
 
 type ActionsTypes = AddPostActionCreatorType | SetPostsActionCreatorType |
-    SetStatusActionCreatorType | SetProfilePageDataActionCreatorType |
+    setAboutMeActionCreatorType | SetProfilePageDataActionCreatorType |
     SetLikeType | FollowType | UnfollowType | SetDislikeType |
     LikeInProgressType
 
@@ -115,11 +115,11 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
 
 }
 
-export const updateStatus = (aboutMe: string):
+export const updateAboutMe = (aboutMe: string):
     ThunkType => async (dispatch) => {
         const res = await profileAPI.updateAboutMe(aboutMe)
-        if (res.data.resultCode === 0) {
-            dispatch(setStatus(aboutMe))
+        if (res.resultCode === ResultCodesEnum.Success) {
+            dispatch(setAboutMe(aboutMe))
         }
 
     }
@@ -183,13 +183,13 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionsT
             }
             return result
 
-        case SET_STATUS:
+        case SET_ABOUT_ME:
             if (state.visitedUser) {
-                if (result.visitedUser!.profile.about_me !== action.status) {
+                if (result.visitedUser!.profile.about_me !== action.aboutMe) {
                     result = { ...state }
                     result.visitedUser = { ...state.visitedUser }
                     result.visitedUser.profile = { ...state.visitedUser.profile }
-                    result.visitedUser.profile.about_me = action.status
+                    result.visitedUser.profile.about_me = action.aboutMe
                     return result
                 }
             }

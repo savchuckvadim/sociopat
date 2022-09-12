@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { Navigate, useParams } from "react-router-dom"
 import { compose } from "redux"
-import { dislike, getDataForLoadProfilePage, like, updateStatus } from "../../../../redux/reducers/profile/profile-reducer"
+import { dislike, getDataForLoadProfilePage, like, updateAboutMe } from "../../../../redux/reducers/profile/profile-reducer"
 import { RootStateType } from "../../../../redux/store"
 import { PostType, UserType } from "../../../../types/types"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container"
@@ -13,12 +13,9 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
         isAuth: state.auth.isAuth,
         auth: state.auth.authUser,
-        // profile: state.profileReducer.visitedUser.profile,
         visitedUser: state.profile.visitedUser,
         posts: state.profile.posts,
-        // status: state.profileReducer.status,
         likeInProgress: state.profile.likeInProgress,
-
     }
 }
 
@@ -46,7 +43,7 @@ type MapStatePropsType = {
 }
 type MapDispatchPropsType = {
 
-    updateStatus: (aboutMe: string) => void
+    updateAboutMe: (aboutMe: string) => void
     getDataForLoadProfilePage: (userId: number) => void
     like: (postId: number) => void
     dislike: (postId: number) => void
@@ -115,7 +112,7 @@ export default compose(
 
     connect<MapStatePropsType, MapDispatchPropsType, ParamsForPropsType, RootStateType>(mapStateToProps, {
         // getAboutMe,
-        updateStatus,
+        updateAboutMe,
         getDataForLoadProfilePage,
         // loadPhoto,                //TODO
         like,

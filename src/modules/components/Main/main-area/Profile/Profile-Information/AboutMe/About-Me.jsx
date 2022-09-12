@@ -4,24 +4,24 @@ import style from './About-Me.module.css'
 const AboutMe = (props) => {
 
     let [editMode, setEditMode] = useState(false)
-    let [status, setStatus] = useState(props.status)
+    let [aboutMe, setAboutMe] = useState(props.aboutMe)
     let [unlimitSymbols, setUnlimit] = useState(false)
     
     useEffect(() => {
-        setStatus(props.status)
-    }, [props.status])
+        setAboutMe(props.aboutMe)
+    }, [props.aboutMe])
 
     const activateEditMode = () => {
 
         if (props.isCurrentUser) {
             setEditMode(true)
-            setStatus(props.status)
+            setAboutMe(props.aboutMe)
         }
     }
     const deactivateEditMode = () => {
         if (!unlimitSymbols) {
             setEditMode(false)
-            props.updateStatus(status)
+            props.updateAboutMe(aboutMe)
         }
 
 
@@ -33,7 +33,7 @@ const AboutMe = (props) => {
         } else {
             setUnlimit(false)
         }
-        setStatus(e.currentTarget.value)
+        setAboutMe(e.currentTarget.value)
 
     }
 
@@ -51,7 +51,7 @@ const AboutMe = (props) => {
                     className={inputClass}
                     rows='5'
                     cols={'82'}
-                    value={status}
+                    value={aboutMe}
                 >
 
                 </textarea>
@@ -60,8 +60,8 @@ const AboutMe = (props) => {
 
                 >
 
-                    {props.status
-                        ? props.status
+                    {props.aboutMe
+                        ? props.aboutMe
                         : props.isCurrentUser && 'Напишите о себе'
                     }
                 </p>
