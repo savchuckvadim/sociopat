@@ -1,19 +1,24 @@
+import React from 'react'
 import { Navigate, NavLink } from 'react-router-dom'
+import { LoginPropsType } from '../Login-Container'
+import { RegistrationPropsType } from '../Registration-Container'
 import style from './Form-Card.module.css'
 import Form from './Form/Form'
+type FormCardPropsType = LoginPropsType & RegistrationPropsType
 
-const FormCard = (props) => {
+const FormCard: React.FC<FormCardPropsType> = (props) => {
     let type = props.type
-    const onSubmit = (values) => {
-        
+    const onSubmit = (values: any) => {
+
         switch (props.type) {
             case 'login':
 
-                props.login(values.email, values.password, true)
-                return <Navigate replace to='/hbvhk' />
+                props.login(values.email, values.password)
+                // return <Navigate replace to='/hbvhk' />
+                break
 
             case 'registration':
-                
+
                 props.setNewUser(values.name, values.surname, values.email, values.password, values.repeatPassword)
                 break
             default:
@@ -39,12 +44,15 @@ const FormCard = (props) => {
 
                 {/* <RegistartionReduxForm onSubmit={submit}/> */}
                 {/* <LoginReduxForm onSubmit={submit}/> */}
+                { // @ts-ignore
+                
                 <Form {...props} onSubmit={onSubmit} />
-
+                }
                 <div className={style.form__footer}>
                     <div className={style.description}>
                         {type === 'registration'
                             ? props.privacy
+                            // @ts-ignore
                             : <NavLink className={style.link} to={`profile`} activeclassname='active'>{props.forgotLink}</NavLink>
                         }
                         {/* By pressing Sign Up, you agree to the Terms of Service and Privacy Policy. */}
@@ -55,9 +63,10 @@ const FormCard = (props) => {
                     <div className={style.link__container}>
                         <p className={style.footer__text}>
                             {props.footerInstruction}
-                            <NavLink className={style.link} to={`profile`} activeclassname='active'>
-                                {props.footerLink}
-                            </NavLink>
+                            {// @ts-ignore
+                                <NavLink className={style.link} to={`profile`} activeclassname='active'>
+                                    {props.footerLink}
+                                </NavLink>}
                         </p>
                     </div>
                 </div>

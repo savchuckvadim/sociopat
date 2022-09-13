@@ -56,7 +56,7 @@ export const getAuth = () => async (dispatch: AppDispatchType) => {
 
 
 }
-export const login = (email: string, password: string,) => (dispatch: AppDispatchType) => {
+export const login = (email: string, password: string) => (dispatch: AppDispatchType) => {
     dispatch(inProgress(true))
     authAPI.login(email, password)
         .then(res => {

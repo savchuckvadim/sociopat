@@ -1,4 +1,5 @@
 const SET_ERROR = 'SET_ERROR'
+
 const initialState = {
     login: {
         type: 'login',
@@ -55,12 +56,19 @@ const initialState = {
     error: ''
 }
 export type LoginRegistrationType = typeof initialState
+export type LoginFieldsType = typeof initialState.login.fields
+export type RegistrationFieldsType = typeof initialState.registration.fields
 
-export const setError = (error: string) => {
+export const setError = (error: string):SetErrorType => {
+
     return {
         type: SET_ERROR,
         error
     }
+}
+export type SetErrorType = {
+    type: typeof SET_ERROR,
+    error: string
 }
 const LoginRegistrationReducer = (state: LoginRegistrationType = initialState, action: any): LoginRegistrationType => {
 
