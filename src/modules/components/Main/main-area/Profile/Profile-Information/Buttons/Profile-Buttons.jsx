@@ -1,6 +1,7 @@
 import WhiteButton from '../../../../../Elements/Button/White-Button'
 import style from './Profile-Buttons.module.css'
 import FollowUnfollowButtonsContainer from '../../../../../Elements/Button/Follow-Unfollow-Buttons/Follow-Unfollow-Buttons-Container'
+import Button from '../../../../../Elements/Button/Button'
 
 const ProfileButtons = (props) => {
 
@@ -12,12 +13,13 @@ const ProfileButtons = (props) => {
                 <div className={style.button__wrapper}>
                     <FollowUnfollowButtonsContainer
                         user={props.visitedUser}
-                        
+
                     />
                 </div>
 
                 <div className={style.button__wrapper}>
-                    <WhiteButton
+                    <Button
+                        color={'grey'}
                         border={12}
                         grey={true}
                         name={'Send Message'}
@@ -29,9 +31,13 @@ const ProfileButtons = (props) => {
         )
     } else {
         return (<>
-           
-                <WhiteButton  grey={true}  border={12} name={'Edit profile'} />
-                {/* <ModalEditProfile active={modalActive} setModalActive={setModalActive}/> */}
+
+            <Button
+                color={'grey'}
+                border={12}
+                name={'Edit profile'}
+            />
+            {/* <ModalEditProfile active={modalActive} setModalActive={setModalActive}/> */}
 
         </>
         )

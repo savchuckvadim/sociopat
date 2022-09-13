@@ -9,6 +9,7 @@ import { Route, Routes } from "react-router-dom"
 import LoginPage from '../Login-Page/Login-Page'
 import Background from '../Elements/Backgounds/Background'
 import RegistrationPage from '../Login-Page/Registration-Page'
+import Button from '../Elements/Button/Button'
 
 
 const Start = () => {
@@ -41,12 +42,12 @@ const Start = () => {
 
                         <div className={style.button__wrapper}>
                             <NavLink className={style.button__link} to='../login'>
-                                <RedButton border={16} name={'Login'} />
+                                <Button color={'red'} border={16} name={'Login'} />
                             </NavLink>
                         </div>
                         <div className={style.button__wrapper}>
                         <NavLink className={style.button__link} to='../registration'>
-                                <WhiteButton border={16} name={'registaration'} />
+                                <Button color={'white'} border={16} name={'registaration'} />
                             </NavLink>
                             {/* <WhiteButton
                                 onClick={() => {

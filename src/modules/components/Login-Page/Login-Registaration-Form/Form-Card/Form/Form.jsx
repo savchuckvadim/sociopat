@@ -7,6 +7,7 @@ import style from './Form.module.css'
 import { Navigate, NavLink } from 'react-router-dom'
 import Input, { Input2 } from './Inputs/Input-Login-Registartion'
 import React from 'react'
+import Button from '../../../../Elements/Button/Button'
 
 
 
@@ -53,7 +54,7 @@ let Form = (props) => {
             {inputs}
             <div className={style.button__container}>
                 {/* <NavLink className={style.button__container} to={'../'}>  */}
-                <RedButton border={16} name={'НАЖАТЬ'} />
+                <Button color={'grey'} border={16} name={'НАЖАТЬ'} />
                 {/* </NavLink> */}
             </div>
 

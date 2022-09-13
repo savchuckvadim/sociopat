@@ -1,3 +1,4 @@
+import Button from '../../../../../Elements/Button/Button'
 import RedButton from '../../../../../Elements/Button/Red-Button'
 import style from './Modal-Edit-Profile.module.css'
 
@@ -13,7 +14,7 @@ active
             <div className={style.modalcard}>
                 <h1 className={style.title}>Настройки Аккаунта</h1>
                 <div className={style.buttonWrapper}>
-                    <RedButton border={12} name='вернуться' />
+                    <Button color={'red'} border={12} name='вернуться' />
                 </div>
 
             </div>

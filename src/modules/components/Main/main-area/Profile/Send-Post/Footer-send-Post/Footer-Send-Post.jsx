@@ -2,6 +2,7 @@ import RedButton from "../../../../../Elements/Button/Red-Button"
 import camera from '../../../../../../../assets/imgs/posts//camera-photo.svg'
 import style from '../Send-Post.module.css'
 import footer from './Footer-Send-Post.module.css'
+import Button from "../../../../../Elements/Button/Button"
 const FooterSendPost = (props) => {
     let height = 0
     let heightCamera = 0
@@ -69,7 +70,7 @@ const FooterSendPost = (props) => {
                             height: height
                         }}
                     className={sendAreaClass}>
-                    <RedButton className={cameraClass}  border={12} name={'Post'} />
+                    <Button color={'red'} className={cameraClass}  border={12} name={'Post'} />
                 </div>
             </div>
         </div>
