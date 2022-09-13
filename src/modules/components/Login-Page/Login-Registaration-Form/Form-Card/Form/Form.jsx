@@ -48,7 +48,7 @@ let Form = (props) => {
     return (<>
 
         <form onSubmit={props.handleSubmit} className={style.inputs__container}>
-
+{/* handleSubmit, error, captchaSubmit ? */}
             {inputs}
             <div className={style.button__container}>
                 {/* <NavLink className={style.button__container} to={'../'}>  */}
