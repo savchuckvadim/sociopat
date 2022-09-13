@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import RedButton from "../Elements/Button/Red-Button"
+
 import WhiteButton from "../Elements/Button/White-Button"
 import style from './Logout.module.css'
 const Logout = (props) => {

@@ -1,21 +1,23 @@
 import style from './Button.module.css'
 import { Field } from 'redux-form'
 
-const Button = (props) => {
+type WhiteButtonType = {
+    grey: string | undefined //TODO: white|red|grey
+    border: number //TODO: 12|16|18
+    name: string
+    disabled: boolean |undefined
+    onClick: () => void
+}
+const WhiteButton: React.FC<WhiteButtonType> = (props) => {
     let background = 'white'
-    let color = 'black'
-    if (props.color === 'grey') {
+    if (props.grey) {
         background = '#F4F4F4'
-    } else if (props.color === 'red') {
-        background = 'rgba(244, 72, 72, 1)'
-        color = 'white'
     }
     return (
         <button
             style={{
                 borderRadius: props.border,
-                backgroundColor: background,
-                color:color
+                backgroundColor: background
             }}
             type='submit'
             name={'whiteButton'}
@@ -30,4 +32,4 @@ const Button = (props) => {
     )
 }
 
-export default Button
+export default WhiteButton

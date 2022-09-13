@@ -1,13 +1,13 @@
-import Button from "../Button"
+import Button, { ColorType, DisabledType } from "../Button"
 import { FUPropsType } from "./Follow-Unfollow-Buttons-Container"
 
 
 const FollowUnfollowButtons: React.FC<FUPropsType> = (props) => {
 
     let userId = props.user && props.user.id
-    let colorOfButton = 'red'
+    let colorOfButton: ColorType = 'red'
     let onButtonClick = props.followThunk
-    let disable = props.followingInProgress.some(id => id === userId)
+    let disable: DisabledType = props.followingInProgress.some(id => id === userId)
     let name = 'Follow'
 
     if (props.user && props.user.followed) {
@@ -19,7 +19,7 @@ const FollowUnfollowButtons: React.FC<FUPropsType> = (props) => {
     return <Button
         name={name}
         border={12}
-        disable={disable}
+        disabled={disable}
         color={colorOfButton}
         onClick={() => {
             if (userId) {
