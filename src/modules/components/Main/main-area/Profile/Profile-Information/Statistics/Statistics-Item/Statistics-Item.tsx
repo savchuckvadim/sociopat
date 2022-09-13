@@ -1,6 +1,11 @@
+import React from 'react'
 import style from './Statistics-Item.module.css'
 
-const StatisticsItem = (props) => {
+type StatisticsItemType = {
+    name: string
+    quantity: number
+}
+const StatisticsItem: React.FC<StatisticsItemType> = (props) => {
 
     return (
         <>
@@ -9,7 +14,7 @@ const StatisticsItem = (props) => {
                 <p className={style.name}>{props.name}</p>
             </div>
 
-           {props.name !== 'following' && <div className={style.line}></div>}
+            {props.name !== 'following' && <div className={style.line}></div>}
 
         </>
     )

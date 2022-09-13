@@ -9,12 +9,14 @@ import React from 'react'
 import { ParamsType, ProfilePropsType } from '../Profile-Container'
 import { UserType } from '../../../../../types/types'
 import { LightLoadingPageContainer } from '../../../../Elements/Loading/Light-Loading-Page-Container'
+
+
 type ProfileInformationPropsType = {
     visitedUser: UserType,
     params: ParamsType,
     updateAboutMe: (aboutMe: string) => void
 }
-const ProfileInformation: React.FC<ProfilePropsType> = (props) => {
+const ProfileInformation: React.FC<ProfileInformationPropsType> = (props) => {
 
     if (props.visitedUser !== null) {
         const visitedUser = props.visitedUser
@@ -38,8 +40,8 @@ const ProfileInformation: React.FC<ProfilePropsType> = (props) => {
                             />
                         </div>
                         <ProfileStatistics
-                            followers={visitedUser.followers}
-                            followeds={visitedUser.followeds}
+                            followers={visitedUser.followers.length}
+                            followeds={visitedUser.followeds.length}
                             postsCount={visitedUser.postsCount}
                         />
 
