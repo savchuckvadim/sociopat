@@ -16,6 +16,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         visitedUser: state.profile.visitedUser,
         posts: state.profile.posts,
         likeInProgress: state.profile.likeInProgress,
+      
     }
 }
 
@@ -28,7 +29,7 @@ const withRouter = (WrappedComponent: any) => (props: MapStatePropsType) => {
     )
 }
 
-type ParamsType = {
+export type ParamsType = {
     "*": string
     userId: string | undefined
 }
@@ -38,6 +39,8 @@ type MapStatePropsType = {
     visitedUser: UserType
     posts: Array<PostType>
     likeInProgress: boolean
+ 
+
 
 
 }
@@ -52,14 +55,14 @@ type ParamsForPropsType = {
     params: ParamsType
 }
 
-type PropsType = MapStatePropsType & MapDispatchPropsType & ParamsForPropsType
+export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType & ParamsForPropsType
 
 
 
-class ProfileContainer extends React.Component<PropsType> {
+class ProfileContainer extends React.Component<ProfilePropsType> {
 
     getUserId = (): number | undefined => {
-        
+
         if (this.props.params.userId !== undefined) {
             return Number(this.props.params.userId)
         }
@@ -69,7 +72,7 @@ class ProfileContainer extends React.Component<PropsType> {
             }
 
         }
-        
+
         //TODO :
         return undefined
     }
@@ -79,14 +82,14 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     componentDidMount() {
-        
+
         window.scrollTo(0, 0)
         let userId = this.getUserId()
         this.getProfileData(userId)
 
     }
     componentDidUpdate() {
-        
+
         let userId = this.getUserId()
         this.getProfileData(userId)
 
@@ -99,7 +102,7 @@ class ProfileContainer extends React.Component<PropsType> {
 
             <Profile {...this.props}
                 // profilePhoto={this.props.profile.photos.small}
-                isCurrentUser={this.props.visitedUser.isAuthUser}
+                // isCurrentUser={this.props.visitedUser.isAuthUser}
             />
         )
     }

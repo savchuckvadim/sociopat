@@ -1,13 +1,14 @@
 import React from 'react'
 import {LightLoadingPageContainer} from '../../../Elements/Loading/Light-Loading-Page-Container'
 import PostsArea from './Posts-Area/Posts-Area'
+import { ProfilePropsType } from './Profile-Container'
 // import Post from './Posts/Post'
 import ProfileInformation from './Profile-Information/Profile-Information'
 import style from './Profile.module.css'
 import { SendPostContainer } from './Send-Post/Send-Post-Container'
 
 
-export const Profile = (props) => {
+export const Profile: React.FC<ProfilePropsType> = (props) => {
   
   //  let userName = null
   //  let img = null
@@ -31,21 +32,22 @@ export const Profile = (props) => {
   // }
   
     
-let profile
- props.visitedUser.profile 
- ?  profile = <div className={style.profile__container}>
-            <ProfileInformation {...props}/>
-            <SendPostContainer />
-            <PostsArea 
-            posts={props.posts}
-            // img={img}
-            profile={props.visitedUser.profile}
-            like={props.like}
-            dislike={props.dislike}
-            likeInProgress={props.likeInProgress}
-            />
-            
-        </div>
+let profile 
+props.visitedUser &&
+props.visitedUser.profile 
+?  profile = <div className={style.profile__container}>
+           <ProfileInformation {...props}/>
+           <SendPostContainer />
+           <PostsArea 
+           posts={props.posts}
+           // img={img}
+           profile={props.visitedUser.profile}
+           like={props.like}
+           dislike={props.dislike}
+           likeInProgress={props.likeInProgress}
+           />
+           
+       </div>
 : profile = <LightLoadingPageContainer/>
 
     return profile
