@@ -1,4 +1,3 @@
-import RedButton from "../../../../../Elements/Button/Red-Button"
 import camera from '../../../../../../../assets/imgs/posts//camera-photo.svg'
 import style from '../Send-Post.module.css'
 import footer from './Footer-Send-Post.module.css'

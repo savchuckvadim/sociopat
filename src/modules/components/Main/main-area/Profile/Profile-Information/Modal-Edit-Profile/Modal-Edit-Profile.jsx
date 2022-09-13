@@ -1,5 +1,4 @@
 import Button from '../../../../../Elements/Button/Button'
-import RedButton from '../../../../../Elements/Button/Red-Button'
 import style from './Modal-Edit-Profile.module.css'
 
 const ModalEditProfile = ({ active, setModalActive }) => {

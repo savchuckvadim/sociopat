@@ -1,8 +1,6 @@
 import { reduxForm } from 'redux-form'
 import { Field } from 'redux-form'
 import { emailValidate, passwordValidate, required, requiredFields, symbol } from '../../../../../utils/Validators/validator'
-import RedButton from '../../../../Elements/Button/Red-Button'
-
 import style from './Form.module.css'
 import { Navigate, NavLink } from 'react-router-dom'
 import Input, { Input2 } from './Inputs/Input-Login-Registartion'
