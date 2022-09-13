@@ -20,7 +20,7 @@ const DISLIKE = 'DISLIKE'
 
 
 let initialState = {
-    visitedUser: null as UserType,
+    visitedUser: null as UserType | null,
     //avatar: string | null
     //aboutMe: string |null
     // status: '',
@@ -50,10 +50,10 @@ type setAboutMeActionCreatorType = {
 
 }
 // const setPhotos = (photos) => ({ type: SET_PHOTO, photos })  //TODO REFACTORING
-const setProfilePageData = (user: UserType): SetProfilePageDataActionCreatorType => ({ type: SET_PROFILE_PAGE_DATA, user })
+const setProfilePageData = (user: UserType | null): SetProfilePageDataActionCreatorType => ({ type: SET_PROFILE_PAGE_DATA, user })
 type SetProfilePageDataActionCreatorType = {
     type: typeof SET_PROFILE_PAGE_DATA,
-    user: UserType
+    user: UserType | null
 
 }
 const setLike = (postId: number): SetLikeType => ({ type: LIKE, postId }) //TODO with API 

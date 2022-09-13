@@ -11,7 +11,7 @@ import FollowUnfollowButtons from "./Follow-Unfollow-Buttons"
 }
  type FUMapStateToPropsType = {
     followingInProgress: Array<number>
-    authUser: UserType
+    authUser: UserType | null
 }
 type FUMapDispatchToPropsType = {
     toggleFollowingInProgress:  (userId: number, isFetching: boolean) => ToggleFollowingInProgressType

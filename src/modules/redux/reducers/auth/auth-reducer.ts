@@ -14,7 +14,7 @@ const SET_USER_DATA = 'SET_USER_DATA'
 //STATE
 let initialState = {
     isAuth: false as boolean,
-    authUser: null as UserType 
+    authUser: null as UserType | null
 
 }
 export type AuthStateType = typeof initialState
@@ -23,13 +23,13 @@ export type AuthStateType = typeof initialState
 
 type SetAuthUserDataType = {
     type: typeof SET_USER_DATA
-    authUser: UserType 
+    authUser: UserType | null
     isAuth: boolean
 
 }
 
 //ACION CREATORS
-export const setAuthUserData = (authUser: UserType, isAuth: boolean = false): SetAuthUserDataType =>
+export const setAuthUserData = (authUser: UserType | null, isAuth: boolean = false): SetAuthUserDataType =>
     ({ type: SET_USER_DATA, authUser, isAuth })
 
 

@@ -35,7 +35,7 @@ const Users: React.FC<UsersPropsType> = ({
 
 
     let loader = <LightLoadingPageContainer />
-    let usersPage =
+    let usersPage = authUser &&
         <div className={style.wrapper}>
             <div className={style.title__container}>
                 <Title title={'People'} />

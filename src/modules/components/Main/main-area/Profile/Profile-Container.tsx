@@ -13,7 +13,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
         isAuth: state.auth.isAuth,
         auth: state.auth.authUser,
-        visitedUser: state.profile.visitedUser,
+        visitedUser: state.profile.visitedUser ,
         posts: state.profile.posts,
         likeInProgress: state.profile.likeInProgress,
       
@@ -35,8 +35,8 @@ export type ParamsType = {
 }
 type MapStatePropsType = {
     isAuth: boolean
-    auth: UserType
-    visitedUser: UserType
+    auth: UserType | null
+    visitedUser: UserType | null
     posts: Array<PostType>
     likeInProgress: boolean
  
@@ -96,15 +96,18 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     }
 
     render() {
-        if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth && this.props.auth.id}`) return <Navigate replace to={'../profile'} />
-        if (!this.props.visitedUser) return <LightLoadingPageContainer />
-        return (
-
-            <Profile {...this.props}
-                // profilePhoto={this.props.profile.photos.small}
-                // isCurrentUser={this.props.visitedUser.isAuthUser}
-            />
-        )
+        if(this.props.auth){
+            if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth && this.props.auth.id}`) return <Navigate replace to={'../profile'} />
+            if (!this.props.visitedUser) return <LightLoadingPageContainer />
+            return (
+    
+                <Profile {...this.props}
+                    // profilePhoto={this.props.profile.photos.small}
+                    // isCurrentUser={this.props.visitedUser.isAuthUser}
+                />
+            )
+        }
+        
     }
 }
 

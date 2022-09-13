@@ -12,7 +12,7 @@ import { LightLoadingPageContainer } from '../../../../Elements/Loading/Light-Lo
 
 
 type ProfileInformationPropsType = {
-    visitedUser: UserType,
+    visitedUser: UserType | null,
     params: ParamsType,
     updateAboutMe: (aboutMe: string) => void
 }

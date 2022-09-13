@@ -1,6 +1,5 @@
 import style from './Start-Page.module.css'
 import redLogo from '../../../assets/imgs/logo.svg'
-
 import inscriptionLogog from '../../../assets/imgs/logo/Sociopath.svg'
 import { Navigate, NavLink } from 'react-router-dom'
 import { Route, Routes } from "react-router-dom"
@@ -12,12 +11,7 @@ import Button from '../Elements/Button/Button'
 
 const Start = () => {
 
-    // const requestToken = () => {
-    //     laravelAPI.createToken()
-    // }
-    // const getUsers = () => {
-    //     laravelAPI.getUsers()
-    // }
+
     return (
 
         <div className={style.start__page}

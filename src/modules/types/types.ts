@@ -1,7 +1,7 @@
 
 
 export type UserType = {
-    id: number | undefined
+    id: number 
     email: string
     name: string
     followed: 0 | 1
@@ -10,7 +10,7 @@ export type UserType = {
     profile: ProfileType
     postsCount: number 
     isAuthUser:boolean
-} | null
+} 
 
 export type ProfileType = {
     about_me: string | null

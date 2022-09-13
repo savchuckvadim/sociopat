@@ -16,21 +16,18 @@ const FollowUnfollowButtons: React.FC<FUPropsType> = (props) => {
         name = 'Unfollow'
 
     }
+
     return <Button
         name={name}
         border={12}
         disabled={disable}
         color={colorOfButton}
         onClick={() => {
-            if (userId) {
+            if (userId && props.authUser !== null) {
                 onButtonClick(userId, props.authUser)
             }
-
-
         }}
     />
-
-
 
 }
 

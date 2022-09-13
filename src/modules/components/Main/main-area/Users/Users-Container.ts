@@ -8,7 +8,7 @@ import { UserType } from "../../../../types/types"
 import Users from "./Users"
 
 type MapStateToPropsType = {
-    authUser: UserType
+    authUser: UserType | null
     users: Array<UserType>
     pageSize: number
     isFetching: boolean

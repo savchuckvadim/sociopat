@@ -33,7 +33,7 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
   
     
 let profile 
-props.visitedUser &&
+props.visitedUser && props.auth &&
 props.visitedUser.profile 
 ?  profile = <div className={style.profile__container}>
            <ProfileInformation {...props}/>
