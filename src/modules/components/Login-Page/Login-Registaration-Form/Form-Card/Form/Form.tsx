@@ -1,4 +1,5 @@
-import { reduxForm } from 'redux-form'
+import React from 'react'
+import { InjectedFormProps, reduxForm } from 'redux-form'
 import { Field } from 'redux-form'
 import { emailValidate, passwordValidate, required, requiredFields, symbol } from '../../../../../utils/Validators/validator'
 import style from './Form.module.css'
@@ -6,10 +7,21 @@ import { Navigate, NavLink } from 'react-router-dom'
 import Input, { Input2 } from './Inputs/Input-Login-Registartion'
 import React from 'react'
 import Button from '../../../../Elements/Button/Button'
+import { LoginFieldsType, RegistrationFieldsType, SetErrorType } from '../../../../../redux/reducers/login-registaration/login-registration-reducer'
+import { FormCardPropsType } from '../Form-Card'
+type FieldsValuesType = {
+    name:string, surname:string, email:string, password:string, repeatPassword:string
+}
+type onSubmitType =((email:string, password:string)=>void) | ((name:string, surname:string, email:string, password:string, repeatPassword:string)=>void)
+type FieldsType = LoginFieldsType | RegistrationFieldsType
+type FormType = {
+    onSubmit:  onSubmitType
+    setError:(error: string) => SetErrorType
+    type: string
+    fields: FieldsType
+}
 
-
-
-let Form = (props) => {
+let Form: React.FC<InjectedFormProps<FieldsValuesType, FormCardPropsType & FieldsValuesType & FormType> & FormType> = (props) => {
     if (props.error) {
         props.setError(props.error)
     }
@@ -52,7 +64,7 @@ let Form = (props) => {
             {inputs}
             <div className={style.button__container}>
                 {/* <NavLink className={style.button__container} to={'../'}>  */}
-                <Button color={'grey'} border={16} name={'НАЖАТЬ'} />
+                <Button disabled={false} onClick={undefined} color={'grey'} border={16} name={'НАЖАТЬ'} />
                 {/* </NavLink> */}
             </div>
 
@@ -62,6 +74,6 @@ let Form = (props) => {
     )
 }
 
-export default Form = reduxForm({
+export default Form = reduxForm<FormCardPropsType, FieldsValuesType, FormType>({
     form: 'login'
 })(Form)

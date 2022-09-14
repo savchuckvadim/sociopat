@@ -4,7 +4,7 @@ import { LoginPropsType } from '../Login-Container'
 import { RegistrationPropsType } from '../Registration-Container'
 import style from './Form-Card.module.css'
 import Form from './Form/Form'
-type FormCardPropsType = LoginPropsType & RegistrationPropsType
+export type FormCardPropsType = LoginPropsType & RegistrationPropsType
 
 const FormCard: React.FC<FormCardPropsType> = (props) => {
     let type = props.type
