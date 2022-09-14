@@ -12,8 +12,8 @@ type InputProps = {
     validate: Array<FieldValidatorType>
 }
 
-type InputType = (props: InputProps) => React.ReactElement
-const Input: InputType = (props) => {
+
+const Input: React.FC<InputProps> = (props) => {
     let index = 0
     let containerClasses = [style.container, style.containerFocus]
     let error = null
