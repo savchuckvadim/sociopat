@@ -1,26 +1,25 @@
 import React from 'react'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { Field } from 'redux-form'
-import { emailValidate, passwordValidate, required, requiredFields, symbol } from '../../../../../utils/Validators/validator'
+import { emailValidate, passwordValidate, requiredFields } from '../../../../../utils/Validators/validator'
 import style from './Form.module.css'
-import { Navigate, NavLink } from 'react-router-dom'
-import Input, { Input2 } from './Inputs/Input-Login-Registartion'
+import Input from './Inputs/Input-Login-Registartion'
 import Button from '../../../../Elements/Button/Button'
 import { LoginFieldsType, RegistrationFieldsType, SetErrorType } from '../../../../../redux/reducers/login-registaration/login-registration-reducer'
 import { FormCardPropsType } from '../Form-Card'
-type FieldsValuesType = {
-    name:string, surname:string, email:string, password:string, repeatPassword:string
-}
-type onSubmitType =((email:string, password:string)=>void) | ((name:string, surname:string, email:string, password:string, repeatPassword:string)=>void)
+// type FieldsValuesType = {
+//     name:string, surname:string, email:string, password:string, repeatPassword:string
+// }
+// type onSubmitType =((email:string, password:string)=>void) | ((name:string, surname:string, email:string, password:string, repeatPassword:string)=>void)
 type FieldsType = LoginFieldsType | RegistrationFieldsType
-type FormType = {
-    onSubmit:  onSubmitType
-    setError:(error: string) => SetErrorType
-    type: string
-    fields: FieldsType
-}
+// type FormType = {
+//     onSubmit:  onSubmitType
+//     setError:(error: string) => SetErrorType
+//     type: string
+//     fields: FieldsType
+// }
 
-let Form: React.FC<InjectedFormProps<FieldsValuesType, FormCardPropsType> & FormCardPropsType> = (props) => {
+let Form: React.FC<InjectedFormProps<FieldsType, FormCardPropsType> & FormCardPropsType> = (props) => {
     if (props.error) {
         props.setError(props.error)
     }
@@ -63,7 +62,7 @@ let Form: React.FC<InjectedFormProps<FieldsValuesType, FormCardPropsType> & Form
             {inputs}
             <div className={style.button__container}>
                 {/* <NavLink className={style.button__container} to={'../'}>  */}
-                <Button disabled={false} onClick={undefined} color={'grey'} border={16} name={'НАЖАТЬ'} />
+                <Button disabled={false} onClick={undefined} color={'red'} border={16} name={'НАЖАТЬ'} />
                 {/* </NavLink> */}
             </div>
 
@@ -73,6 +72,6 @@ let Form: React.FC<InjectedFormProps<FieldsValuesType, FormCardPropsType> & Form
     )
 }
 
-export default Form = reduxForm<FieldsValuesType, FormCardPropsType>({
+export default  reduxForm<FieldsType, FormCardPropsType>({
     form: 'login'
 })(Form)
