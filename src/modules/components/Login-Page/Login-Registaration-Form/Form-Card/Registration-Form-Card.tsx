@@ -1,22 +1,24 @@
 import React from 'react'
 import { Navigate, NavLink } from 'react-router-dom'
-import { FieldType } from '../../../../redux/reducers/login-registaration/login-registration-reducer'
-import { LoginPropsType } from '../Login-Container'
+import { RegistrationPropsType } from '../Registration-Container'
 import style from './Form-Card.module.css'
-import LoginForm from './Form/Login-Form'
+import RegistrationForm from './Form/Registration-Form'
 
 
-export type FieldsValuesType = {
-     email: string
-     password: string
+export type RegistarationFieldsValuesType = {
+    name: string
+    surname: string
+    email: string
+    password: string
+    repeatPassword: string
 }
-export type OnSubmitType = (values: FieldsValuesType) => void
+export type RegistrationOnSubmitType = (values: RegistarationFieldsValuesType) => void
 
-const RegistrationFormCard: React.FC<LoginPropsType> = (props) => {
+const RegistrationFormCard: React.FC<RegistrationPropsType> = (props) => {
     let type = props.type
-    const onSubmit:OnSubmitType = (values: FieldsValuesType) => {
+    const onSubmit: RegistrationOnSubmitType = (values: RegistarationFieldsValuesType) => {
 
-        props.login(values.email, values.password)
+        props.setNewUser(values.name, values.surname, values.email, values.password, values.repeatPassword)
 
     }
 
@@ -35,19 +37,25 @@ const RegistrationFormCard: React.FC<LoginPropsType> = (props) => {
 
             <div className={style.form__container}>
 
-                <LoginForm
+                <RegistrationForm
                     // {...props} onSubmit={onSubmit} 
+                    isAuth={props.isAuth}
                     onSubmit={onSubmit}
                     setError={props.setError}
-                    login={props.login}
+                    setNewUser={props.setNewUser}
                     error={props.error}
                     dataFields={props.dataFields}
                 />
 
                 <div className={style.form__footer}>
-                    {/* <div className={style.description}>
-                       
-                    </div> */}
+                    <div className={style.description}>
+                        {type === 'registration'
+                            ? props.privacy
+                            // @ts-ignore
+                            : <NavLink className={style.link} to={`profile`} activeclassname='active'>{props.forgotLink}</NavLink>
+                        }
+
+                    </div>
                     <div className={style.line__wrapper}>
                         <hr className={style.line} ></hr>
                     </div>
