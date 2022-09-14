@@ -21,7 +21,7 @@ export type FieldPropsType = {
     validate:FieldValidatorType
     name:string
     type:string
-    placeholder:string
+    placeholder:string | undefined
     key:string
 }
 
