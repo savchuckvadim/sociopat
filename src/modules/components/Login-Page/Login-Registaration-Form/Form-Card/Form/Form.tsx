@@ -5,7 +5,6 @@ import { emailValidate, passwordValidate, required, requiredFields, symbol } fro
 import style from './Form.module.css'
 import { Navigate, NavLink } from 'react-router-dom'
 import Input, { Input2 } from './Inputs/Input-Login-Registartion'
-import React from 'react'
 import Button from '../../../../Elements/Button/Button'
 import { LoginFieldsType, RegistrationFieldsType, SetErrorType } from '../../../../../redux/reducers/login-registaration/login-registration-reducer'
 import { FormCardPropsType } from '../Form-Card'
@@ -29,10 +28,10 @@ let Form: React.FC<InjectedFormProps<FieldsValuesType, FormCardPropsType & Field
 
     let inputs = []
 
-    let typeIndex = 0
-    props.type === 'login'
-        ? typeIndex = 0
-        : typeIndex = 1
+    // let typeIndex = 0
+    // props.type === 'login'
+    //     ? typeIndex = 0
+    //     : typeIndex = 1
 
         let validate = null
 
