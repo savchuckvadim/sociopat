@@ -20,7 +20,7 @@ type FormType = {
     fields: FieldsType
 }
 
-let Form: React.FC<InjectedFormProps<FieldsValuesType, FormCardPropsType & FieldsValuesType & FormType> & FormType> = (props) => {
+let Form: React.FC<InjectedFormProps<FieldsValuesType, FormCardPropsType> & FormCardPropsType> = (props) => {
     if (props.error) {
         props.setError(props.error)
     }
@@ -73,6 +73,6 @@ let Form: React.FC<InjectedFormProps<FieldsValuesType, FormCardPropsType & Field
     )
 }
 
-export default Form = reduxForm<FormCardPropsType, FieldsValuesType, FormType>({
+export default Form = reduxForm<FieldsValuesType, FormCardPropsType>({
     form: 'login'
 })(Form)
