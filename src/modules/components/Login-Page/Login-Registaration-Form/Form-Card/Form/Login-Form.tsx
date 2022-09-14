@@ -5,21 +5,20 @@ import { emailValidate, passwordValidate, requiredFields } from '../../../../../
 import style from './Form.module.css'
 import Input from './Inputs/Input-Login-Registartion'
 import Button from '../../../../Elements/Button/Button'
-import { LoginFieldsType, RegistrationFieldsType, SetErrorType } from '../../../../../redux/reducers/login-registaration/login-registration-reducer'
-import { FormCardPropsType } from '../Form-Card'
-// type FieldsValuesType = {
-//     name:string, surname:string, email:string, password:string, repeatPassword:string
-// }
-// type onSubmitType =((email:string, password:string)=>void) | ((name:string, surname:string, email:string, password:string, repeatPassword:string)=>void)
-type FieldsType = LoginFieldsType | RegistrationFieldsType
-// type FormType = {
-//     onSubmit:  onSubmitType
-//     setError:(error: string) => SetErrorType
-//     type: string
-//     fields: FieldsType
-// }
+import { FieldType, LoginFieldsType, SetErrorType } from '../../../../../redux/reducers/login-registaration/login-registration-reducer'
+import { LoginPropsType } from '../../Login-Container'
+import { FieldsValuesType, OnSubmitType } from '../Login-Form-Card'
 
-let Form: React.FC<InjectedFormProps<FieldsType, FormCardPropsType> & FormCardPropsType> = (props) => {
+// type FieldsType = LoginFieldsType | RegistrationFieldsType
+type LoginFormPropsType = {
+    onSubmit: OnSubmitType
+    setError: (error: string) => SetErrorType
+    dataFields: LoginFieldsType
+    login: (email: string, password: string) => void
+    error: string
+}
+
+let LoginForm: React.FC<InjectedFormProps<FieldsValuesType, LoginFormPropsType> & LoginFormPropsType> = (props) => {
     if (props.error) {
         props.setError(props.error)
     }
@@ -32,18 +31,18 @@ let Form: React.FC<InjectedFormProps<FieldsType, FormCardPropsType> & FormCardPr
     //     ? typeIndex = 0
     //     : typeIndex = 1
 
-        let validate = null
+    let validate = null
 
-    inputs = props.fields.map(field => {
+    inputs = props.dataFields.map(field => {
 
-        if(field.name === 'email'){
+        if (field.name === 'email') {
             validate = emailValidate
-        }else if(field.name === 'password'){
+        } else if (field.name === 'password') {
             validate = passwordValidate
-        }else {
+        } else {
             validate = requiredFields
         }
-      
+
         return <Field
             component={Input}
             validate={[validate]}
@@ -58,7 +57,7 @@ let Form: React.FC<InjectedFormProps<FieldsType, FormCardPropsType> & FormCardPr
     return (<>
 
         <form onSubmit={props.handleSubmit} className={style.inputs__container}>
-{/* handleSubmit, error, captchaSubmit ? */}
+            {/* handleSubmit, error, captchaSubmit ? */}
             {inputs}
             <div className={style.button__container}>
                 {/* <NavLink className={style.button__container} to={'../'}>  */}
@@ -71,7 +70,7 @@ let Form: React.FC<InjectedFormProps<FieldsType, FormCardPropsType> & FormCardPr
 
     )
 }
-
-export default  reduxForm<FieldsType, FormCardPropsType>({
+// reduxForm<FormValuesType, OwnPropsType>
+export default reduxForm<FieldsValuesType, LoginFormPropsType>({
     form: 'login'
-})(Form)
+})(LoginForm)

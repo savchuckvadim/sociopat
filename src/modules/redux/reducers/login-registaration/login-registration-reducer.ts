@@ -1,20 +1,24 @@
 const SET_ERROR = 'SET_ERROR'
-
+export type FieldType = {
+    name: string
+    placeholder: string
+}
+export type LoginFieldsType = Array<FieldType>
 const initialState = {
     login: {
-        type: 'login',
+        type: 'login' as string,
         fields: [
             {
-                name: 'email',
-                placeholder: 'E-mail'
+                name: 'email' as string,
+                placeholder: 'E-mail' as string
             },
             {
-                name: 'password',
-                placeholder: 'Password'
+                name: 'password' as string,
+                placeholder: 'Password' as string
             },
 
 
-        ],
+        ] as LoginFieldsType,
         title: 'Log in',
         instruction: 'Use your email and password to continue',
         forgotLink: `Forgot password?`,
@@ -25,39 +29,39 @@ const initialState = {
         type: 'registration',
         fields: [
             {
-                name: 'name',
-                placeholder: 'Name'
+                name: 'name' as string,
+                placeholder: 'Name' as string
             },
             {
-                name: 'surname',
-                placeholder: 'Surname'
+                name: 'surname' as string,
+                placeholder: 'Surname' as string
             },
             {
-                name: 'email',
-                placeholder: 'E-mail'
+                name: 'email' as string,
+                placeholder: 'E-mail' as string
             },
             {
-                name: 'password',
-                placeholder: 'Password'
+                name: 'password' as string,
+                placeholder: 'Password' as string
             },
             {
-                name: 'repeatPassword',
-                placeholder: 'Repeat Password'
+                name: 'repeatPassword' as string,
+                placeholder: 'Repeat Password' as string
             },
 
 
-        ],
+        ]as Array<FieldType>,
         title: 'Getting started',
         instruction: 'Create an account to continue and connect with the Sociopaths.',
         privacy: `By pressing Sign Up, you agree to the Terms of Service and Privacy Policy.`,
         footerInstruction: `Already have an account? `,
         footerLink: `Sign In`
     },
-    error: ''
+    error: '' as string
 }
 export type LoginRegistrationType = typeof initialState
-export type LoginFieldsType = typeof initialState.login.fields
-export type RegistrationFieldsType = typeof initialState.registration.fields
+// export type LoginFieldsType = typeof initialState.login.fields
+// export type RegistrationFieldsType = typeof initialState.registration.fields
 
 export const setError = (error: string):SetErrorType => {
 

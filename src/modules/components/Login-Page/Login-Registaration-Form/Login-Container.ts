@@ -1,14 +1,14 @@
 import { connect } from "react-redux"
 import { login } from "../../../redux/reducers/auth/auth-reducer"
-import { LoginFieldsType, SetErrorType } from "../../../redux/reducers/login-registaration/login-registration-reducer"
+import { FieldType, LoginFieldsType, SetErrorType } from "../../../redux/reducers/login-registaration/login-registration-reducer"
 import { setError } from "../../../redux/reducers/login-registaration/login-registration-reducer"
-import { AppDispatchType, RootStateType } from "../../../redux/store"
-import FormCard from "./Form-Card/Form-Card"
+import { RootStateType } from "../../../redux/store"
+import LoginFormCard from "./Form-Card/Login-Form-Card"
 
 type LoginMapStateType = {
     isAuth: boolean
     type: string
-    fields: LoginFieldsType
+    dataFields: LoginFieldsType
     title: string
     instruction: string
     forgotLink: string
@@ -29,7 +29,7 @@ const mapStateToProps = (state: RootStateType):LoginMapStateType => {
     return {
         isAuth: state.auth.isAuth,
         type: login.type,
-        fields: login.fields,
+        dataFields: login.fields,
         title: login.title,
         instruction: login.instruction,
         forgotLink: login.forgotLink,
@@ -43,4 +43,4 @@ const connector =  connect(mapStateToProps, {
     setError
 })
 
-export default connector(FormCard)
+export default connector(LoginFormCard)

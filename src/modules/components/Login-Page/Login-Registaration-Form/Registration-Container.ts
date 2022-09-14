@@ -1,13 +1,14 @@
 import { connect } from "react-redux"
 import { setNewUser } from "../../../redux/reducers/auth/auth-reducer"
-import { RegistrationFieldsType } from "../../../redux/reducers/login-registaration/login-registration-reducer"
+import { FieldType } from "../../../redux/reducers/login-registaration/login-registration-reducer"
 import { RootStateType } from "../../../redux/store"
-import FormCard from "./Form-Card/Form-Card"
+
+import RegistrationFormCard from "./Form-Card/Registration-Form-Card"
 
 type RegistrationMapStateType = {
 
     type: string
-    fields: RegistrationFieldsType
+    fields: Array<FieldType>
     title: string
     instruction: string
     privacy: string
@@ -36,6 +37,6 @@ const mapStateToProps = (state: RootStateType): RegistrationMapStateType => {
 
 const RegistrationContainer = connect(mapStateToProps, {
     setNewUser
-})(FormCard)
+})(RegistrationFormCard)
 
 export default RegistrationContainer
