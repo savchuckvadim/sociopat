@@ -1,7 +1,11 @@
-import { AboutMeType } from "./api-laravel-types";
 import { instance } from "./api-laravel";
 
 
+type AboutMeType = {
+    resultCode: number
+    aboutMe: string
+    message: string
+}
 
 
 

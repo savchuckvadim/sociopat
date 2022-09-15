@@ -14,6 +14,12 @@ export const instance = axios.create({
 
 })
 
+export type ResponseType<D = {}, RC = ResultCodesEnum> = {
+    data: D
+    message: string //TODO messages: Array<string>
+    resultCode: RC
+}
+
 export enum ResultCodesEnum {
     Error = 0,
     Success = 1

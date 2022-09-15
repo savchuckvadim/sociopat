@@ -1,8 +1,12 @@
-import { GetAuthUserType } from "./api-laravel-types";
 import { socket } from "./websocket/socket";
 import { instance } from "./api-laravel";
+import { UserType } from "../types/types";
 
-
+type GetAuthUserType = {
+    resultCode: number
+    authUser: UserType
+    message: string
+}
 
 
 export const authAPI = {

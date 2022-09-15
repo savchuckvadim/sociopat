@@ -1,8 +1,22 @@
-import { GetPostsType, SendtPostType, PostDeleteLikeType } from "./api-laravel-types";
+import { PostType } from "../types/types";
 import { instance } from "./api-laravel";
 
 
+type GetPostsType = {
+    resultCode: number
+    posts: Array<PostType>
+    message: string
+}
+type SendtPostType = {
+    resultCode: number
+    post: PostType
+    message: string
+}
 
+type PostDeleteLikeType = {
+    resultCode: number
+    message: string
+}
 
 
 export const postAPI = {

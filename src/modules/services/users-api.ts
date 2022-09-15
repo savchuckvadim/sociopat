@@ -1,8 +1,53 @@
-import { GetUsersType, GetUserType, FollowType, UnfollowType } from "./api-laravel-types";
 import { instance } from "./api-laravel";
+import { UserType } from "../types/types";
 
 
+type GetUsersType = {
+    data: UsersDataType
+    links: UsersLinksType
+    meta: UsersMetaType
+    message: string
+}
 
+type UsersDataType = {
+    resultCode: number
+    totalCount: number
+    users: Array<UserType>
+}
+type UsersMetaType = {
+    current_page: number
+    from: number
+    last_page: number
+    links: Array<any>
+    path: string
+    per_page: string
+    to: number
+    total: number
+}
+
+type UsersLinksType = {
+    first: string
+    last: string
+    next: number
+    prev: number
+}
+
+ type GetUserType = {
+    user: UserType
+    resultCode: number
+    message: string
+}
+
+ type FollowType = {
+    followedUser: UserType
+    resultCode: number
+    message: string
+}
+ type UnfollowType = {
+    unfollowedUser: UserType
+    resultCode: number
+    message: string
+}
 
 
 export const usersAPI = {
