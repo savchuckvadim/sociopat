@@ -8,7 +8,7 @@ import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow"
 import { likeDislikeFollow } from "../../../utils/for-rdeucers/like-dislike"
 import { AppDispatchType, RootStateType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"
-import { FollowType, UnfollowType } from "../users/users-reducer"
+import { usersActions } from "../users/users-reducer"
 
 const ADD_POST = 'ADD_POST'
 const SET_POSTS = 'SET_POSTS'
@@ -75,7 +75,7 @@ export type LikeInProgressType = { type: typeof LIKE_IN_PROGRESS, bool: boolean 
 
 type ActionsTypes = AddPostActionCreatorType | SetPostsActionCreatorType |
     setAboutMeActionCreatorType | SetProfilePageDataActionCreatorType |
-    SetLikeType | FollowType | UnfollowType | SetDislikeType |
+    SetLikeType  | SetDislikeType |
     LikeInProgressType
 
 // const setProfile = (profile, user) => ({ type: SET_PROFILE, profile, user })
@@ -180,21 +180,21 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionsT
     let result = state
     switch (action.type) {
 
-        case FOLLOW:
-            if (state.visitedUser) {
-                result = { ...state }
-                result.visitedUser =
-                    followUnfollow([state.visitedUser], action.userId, action.authUser, true)[0]
-            }
-            return result
+        // case FOLLOW:
+        //     if (state.visitedUser) {
+        //         result = { ...state }
+        //         result.visitedUser =
+        //             followUnfollow([state.visitedUser], action.userId, action.authUser, true)[0]
+        //     }
+        //     return result
 
-        case UNFOLLOW:
-            if (state.visitedUser) {
-                result = { ...state }
-                result.visitedUser =
-                    followUnfollow([state.visitedUser], action.userId, action.authUser, false)[0]
-            }
-            return result
+        // case UNFOLLOW:
+        //     if (state.visitedUser) {
+        //         result = { ...state }
+        //         result.visitedUser =
+        //             followUnfollow([state.visitedUser], action.userId, action.authUser, false)[0]
+        //     }
+        //     return result
 
         case SET_ABOUT_ME:
             if (state.visitedUser) {
