@@ -44,7 +44,6 @@ let LoginForm: React.FC<InjectedFormProps<FieldsValuesType, LoginFormPropsType> 
         } else {
             validate = requiredFields
         }
-debugger
         return <Field
             component={Input}
             validate={[validate]}

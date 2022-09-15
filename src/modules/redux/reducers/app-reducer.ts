@@ -1,4 +1,5 @@
 import { getAuth } from './auth/auth-reducer'
+import { inProgress } from './preloader/preloader-reducer'
 const INITIALIZED_SUCCES = 'INITIALIZED_SUCCES'
 const INITIALIZING = 'INITIALIZING'
 
@@ -19,13 +20,13 @@ export const initializing = (): InitialActionType => ({ type: INITIALIZING })
 
 //THUNKS
 export const initialize = () => async (dispatch: any) => {
-    dispatch(initializing()) //inProgress-status
+    dispatch(inProgress(true))//inProgress-status
     let promiseAuth = () => {
         return dispatch(getAuth())
 
     }
     await promiseAuth()
-    dispatch(initializedSuccess())
+    dispatch(inProgress(false))
 
 }
 

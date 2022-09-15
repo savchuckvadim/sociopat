@@ -1,9 +1,10 @@
+import { Navigate } from 'react-router-dom';
 import { stopSubmit } from "redux-form"
 import { authAPI, ResultCodesEnum } from "../../../services/api-laravel"
 import { UserType } from "../../../types/types"
 import { AppDispatchType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"
-// import {getAuth} from "../../redux/reducers/auth/auth-reducer"
+
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
@@ -39,6 +40,7 @@ export const setAuthUserData = (authUser: UserType | null, isAuth: boolean = fal
 export const getAuth = () => async (dispatch: AppDispatchType) => {
     dispatch(inProgress(true))
     let response = await authAPI.getAuthUser()
+    debugger
     let authUser = null
     if (response) {
         if (response.resultCode === ResultCodesEnum.Success) {
@@ -54,15 +56,16 @@ export const getAuth = () => async (dispatch: AppDispatchType) => {
     } else {
         dispatch(setAuthUserData(null, false))
     }
-    dispatch(inProgress(false))
+
 
 }
-export const login = (email: string, password: string) => (dispatch: AppDispatchType) => {
+export const login = (email: string, password: string) => async (dispatch: any) => {
     dispatch(inProgress(true))
-    authAPI.login(email, password)
+    debugger
+    await authAPI.login(email, password)
         .then(res => {
-            getAuth()
-            dispatch(inProgress(false))
+
+            dispatch(getAuth())
 
         })
         .catch((e) => {
@@ -75,6 +78,7 @@ export const login = (email: string, password: string) => (dispatch: AppDispatch
             dispatch(inProgress(false))
         })
 
+       
 
 }
 export const logout = () => (dispatch: any) => {

@@ -6,8 +6,8 @@ import LoginForm from './Form/Login-Form'
 
 
 export type FieldsValuesType = {
-     email: 'email'
-     password: 'password'
+    email: 'email'
+    password: 'password'
 }
 // export type LoginKeys = keyof FieldsValuesType
 
@@ -15,10 +15,11 @@ export type OnSubmitType = (values: FieldsValuesType) => void
 
 const LoginFormCard: React.FC<LoginPropsType> = (props) => {
     let type = props.type
-    const onSubmit:OnSubmitType = (values: FieldsValuesType) => {
+
+    const onSubmit: OnSubmitType = (values: FieldsValuesType) => {
 
         props.login(values.email, values.password)
-
+        return <Navigate replace to='../profile' />
     }
 
     if (props.isAuth) { return <Navigate replace to='../profile' /> }
