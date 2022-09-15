@@ -12,6 +12,8 @@ export type RegistarationFieldsValuesType = {
     password: string
     repeatPassword: string
 }
+export type RegistarationKeys = keyof RegistarationFieldsValuesType
+
 export type RegistrationOnSubmitType = (values: RegistarationFieldsValuesType) => void
 
 const RegistrationFormCard: React.FC<RegistrationPropsType> = (props) => {

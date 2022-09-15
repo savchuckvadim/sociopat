@@ -1,6 +1,5 @@
 import React from 'react'
 import { Navigate, NavLink } from 'react-router-dom'
-import { FieldType } from '../../../../redux/reducers/login-registaration/login-registration-reducer'
 import { LoginPropsType } from '../Login-Container'
 import style from './Form-Card.module.css'
 import LoginForm from './Form/Login-Form'
@@ -10,6 +9,8 @@ export type FieldsValuesType = {
      email: string
      password: string
 }
+export type LoginKeys = keyof FieldsValuesType
+
 export type OnSubmitType = (values: FieldsValuesType) => void
 
 const LoginFormCard: React.FC<LoginPropsType> = (props) => {

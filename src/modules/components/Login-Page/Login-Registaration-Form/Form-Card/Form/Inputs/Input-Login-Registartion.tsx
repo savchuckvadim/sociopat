@@ -8,7 +8,7 @@ import { FieldValidatorType } from '../../../../../../utils/Validators/validator
 type InputProps = {
     input: WrappedFieldInputProps
     meta: WrappedFieldMetaProps
-    field: FieldPropsType,
+    field: FieldPropsType
     validate: Array<FieldValidatorType>
 }
 
