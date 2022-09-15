@@ -1,6 +1,7 @@
 import { LikeInProgressType, SetDislikeType, SetLikeType } from "../../redux/reducers/profile/profile-reducer"
 import { AppDispatchType, RootStateType } from "../../redux/store"
-import { postAPI, ResultCodesEnum } from "../../services/api-laravel"
+import { ResultCodesEnum } from "../../services/api-laravel"
+import { postAPI } from "../../services/post-api"
 
 export const likeDislikeFollow = async (
     isLikes: boolean,

@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { stopSubmit } from "redux-form"
-import { authAPI, ResultCodesEnum } from "../../../services/api-laravel"
+import { ResultCodesEnum } from "../../../services/api-laravel"
+import { authAPI } from "../../../services/auth-api";
 import { UserType } from "../../../types/types"
 import { AppDispatchType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"

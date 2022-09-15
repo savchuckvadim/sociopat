@@ -1,5 +1,5 @@
 import { fishAPI } from "../../../services/api"
-import { usersAPI } from "../../../services/api-laravel"
+import { usersAPI } from "../../../services/users-api"
 
 const SET_DIALOGS = 'SET_DIALOGS'
 

@@ -1,5 +1,6 @@
 import { Dispatch } from "react";
-import { ResultCodesEnum, usersAPI } from "../../../services/api-laravel";
+import { ResultCodesEnum } from "../../../services/api-laravel";
+import { usersAPI } from "../../../services/users-api";
 import { UserType } from "../../../types/types";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
 import { AppDispatchType, RootStateType } from "../../store";
