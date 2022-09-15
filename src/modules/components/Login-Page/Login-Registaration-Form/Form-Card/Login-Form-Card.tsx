@@ -9,7 +9,7 @@ export type FieldsValuesType = {
      email: 'email'
      password: 'password'
 }
-export type LoginKeys = keyof FieldsValuesType
+// export type LoginKeys = keyof FieldsValuesType
 
 export type OnSubmitType = (values: FieldsValuesType) => void
 

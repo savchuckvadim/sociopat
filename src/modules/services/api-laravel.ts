@@ -60,19 +60,24 @@ export const authAPI = {
             let res = await instance.get<GetAuthUserType>("api/user/auth")
             let websocket = await socket.connection()
             //mounted websocket
-            let tokensData = await instance.post("/api/sanctum/token", { /////////// Generate token for websocket
-                email: "savchuckvadim@gmail.com",
-                password: "Cfdxer131!",
-                device_name: 'iPhone_11'
-            })
-            token = tokensData.data.token
+            // let tokensData = await instance.post("/api/sanctum/token", { /////////// Generate token for websocket
+            //     email: "savchuckvadim@gmail.com",
+            //     password: "Cfdxer131!",
+            //     device_name: 'iPhone_11'
+            // })
+            // token = tokensData.data.token
             // let event = await eventsAPI.event()
             // console.log(event)
             ///////////////////////
 
             return res.data
         } catch (error) {
-            alert(error)
+            return {
+                'resultCode': 0,
+                'authUser': null,
+                'message': error
+            }
+            console.log(error)
         }
 
     },

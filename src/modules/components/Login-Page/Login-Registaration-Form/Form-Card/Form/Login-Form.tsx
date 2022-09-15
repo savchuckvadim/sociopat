@@ -21,7 +21,7 @@ export type FieldPropsType = {
     validate:FieldValidatorType
     name:string
     type:string
-    placeholder:string | undefined
+    placeholder:string 
     key:string
 }
 
@@ -44,7 +44,7 @@ let LoginForm: React.FC<InjectedFormProps<FieldsValuesType, LoginFormPropsType> 
         } else {
             validate = requiredFields
         }
-
+debugger
         return <Field
             component={Input}
             validate={[validate]}

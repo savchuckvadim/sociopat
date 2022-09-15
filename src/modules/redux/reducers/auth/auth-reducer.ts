@@ -37,15 +37,16 @@ export const setAuthUserData = (authUser: UserType | null, isAuth: boolean = fal
 
 //THUNKS
 export const getAuth = () => async (dispatch: AppDispatchType) => {
-
+    dispatch(inProgress(true))
     let response = await authAPI.getAuthUser()
     let authUser = null
-    if (response){
+    if (response) {
         if (response.resultCode === ResultCodesEnum.Success) {
             authUser = response.authUser && response.authUser
-        } 
-
-    } 
+        } else {
+            console.log(response.message)
+        }
+    }
 
     if (authUser) {
         dispatch(setAuthUserData(authUser, true))
@@ -53,7 +54,7 @@ export const getAuth = () => async (dispatch: AppDispatchType) => {
     } else {
         dispatch(setAuthUserData(null, false))
     }
-
+    dispatch(inProgress(false))
 
 }
 export const login = (email: string, password: string) => (dispatch: AppDispatchType) => {

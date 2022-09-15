@@ -8,12 +8,14 @@ import { FieldValidatorType } from '../../../../../../utils/Validators/validator
 type InputProps = {
     input: WrappedFieldInputProps
     meta: WrappedFieldMetaProps
-    field: FieldPropsType
+    placeholder: string
+    type:string
     validate: Array<FieldValidatorType>
 }
 
 
 const Input: React.FC<InputProps> = (props) => {
+    
     let index = 0
     let containerClasses = [style.container, style.containerFocus]
     let error = null
@@ -21,13 +23,14 @@ const Input: React.FC<InputProps> = (props) => {
     if (props.meta.active || props.input.value) {
         index = 1
     }
-
+ 
     if (props.meta.error && props.meta.touched && !props.meta.active) {
         error = <span className='error'>{props.meta.error}</span>
     }
 
     let containerClass = containerClasses[index]
-    let icon = getLoginRegistrationIcon(props.field.placeholder, index)
+    let icon = getLoginRegistrationIcon(props.placeholder, index)
+    
 
     return (
         <>
@@ -36,10 +39,10 @@ const Input: React.FC<InputProps> = (props) => {
 
                 <input
                     {...props.input}
-                    key={props.field.placeholder}
+                    key={props.placeholder}
                     className={style.input}
-                    type={`${props.field.type}`}
-                    placeholder={props.field.placeholder} />
+                    type={`${props.type}`}
+                    placeholder={props.placeholder} />
                 {error}
             </div>
 
