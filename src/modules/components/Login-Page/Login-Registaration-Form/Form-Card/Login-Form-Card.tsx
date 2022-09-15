@@ -6,8 +6,8 @@ import LoginForm from './Form/Login-Form'
 
 
 export type FieldsValuesType = {
-     email: string
-     password: string
+     email: 'email'
+     password: 'password'
 }
 export type LoginKeys = keyof FieldsValuesType
 
