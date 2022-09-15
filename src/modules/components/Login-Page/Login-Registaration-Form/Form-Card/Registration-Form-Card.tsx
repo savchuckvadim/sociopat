@@ -6,12 +6,14 @@ import RegistrationForm from './Form/Registration-Form'
 
 
 export type RegistarationFieldsValuesType = {
-    name: string
-    surname: string
-    email: string
-    password: string
-    repeatPassword: string
+    name: 'name'
+    surname: 'surname'
+    email: 'email'
+    password: 'password'
+    repeatPassword: 'repeatPassword'
 }
+export type RegistarationKeys = keyof RegistarationFieldsValuesType
+
 export type RegistrationOnSubmitType = (values: RegistarationFieldsValuesType) => void
 
 const RegistrationFormCard: React.FC<RegistrationPropsType> = (props) => {

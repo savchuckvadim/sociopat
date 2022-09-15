@@ -1,5 +1,6 @@
+export type FieldValidatorType = (value:string) => string | undefined 
 
-export const symbol = type => value => {
+export const symbol = (type: string):FieldValidatorType => (value) => {
 
     let error = undefined
     if (value) {
@@ -25,7 +26,7 @@ export const symbol = type => value => {
 export const emailValidate = symbol('email')
 export const passwordValidate = symbol('password')
 
-export const requiredFields = (value) => {
+export const requiredFields:FieldValidatorType = (value)=> {
     let error = undefined
     if (!value) {
 
@@ -33,7 +34,7 @@ export const requiredFields = (value) => {
     }
 
 
-       
+
     return error
 }
 

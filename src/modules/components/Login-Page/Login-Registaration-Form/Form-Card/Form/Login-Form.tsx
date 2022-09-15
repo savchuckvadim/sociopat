@@ -1,7 +1,7 @@
 import React from 'react'
 import { InjectedFormProps, reduxForm } from 'redux-form'
 import { Field } from 'redux-form'
-import { emailValidate, passwordValidate, requiredFields } from '../../../../../utils/Validators/validator'
+import { emailValidate, FieldValidatorType, passwordValidate, requiredFields } from '../../../../../utils/Validators/validator'
 import style from './Form.module.css'
 import Input from './Inputs/Input-Login-Registartion'
 import Button from '../../../../Elements/Button/Button'
@@ -10,12 +10,19 @@ import { LoginPropsType } from '../../Login-Container'
 import { FieldsValuesType, OnSubmitType } from '../Login-Form-Card'
 
 // type FieldsType = LoginFieldsType | RegistrationFieldsType
-type LoginFormPropsType = {
+export type LoginFormPropsType = {
     onSubmit: OnSubmitType
     setError: (error: string) => SetErrorType
     dataFields: LoginFieldsType
     login: (email: string, password: string) => void
     error: string
+}
+export type FieldPropsType = {
+    validate:FieldValidatorType
+    name:string
+    type:string
+    placeholder:string | undefined
+    key:string
 }
 
 let LoginForm: React.FC<InjectedFormProps<FieldsValuesType, LoginFormPropsType> & LoginFormPropsType> = (props) => {
@@ -25,11 +32,6 @@ let LoginForm: React.FC<InjectedFormProps<FieldsValuesType, LoginFormPropsType> 
 
 
     let inputs = []
-
-    // let typeIndex = 0
-    // props.type === 'login'
-    //     ? typeIndex = 0
-    //     : typeIndex = 1
 
     let validate = null
 
