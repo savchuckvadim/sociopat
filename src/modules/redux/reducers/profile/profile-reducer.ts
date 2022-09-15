@@ -143,14 +143,15 @@ export const updateAboutMe = (aboutMe: string):
 // }
 
 export const sendPost = (userId: number, profileId: number, body: string, img: string):
-    ThunkType => async (dispatch, getState) => {
+    ThunkType => async (dispatch:any, getState) => {
+        dispatch(inProgress(true))
         const res = await postAPI.sendPost(userId, profileId, body, img)
         if(res.resultCode === ResultCodesEnum.Success){
             dispatch(addPostActionCreator(res.post))
         }else{
             alert(res.message)
         }
-        
+        dispatch(inProgress(false))
     }
 
 

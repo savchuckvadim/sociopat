@@ -1,6 +1,6 @@
 .container {
     min-width: 100%;
-    min-height: 100vh;
+    height: 100%;
     /* background-color: bisque; */
     display: flex;
     flex-direction: row;
@@ -30,7 +30,7 @@
     justify-content: center;
     flex-direction: column;
 }
-.pages{
+.paginator{
 
     width: 100%;
     position: sticky;

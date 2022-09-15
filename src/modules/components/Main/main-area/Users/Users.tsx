@@ -55,7 +55,7 @@ const Users: React.FC<UsersPropsType> = ({
                     />)}
             </div>
 
-            <div className={style.pages}>
+            <div className={style.paginator}>
 
                 <Paginator
                     totalItemsCount={totalItemsCount}
