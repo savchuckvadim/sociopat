@@ -21,12 +21,14 @@ export const initializing = (): InitialActionType => ({ type: INITIALIZING })
 //THUNKS
 export const initialize = () => async (dispatch: any) => {
     dispatch(inProgress(true))//inProgress-status
-    let promiseAuth = () => {
-        return dispatch(getAuth())
+    // let promiseAuth = () => {
+    //     return dispatch(getAuth())
 
-    }
-    await promiseAuth()
-    dispatch(inProgress(false))
+    // }
+    // await promiseAuth()
+    await dispatch(getAuth())
+    dispatch(initializedSuccess())
+   
 
 }
 

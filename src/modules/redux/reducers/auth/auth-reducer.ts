@@ -40,7 +40,7 @@ export const setAuthUserData = (authUser: UserType | null, isAuth: boolean = fal
 export const getAuth = () => async (dispatch: AppDispatchType) => {
     dispatch(inProgress(true))
     let response = await authAPI.getAuthUser()
-    debugger
+   
     let authUser = null
     if (response) {
         if (response.resultCode === ResultCodesEnum.Success) {
@@ -56,12 +56,12 @@ export const getAuth = () => async (dispatch: AppDispatchType) => {
     } else {
         dispatch(setAuthUserData(null, false))
     }
-
+    dispatch(inProgress(false))
 
 }
 export const login = (email: string, password: string) => async (dispatch: any) => {
     dispatch(inProgress(true))
-    debugger
+  
     await authAPI.login(email, password)
         .then(res => {
 
@@ -93,8 +93,8 @@ export const logout = () => (dispatch: any) => {
 //registration
 export const setNewUser = (
     name: string, surname: string, email: string,
-    password: string, password_confirmation: string) => async (dispatch: AppDispatchType) => {
-        dispatch(inProgress(false))
+    password: string, password_confirmation: string) => async (dispatch: any) => {
+        
         dispatch(inProgress(true))
 
 
@@ -102,7 +102,7 @@ export const setNewUser = (
             let res = await authAPI.register(name, surname, email, password, password_confirmation)
             if (res.statusText === 'Created') {
                 // dispatch(registrationSuccess())
-                getAuth()           //from auth reducer
+                dispatch(getAuth())           //from auth reducer
 
             } else {
 

@@ -4,7 +4,10 @@ const initialState = {
     inProgress: false as boolean
 }
 
-export const inProgress = (bool: boolean): InProgressType => ({ type: IN_PROGRESS, bool })
+export const inProgress = (bool: boolean): InProgressType =>  {
+    
+    return{ type: IN_PROGRESS, bool }
+}
 
 export type PreloaderStateType = typeof initialState
 
