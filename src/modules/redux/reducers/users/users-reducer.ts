@@ -7,7 +7,7 @@ import { AppDispatchType, InferActionsTypes, RootStateType } from "../../store";
 import { setTotalItemsCount } from "../paginator/paginator-reducer";
 
 
-type ActionsTypes = InferActionsTypes<typeof usersActions>
+export type ActionsTypes = InferActionsTypes<typeof usersActions>
 export const usersActions = {
     setUsers: (users: Array<UserType>) => ({ type: 'SET_USERS', users } as const),
     fetching: (bool: boolean) => ({ type: 'FETCHING', bool } as const),

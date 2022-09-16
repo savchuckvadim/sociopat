@@ -1,7 +1,9 @@
 import React from "react"
 import { connect } from "react-redux"
-import { ToggleFollowingInProgressType } from "../../../../redux/reducers/users/users-reducer"
-import { followThunk, toggleFollowingInProgress, unFollowThunk } from "../../../../redux/reducers/users/users-reducer"
+import { ActionsTypes } from "../../../../redux/reducers/users/users-reducer"
+import { followThunk, usersActions,
+    // toggleFollowingInProgress, 
+    unFollowThunk } from "../../../../redux/reducers/users/users-reducer"
 import { RootStateType } from "../../../../redux/store"
 import { UserType } from "../../../../types/types"
 import FollowUnfollowButtons from "./Follow-Unfollow-Buttons"
@@ -14,7 +16,7 @@ import FollowUnfollowButtons from "./Follow-Unfollow-Buttons"
     authUser: UserType | null
 }
 type FUMapDispatchToPropsType = {
-    toggleFollowingInProgress:  (userId: number, isFetching: boolean) => ToggleFollowingInProgressType
+    toggleFollowingInProgress:  (userId: number, isFetching: boolean) => ActionsTypes
     followThunk: (userId: number, authUser: UserType) => void,
     unFollowThunk: (userId: number, authUser: UserType) => void
 }
@@ -35,7 +37,7 @@ const mapStateToProps = (state: RootStateType, ownProps: FUOwnPropsType): StateW
 
 export default connect<FUOwnPropsType, FUMapStateToPropsType,FUMapDispatchToPropsType, RootStateType>(mapStateToProps, {
 
-    toggleFollowingInProgress,
+    toggleFollowingInProgress: usersActions.toggleFollowingInProgress,
     followThunk,
     unFollowThunk,
 

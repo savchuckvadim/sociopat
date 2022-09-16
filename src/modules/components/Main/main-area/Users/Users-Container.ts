@@ -1,7 +1,11 @@
 import React from "react"
 import { connect } from "react-redux"
 import { setCurrentPage, SetCurrentPageType } from "../../../../redux/reducers/paginator/paginator-reducer"
-import { followThunk, requestUsers, toggleFollowingInProgress, ToggleFollowingInProgressType, unFollowThunk } from "../../../../redux/reducers/users/users-reducer"
+import {
+    followThunk, requestUsers, usersActions,
+    // toggleFollowingInProgress, ToggleFollowingInProgressType, 
+    unFollowThunk, ActionsTypes
+} from "../../../../redux/reducers/users/users-reducer"
 import { getAuthUser, getIsFetching, getIsFollowing, getUsersSelector } from "../../../../redux/selectors/user-selectors"
 import { AppDispatchType, RootStateType } from "../../../../redux/store"
 import { UserType } from "../../../../types/types"
@@ -23,7 +27,7 @@ type MapDispatchToPropsType = {
     followThunk: (userId: number, authUser: UserType) => void,
     unFollowThunk: (userId: number, authUser: UserType) => void
     setCurrentPage: (page: number, portion: number) => SetCurrentPageType
-    toggleFollowingInProgress: (userId: number, isFetching: boolean) => ToggleFollowingInProgressType
+    toggleFollowingInProgress: (userId: number, isFetching: boolean) => ActionsTypes
 }
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -48,7 +52,7 @@ const connector = connect(mapStateToProps, {
     followThunk,
     unFollowThunk,
     setCurrentPage,
-    toggleFollowingInProgress
+    toggleFollowingInProgress: usersActions.toggleFollowingInProgress
 
 })
 // export type PropsFromRedux = typeof connector
