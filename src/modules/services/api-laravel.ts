@@ -13,12 +13,32 @@ export const instance = axios.create({
     },
 
 })
+// type DataKeysType = 'data' | 'users' | 'authUser' | 'post' | 'posts' | 'aboutMe'
+// type PropertiesTypes<T> = T extends {[key: string]: infer U }? U : never
+// export type ResponseType = ReturnType<PropertiesTypes<>>
+// const authRes = {
+//     resultCode: 1,
+//     authUser: {
+//         name: 'oolya',
+//         email: 'ret@mail.ru'
+//     },
+//     message: 'string'
+// }
+// const usersRes = {
+//     users: [
+//         {name: 'oolya',email: 'ret@mail.ru'},
+//         {name: 'igor\'',email: 'igr@mail.ru'},
+//     ],
+//     resultCode: 0,
+//     message: 'string'
+// }
+// type UserResType = ResponseType<typeof usersRes>
 
-export type ResponseType<D = {}, RC = ResultCodesEnum> = {
-    data: D
-    message: string //TODO messages: Array<string>
-    resultCode: RC
-}
+// export type ResponseType<T> = T extends{
+//     data: D
+//     message: string
+//     resultCode: RC
+// }
 
 export enum ResultCodesEnum {
     Error = 0,

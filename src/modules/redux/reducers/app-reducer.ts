@@ -1,7 +1,7 @@
 import { getAuth } from './auth/auth-reducer'
 import { inProgress } from './preloader/preloader-reducer'
-const INITIALIZED_SUCCES = 'INITIALIZED_SUCCES'
-const INITIALIZING = 'INITIALIZING'
+const INITIALIZED_SUCCES = 'SP/APP/INITIALIZED_SUCCES'
+const INITIALIZING = 'SP/APP/INITIALIZING'
 
 let initialState = {
     initialized: false as boolean,
