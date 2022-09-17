@@ -24,20 +24,28 @@ import { UsersStateType } from "./reducers/users/users-reducer"
 
 
 let rootReducer = combineReducers({
-  app: appReducer as () => AppStateType,
-  auth: authReducer as () => AuthStateType,
-  loginRegistration: LoginRegistrationReducer as () => LoginRegistrationType,
-  users: usersReducer as () => UsersStateType,
-  theme: themeReducer as () => ThemeStateType,
-  navMenu: navMenuReducer as () => NavMenuStateType,
-  profile: profileReducer as () => ProfileStateType,
-  preloader: preloader as () => PreloaderStateType,
-  paginator: paginatorReducer as () => PaginatorStateType,
+  app: appReducer ,
+  // as () => AppStateType,
+  auth: authReducer,
+  //  as () => AuthStateType,
+  loginRegistration: LoginRegistrationReducer,
+  //  as () => LoginRegistrationType,
+  users: usersReducer ,
+  // as () => UsersStateType,
+  theme: themeReducer ,
+  //as () => ThemeStateType,
+  navMenu: navMenuReducer ,
+  // as () => NavMenuStateType,
+  profile: profileReducer ,
+  // as () => ProfileStateType,
+  preloader: preloader,
+  //  as () => PreloaderStateType,
+  paginator: paginatorReducer,
+  //  as () => PaginatorStateType,
   dialogsReducer,
   newMessageReducer,
+
   form: formReducer
-
-
 })
 
 export type RootReducerType = typeof rootReducer
@@ -46,7 +54,7 @@ export type AppDispatchType = typeof store.dispatch
 
 type PropertiesTypes<T> = T extends { [key: string]: infer U } ? U : never
 export type InferActionsTypes<T extends { [key: string]: (...args: any) => any }> = ReturnType<PropertiesTypes<T>>
-export type ThunkType<A extends Action, R= Promise<void>> = ThunkAction<R, RootStateType, unknown, A>
+export type ThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, RootStateType, unknown, A>
 //@ts-ignore
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 
