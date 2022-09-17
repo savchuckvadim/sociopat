@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { ActionsTypes } from "../../../../redux/reducers/users/users-reducer"
+import { UsersActionsTypes } from "../../../../redux/reducers/users/users-reducer"
 import { followThunk, usersActions,
     // toggleFollowingInProgress, 
     unFollowThunk } from "../../../../redux/reducers/users/users-reducer"
@@ -16,7 +16,7 @@ import FollowUnfollowButtons from "./Follow-Unfollow-Buttons"
     authUser: UserType | null
 }
 type FUMapDispatchToPropsType = {
-    toggleFollowingInProgress:  (userId: number, isFetching: boolean) => ActionsTypes
+    toggleFollowingInProgress:  (userId: number, isFetching: boolean) => UsersActionsTypes
     followThunk: (userId: number, authUser: UserType) => void,
     unFollowThunk: (userId: number, authUser: UserType) => void
 }

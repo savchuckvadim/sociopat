@@ -4,7 +4,7 @@ import FollowUnfollowButtons from '../../../../Elements/Button/Follow-Unfollow-B
 import Avatar from '../../../../Elements/Avatar/Avatar'
 import { UserType } from "../../../../../types/types"
 import { FUPropsType } from '../../../../Elements/Button/Follow-Unfollow-Buttons/Follow-Unfollow-Buttons-Container'
-import { ActionsTypes } from '../../../../../redux/reducers/users/users-reducer'
+import { UsersActionsTypes } from '../../../../../redux/reducers/users/users-reducer'
 
 //TODO Navlink Typescripting
 
@@ -12,7 +12,7 @@ type PropsType = {
     user: UserType
     followThunk: (userId: number, authUser: UserType) => void
     unFollowThunk: (userId: number, authUser: UserType) => void
-    toggleFollowingInProgress: (userId: number, isFetching: boolean) => ActionsTypes
+    toggleFollowingInProgress: (userId: number, isFetching: boolean) => UsersActionsTypes
     followingInProgress: Array<number>
     authUser: UserType
 }

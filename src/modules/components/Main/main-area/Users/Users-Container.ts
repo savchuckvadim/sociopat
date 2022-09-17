@@ -4,7 +4,7 @@ import { setCurrentPage, SetCurrentPageType } from "../../../../redux/reducers/p
 import {
     followThunk, requestUsers, usersActions,
     // toggleFollowingInProgress, ToggleFollowingInProgressType, 
-    unFollowThunk, ActionsTypes
+    unFollowThunk, UsersActionsTypes
 } from "../../../../redux/reducers/users/users-reducer"
 import { getAuthUser, getIsFetching, getIsFollowing, getUsersSelector } from "../../../../redux/selectors/user-selectors"
 import { AppDispatchType, RootStateType } from "../../../../redux/store"
@@ -27,7 +27,7 @@ type MapDispatchToPropsType = {
     followThunk: (userId: number, authUser: UserType) => void,
     unFollowThunk: (userId: number, authUser: UserType) => void
     setCurrentPage: (page: number, portion: number) => SetCurrentPageType
-    toggleFollowingInProgress: (userId: number, isFetching: boolean) => ActionsTypes
+    toggleFollowingInProgress: (userId: number, isFetching: boolean) => UsersActionsTypes
 }
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 

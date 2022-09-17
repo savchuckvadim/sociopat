@@ -7,7 +7,7 @@ import { AppDispatchType, InferActionsTypes, RootStateType } from "../../store";
 import { setTotalItemsCount } from "../paginator/paginator-reducer";
 
 
-export type ActionsTypes = InferActionsTypes<typeof usersActions>
+export type UsersActionsTypes = InferActionsTypes<typeof usersActions>
 export const usersActions = {
     setUsers: (users: Array<UserType>) => ({ type: 'SET_USERS', users } as const),
     fetching: (bool: boolean) => ({ type: 'FETCHING', bool } as const),
@@ -41,7 +41,7 @@ export type UsersStateType = typeof initialState
 
 
 type GetStateType = () => RootStateType
-type LocalDispatchType = Dispatch<ActionsTypes>
+type LocalDispatchType = Dispatch<UsersActionsTypes>
 
 //THUNKS
 
@@ -98,7 +98,7 @@ export const unFollowThunk = (userId: number, authUser: UserType) =>
 
 
 //REDUCER
-const usersReducer = (state: UsersStateType = initialState, action: ActionsTypes): UsersStateType => {
+const usersReducer = (state: UsersStateType = initialState, action: UsersActionsTypes): UsersStateType => {
     let result = state
 
     switch (action.type) {
