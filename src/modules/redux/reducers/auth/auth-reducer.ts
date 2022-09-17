@@ -2,7 +2,7 @@ import { stopSubmit } from "redux-form"
 import { ResultCodesEnum } from "../../../services/api-laravel"
 import { authAPI } from "../../../services/auth-api";
 import { UserType } from "../../../types/types"
-import { AppDispatchType } from "../../store"
+import { AppDispatchType, ThunkType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"
 
 
@@ -19,7 +19,7 @@ let initialState = {
 
 }
 export type AuthStateType = typeof initialState
-
+type AuthThunkType = ThunkType<SetAuthUserDataType | ReturnType<typeof stopSubmit> | ReturnType<typeof inProgress>>
 
 
 type SetAuthUserDataType = {
@@ -37,10 +37,10 @@ export const setAuthUserData = (authUser: UserType | null, isAuth: boolean = fal
 
 
 //THUNKS
-export const getAuth = () => async (dispatch: AppDispatchType) => {
+export const getAuth = (): AuthThunkType => async (dispatch) => {
     dispatch(inProgress(true))
     let response = await authAPI.getAuthUser()
-   
+
     let authUser = null
     if (response) {
         if (response.resultCode === ResultCodesEnum.Success) {
@@ -59,9 +59,9 @@ export const getAuth = () => async (dispatch: AppDispatchType) => {
     dispatch(inProgress(false))
 
 }
-export const login = (email: string, password: string) => async (dispatch: any) => {
+export const login = (email: string, password: string): AuthThunkType  => async (dispatch) => {
     dispatch(inProgress(true))
-  
+
     await authAPI.login(email, password)
         .then(res => {
 
@@ -78,10 +78,10 @@ export const login = (email: string, password: string) => async (dispatch: any) 
             dispatch(inProgress(false))
         })
 
-       
+
 
 }
-export const logout = () => (dispatch: any) => {
+export const logout = (): AuthThunkType  =>async (dispatch) => {
     dispatch(inProgress(true))
     authAPI.logout()
         .then(res => {
@@ -94,7 +94,7 @@ export const logout = () => (dispatch: any) => {
 export const setNewUser = (
     name: string, surname: string, email: string,
     password: string, password_confirmation: string) => async (dispatch: any) => {
-        
+
         dispatch(inProgress(true))
 
 
