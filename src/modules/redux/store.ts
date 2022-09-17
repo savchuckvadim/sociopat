@@ -20,7 +20,7 @@ import { PaginatorStateType } from "./reducers/paginator/paginator-reducer"
 import { PreloaderStateType } from "./reducers/preloader/preloader-reducer"
 import { ProfileStateType } from "./reducers/profile/profile-reducer"
 import { UsersStateType } from "./reducers/users/users-reducer"
-
+import {ThunkAction} from '@reduxjs/toolkit'
 
 let rootReducer = combineReducers({
   app: appReducer as () => AppStateType,
@@ -45,7 +45,7 @@ export type AppDispatchType = typeof store.dispatch
 
 type PropertiesTypes<T> = T extends { [key: string]: infer U } ? U : never
 export type InferActionsTypes<T extends { [key: string]: (...args: any) => any }> = ReturnType<PropertiesTypes<T>>
-
+export type ThunkType<A, R= Promise<void>> = ThunkAction<R, RootStateType, unknown, A>
 //@ts-ignore
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 
