@@ -2,15 +2,13 @@ import { stopSubmit } from "redux-form"
 import { ResultCodesEnum } from "../../../services/api-laravel"
 import { authAPI } from "../../../services/auth-api";
 import { UserType } from "../../../types/types"
-import { AppDispatchType, ThunkType } from "../../store"
+import { ThunkType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"
 
 
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
-// const SET_AUTH_CURRENT_USER = 'SET_AUTH_CURRENT_USER'
-// const SET_PHOTO = 'SET_PHOTO'
 
 //STATE
 let initialState = {
