@@ -1,12 +1,12 @@
 import { Dispatch } from "react";
-
 import { ResultCodesEnum } from "../../../services/api-laravel";
 import { usersAPI } from "../../../services/users-api";
 import { UserType } from "../../../types/types";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
 import { AppDispatchType, InferActionsTypes, RootStateType, ThunkType } from "../../store";
-
 import { setTotalItemsCount } from "../paginator/paginator-reducer";
+
+
 
 export type UsersStateType = typeof initialState
 export type UsersActionsTypes = InferActionsTypes<typeof usersActions>
