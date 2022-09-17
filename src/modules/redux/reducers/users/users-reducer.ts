@@ -4,7 +4,7 @@ import { usersAPI } from "../../../services/users-api";
 import { UserType } from "../../../types/types";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
 import { AppDispatchType, InferActionsTypes, RootStateType, ThunkType } from "../../store";
-import { setTotalItemsCount } from "../paginator/paginator-reducer";
+import { paginatorsActions } from "../paginator/paginator-reducer";
 
 
 
@@ -49,7 +49,7 @@ export const requestUsers = (currentPage: number, pageSize: number):UsersThunkTy
             if (res.data.resultCode === ResultCodesEnum.Success) {
                 const users = res.data.users;
 
-                dispatch(setTotalItemsCount(res.meta.total)) //from paginator reducer
+                dispatch(paginatorsActions.setTotalItemsCount(res.meta.total)) //from paginator reducer
                 dispatch(usersActions.setUsers(users))
 
             } else {

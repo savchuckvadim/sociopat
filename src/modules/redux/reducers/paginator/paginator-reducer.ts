@@ -1,8 +1,11 @@
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const SET_TOTAL_ITEMS_COUNT = 'SET_TOTAL_ITEMS_COUNT'
+import { InferActionsTypes } from "../../store"
 
+// TYPES
+export type PaginatorStateType = typeof initialState
+export type PaginatorActionsTypes = InferActionsTypes<typeof paginatorsActions>
+
+// STATE
 const initialState = {
-
     pageSize: 21 as number,
     totalItemsCount: 1 as number,
     currentPage: 1 as number,
@@ -10,33 +13,32 @@ const initialState = {
     currentPortion: 1 as number
 
 }
-export type PaginatorStateType = typeof initialState
 
 
 //ACTION CREATORS
-export const setCurrentPage = (page: number, portion: number): SetCurrentPageType => ({ type: SET_CURRENT_PAGE, page, portion })
-export type SetCurrentPageType = { type: typeof SET_CURRENT_PAGE; page: number; portion: number}
+export const paginatorsActions = {
+    setCurrentPage: (page: number, portion: number) => ({ type: 'SP/PAGINATOR/SET_CURRENT_PAGE', page, portion } as const),
+    setTotalItemsCount: (count: number) => ({ type: 'SP/PAGINATOR/SET_TOTAL_ITEMS_COUNT', count } as const)
+}
 
-export const setTotalItemsCount = (count: number): SetTotalItemsCountType => ({ type: SET_TOTAL_ITEMS_COUNT, count })
-type SetTotalItemsCountType = { type: typeof SET_TOTAL_ITEMS_COUNT; count: number}
 
-type ActionsTypes = SetCurrentPageType | SetTotalItemsCountType
+
 
 //THUNKS
-
+//...
 
 //REDUCER
-const paginatorReducer = (state: PaginatorStateType = initialState, action: ActionsTypes): PaginatorStateType => {
+const paginatorReducer = (state: PaginatorStateType = initialState, action: PaginatorActionsTypes): PaginatorStateType => {
     let result = state
 
     switch (action.type) {
-        case SET_CURRENT_PAGE:
+        case "SP/PAGINATOR/SET_CURRENT_PAGE":
             result = { ...state }
             result.currentPage = action.page
             result.currentPortion = action.portion
             return result
 
-        case SET_TOTAL_ITEMS_COUNT:
+        case "SP/PAGINATOR/SET_TOTAL_ITEMS_COUNT":
             result = { ...state }
             result.totalItemsCount = action.count
             return result

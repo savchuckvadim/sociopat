@@ -1,13 +1,12 @@
-import React from "react"
 import { connect } from "react-redux"
-import { setCurrentPage, SetCurrentPageType } from "../../../../redux/reducers/paginator/paginator-reducer"
+import { paginatorsActions, PaginatorActionsTypes } from "../../../../redux/reducers/paginator/paginator-reducer"
 import {
     followThunk, requestUsers, usersActions,
     // toggleFollowingInProgress, ToggleFollowingInProgressType, 
     unFollowThunk, UsersActionsTypes
 } from "../../../../redux/reducers/users/users-reducer"
 import { getAuthUser, getIsFetching, getIsFollowing, getUsersSelector } from "../../../../redux/selectors/user-selectors"
-import { AppDispatchType, RootStateType } from "../../../../redux/store"
+import {  RootStateType } from "../../../../redux/store"
 import { UserType } from "../../../../types/types"
 import Users from "./Users"
 
@@ -26,7 +25,7 @@ type MapDispatchToPropsType = {
     requestUsers: (currentPage: number, pageSize: number) => void
     followThunk: (userId: number, authUser: UserType) => void,
     unFollowThunk: (userId: number, authUser: UserType) => void
-    setCurrentPage: (page: number, portion: number) => SetCurrentPageType
+    setCurrentPage: (page: number, portion: number) => PaginatorActionsTypes
     toggleFollowingInProgress: (userId: number, isFetching: boolean) => UsersActionsTypes
 }
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -51,7 +50,7 @@ const connector = connect(mapStateToProps, {
     requestUsers,
     followThunk,
     unFollowThunk,
-    setCurrentPage,
+    setCurrentPage: paginatorsActions.setCurrentPage,
     toggleFollowingInProgress: usersActions.toggleFollowingInProgress
 
 })

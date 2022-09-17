@@ -5,8 +5,6 @@ import Title from "../../../Elements/Title/Title"
 import Paginator from "./Paginator/Paginator"
 import UserCard from "./User-Card/User-Card"
 import style from './Users.module.css'
-import { UserType } from "../../../../types/types"
-import { SetCurrentPageType } from "../../../../redux/reducers/paginator/paginator-reducer"
 import {  UsersPropsType } from "./Users-Container"
 // PropsFromRedux
 
