@@ -11,7 +11,7 @@ export const inProgress = (bool: boolean): InProgressType =>  {
 
 export type PreloaderStateType = typeof initialState
 
-type InProgressType = {
+export type InProgressType = {
     type: typeof IN_PROGRESS,
     bool: boolean
 }

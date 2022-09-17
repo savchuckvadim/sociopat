@@ -7,6 +7,7 @@ import { AppDispatchType, InferActionsTypes, RootStateType, ThunkType } from "..
 import { paginatorsActions } from "../paginator/paginator-reducer";
 
 
+// TYPES
 
 export type UsersStateType = typeof initialState
 export type UsersActionsTypes = InferActionsTypes<typeof usersActions>
@@ -14,6 +15,8 @@ type UsersThunkType = ThunkType<UsersActionsTypes>
 type GetStateType = () => RootStateType
 type LocalDispatchType = Dispatch<UsersActionsTypes>
 
+
+// STATE
 
 const initialState = {
     users: [] as Array<UserType>,
@@ -33,8 +36,6 @@ export const usersActions = {
     toggleFollowingInProgress: (userId: number, isFetching: boolean) => ({ type: 'SP/USERS/FOLLOWING_IN_PROGRESS', userId, isFetching } as const),
     
 }
-
-
 
 
 
@@ -89,7 +90,7 @@ export const unFollowThunk = (userId: number, authUser: UserType):UsersThunkType
 
     }
 
-//TODO refactoring follow-unfollow-flow
+
 
 
 //REDUCER

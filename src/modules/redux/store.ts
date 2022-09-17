@@ -4,7 +4,7 @@ import ThunkMiddleware from 'redux-thunk'
 import dialogsReducer from "./reducers/dialogs/dialogs-reduser"
 import newMessageReducer from "./reducers/dialogs/new-message-reducer"
 import profileReducer from "./reducers/profile/profile-reducer"
-import { themeReducer, ThemeStateType } from "./reducers/theme/style-reducer"
+import { themeReducer } from "./reducers/theme/style-reducer"
 import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer"
 import usersReducer from "./reducers/users/users-reducer"
 import authReducer from "./reducers/auth/auth-reducer"
@@ -13,8 +13,8 @@ import LoginRegistrationReducer from "./reducers/login-registaration/login-regis
 import appReducer from "./reducers/app-reducer"
 import preloader from "./reducers/preloader/preloader-reducer"
 import paginatorReducer from "./reducers/paginator/paginator-reducer"
-import { AuthStateType } from "./reducers/auth/auth-reducer"
-import { AppStateType } from "./reducers/app-reducer"
+
+
 import { LoginRegistrationType } from "./reducers/login-registaration/login-registration-reducer"
 import { NavMenuStateType } from "./reducers/nav-menu/nav-menu-reducer"
 import { PaginatorStateType } from "./reducers/paginator/paginator-reducer"

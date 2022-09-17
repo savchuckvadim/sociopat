@@ -1,26 +1,27 @@
+import { InferActionsTypes, ThunkType } from '../store'
 import { getAuth } from './auth/auth-reducer'
-import { inProgress } from './preloader/preloader-reducer'
+import { inProgress, InProgressType } from './preloader/preloader-reducer'
 
-const INITIALIZED_SUCCES = 'SP/APP/INITIALIZED_SUCCES'
+//TYPES
+type AppStateType = typeof initialState
+type InitialActionType = InferActionsTypes<typeof initialActions>
+type AuthThunkType = ThunkType<InitialActionType | InProgressType>
 
-
+// STATE
 let initialState = {
     initialized: false as boolean,
-
 }
 
-export type AppStateType = typeof initialState
 
-type InitialActionType = {
-    type: typeof INITIALIZED_SUCCES 
-}
 //ACTION CREATORS
-export const initializedSuccess = (): InitialActionType => ({ type: INITIALIZED_SUCCES })
+const initialActions = {
+    initializedSuccess: () => ({ type: 'SP/APP/INITIALIZED_SUCCES' } as const)
+}
 
 
 
 //THUNKS
-export const initialize = () => async (dispatch: any) => {
+export const initialize = (): AuthThunkType => async (dispatch) => {
     dispatch(inProgress(true))//inProgress-status
     // let promiseAuth = () => {
     //     return dispatch(getAuth())
@@ -28,8 +29,8 @@ export const initialize = () => async (dispatch: any) => {
     // }
     // await promiseAuth()
     await dispatch(getAuth())
-    dispatch(initializedSuccess())
-   
+    dispatch(initialActions.initializedSuccess())
+
 
 }
 
@@ -38,7 +39,7 @@ export const initialize = () => async (dispatch: any) => {
 const appReducer = (state: AppStateType = initialState, action: InitialActionType): AppStateType => {
 
     switch (action.type) {
-        case INITIALIZED_SUCCES: return { ...state, initialized: true }
+        case 'SP/APP/INITIALIZED_SUCCES': return { ...state, initialized: true }
         default: return state
     }
 

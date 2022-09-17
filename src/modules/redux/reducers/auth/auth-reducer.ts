@@ -6,7 +6,7 @@ import { InferActionsTypes, ThunkType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"
 
 //TYPES
-export type AuthStateType = typeof initialState
+type AuthStateType = typeof initialState
 type AuthThunkType = ThunkType<SetAuthUserDataType | ReturnType<typeof stopSubmit> | ReturnType<typeof inProgress>>
 type SetAuthUserDataType = InferActionsTypes<typeof actions>
 
