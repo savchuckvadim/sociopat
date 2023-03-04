@@ -1,5 +1,5 @@
 import { socket } from "./websocket/socket";
-import { instance } from "./api-laravel";
+import { api } from "./api-laravel";
 import { UserType } from "../types/types";
 
 type GetAuthUserType = {
@@ -11,13 +11,13 @@ type GetAuthUserType = {
 
 export const authAPI = {
     async initial() {
-        let res = await instance.get("/sanctum/csrf-cookie");
+        let res = await api.get("/sanctum/csrf-cookie");
         return res;
     },
 
     async register(name: string, surname: string, email: string, password: string, passwordConfirmation: string) {
-        await instance.get("/sanctum/csrf-cookie");
-        let result = await instance.post('register', {
+        await api.get("/sanctum/csrf-cookie");
+        let result = await api.post('register', {
             name: name,
             surname: surname,
             email: email,
@@ -30,8 +30,8 @@ export const authAPI = {
     },
 
     async login(email: string, password: string) {
-        await instance.get("/sanctum/csrf-cookie");
-        let res = await instance.post('login', {
+        await api.get("/sanctum/csrf-cookie");
+        let res = await api.post('login', {
             email: email,
             password: password,
             remember: true
@@ -41,7 +41,7 @@ export const authAPI = {
     },
     async getAuthUser() {
         try {
-            const res = await instance.get<GetAuthUserType>("api/user/auth");
+            const res = await api.get<GetAuthUserType>("api/user/auth");
             const websocket = await socket.connection();
 
             return res.data;
@@ -57,19 +57,19 @@ export const authAPI = {
     },
 
     logout() {
-        let res = instance.post('logout').then(res => console.log(res));
+        let res = api.post('logout').then(res => console.log(res));
         return res;
     },
     //TODO Verification
     /*
         updatePassword(payload) {
-            return instance.put("/user/password", payload)
+            return api.put("/user/password", payload)
         },
         sendVerification(payload) {
-            return instance.post("/email/verification-notification", payload)
+            return api.post("/email/verification-notification", payload)
         },
         updateUser(payload) {
-            return instance.put("/user/profile-information", payload)
+            return api.put("/user/profile-information", payload)
         },
     
         */

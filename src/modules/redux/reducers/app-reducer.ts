@@ -1,5 +1,7 @@
+import { PreloaderCodesEnum } from '../../types/types'
 import { InferActionsTypes, ThunkType } from '../store'
 import { getAuth } from './auth/auth-reducer'
+import { getDialogs } from './dialogs/dialogs-reducer'
 import { inProgress, InProgressType } from './preloader/preloader-reducer'
 
 //TYPES
@@ -22,7 +24,7 @@ const initialActions = {
 
 //THUNKS
 export const initialize = (): AuthThunkType => async (dispatch) => {
-    dispatch(inProgress(true))//inProgress-status
+    dispatch(inProgress(true, PreloaderCodesEnum.Global))//inProgress-status
     // let promiseAuth = () => {
     //     return dispatch(getAuth())
 
@@ -30,6 +32,9 @@ export const initialize = (): AuthThunkType => async (dispatch) => {
     // await promiseAuth()
     await dispatch(getAuth())
     dispatch(initialActions.initializedSuccess())
+    //FROM DIALOGS REDUCER -> get Dialogs
+    dispatch(getDialogs())
+    dispatch(inProgress(false, PreloaderCodesEnum.Global))//inProgress-status
 
 
 }

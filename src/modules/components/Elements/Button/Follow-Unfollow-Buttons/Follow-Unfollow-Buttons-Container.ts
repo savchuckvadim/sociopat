@@ -1,10 +1,10 @@
-import React from "react"
+// import React from "react"
 import { connect } from "react-redux"
 import { UsersActionsTypes } from "../../../../redux/reducers/users/users-reducer"
 import { followThunk, usersActions,
     // toggleFollowingInProgress, 
     unFollowThunk } from "../../../../redux/reducers/users/users-reducer"
-import { RootStateType } from "../../../../redux/store"
+import { AppStateType } from "../../../../redux/store"
 import { UserType } from "../../../../types/types"
 import FollowUnfollowButtons from "./Follow-Unfollow-Buttons"
 
@@ -23,7 +23,7 @@ type FUMapDispatchToPropsType = {
 type StateWithOwnProps = FUOwnPropsType & FUMapStateToPropsType
 export type FUPropsType = FUOwnPropsType & FUMapStateToPropsType & FUMapDispatchToPropsType
 
-const mapStateToProps = (state: RootStateType, ownProps: FUOwnPropsType): StateWithOwnProps => {
+const mapStateToProps = (state: AppStateType, ownProps: FUOwnPropsType): StateWithOwnProps => {
 
     return {
         user: ownProps.user,
@@ -35,7 +35,7 @@ const mapStateToProps = (state: RootStateType, ownProps: FUOwnPropsType): StateW
 // TODO mapstateToProps ругается - непонятная ошибка
 // @ts-ignore
 
-export default connect<FUOwnPropsType, FUMapStateToPropsType,FUMapDispatchToPropsType, RootStateType>(mapStateToProps, {
+export default connect<FUOwnPropsType, FUMapStateToPropsType,FUMapDispatchToPropsType, AppStateType>(mapStateToProps, {
 
     toggleFollowingInProgress: usersActions.toggleFollowingInProgress,
     followThunk,

@@ -2,8 +2,15 @@ import { NavLink } from "react-router-dom"
 import Avatar from "../../../../../Elements/Avatar/Avatar"
 import style from './Dialog-item.module.css'
 import status from '../../../../../../../assets/imgs/dialogs/message-status-red.svg'
+import { UserType } from "../../../../../../types/types"
 
-const DialogItem = (props) => {
+type PropsType = {
+    id:number
+    lastMessage:string | false
+    userId:number
+    participant: UserType
+}
+const DialogItem:React.FC<PropsType> = (props) => {
     //id
     //lastMessage
     //NameOfDialog
@@ -21,16 +28,16 @@ const DialogItem = (props) => {
                 <Avatar
                 size={68}
                 border={false}
-                name={props.nameOfDialog}
+                name={'props.nameOfDialog'}
                 link={`../../profile/${props.userId}`}
-                img={props.iconOfDialog}
+                // img={props.iconOfDialog}
 
                 />
             </div>
 
             <div className={style.lastMessage}>
                 <div className={style.title}>
-                    <p className={style.lastMessage__title}>{props.nameOfDialog}</p>
+                    <p className={style.lastMessage__title}>{'props.nameOfDialog'}</p>
                     <div className={style.status}>
                         <img src={status} alt="status-icon" />
                     </div>

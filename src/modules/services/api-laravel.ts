@@ -1,7 +1,7 @@
 import axios from "axios"
 
 //.then(res:AxiosResponse<any>) => ...
-export const instance = axios.create({
+export const api = axios.create({
     withCredentials: true,
     baseURL: 'http://localhost:8000/',
     // baseURL: ' http://185.225.35.6/',

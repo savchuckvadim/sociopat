@@ -1,12 +1,12 @@
 import { connect } from "react-redux"
 import { sendPost } from "../../../../../redux/reducers/profile/profile-reducer"
-import { RootStateType } from "../../../../../redux/store"
+import { AppStateType } from "../../../../../redux/store"
 import SendPost from "./Send-Post"
 
 
 
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: AppStateType) => {
 
     return {
         user: state.auth.authUser,

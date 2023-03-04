@@ -1,27 +1,39 @@
 const IN_PROGRESS = 'IN_PROGRESS'
 
+// const initialState = {
+//     inProgress: false as boolean
+// }
+
 const initialState = {
-    inProgress: false as boolean
+    global: {
+        inProgress: false as boolean
+    },
+    page: {
+        inProgress: false as boolean
+    },
+    component: {
+        inProgress: false as boolean
+    },
+    // inProgress: false as boolean
 }
 
-export const inProgress = (bool: boolean): InProgressType =>  {
-    
-    return{ type: IN_PROGRESS, bool }
+
+export const inProgress = (bool: boolean, typeOfComponent: TypeOfComponent): InProgressType => {
+
+    return { type: IN_PROGRESS, bool, typeOfComponent }
 }
 
-export type PreloaderStateType = typeof initialState
 
-export type InProgressType = {
-    type: typeof IN_PROGRESS,
-    bool: boolean
-}
 
 const preloader = (state: PreloaderStateType = initialState, action: InProgressType): PreloaderStateType => {
     switch (action.type) {
         case IN_PROGRESS:
 
-            if (state.inProgress !== action.bool) {
-                return { ...state, inProgress: action.bool }
+
+            const global = { ...state.global, inProgress: action.bool }
+
+            if (state[`${action.typeOfComponent}`].inProgress !== action.bool) {
+                return { ...state, global }
             }
             return state
 
@@ -30,5 +42,16 @@ const preloader = (state: PreloaderStateType = initialState, action: InProgressT
             return state
     }
 }
+
+
+export type PreloaderStateType = typeof initialState
+
+export type InProgressType = {
+    type: typeof IN_PROGRESS,
+    bool: boolean,
+    typeOfComponent: TypeOfComponent
+}
+
+type TypeOfComponent = 'global' | 'page' | 'component'
 
 export default preloader

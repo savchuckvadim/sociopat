@@ -1,5 +1,5 @@
 import { PostType } from "../types/types";
-import { instance } from "./api-laravel";
+import { api } from "./api-laravel";
 
 
 type GetPostsType = {
@@ -21,14 +21,14 @@ type PostDeleteLikeType = {
 
 export const postAPI = {
     async getPosts(profileId: number) {
-        const res = await instance.get<GetPostsType>(`api/post/${profileId}`);
+        const res = await api.get<GetPostsType>(`api/post/${profileId}`);
         return res.data;
     },
     async sendPost(userId: number, profileId: number, body: string, image: string) {
-        await instance.get<string>("/sanctum/csrf-cookie");
+        await api.get<string>("/sanctum/csrf-cookie");
 
         // await eventsAPI.event()
-        const send = await instance.post<SendtPostType>('api/post', {
+        const send = await api.post<SendtPostType>('api/post', {
             body,
             image,
             profileId,
@@ -41,13 +41,13 @@ export const postAPI = {
 
 
     async like(postId: number) {
-        const res = await instance.post<PostDeleteLikeType>('api/like', {
+        const res = await api.post<PostDeleteLikeType>('api/like', {
             postId
         });
         return res.data;
     },
     async dislike(postId: number) {
-        const res = await instance.delete<PostDeleteLikeType>(`api/like/${postId}`);
+        const res = await api.delete<PostDeleteLikeType>(`api/like/${postId}`);
         return res.data;
     }
 };

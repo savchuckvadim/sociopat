@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
         initialized: state.app.initialized,
         initialInProgress: state.app.inProgress,
         // registrationStatus: state.registration.registrationStatus,
-        preloader: state.preloader.inProgress
+        preloader: state.preloader.global.inProgress
 
     }
 }

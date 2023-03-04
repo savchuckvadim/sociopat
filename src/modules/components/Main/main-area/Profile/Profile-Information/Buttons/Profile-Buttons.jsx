@@ -1,6 +1,8 @@
 import style from './Profile-Buttons.module.css'
 import FollowUnfollowButtonsContainer from '../../../../../Elements/Button/Follow-Unfollow-Buttons/Follow-Unfollow-Buttons-Container'
 import Button from '../../../../../Elements/Button/Button'
+import { dialogsAPI } from '../../../../../../services/dialogs-api'
+import { NavLink } from 'react-router-dom'
 
 const ProfileButtons = (props) => {
 
@@ -15,15 +17,19 @@ const ProfileButtons = (props) => {
 
                     />
                 </div>
-
-                <div className={style.button__wrapper}>
-                    <Button
-                        color={'grey'}
-                        border={12}
-                        grey={true}
-                        name={'Send Message'}
-                    />
-                </div>
+                <NavLink to={`../messages/dialog/${1}`}>
+                    <div className={style.button__wrapper}>
+                        <Button
+                            color={'grey'}
+                            border={12}
+                            grey={true}
+                            name={'Send Message'}
+                            onClick={async () => {
+                                await props.getDialog(props.visitedUser.id)
+                            }}
+                        />
+                    </div>
+                </NavLink>
 
 
             </div>

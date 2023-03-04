@@ -2,18 +2,19 @@ import React from "react"
 import { connect } from "react-redux"
 import { Navigate, useParams } from "react-router-dom"
 import { compose } from "redux"
+import { getDialog } from "../../../../redux/reducers/dialogs/dialogs-reducer"
 import { dislike, getDataForLoadProfilePage, like, updateAboutMe } from "../../../../redux/reducers/profile/profile-reducer"
-import { RootStateType } from "../../../../redux/store"
+import { AppStateType } from "../../../../redux/store"
 import { PostType, UserType } from "../../../../types/types"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container"
 import Profile from "./Profile"
 
-const mapStateToProps = (state: RootStateType): MapStatePropsType => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
     return {
         isAuth: state.auth.isAuth,
         auth: state.auth.authUser,
-        visitedUser: state.profile.visitedUser ,
+        visitedUser: state.profile.visitedUser,
         posts: state.profile.posts,
         likeInProgress: state.profile.likeInProgress,
       
@@ -33,6 +34,7 @@ export type ParamsType = {
     "*": string
     userId: string | undefined
 }
+
 type MapStatePropsType = {
     isAuth: boolean
     auth: UserType | null
@@ -115,14 +117,16 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 
 
 export default compose(
-
-    connect<MapStatePropsType, MapDispatchPropsType, ParamsForPropsType, RootStateType>(mapStateToProps, {
+// @ts-ignore
+    connect<MapStatePropsType, MapDispatchPropsType, ParamsForPropsType, AppStateType>(mapStateToProps, {
         // getAboutMe,
         updateAboutMe,
         getDataForLoadProfilePage,
         // loadPhoto,                //TODO
         like,
-        dislike
+        dislike,
+        
+        getDialog,
     }),
     withRouter,
 

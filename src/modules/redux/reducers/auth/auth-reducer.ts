@@ -1,8 +1,9 @@
 import { stopSubmit } from "redux-form"
 import { ResultCodesEnum } from "../../../services/api-laravel"
 import { authAPI } from "../../../services/auth-api";
-import { UserType } from "../../../types/types"
+import { PreloaderCodesEnum, UserType } from "../../../types/types"
 import { InferActionsTypes, ThunkType } from "../../store"
+import { getDialogs } from "../dialogs/dialogs-reducer";
 import { inProgress } from "../preloader/preloader-reducer"
 
 //TYPES
@@ -28,7 +29,7 @@ const actions = {
 
 //THUNKS
 export const getAuth = (): AuthThunkType => async (dispatch) => {
-    dispatch(inProgress(true))
+    dispatch(inProgress(true, PreloaderCodesEnum.Global))
     let response = await authAPI.getAuthUser()
 
     let authUser = null
@@ -43,14 +44,16 @@ export const getAuth = (): AuthThunkType => async (dispatch) => {
     if (authUser) {
         dispatch(actions.setAuthUserData(authUser, true))
 
+
+
     } else {
         dispatch(actions.setAuthUserData(null, false))
     }
-    dispatch(inProgress(false))
+    dispatch(inProgress(false, PreloaderCodesEnum.Global))
 
 }
 export const login = (email: string, password: string): AuthThunkType => async (dispatch) => {
-    dispatch(inProgress(true))
+    dispatch(inProgress(true, PreloaderCodesEnum.Global))
 
     await authAPI.login(email, password)
         .then(res => {
@@ -65,27 +68,27 @@ export const login = (email: string, password: string): AuthThunkType => async (
                 _error: message
             })
             dispatch(action)
-            dispatch(inProgress(false))
+            dispatch(inProgress(false, PreloaderCodesEnum.Global))
         })
 
 
 
 }
 export const logout = (): AuthThunkType => async (dispatch) => {
-    dispatch(inProgress(true))
+    dispatch(inProgress(true, PreloaderCodesEnum.Global))
     authAPI.logout()
         .then(res => {
             dispatch(actions.setAuthUserData(null, false))
 
         })
-    dispatch(inProgress(false))
+    dispatch(inProgress(false, PreloaderCodesEnum.Global))
 }
 
 export const setNewUser = ( //registration
     name: string, surname: string, email: string,
     password: string, password_confirmation: string) => async (dispatch: any) => {
 
-        dispatch(inProgress(true))
+        dispatch(inProgress(true, PreloaderCodesEnum.Global))
 
 
         try {
@@ -101,10 +104,10 @@ export const setNewUser = ( //registration
 
                 }
             }
-            // dispatch(inProgress(false))
+            // dispatch(inProgress(false, PreloaderCodesEnum.Global))
         } catch (error) {
 
-            dispatch(inProgress(false))  //from preloader-reducer
+            dispatch(inProgress(false, PreloaderCodesEnum.Global))  //from preloader-reducer
         }
 
 

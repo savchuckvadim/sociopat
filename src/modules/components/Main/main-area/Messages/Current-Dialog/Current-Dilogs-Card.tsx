@@ -6,16 +6,27 @@ import SendMessageReduxForm from './Send-Message-Form/Send-Message-Form'
 import Author from '../../../../Elements/Author/Author'
 import { reset } from 'redux-form'
 import BodyOfCurrentDialog from './Current-Dialog-Body/Current-Dialog-Body'
-const CurrentDialogsCard = (props) => {
+import { AppDispatchType } from '../../../../../redux/store'
+import { DialogType, MessageType, UserType } from '../../../../../types/types'
+
+
+type PropsType = {
+    dialog: DialogType
+    id:number
+    messages: Array<MessageType>
+    authUser: UserType
+}
+const CurrentDialogsCard: React.FC<PropsType> = (props) => {
+    
     const navigate = useNavigate()
 
-    const submit = (values, dispatch) => {
+    const submit = (values:any, dispatch:AppDispatchType) => {
 
         // props.sendNewMessage(values)
         dispatch(reset('sendMessage'))
     }
 
-   
+    debugger
     return (
         <div className={style.container}>
             <div className={style.header}>
@@ -26,9 +37,12 @@ const CurrentDialogsCard = (props) => {
                     alt="arrow" />
                 <div className={style.author}>
                     <Author 
-                    userName={props.dialog.nameOfDialog} 
+                    userName={'props.dialog.nameOfDialog'} 
                     size={46} 
-                    userId={props.dialog.userId}
+                    userId={props.dialog.id}
+                    //
+                    user={props.authUser}
+                    author={props.dialog.participant.profile}
                     />
                 </div>
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { connect } from "react-redux"
 import { compose } from "redux"
-import { getDialogs } from "../../../../redux/reducers/dialogs/dialogs-reduser"
+import { getDialogs } from "../../../../redux/reducers/dialogs/dialogs-reducer"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container"
 import Messages from "./Messages"
 
@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
 
     return {
         dialogs: state.dialogsReducer.dialogs,
-        currentAuthUser: state.auth.currentProfile
+        authUser: state.auth.authUser.profile,
+        inProgress: state.preloader.global.inProgress
 
 
     }
@@ -18,12 +19,15 @@ const mapStateToProps = (state) => {
 
 const MessagesContainer = (props) => {
 
-    useEffect(() => {
-        props.getDialogs()
-    }, [])
-    if (props.dialogs.length > 0) {
+    // useEffect(() => {
+    //     debugger
+    //     props.getDialogs()
+    // }, [])
+    if (!props.inProgress) {
+        
         return <Messages {...props} />
     }
+    
     return <LightLoadingPageContainer />
 }
 

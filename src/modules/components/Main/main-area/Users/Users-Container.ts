@@ -6,7 +6,7 @@ import {
     unFollowThunk, UsersActionsTypes
 } from "../../../../redux/reducers/users/users-reducer"
 import { getAuthUser, getIsFetching, getIsFollowing, getUsersSelector } from "../../../../redux/selectors/user-selectors"
-import {  RootStateType } from "../../../../redux/store"
+import {  AppStateType } from "../../../../redux/store"
 import { UserType } from "../../../../types/types"
 import Users from "./Users"
 
@@ -30,7 +30,7 @@ type MapDispatchToPropsType = {
 }
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
     return {
         authUser: getAuthUser(state),

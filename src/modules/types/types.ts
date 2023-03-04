@@ -40,3 +40,23 @@ export type LikeType = {
     post_id: number,
     author_id: number
 }
+
+export enum PreloaderCodesEnum {
+    Global = 'global',
+    Page = 'page',
+    Component = 'component'
+}
+
+export type MessageType = {
+    id: number
+    dialogId: number
+    body: string
+    isEdited: boolean
+} 
+
+export type DialogType = {
+    id: number
+    participant: UserType
+    messages: Array<MessageType> | []
+    isSound: Boolean
+}

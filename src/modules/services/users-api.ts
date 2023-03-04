@@ -1,4 +1,4 @@
-import { instance } from "./api-laravel";
+import { api } from "./api-laravel";
 import { UserType } from "../types/types";
 
 
@@ -53,7 +53,7 @@ type UsersLinksType = {
 export const usersAPI = {
     async getUsers(currentPage: number = 1, pageSize: number = 10) {
         try {
-            const res = await instance.get<GetUsersType>(`api/users?page=${currentPage}&count=${pageSize}`);
+            const res = await api.get<GetUsersType>(`api/users?page=${currentPage}&count=${pageSize}`);
             return res.data;
         } catch (error) {
             alert(error);
@@ -64,7 +64,7 @@ export const usersAPI = {
 
     async getUser(userId: number) {
         try {
-            const res = await instance.get<GetUserType>(`api/users/${userId}`);
+            const res = await api.get<GetUserType>(`api/users/${userId}`);
 
             return res.data;
         } catch (error) {
@@ -74,14 +74,14 @@ export const usersAPI = {
     },
 
     async follow(userId: number) {
-        const res = await instance.post<FollowType>(`api/follow`, {
+        const res = await api.post<FollowType>(`api/follow`, {
             userId: userId
         });
         return res.data;
     },
 
     async unfollow(userId: number) {
-        const res = await instance.delete<UnfollowType>(`api/follow/${userId}`);
+        const res = await api.delete<UnfollowType>(`api/follow/${userId}`);
         return res.data;
     },
 };

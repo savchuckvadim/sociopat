@@ -14,7 +14,8 @@ import { LightLoadingPageContainer } from '../../../../Elements/Loading/Light-Lo
 type ProfileInformationPropsType = {
     visitedUser: UserType | null,
     params: ParamsType,
-    updateAboutMe: (aboutMe: string) => void
+    updateAboutMe: (aboutMe: string) => void,
+    // getDialog: (userId: any) => void
 }
 const ProfileInformation: React.FC<ProfileInformationPropsType> = (props) => {
 
@@ -49,6 +50,8 @@ const ProfileInformation: React.FC<ProfileInformationPropsType> = (props) => {
                             <ProfileButtons
                                 userId={props.params.userId}
                                 visitedUser={visitedUser}
+                                // @ts-ignore
+                                getDialog={props.getDialog}
                             //TODO: loadPhoto={props.loadPhoto}
 
                             //current user for set in users->user->folowwers.push() andvisitedUser->followers.push() in profile and user reducer

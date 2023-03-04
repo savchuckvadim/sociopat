@@ -1,6 +1,33 @@
 import { NavLink } from 'react-router-dom'
 import style from './Avatar.module.css'
 
+
+// export type UserType = {
+//     id: number 
+//     email: string
+//     name: string
+//     followed: 0 | 1
+//     followers: Array<UserType>
+//     followeds: Array<UserType>
+//     profile: ProfileType
+//     postsCount: number 
+//     isAuthUser:boolean
+// } 
+
+
+// export type ProfileType = {
+//     about_me: string | null
+//     avatar: string | null
+//     created_at: string
+//     email: string
+//     hero: string | null
+//     id: number | null
+//     name: string
+//     surname: string
+//     updated_at: string
+//     user_id: number | null
+// }
+
 const Avatar = (props) => {
     
     // size={68}

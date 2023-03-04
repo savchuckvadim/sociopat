@@ -6,6 +6,12 @@ const Author = (props) => {
     //props:
     //userId
     //size
+
+    //for Avatar
+    //    size={iconSize}
+    // link={link}
+    // user={props.author}
+    // img={props.author.profile.avatar}
     
     let link = false
     props.userId 
@@ -36,8 +42,9 @@ const Author = (props) => {
                 <Avatar
                 size={iconSize}
                 link={link}
-                user={props.author}
-                img={props.author.profile.avatar}
+                user={props.authUser}
+                // img={props.author.profile.avatar}
+                img={null}
                 />
             </div>
 
@@ -47,7 +54,7 @@ const Author = (props) => {
                         fontSize: fontSize
                     }}
                 >
-                  {props.author.profile.name +' '+ props.author.profile.surname}
+                  {props.author.name +' '+ props.author.surname}
                 </p>
                 <p className={style.date}
                 style={{

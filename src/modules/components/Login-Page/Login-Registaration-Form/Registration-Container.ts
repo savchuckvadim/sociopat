@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { setNewUser } from "../../../redux/reducers/auth/auth-reducer"
 import { FieldType, SetErrorType } from "../../../redux/reducers/login-registaration/login-registration-reducer"
-import { RootStateType } from "../../../redux/store"
+import { AppStateType } from "../../../redux/store"
 import { setError } from "../../../redux/reducers/login-registaration/login-registration-reducer"
 
 import RegistrationFormCard from "./Form-Card/Registration-Form-Card"
@@ -25,7 +25,7 @@ type RegistrationMapDispatchType = {
 }
 export type RegistrationPropsType = RegistrationMapStateType & RegistrationMapDispatchType
 
-const mapStateToProps = (state: RootStateType): RegistrationMapStateType => {
+const mapStateToProps = (state: AppStateType): RegistrationMapStateType => {
     const registration = state.loginRegistration.registration
     return {
         isAuth: state.auth.isAuth,

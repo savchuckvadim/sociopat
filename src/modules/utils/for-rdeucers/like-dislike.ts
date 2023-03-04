@@ -1,11 +1,12 @@
 import {ProfileActionsTypes} from "../../redux/reducers/profile/profile-reducer"
-import { AppDispatchType, RootStateType } from "../../redux/store"
+import { AppDispatchType, AppStateType } from "../../redux/store"
 import { ResultCodesEnum } from "../../services/api-laravel"
 import { postAPI } from "../../services/post-api"
 
+
 export const likeDislikeFollow = async (
     isLikes: boolean,
-    dispatch: AppDispatchType, state: RootStateType,
+    dispatch: AppDispatchType, state: AppStateType,
     postId: number,
     likeInProgress: (bool: boolean) => ProfileActionsTypes,
     setLike: (postId: number) => ProfileActionsTypes,

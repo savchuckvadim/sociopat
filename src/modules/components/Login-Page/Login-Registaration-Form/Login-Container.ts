@@ -2,7 +2,7 @@ import { connect } from "react-redux"
 import { login } from "../../../redux/reducers/auth/auth-reducer"
 import { FieldType, LoginFieldsType, SetErrorType } from "../../../redux/reducers/login-registaration/login-registration-reducer"
 import { setError } from "../../../redux/reducers/login-registaration/login-registration-reducer"
-import { RootStateType } from "../../../redux/store"
+import { AppStateType } from "../../../redux/store"
 import LoginFormCard from "./Form-Card/Login-Form-Card"
 
 type LoginMapStateType = {
@@ -23,7 +23,7 @@ type LoginMapDispatchType = {
 
 export type LoginPropsType = LoginMapStateType & LoginMapDispatchType
 
-const mapStateToProps = (state: RootStateType):LoginMapStateType => {
+const mapStateToProps = (state: AppStateType):LoginMapStateType => {
     const login = state.loginRegistration.login
 
     return {

@@ -1,7 +1,7 @@
 import { createSelector } from "reselect"
-import { RootStateType } from "../store"
+import { AppStateType } from "../store"
 
-export const getUsers = (state: RootStateType) => {
+export const getUsers = (state: AppStateType) => {
     return state.users.users
 }
 export const getUsersSelector = createSelector(getUsers, (users) => {
@@ -12,7 +12,7 @@ export const getUsersSelector = createSelector(getUsers, (users) => {
 //     return state.users.pageSize
 // }
 
-export const getAuthUser = (state: RootStateType) => {
+export const getAuthUser = (state: AppStateType) => {
     return state.auth.authUser
 }
 
@@ -26,10 +26,10 @@ export const getAuthUser = (state: RootStateType) => {
 //     return state.users.count
 // }
 
-export const getIsFetching = (state: RootStateType) => {
+export const getIsFetching = (state: AppStateType) => {
     return state.users.isFetching
 }
 
-export const getIsFollowing = (state: RootStateType):Array<number> => {
+export const getIsFollowing = (state: AppStateType):Array<number> => {
     return state.users.followingInProgress
 }

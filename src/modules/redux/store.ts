@@ -1,7 +1,8 @@
 import { Action, applyMiddleware, combineReducers, createStore } from "redux"
-import {ThunkAction} from '@reduxjs/toolkit'
+import { ThunkAction } from '@reduxjs/toolkit'
 import ThunkMiddleware from 'redux-thunk'
-import dialogsReducer from "./reducers/dialogs/dialogs-reduser"
+// @ts-ignore
+import dialogsReducer from "./reducers/dialogs/dialogs-reducer.ts"
 import newMessageReducer from "./reducers/dialogs/new-message-reducer"
 import profileReducer from "./reducers/profile/profile-reducer"
 import { themeReducer } from "./reducers/theme/style-reducer"
@@ -15,46 +16,46 @@ import preloader from "./reducers/preloader/preloader-reducer"
 import paginatorReducer from "./reducers/paginator/paginator-reducer"
 
 
-import { LoginRegistrationType } from "./reducers/login-registaration/login-registration-reducer"
-import { NavMenuStateType } from "./reducers/nav-menu/nav-menu-reducer"
-import { PaginatorStateType } from "./reducers/paginator/paginator-reducer"
-import { PreloaderStateType } from "./reducers/preloader/preloader-reducer"
-import { ProfileStateType } from "./reducers/profile/profile-reducer"
-import { UsersStateType } from "./reducers/users/users-reducer"
+// import { LoginRegistrationType } from "./reducers/login-registaration/login-registration-reducer"
+// import { NavMenuStateType } from "./reducers/nav-menu/nav-menu-reducer"
+// import { PaginatorStateType } from "./reducers/paginator/paginator-reducer"
+// import { PreloaderStateType } from "./reducers/preloader/preloader-reducer"
+// import { ProfileStateType } from "./reducers/profile/profile-reducer"
+// import { UsersStateType } from "./reducers/users/users-reducer"
 
 
 let rootReducer = combineReducers({
-  app: appReducer ,
+  app: appReducer,
   // as () => AppStateType,
   auth: authReducer,
   //  as () => AuthStateType,
   loginRegistration: LoginRegistrationReducer,
   //  as () => LoginRegistrationType,
-  users: usersReducer ,
+  users: usersReducer,
   // as () => UsersStateType,
-  theme: themeReducer ,
+  theme: themeReducer,
   //as () => ThemeStateType,
-  navMenu: navMenuReducer ,
+  navMenu: navMenuReducer,
   // as () => NavMenuStateType,
-  profile: profileReducer ,
+  profile: profileReducer,
   // as () => ProfileStateType,
   preloader: preloader,
   //  as () => PreloaderStateType,
   paginator: paginatorReducer,
   //  as () => PaginatorStateType,
-  dialogsReducer,
+  dialogsReducer: dialogsReducer,
   newMessageReducer,
 
   form: formReducer
 })
 
 export type RootReducerType = typeof rootReducer
-export type RootStateType = ReturnType<RootReducerType>
+export type AppStateType = ReturnType<RootReducerType>
 export type AppDispatchType = typeof store.dispatch
 
 type PropertiesTypes<T> = T extends { [key: string]: infer U } ? U : never
 export type InferActionsTypes<T extends { [key: string]: (...args: any) => any }> = ReturnType<PropertiesTypes<T>>
-export type ThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, RootStateType, unknown, A>
+export type ThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
 //@ts-ignore
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 

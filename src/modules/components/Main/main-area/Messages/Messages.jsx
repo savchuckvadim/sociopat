@@ -8,7 +8,7 @@ import RouteCurrentDialog from './Current-Dialog/Route-Current-Dialog'
 
 const Messages = (props) => {
 
-
+debugger
 
     return (
         <>

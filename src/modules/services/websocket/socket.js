@@ -1,15 +1,16 @@
 import Echo from 'laravel-echo'
-import { instance } from '../api-laravel'
+import { api } from '../api-laravel'
 
 //TODO TypeScript
 let token
+export let echo
 export const socket = {
 
   async connection() {
 
     window.Pusher = require('pusher-js')
-    await instance.get("/sanctum/csrf-cookie")
-    await instance.get('api/user')
+    await api.get("/sanctum/csrf-cookie")
+    await api.get('api/user')
 
     let echo = new Echo({
 
@@ -26,7 +27,7 @@ export const socket = {
 
         return {
           authorize: (socketId, callback) => {
-            instance.post('api/broadcasting/auth', {
+            api.post('api/broadcasting/auth', {
               socket_id: socketId,
               channel_name: channel.name,
             })

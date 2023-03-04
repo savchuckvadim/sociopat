@@ -3,10 +3,10 @@ import { ResultCodesEnum } from "../../../services/api-laravel"
 import { postAPI } from "../../../services/post-api"
 import { profileAPI } from "../../../services/profile-api"
 import { usersAPI } from "../../../services/users-api"
-import { PostType, UserType } from "../../../types/types"
+import { PostType, PreloaderCodesEnum, UserType } from "../../../types/types"
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow"
 import { likeDislikeFollow } from "../../../utils/for-rdeucers/like-dislike"
-import { AppDispatchType, InferActionsTypes, RootStateType } from "../../store"
+import { AppDispatchType, InferActionsTypes, AppStateType } from "../../store"
 import { inProgress } from "../preloader/preloader-reducer"
 
 
@@ -37,14 +37,14 @@ export const profileActions = {
 }
 
 //THUNKS
-type GetStateType = () => RootStateType
+type GetStateType = () => AppStateType
 
-type ThunkType = ThunkAction<Promise<void>, RootStateType, unknown, ProfileActionsTypes>
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ProfileActionsTypes>
 
 export const getDataForLoadProfilePage = (userId: number) => async (dispatch: AppDispatchType, getState: GetStateType) => {
     const state = getState()
     if ((state.profile.visitedUser && state.profile.visitedUser.id !== userId) || !state.profile.visitedUser) {
-        dispatch(inProgress(true)) //from inprogress refucer
+        dispatch(inProgress(true, PreloaderCodesEnum.Global)) //from inprogress refucer
         const userRes = await usersAPI.getUser(userId)
         const postsRes = await postAPI.getPosts(userId) //get posts from backend and set to state
         let user = null
@@ -66,7 +66,7 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
         }
 
 
-        dispatch(inProgress(false))
+        dispatch(inProgress(false, PreloaderCodesEnum.Global))
         dispatch(profileActions.setProfilePageData(user))
     }
 
@@ -101,14 +101,14 @@ export const updateAboutMe = (aboutMe: string):
 
 export const sendPost = (userId: number, profileId: number, body: string, img: string):
     ThunkType => async (dispatch: any, getState) => {
-        dispatch(inProgress(true))
+        dispatch(inProgress(true, PreloaderCodesEnum.Global))
         const res = await postAPI.sendPost(userId, profileId, body, img)
         if (res.resultCode === ResultCodesEnum.Success) {
             dispatch(profileActions.addPostActionCreator(res.post))
         } else {
             alert(res.message)
         }
-        dispatch(inProgress(false))
+        dispatch(inProgress(false, PreloaderCodesEnum.Global))
     }
 
 

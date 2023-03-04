@@ -1,14 +1,14 @@
-import React from "react"
+// import React from "react"
 import { connect } from "react-redux"
 import { ThemeStateType } from "../../redux/reducers/theme/style-reducer"
-import { RootStateType } from "../../redux/store"
+import { AppStateType } from "../../redux/store"
 import { UserType } from "../../types/types"
 // import {getAuth} from "../../redux/reducers/auth/auth-reducer.ts"
 import Header from "./Header"
 
 
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         user: state.auth.authUser,
         theme: state.theme
