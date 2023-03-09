@@ -1,6 +1,6 @@
+import React, { useEffect } from 'react'
 import style from './Current-Dilogs-Card.module.css'
 import arrow from '../../../../../../assets/imgs/dialogs/arrow.svg'
-
 import { useNavigate } from 'react-router-dom'
 import SendMessageReduxForm from './Send-Message-Form/Send-Message-Form'
 import Author from '../../../../Elements/Author/Author'
@@ -10,21 +10,32 @@ import { AppDispatchType } from '../../../../../redux/store'
 import { DialogType, MessageType, UserType } from '../../../../../types/types'
 
 
+
 type PropsType = {
     dialog: DialogType
-    id:number
+    id: number
     messages: Array<MessageType>
     authUser: UserType
+    setCurrentDialog: (dialog: DialogType | null) => void
 }
 const CurrentDialogsCard: React.FC<PropsType> = (props) => {
-    
+
     const navigate = useNavigate()
 
-    const submit = (values:any, dispatch:AppDispatchType) => {
+    const submit = (values: any, dispatch: AppDispatchType) => {
 
         // props.sendNewMessage(values)
         dispatch(reset('sendMessage'))
     }
+
+    useEffect(() => {
+
+        return () => {
+            props.setCurrentDialog(null)
+        }
+    }, [])
+
+
 
     debugger
     return (
@@ -36,20 +47,20 @@ const CurrentDialogsCard: React.FC<PropsType> = (props) => {
                     src={arrow}
                     alt="arrow" />
                 <div className={style.author}>
-                    <Author 
-                    userName={'props.dialog.nameOfDialog'} 
-                    size={46} 
-                    userId={props.dialog.id}
-                    //
-                    user={props.authUser}
-                    author={props.dialog.participant.profile}
+                    <Author
+                        userName={'props.dialog.nameOfDialog'}
+                        size={46}
+                        userId={props.dialog.id}
+                        //
+                        user={props.authUser}
+                        author={props.dialog.participant.profile}
                     />
                 </div>
 
             </div>
-            
+
             <BodyOfCurrentDialog {...props} />
-          
+
 
 
             <SendMessageReduxForm onSubmit={submit} />

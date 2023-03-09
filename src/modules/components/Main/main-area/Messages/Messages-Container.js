@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
 
     return {
         dialogs: state.dialogsReducer.dialogs,
+        currentDialog: state.dialogsReducer.currentDialog,
         authUser: state.auth.authUser.profile,
         inProgress: state.preloader.global.inProgress
 

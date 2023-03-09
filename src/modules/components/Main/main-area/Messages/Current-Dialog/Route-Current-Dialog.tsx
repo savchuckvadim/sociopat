@@ -4,11 +4,13 @@ import CurrentDialogsCard from "./Current-Dilogs-Card"
 
 type PropsType = {
     dialogs: Array<DialogType>
+    currentDialog: DialogType
     newMessage: string
     authUser: UserType
+    setCurrentDialog: (dialog: DialogType | null) => void
 }
 const RouteCurrentDialog: React.FC<PropsType> = (props) => {
-
+debugger
     const routes = props.dialogs.map(dialog => (
         <Route
             key={`dialog-${dialog.id}`}
@@ -19,6 +21,7 @@ const RouteCurrentDialog: React.FC<PropsType> = (props) => {
                     authUser={props.authUser}
                     id={dialog.id}
                     messages={dialog.messages}
+                    setCurrentDialog={props.setCurrentDialog}
                 />}
         />
     ))

@@ -2,7 +2,7 @@ import { Action, applyMiddleware, combineReducers, createStore } from "redux"
 import { ThunkAction } from '@reduxjs/toolkit'
 import ThunkMiddleware from 'redux-thunk'
 // @ts-ignore
-import dialogsReducer from "./reducers/dialogs/dialogs-reducer.ts"
+import dialogsReducer from "./reducers/dialogs/dialogs-reducer"
 import newMessageReducer from "./reducers/dialogs/new-message-reducer"
 import profileReducer from "./reducers/profile/profile-reducer"
 import { themeReducer } from "./reducers/theme/style-reducer"

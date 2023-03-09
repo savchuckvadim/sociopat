@@ -65,10 +65,10 @@ const initialState = {
 
 
 }
-type DialogsActionType = SetDialogsType | SetDialogType | SetCurrentDialogType | 
-SetChangeCurrentDialogType | SetNewMessageType | SetSendingStatusType | SetParticipantType |
-SetSoundType | SetPrecenseUserType | SetEditingStatusType |
-SetDeleteDialogType
+type DialogsActionType = SetDialogsType | SetDialogType | SetCurrentDialogType |
+    SetChangeCurrentDialogType | SetNewMessageType | SetSendingStatusType | SetParticipantType |
+    SetSoundType | SetPrecenseUserType | SetEditingStatusType |
+    SetDeleteDialogType
 //AC
 const setDialogs = (dialogs: DialogsType, dialogIdFromUrl: null | number): SetDialogsType => ({ type: SET_DIALOGS, dialogs, dialogIdFromUrl })
 type SetDialogsType = {
@@ -81,10 +81,10 @@ type SetDialogType = {
     type: typeof SET_DIALOG
     dialog: DialogType
 }
-const setCurrentDialog = (dialog: DialogType): SetCurrentDialogType => ({ type: SET_CURRENT_DIALOG, dialog })
+export const setCurrentDialog = (dialog: DialogType | null): SetCurrentDialogType => ({ type: SET_CURRENT_DIALOG, dialog })
 type SetCurrentDialogType = {
     type: typeof SET_CURRENT_DIALOG
-    dialog: DialogType
+    dialog: DialogType | null
 }
 export const changeCurrentDialog = (dialog: DialogType): SetChangeCurrentDialogType => ({ type: CHANGE_CURRENT_DIALOG, dialog })
 type SetChangeCurrentDialogType = {
@@ -128,7 +128,7 @@ type SetPrecenseUserType = {
 //     dispatch({ type: FORWARDING_MESSAGE, bool, messageBody })
 
 // }
-export const setEditingStatus = (status: StatusType = false, message: MessageType | null):SetEditingStatusType => ({ type: SET_EDITING_STATUS, status, message }) //status:false, true
+export const setEditingStatus = (status: StatusType = false, message: MessageType | null): SetEditingStatusType => ({ type: SET_EDITING_STATUS, status, message }) //status:false, true
 type SetEditingStatusType = {
     type: typeof SET_EDITING_STATUS
     status: StatusType
@@ -137,7 +137,7 @@ type SetEditingStatusType = {
 }
 const setDeleteMessage = (messageId: any) => ({ type: DELETE_MESSAGE, messageId })
 
-const setDeleteDialog = (dialogId: number):SetDeleteDialogType => ({ type: DELETE_DIALOG, dialogId })
+const setDeleteDialog = (dialogId: number): SetDeleteDialogType => ({ type: DELETE_DIALOG, dialogId })
 type SetDeleteDialogType = {
     type: typeof DELETE_DIALOG
     dialogId: number
@@ -173,7 +173,7 @@ export const getDialogs = (dialogIdFromUrl = null) => async (dispatch: AppDispat
 export const getDialog = (userId: number) => async (dispatch: AppDispatchType) => {
 
     let response = await dialogsAPI.getDialog(userId);
-    
+
     if (response && response.resultCode === ResultCodesEnum.Success) {
         const dialog = response.dialog
         dispatch(setDialog(dialog))
@@ -319,13 +319,18 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             if (!checkExistDialog) {
 
                 resultDialogs = [...state.dialogs]
-                // @ts-ignore
+
                 resultDialogs.unshift(action.dialog)
                 return {
                     ...state, dialogs: resultDialogs,
                     currentDialogId: action.dialog.id, currentDialog: action.dialog
                 }
 
+            } else {
+                return {
+                    ...state,
+                    currentDialogId: action.dialog.id, currentDialog: action.dialog
+                }
             }
             debugger
             return state
@@ -382,7 +387,11 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
 
         case SET_CURRENT_DIALOG:
 
-            return { ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog }
+            if (action.dialog) {
+                return { ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog }
+            } else {
+                return { ...state, currentDialogId: undefined, currentDialog: null }
+            }
 
         case CHANGE_CURRENT_DIALOG:
 
@@ -412,14 +421,14 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             // @ts-ignore
             let messages = []
             // @ts-ignore
-            let upgradingCrrentDialog = null
+            let updatedCrrentDialog = null
 
             if (state.currentDialog) {
-                upgradingCrrentDialog = { ...state.currentDialog }
+                updatedCrrentDialog = { ...state.currentDialog }
             }
 
             const currentDialogs = state.dialogs.map(dialog => {
-                // @ts-ignore
+
                 if (dialog.id === action.message.dialogId) {
                     // @ts-ignore
                     let dialogsMessages = [...dialog.messages]
@@ -429,7 +438,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
                         dialogsMessages.push(message)
                         messages = dialogsMessages
                         // @ts-ignore
-                        upgradingCrrentDialog = { ...dialog, messages: dialogsMessages }
+                        updatedCrrentDialog = { ...dialog, messages: dialogsMessages }
                     }
                     if (checkExistMessage && action.message.isEdited) {
 
@@ -440,7 +449,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
                             }
                         });
                         // @ts-ignore
-                        upgradingCrrentDialog = { ...dialog, messages: dialogsMessages }
+                        updatedCrrentDialog = { ...dialog, messages: dialogsMessages }
                     }
                     // @ts-ignore
                     return { ...dialog, messages: dialogsMessages }
@@ -454,10 +463,8 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             if (action.message.dialogId === state.currentDialogId) {
                 return {
                     ...state,
-                    currentDialog: upgradingCrrentDialog,
+                    currentDialog: updatedCrrentDialog,
                     dialogs: currentDialogs,
-                    // @ts-ignore
-                    messages
                 }
 
             } else {
@@ -504,7 +511,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
         case SET_SENDING_STATUS:
             // @ts-ignore
             if (state.currentMessage.sendingStatus !== action.status) {
-                
+
                 return { ...state, currentMessage: { ...state.currentMessage, isSending: action.status } }
             }
             return state
