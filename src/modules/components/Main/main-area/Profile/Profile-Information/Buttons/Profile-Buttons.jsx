@@ -8,16 +8,12 @@ import { Navigate, NavLink } from 'react-router-dom'
 
 
 const ProfileButtons = (props) => {
-    const [dialogId, setDialogId] = useState(null)
 
-    // useEffect(() => { //TODO
-        
-    // }, [dialogId])
 
-    const onButtonClick = async (userId) => {
-        debugger
-        await props.getDialog(userId)
-        
+    const onButtonClick = (userId) => {
+
+        props.getDialog(userId)
+
 
     }
     // let disable = props.followingInProgress.some(id => id === props.user.id)
@@ -42,8 +38,8 @@ const ProfileButtons = (props) => {
                         border={12}
                         grey={true}
                         name={'Send Message'}
-                        onClick={ () => {
-                            onButtonClick(props.visitedUser.id)
+                        onClick={() => {
+                            onButtonClick(Number(props.visitedUser.id))
                         }}
                     />
                 </div>

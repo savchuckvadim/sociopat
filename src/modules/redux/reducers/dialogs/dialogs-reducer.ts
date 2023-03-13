@@ -173,10 +173,12 @@ export const getDialogs = (dialogIdFromUrl = null) => async (dispatch: AppDispat
 export const getDialog = (userId: number) => async (dispatch: AppDispatchType) => {
 
     let response = await dialogsAPI.getDialog(userId);
-
+    debugger
     if (response && response.resultCode === ResultCodesEnum.Success) {
         const dialog = response.dialog
         dispatch(setDialog(dialog))
+        // dispatch(setCurrentDialog(dialog))
+
     }
 
 
@@ -299,12 +301,6 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             }
             let currentDialog = searchDialog(searchingDialogId, [setingDialogs])
 
-            let currentMessages = []
-            if (currentDialog) {
-                currentMessages = currentDialog.messages
-            }
-
-
             return {
                 ...state,
                 dialogs: setingDialogs,
@@ -332,9 +328,6 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
                     currentDialogId: action.dialog.id, currentDialog: action.dialog
                 }
             }
-            debugger
-            return state
-
 
         case DELETE_DIALOG:
 
@@ -386,7 +379,6 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             return state
 
         case SET_CURRENT_DIALOG:
-
             if (action.dialog) {
                 return { ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog }
             } else {
@@ -401,8 +393,6 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             }
 
             return state
-
-
 
         case SET_NEW_MESSAGE:
             //TODO isEdited

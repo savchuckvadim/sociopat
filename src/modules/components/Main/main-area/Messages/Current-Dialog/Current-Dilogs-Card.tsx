@@ -22,7 +22,7 @@ type PropsType = {
 
 
 const CurrentDialogsCard: React.FC<PropsType> = (props) => {
-    debugger
+    
     const navigate = useNavigate()
 
     const submit = (values: any, dispatch: AppDispatchType) => {
@@ -32,18 +32,15 @@ const CurrentDialogsCard: React.FC<PropsType> = (props) => {
     }
 
     useEffect(() => {
-        debugger
-        props.setCurrentDialog(null)
+    
         return () => {
-
-            debugger
             props.setCurrentDialog(null)
         }
     }, [])
 
 
 
-    debugger
+    
     return (
         <div className={style.container}>
             <div className={style.header}>
