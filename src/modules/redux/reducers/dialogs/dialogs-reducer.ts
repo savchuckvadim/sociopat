@@ -82,7 +82,7 @@ type SetDialogType = {
     dialog: DialogType
 }
 export const setCurrentDialog = (dialog: DialogType | null): SetCurrentDialogType => ({ type: SET_CURRENT_DIALOG, dialog })
-type SetCurrentDialogType = {
+export type SetCurrentDialogType = {
     type: typeof SET_CURRENT_DIALOG
     dialog: DialogType | null
 }

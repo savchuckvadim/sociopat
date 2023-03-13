@@ -8,6 +8,7 @@ import { reset } from 'redux-form'
 import BodyOfCurrentDialog from './Current-Dialog-Body/Current-Dialog-Body'
 import { AppDispatchType } from '../../../../../redux/store'
 import { DialogType, MessageType, UserType } from '../../../../../types/types'
+import { SetCurrentDialogType } from '../../../../../redux/reducers/dialogs/dialogs-reducer'
 
 
 
@@ -16,10 +17,12 @@ type PropsType = {
     id: number
     messages: Array<MessageType>
     authUser: UserType
-    setCurrentDialog: (dialog: DialogType | null) => void
+    setCurrentDialog: (dialog: DialogType | null) => SetCurrentDialogType
 }
-const CurrentDialogsCard: React.FC<PropsType> = (props) => {
 
+
+const CurrentDialogsCard: React.FC<PropsType> = (props) => {
+    debugger
     const navigate = useNavigate()
 
     const submit = (values: any, dispatch: AppDispatchType) => {
@@ -29,8 +32,11 @@ const CurrentDialogsCard: React.FC<PropsType> = (props) => {
     }
 
     useEffect(() => {
-
+        debugger
+        props.setCurrentDialog(null)
         return () => {
+
+            debugger
             props.setCurrentDialog(null)
         }
     }, [])

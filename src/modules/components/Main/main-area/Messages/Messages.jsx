@@ -1,14 +1,11 @@
+import React from 'react'
 import style from './Messages.module.css'
 import  DialogsContainer from './Dialogs/Dialogs-Container'
-import { RouteCurrentDialogContainer } from './Current-Dialog/Route-Current-Dialog-Container'
-import React from 'react'
 import Title from '../../../Elements/Title/Title'
 import { Route, Routes } from 'react-router-dom'
 import RouteCurrentDialog from './Current-Dialog/Route-Current-Dialog'
 
 const Messages = (props) => {
-
-debugger
 
     return (
         <>
