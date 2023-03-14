@@ -51,12 +51,9 @@ const CurrentDialogsCard: React.FC<PropsType> = (props) => {
                     alt="arrow" />
                 <div className={style.author}>
                     <Author
-                        userName={'props.dialog.nameOfDialog'}
+                        // userId={props.dialog.id}
                         size={46}
-                        userId={props.dialog.id}
-                        //
-                        user={props.authUser}
-                        author={props.dialog.participant.profile}
+                        author={props.dialog.participant}
                     />
                 </div>
 

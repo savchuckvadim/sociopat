@@ -3,7 +3,7 @@ import style from './Message-Item.module.css'
 import readed from '../../../../../../../../assets/imgs/dialogs/status-readed.svg'
 
 const Message = (props) => {
-
+debugger
     let nameOfDialog = props.nameOfDialog
     let userId = props.userId
     let iconOfDialog = props.iconOfDialog

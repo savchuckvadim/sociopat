@@ -52,7 +52,7 @@ const Post: React.FC<PostPropsType> = (props) => {
 
         <div className={style.wrapper}>
             <div className={style.header}>
-                <Author {...props} size={56} />
+                <Author size={56} author={props.author} />
 
                 <div className={style.functions}>
                     <img className={style.dots} src={dots} alt='dots'></img>

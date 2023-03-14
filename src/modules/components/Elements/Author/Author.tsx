@@ -1,26 +1,22 @@
 import style from './Author.module.css'
 
 import Avatar from '../Avatar/Avatar'
+import { UserType } from '../../../types/types'
 
-const Author = (props) => {
-    //props:
-    //userId
-    //size
 
-    //for Avatar
-    //    size={iconSize}
-    // link={link}
-    // user={props.author}
-    // img={props.author.profile.avatar}
-    
-    let link = false
-    props.userId 
-    ? link = `../../profile/${props.userId }`
-    : link = false
-    
+type PropsType = {
+    // userId: number
+    size: number
+    author: UserType
+
+}
+const Author: React.FC<PropsType> = (props) => {
+   
+    let profile = props.author.profile
+    let link = `../../profile/${props.author.id}`
 
     let fontSize = 14
-    let iconSize = 48   
+    let iconSize = 48
     let dateLineHeight = '22px'
     if (props.size === 56) {
         fontSize = 16
@@ -28,7 +24,7 @@ const Author = (props) => {
         dateLineHeight = '24px'
 
     }
-    
+
     return (
 
         <div className={style.user__wrapper}>
@@ -38,13 +34,13 @@ const Author = (props) => {
                     height: iconSize
                 }}
             >
-               
+
                 <Avatar
-                size={iconSize}
-                link={link}
-                user={props.author}
-                // img={props.author.profile.avatar}
-                img={null}
+                    size={iconSize}
+                    link={link}
+                    user={props.author}
+
+
                 />
             </div>
 
@@ -54,12 +50,12 @@ const Author = (props) => {
                         fontSize: fontSize
                     }}
                 >
-                  {props.author.name +' '+ props.author.surname}
+                    {profile.name + ' ' + profile.surname}
                 </p>
                 <p className={style.date}
-                style={{
-                    lineHeight: dateLineHeight
-                }}
+                    style={{
+                        lineHeight: dateLineHeight
+                    }}
                 > 5 min ago</p>
             </div>
 
