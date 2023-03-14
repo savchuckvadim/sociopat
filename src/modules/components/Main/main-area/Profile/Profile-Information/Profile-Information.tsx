@@ -19,7 +19,8 @@ type ProfileInformationPropsType = {
 }
 const ProfileInformation: React.FC<ProfileInformationPropsType> = (props) => {
 
-    if (props.visitedUser !== null) {
+    if (props.visitedUser !== null && props.visitedUser !== undefined) {
+        
         const visitedUser = props.visitedUser
         return (
             <div className={style.wrapper}>
@@ -65,9 +66,10 @@ const ProfileInformation: React.FC<ProfileInformationPropsType> = (props) => {
                 <div className={style.avatar}>
                     <Avatar
                         size={128}
-                        border={true}
-                        img={visitedUser.profile.avatar}
+                        border={10}
+                        // img={visitedUser.profile.avatar}
                         user={visitedUser}
+                       
                     />
 
                 </div>

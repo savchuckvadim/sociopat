@@ -33,7 +33,7 @@ const UserCard = (props: PropsType) => {
                 size={68}
                 link={`../profile/${props.user && props.user.id}`}
                 user={props.user}
-                img={props.user && props.user.profile.avatar}
+                // img={props.user && props.user.profile.avatar}
             />
 {//@ts-ignore
             <NavLink className={style.login} to={props.user && '../profile/' +  props.user.id}>

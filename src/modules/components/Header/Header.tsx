@@ -31,7 +31,7 @@ const Header = (props: HeaderPropsType) => {
                     </div>
                     <Avatar
                         size={40}
-                        img={avatar}
+                        // img={avatar}
                         link={'profile'}
                         user={props.user}
                     />

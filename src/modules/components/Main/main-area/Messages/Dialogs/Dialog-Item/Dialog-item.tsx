@@ -16,7 +16,8 @@ const DialogItem:React.FC<PropsType> = (props) => {
     //NameOfDialog
     //iconOfDialog
     //user
-    
+    debugger
+    let name = props.participant && `${props.participant.profile.name}  ${props.participant.profile.surname}`
     return (
 
         <NavLink
@@ -27,9 +28,9 @@ const DialogItem:React.FC<PropsType> = (props) => {
                 {/* <Icon user={props.user} /> */}
                 <Avatar
                 size={68}
-                border={false}
-                name={'props.nameOfDialog'}
+               
                 link={`../../profile/${props.userId}`}
+                user={props.participant}
                 // img={props.iconOfDialog}
 
                 />
@@ -37,7 +38,7 @@ const DialogItem:React.FC<PropsType> = (props) => {
 
             <div className={style.lastMessage}>
                 <div className={style.title}>
-                    <p className={style.lastMessage__title}>{'props.nameOfDialog'}</p>
+                    <p className={style.lastMessage__title}>{name}</p>
                     <div className={style.status}>
                         <img src={status} alt="status-icon" />
                     </div>

@@ -42,7 +42,7 @@ const Author = (props) => {
                 <Avatar
                 size={iconSize}
                 link={link}
-                user={props.authUser}
+                user={props.author}
                 // img={props.author.profile.avatar}
                 img={null}
                 />
