@@ -24,59 +24,47 @@ type PropsType = {
 
 
 const CurrentDialogsCard: React.FC<PropsType> = (props) => {
-    debugger
-    const navigate = useNavigate()
 
     const submit = (values: any, dispatch: AppDispatchType) => {
-        console.log(values.message)
-        alert(values.message)
-        // props.sendNewMessage(values)
+        props.sendMessage(props.dialog.id, values.message, false, false)
+        dispatch(reset('sendMessage'))
 
-
-        //TODO SEND MESSAGE THUNK
-        props.sendMessage(props.dialog.id, values.message, false, false) 
-        
-    
     }
 
-        useEffect(() => {
+    useEffect(() => {
+        return () => {
+            props.setCurrentDialog(null)
+        }
+    }, [])
 
-            return () => {
-                props.setCurrentDialog(null)
-            }
-        }, [])
-
-
-
-
-        return (
-            <div className={style.container}>
-                <div className={style.header}>
-                    <NavLink replace to={`${'../'}`}>
-                        <img
-                            className={style.arrow}
-                            // onClick={() => { navigate(-1) }}
-                            src={arrow}
-                            alt="arrow" />
-                    </NavLink>
-                    <div className={style.author}>
-                        <Author
-                            size={46}
-                            author={props.dialog.participant}
-                            date={props.dialog.participant.profile.updated_at}
-                        />
-                    </div>
-
+    return (
+        <div className={style.container}>
+            <div className={style.header}>
+                <NavLink replace to={`${'../'}`}>
+                    <img
+                        className={style.arrow}
+                        // onClick={() => { navigate(-1) }}
+                        src={arrow}
+                        alt="arrow" />
+                </NavLink>
+                <div className={style.author}>
+                    <Author
+                        size={46}
+                        author={props.dialog.participant}
+                        date={props.dialog.participant.profile.updated_at}
+                    />
                 </div>
 
-                <BodyOfCurrentDialog {...props} />
-
-
-
-                <SendMessageReduxForm onSubmit={submit} />
-
             </div>
-        )
-    }
 
-    export default CurrentDialogsCard
+            <BodyOfCurrentDialog {...props} />
+
+
+
+            <SendMessageReduxForm onSubmit={submit} />
+
+        </div>
+    )
+}
+
+export default CurrentDialogsCard

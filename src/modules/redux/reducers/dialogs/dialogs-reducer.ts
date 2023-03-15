@@ -200,7 +200,7 @@ export const sendMessage = (dialogId: number, body: string, isForwarded: boolean
     let isDialogExistInState = searchDialog(dialogId, dialogs)
     if (!isDialogExistInState) { //если диалог, в который пересылают отсутствует в стэйте, запрашивает его на сервере и вставляет в стэйт
         const dialogResponse = await dialogsAPI.getDialog(dialogId)
-      debugger  
+        
         if (dialogResponse && dialogResponse.resultCode) {
             if (dialogResponse.dialog) {
                 dispatch(setDialog(dialogResponse.dialog))
@@ -218,7 +218,7 @@ export const sendMessage = (dialogId: number, body: string, isForwarded: boolean
             alert(dialogResponse.message)
         }
     } else { //Если диалог в стэйте есть
-debugger
+
         // После того как новый Message вставлен во вставленный в стэйт Dialog,
         // Находим обновленный диалог из стэйта
         const dialogForCurrentDialog = searchDialog(dialogId, dialogs)
