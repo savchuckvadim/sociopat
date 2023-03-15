@@ -5,7 +5,9 @@
     align-items: flex-start;
     
 }
-
+.message{
+    width: 585px;
+}
 .message, .author {
     text-align: start;
     display: block;

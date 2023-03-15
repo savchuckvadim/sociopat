@@ -31,7 +31,7 @@ const Message: React.FC<PropsType> = (props) => {
                 <p className={style.message}>{props.message.body}</p>
             </div>
             <div className={style.date__wrapper}>
-                <p className={style.date}>{<Moment fromNow >{props.message.created}</Moment>}</p>
+                <p className={style.date}>{<Moment format="hh:mm"  >{props.message.created}</Moment>}</p>
             </div>
         </div>)
 }
