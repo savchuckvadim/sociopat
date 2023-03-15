@@ -9,6 +9,7 @@ type PropsType = {
     newMessage: string
     authUser: UserType
     setCurrentDialog: (dialog: DialogType | null) => SetCurrentDialogType
+    sendMessage: (dialogId: number, body: string, isForwarded: boolean, isEdited : boolean) => void
 }
 const RouteCurrentDialog: React.FC<PropsType> = (props) => {
 
@@ -20,9 +21,10 @@ const RouteCurrentDialog: React.FC<PropsType> = (props) => {
                 <CurrentDialogsCard
                     dialog={dialog}
                     authUser={props.authUser}
-                    id={dialog.id}
+                    // id={dialog.id}
                     messages={dialog.messages}
                     setCurrentDialog={props.setCurrentDialog}
+                    sendMessage={props.sendMessage}
                 />}
         />
     ))

@@ -1,18 +1,14 @@
-import { useEffect } from "react"
 import { connect } from "react-redux"
 import { compose } from "redux"
 import { getDialogs } from "../../../../../redux/reducers/dialogs/dialogs-reducer"
-import { LightLoadingPageContainer } from "../../../../Elements/Loading/Light-Loading-Page-Container"
-import LoadingPage from "../../../../Elements/Loading/Loading-Page"
 import Dialogs from "./Dialogs"
 import noMessage from '../../../../../../assets/imgs/dialogs/no-messages.svg'
 
 const mapStateToProps = (state) => {
-
+    
     return {
         dialogs: state.dialogsReducer.dialogs,
-        user: state.auth.authUser,
-
+        user: state.auth.authUser
     }
 }
 

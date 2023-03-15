@@ -173,7 +173,7 @@ export const getDialogs = (dialogIdFromUrl = null) => async (dispatch: AppDispat
 export const getDialog = (userId: number) => async (dispatch: AppDispatchType) => {
 
     let response = await dialogsAPI.getDialog(userId);
-    debugger
+    
     if (response && response.resultCode === ResultCodesEnum.Success) {
         const dialog = response.dialog
         dispatch(setDialog(dialog))
@@ -185,21 +185,21 @@ export const getDialog = (userId: number) => async (dispatch: AppDispatchType) =
 }
 
 export const sendMessage = (dialogId: number, body: string, isForwarded: boolean, isEdited: boolean) => async (dispatch: any, getState: any) => {
+    debugger
     dispatch(setSendingStatus('sending'))
 
     const messageResponse = await dialogsAPI.sendMessage(dialogId, body, isForwarded, isEdited)
 
     dispatch(setSendingStatus(false))
     // setCurrentDialog (dialogId, messages)
-
+const state =  getState()
     let dialogs = [
-        getState().dialogs.dialogs,
-        getState().dialogs.groupDialogs,
+        state.dialogs.dialogs, 
     ]
     let isDialogExistInState = searchDialog(dialogId, dialogs)
     if (!isDialogExistInState) { //если диалог, в который пересылают отсутствует в стэйте, запрашивает его на сервере и вставляет в стэйт
         const dialogResponse = await dialogsAPI.getDialog(dialogId)
-
+debugger
         if (dialogResponse && dialogResponse.resultCode) {
             if (dialogResponse.dialog) {
                 dispatch(setDialog(dialogResponse.dialog))
@@ -281,7 +281,7 @@ export const deleteDialog = (dialogId: any) => async (dispatch: any) => {
     await dialogsAPI.deleteDialog(dialogId)
 
     dispatch(setDeleteDialog(dialogId))
-    //TODO delete AC
+    
 
 }
 

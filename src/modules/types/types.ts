@@ -47,12 +47,12 @@ export enum PreloaderCodesEnum {
     Component = 'component'
 }
 
-export type MessageType = {
-    id: number
-    dialogId: number
-    body: string
-    isEdited: boolean
-} 
+// export type MessageType = {
+//     id: number
+//     dialogId: number
+//     body: string
+//     isEdited: boolean
+// } 
 
 export type DialogType = {
     id: number
@@ -60,3 +60,18 @@ export type DialogType = {
     messages: Array<MessageType> | []
     isSound: Boolean
 }
+
+export type MessageType = {
+    id: number
+    dialogId: number
+    body: string
+    isForwarded: boolean
+    isEdited: boolean
+    authorId: number
+    author: UserType
+    isAuthorIsAuth:boolean
+    created: string
+} 
+
+
+            

@@ -36,8 +36,6 @@ type PropsType = {
     border?: number
 }
 const Avatar: React.FC<PropsType> = (props) => {
-
-    debugger
     let initials = null
     let img = props.user.profile.avatar
     let border = props.border

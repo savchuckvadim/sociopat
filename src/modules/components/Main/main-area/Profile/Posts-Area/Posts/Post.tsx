@@ -65,9 +65,7 @@ const Post: React.FC<PostPropsType> = (props) => {
 
                     </p>
                 </div>
-                {/* <div className={style.img__container}>
-                    <img className={style.post__img} src={props.postsImg} alt="postsImg" />
-                </div> */}
+               
                 {postsImg}
             </div>
             <div className={style.footer}>

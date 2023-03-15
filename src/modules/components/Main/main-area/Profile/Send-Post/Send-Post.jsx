@@ -1,6 +1,5 @@
-import style from './Send-Post.module.css'
-
 import React from 'react'
+import style from './Send-Post.module.css'
 import { reduxForm, Field, reset } from 'redux-form'
 import InputSendPost from './Send-Post-Form-Controls'
 

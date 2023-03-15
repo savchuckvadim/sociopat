@@ -65,12 +65,10 @@ export const usersAPI = {
     async getUser(userId: number) {
         try {
             const res = await api.get<GetUserType>(`api/users/${userId}`);
-
             return res.data;
         } catch (error) {
             alert(error);
         }
-
     },
 
     async follow(userId: number) {
