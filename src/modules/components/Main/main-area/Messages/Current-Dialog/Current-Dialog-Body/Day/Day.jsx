@@ -5,6 +5,7 @@ const Day = ({date}) => {
 
     let myDate = new Date(date)
     // let day = myDate.getDate()
+    
     const calendarStrings = {
         lastDay : '[Yesterday]',
         sameDay : '[Today]',

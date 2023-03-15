@@ -1,8 +1,8 @@
+import React, { useLayoutEffect, useRef } from 'react'
 import Message from "./Message-Item/Message-Item"
 import style from './Current-Dialog-Body.module.css'
 import noMessage from '../../../../../../../assets/imgs/dialogs/no-messages.svg'
 import { DialogType, MessageType, UserType } from "../../../../../../types/types"
-import React from "react"
 import Day from "./Day/Day"
 
 type PropsType = {
@@ -18,6 +18,18 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
 
     let body = null
     let date = null
+    let ref = useRef<null | HTMLDivElement>(null);
+
+    useLayoutEffect(() => {
+
+        if (ref.current ) {
+// @ts-ignore
+            ref.current.scrollIntoView(0, 0);
+        }
+
+    
+    }, [props.dialog.messages.length]);
+
     if (props.dialog.messages.length > 0) {
 
         body = props.dialog.messages.map((m: MessageType) => {
@@ -37,8 +49,12 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
             <div className={style.interior__wrapper} >
 
                 {body}
+                <div ref={ref}></div>
             </div>
+            
         </div>
+
+
     )
 }
 
