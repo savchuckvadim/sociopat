@@ -1,5 +1,5 @@
 import style from './Author.module.css'
-
+import Moment from 'react-moment'
 import Avatar from '../Avatar/Avatar'
 import { UserType } from '../../../types/types'
 
@@ -8,10 +8,11 @@ type PropsType = {
     // userId: number
     size: number
     author: UserType
+    date: string
 
 }
 const Author: React.FC<PropsType> = (props) => {
-   
+
     let profile = props.author.profile
     let link = `../../profile/${props.author.id}`
 
@@ -56,7 +57,7 @@ const Author: React.FC<PropsType> = (props) => {
                     style={{
                         lineHeight: dateLineHeight
                     }}
-                > 5 min ago</p>
+                > {<Moment fromNow >{props.date}</Moment>}</p>
             </div>
 
         </div>

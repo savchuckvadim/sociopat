@@ -63,6 +63,7 @@ const CurrentDialogsCard: React.FC<PropsType> = (props) => {
                         <Author
                             size={46}
                             author={props.dialog.participant}
+                            date={props.dialog.participant.profile.updated_at}
                         />
                     </div>
 

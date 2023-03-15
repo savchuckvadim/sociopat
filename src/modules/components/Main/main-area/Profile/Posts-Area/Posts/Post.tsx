@@ -14,14 +14,15 @@ import { UserType } from '../../../../../../types/types'
 
 type PostPropsType = {
     userName: string
-    author:UserType
+    author: UserType
     postsImg: string | null
     isAuthUserLikes: boolean
     likesCount: number
     body: string | null
     likeInProgress: boolean
     postId: number
-    userId:number
+    userId: number
+    date: string
     like: (postId: number) => void
     dislike: (postId: number) => void
 
@@ -52,7 +53,7 @@ const Post: React.FC<PostPropsType> = (props) => {
 
         <div className={style.wrapper}>
             <div className={style.header}>
-                <Author size={56} author={props.author} />
+                <Author size={56} author={props.author} date={props.date} />
 
                 <div className={style.functions}>
                     <img className={style.dots} src={dots} alt='dots'></img>
@@ -65,7 +66,7 @@ const Post: React.FC<PostPropsType> = (props) => {
 
                     </p>
                 </div>
-               
+
                 {postsImg}
             </div>
             <div className={style.footer}>

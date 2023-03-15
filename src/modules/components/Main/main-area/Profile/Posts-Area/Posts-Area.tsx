@@ -20,7 +20,7 @@ const PostsArea: React.FC<PostsAereaPropsType> = (props) => {
             if (post.author) {
                 return <Post
                     postId={post.id}
-                    key={`post-${index}`}
+                    key={`post-${post.id}`}
                     userName={`${post.author.profile.name} ${post.author.profile.surname}`}
                     author={post.author}
                     body={post.body}
@@ -31,6 +31,7 @@ const PostsArea: React.FC<PostsAereaPropsType> = (props) => {
                     likeInProgress={props.likeInProgress}
                     isAuthUserLikes={post.isAuthLikes}
                     likesCount={post.likesCount}
+                    date={post.created}
                 />
             }
 

@@ -33,6 +33,8 @@ export type PostType = {
     isAuthLikes: boolean
     likesCount: number
     profile_id: number
+    created:string
+
 }
 
 export type LikeType = {
