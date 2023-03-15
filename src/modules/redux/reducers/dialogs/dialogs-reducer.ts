@@ -184,8 +184,8 @@ export const getDialog = (userId: number) => async (dispatch: AppDispatchType) =
 
 }
 
-export const sendMessage = (dialogId: number, body: string, isForwarded: boolean, isEdited: boolean) => async (dispatch:AppDispatchType, getState: GetStateType) => {
-    
+export const sendMessage = (dialogId: number, body: string, isForwarded: boolean, isEdited: boolean) => async (dispatch: AppDispatchType, getState: GetStateType) => {
+
     dispatch(setSendingStatus('sending'))
 
     const messageResponse = await dialogsAPI.sendMessage(dialogId, body, isForwarded, isEdited)
@@ -193,14 +193,14 @@ export const sendMessage = (dialogId: number, body: string, isForwarded: boolean
     dispatch(setSendingStatus(false))
     // setCurrentDialog (dialogId, messages)
     const state = getState()
-    
+
     let dialogs = [
         state.dialogsReducer.dialogs,
     ]
     let isDialogExistInState = searchDialog(dialogId, dialogs)
     if (!isDialogExistInState) { //если диалог, в который пересылают отсутствует в стэйте, запрашивает его на сервере и вставляет в стэйт
         const dialogResponse = await dialogsAPI.getDialog(dialogId)
-        
+
         if (dialogResponse && dialogResponse.resultCode) {
             if (dialogResponse.dialog) {
                 dispatch(setDialog(dialogResponse.dialog))
@@ -248,25 +248,23 @@ export const sendEditMessage = (messageId: number, body: string) => async (dispa
 
         dispatch(setSendingStatus(false))
     }
-    // export const deleteMessage = (messageId:any) => async (dispatch:any) => {
-
-    //     dispatch(setSendingStatus('sending'))
-    //     await dialogsAPI.deleteMessage(messageId)
-    //     dispatch(setDeleteMessage(messageId))
-    //     dispatch(setSendingStatus(false))
-    // }
-    // export const getMessages = (dialogId:any) => async (dispatch:any) => {
-    //     const response:any = await dialogsAPI.getMessages(dialogId)
-    //     dispatch(setCurrentDialog(dialogId, response.messages))
-
-    // }
-
-
-
 
 }
-// @ts-ignore
-export const changeDialogSound = (dialogId: any, isSound: any) => async (dispatch: any) => {
+
+export const deleteMessage = (messageId: number) => async (dispatch: AppDispatchType) => {
+
+    dispatch(setSendingStatus('sending'))
+    await dialogsAPI.deleteMessage(messageId)
+    dispatch(setDeleteMessage(messageId))
+    dispatch(setSendingStatus(false))
+}
+// export const getMessages = (dialogId:any) => async (dispatch:any) => {
+//     const response:any = await dialogsAPI.getMessages(dialogId)
+//     dispatch(setCurrentDialog(dialogId, response.messages))
+
+// }
+
+export const changeDialogSound = (dialogId: number, isSound: boolean) => async (dispatch: AppDispatchType) => {
 
     const response = await dialogsAPI.sound(dialogId, isSound)
     dispatch(setSound(response.updatingDialog))
@@ -276,8 +274,8 @@ export const changeDialogSound = (dialogId: any, isSound: any) => async (dispatc
 }
 
 //for context-menu 
-// @ts-ignore
-export const deleteDialog = (dialogId: any) => async (dispatch: any) => {
+
+export const deleteDialog = (dialogId: number) => async (dispatch: AppDispatchType) => {
 
     await dialogsAPI.deleteDialog(dialogId)
 
@@ -399,19 +397,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             //TODO isEdited
 
             let message = action.message
-
-            // let currentDialogs = state.dialogs 
-
-            // @ts-ignore
-            // if (message.isGroup && !state.groupDialogs.some(dialog => dialog.dialogId === message.dialogId) && action.message.dialogId !== state.currentDialogId) {
-            //     return state
-            //     // @ts-ignore
-            // } else if (!message.isGroup && !state.dialogs.some(dialog => dialog.dialogId === message.dialogId) && action.message.dialogId !== state.currentDialogId) {
-            //     return state
-            // } else {
-            // @ts-ignore
             let messages = []
-            // @ts-ignore
             let updatedCrrentDialog = null
 
             if (state.currentDialog) {
@@ -421,28 +407,24 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             const currentDialogs = state.dialogs.map(dialog => {
 
                 if (dialog.id === action.message.dialogId) {
-                    // @ts-ignore
                     let dialogsMessages = [...dialog.messages]
                     const checkExistMessage = dialogsMessages.some(dialogsMessage => dialogsMessage.id === message.id)
 
                     if (!checkExistMessage && !action.message.isEdited) {
                         dialogsMessages.push(message)
                         messages = dialogsMessages
-                        // @ts-ignore
                         updatedCrrentDialog = { ...dialog, messages: dialogsMessages }
                     }
                     if (checkExistMessage && action.message.isEdited) {
-
                         dialogsMessages.forEach((m, i) => {
                             if (m.id === action.message.id) {
-
                                 dialogsMessages.splice(i, 1, action.message)
                             }
                         });
-                        // @ts-ignore
+
                         updatedCrrentDialog = { ...dialog, messages: dialogsMessages }
                     }
-                    // @ts-ignore
+
                     return { ...dialog, messages: dialogsMessages }
                 } else {
 
@@ -669,5 +651,5 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
 }
 
 
-// @ts-ignore
+
 export default dialogsReducer
