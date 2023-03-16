@@ -1,18 +1,21 @@
 import Echo from 'laravel-echo'
 import { api } from '../api-laravel'
+import { setNewMessage } from '../../redux/reducers/dialogs/dialogs-reducer'
+import { setNotification } from '../../redux/reducers/notifications-reducer'
+import { addOnline, deleteOnline, setOnline } from '../../redux/reducers/users/users-reducer'
 
 //TODO TypeScript
-let token
+
 export let echo
 export const socket = {
 
-  async connection() {
+  async connection(authUserId, dispatch) {
 
     window.Pusher = require('pusher-js')
     await api.get("/sanctum/csrf-cookie")
     await api.get('api/user')
 
-    let echo = new Echo({
+    echo = new Echo({
 
       broadcaster: 'pusher',
       key: 'socket_key',
@@ -23,8 +26,8 @@ export const socket = {
       wsPort: 6001,
       authorizer: (channel, options) => {
         console.log('websocket connection is success')
-        console.log(options)
-
+        console.log(channel)
+       
         return {
           authorize: (socketId, callback) => {
             api.post('api/broadcasting/auth', {
@@ -44,17 +47,107 @@ export const socket = {
       }
 
     })
+    console.log('echo')
+    console.log(echo)
 
-    echo.private(`send-post`)
-      .listen('SendPost', (e) => {
-        console.log(e)
-        alert(e.post.body)
-      })
-
+    await this.postListener() 
+    await this.precenseListener(dispatch)
+    await this.newMessageListener(authUserId, dispatch)
 
     // })
 
 
   },
+  async postListener() {
+
+    if (echo) {
+      
+      echo.private(`send-post`)
+      .listen('SendPost', (e) => {
+        console.log(e)
+        alert(e.post.body)
+      })
+    } else {
+
+      setTimeout(async () => {
+        await socket.connection()
+        await socket.postListener()
+      }, 2000)
+
+
+    }
+  },
+  async precenseListener(dispatch) {
+
+    if (echo) {
+      
+      echo.join(`socio-chat`)
+        .here((ids) => {
+          
+          console.log(ids)
+          
+          dispatch(setOnline(ids))
+        })
+        .joining((userId) => {
+          
+          console.log(userId)
+          dispatch(addOnline(userId))
+
+        })
+        .leaving((userId) => {
+          
+          console.log(`leaving ${userId}`)
+          dispatch(deleteOnline(userId))
+
+
+        })
+
+        .error((error) => {
+          console.error(error);
+        });
+    } else {
+
+      setTimeout(async () => {
+        await socket.connection(dispatch)
+        await socket.precenseListener(dispatch)
+      }, 2000)
+
+
+    }
+  },
+  async newMessageListener(authUserId, dispatch) {
+    if (echo) {
+
+      echo.private(`new-message.${authUserId}`)
+
+        .listen('.SendMessage', (e) => {
+          
+          dispatch(setNewMessage(e.message, authUserId))
+          dispatch(setNotification(e))
+
+        })
+    } else {
+
+      setTimeout(async () => {
+        await socket.connection(dispatch)
+
+      }, 2000)
+
+
+    }
+  },
+  async reconnect(authUserId, dispatch) {
+    if (echo) {
+      console.log('reconnect')
+      console.log(echo)
+      setTimeout(async () => {
+        await socket.reconnect(authUserId, dispatch)
+      }, 10000)
+    } else {
+      
+      await socket.connection(authUserId, dispatch)
+      await socket.reconnect(authUserId, dispatch)
+    }
+  }
 
 }

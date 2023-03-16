@@ -1,6 +1,7 @@
 import { stopSubmit } from "redux-form"
 import { ResultCodesEnum } from "../../../services/api-laravel"
 import { authAPI } from "../../../services/auth-api";
+import { socket } from "../../../services/websocket/socket";
 import { PreloaderCodesEnum, UserType } from "../../../types/types"
 import { InferActionsTypes, ThunkType } from "../../store"
 import { getDialogs } from "../dialogs/dialogs-reducer";
@@ -36,6 +37,7 @@ export const getAuth = (): AuthThunkType => async (dispatch) => {
     if (response) {
         if (response.resultCode === ResultCodesEnum.Success) {
             authUser = response.authUser && response.authUser
+
         } else {
             console.log(response.message)
         }
@@ -43,9 +45,8 @@ export const getAuth = (): AuthThunkType => async (dispatch) => {
 
     if (authUser) {
         dispatch(actions.setAuthUserData(authUser, true))
-
-
-
+        await socket.reconnect(authUser.id, dispatch)
+        
     } else {
         dispatch(actions.setAuthUserData(null, false))
     }

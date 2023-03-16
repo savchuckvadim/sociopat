@@ -42,7 +42,7 @@ export const authAPI = {
     async getAuthUser() {
         try {
             const res = await api.get<GetAuthUserType>("api/user/auth");
-            const websocket = await socket.connection();
+            // const websocket = await socket.connection();
 
             return res.data;
         } catch (error) {

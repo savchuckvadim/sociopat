@@ -24,7 +24,9 @@ const initialState = {
     online: [] as Array<number>,
 }
 
-
+const SET_ONLINE = 'SET_ONLINE'
+const ADD_ONLINE = 'ADD_ONLINE'
+const DELETE_ONLINE = 'DELETE_ONLINE'
 
 // ACTION CREATORS
 
@@ -36,6 +38,13 @@ export const usersActions = {
     toggleFollowingInProgress: (userId: number, isFetching: boolean) => ({ type: 'SP/USERS/FOLLOWING_IN_PROGRESS', userId, isFetching } as const),
 
 }
+export const setOnline = (usersIds: Array<number>): SetOnlineType => ({ type: SET_ONLINE, usersIds })
+type SetOnlineType = {
+    type: typeof SET_ONLINE
+    usersIds: Array<number>
+}
+export const addOnline = (userId: number) => ({ type: ADD_ONLINE, userId })
+export const deleteOnline = (userId: number) => ({ type: DELETE_ONLINE, userId })
 //TODO:
 
 // export const PRECENSE_USER = 'PRECENSE_USER'
@@ -117,7 +126,7 @@ const usersReducer = (state: UsersStateType = initialState, action: UsersActions
 
             return result
 
-//TODO:
+        //TODO:
         // case SET_ONLINE:
 
         //     let resUsersSet = setOnlineInAll(state.users, action.usersIds)

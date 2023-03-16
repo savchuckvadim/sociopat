@@ -11,7 +11,7 @@ export const searchDialog = (dialogId:number, groupsOfDialogs: Array<Array<Dialo
             }
         })
     })
-    debugger
+    
     if (searchingDialog) {
         const resultCurrentDialog = { ...searchingDialog }
         resultCurrentDialog.messages = searchingDialog.messages.map(message => ({ ...message }))

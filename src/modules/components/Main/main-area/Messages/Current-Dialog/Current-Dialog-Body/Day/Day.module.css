@@ -8,8 +8,9 @@
 }
 
 .label {
+    padding:  0 8px;
     background-color: rgb(235, 239, 243);
-    width: 53px;
+    width: auto;
     height: 24px;
     border-radius: 80px;
     display: flex;
@@ -22,7 +23,7 @@
     margin: 0 auto;
     padding: 0;
     display: block;
-    width: 35px;
+    /* width: 35px; */
     height: 14px;
     font-family: 'Inter';
     font-style: normal;
