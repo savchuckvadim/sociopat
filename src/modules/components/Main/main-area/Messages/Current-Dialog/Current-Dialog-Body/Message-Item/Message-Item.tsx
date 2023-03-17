@@ -6,10 +6,11 @@ import Moment from 'react-moment'
 
 type PropsType = {
     message: MessageType
+    isNotification?: boolean
 }
 
 const Message: React.FC<PropsType> = (props) => {
-    
+    debugger
     let nameOfDialog = `${props.message.author.profile.name} ${props.message.author.profile.surname}`
 
 
@@ -25,10 +26,12 @@ const Message: React.FC<PropsType> = (props) => {
             <div className={style.text__wrapper}>
                 <div className={style.nameAndStatus__wrapper}>
                     <p className={style.author}>{nameOfDialog}</p>
-                    <img src={readed} alt="message-status" />
+                    {!props.isNotification  &&  <img src={readed} alt="message-status" />}
                 </div>
 
-                <p className={style.message}>{props.message.body}</p>
+                <p className={props.isNotification 
+                    ? style.notification 
+                    : style.message }>{props.message.body}</p>
             </div>
             <div className={style.date__wrapper}>
                 <p className={style.date}>{<Moment format="hh:mm"  >{props.message.created}</Moment>}</p>

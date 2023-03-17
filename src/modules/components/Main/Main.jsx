@@ -4,6 +4,7 @@ import NavMenuContainer from "./Nav-Menu/Nav-Menu-Container"
 import ProfileContainer from "./main-area/Profile/Profile-Container.tsx"
 import UsersContainer from "./main-area/Users/Users-Container.ts"
 import MessagesContainer from "./main-area/Messages/Messages-Container"
+import NotificationsContainer from "./Notifications/Notifications-Container"
 
 
 
@@ -35,6 +36,9 @@ const Main = () => {
                     {/* <RouteCurrentDialogContainer/> */}
                 </div>
             </div>
+            {/* <SoundContainer /> */}
+            <NotificationsContainer />
+
         </main>
 
     )

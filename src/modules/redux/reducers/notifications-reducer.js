@@ -9,6 +9,264 @@ const DELETE_NEW_NOTIFICATION = 'notifications/DELETE_NEW_NOTIFICATION'
 const initialState = {
     isActive: true,
     notifications: [
+        {
+            id: 1,
+            dialogId: 2,
+            body: 'string',
+            isForwarded: false,
+            isEdited: false,
+            authorId: 1222,
+            author: {
+                id: 1222 ,
+                email: 'string',
+                name: 'string',
+                followed: 0 ,
+                followers: [],
+                followeds: [],
+                profile: {
+                    about_me: 'string',
+                    avatar: null,
+                    created_at: ' 22.05.1988',
+                    email: 'string@knf2f.ru',
+                    hero: null,
+                    id: 1222,
+                    name: 'string',
+                    surname: 'string',
+                    updated_at: 'string',
+                    user_id: 1222
+                },
+                postsCount: 3 ,
+                isAuthUser: false
+            },
+            isAuthorIsAuth: false,
+            created: '2023-03-16T15:54:34.000000Z',
+        },
+        {
+            id: 2,
+            dialogId: 2,
+            body: 'здравствуйте ',
+            isForwarded: false,
+            isEdited: false,
+            authorId: 1222,
+            author: {
+                id: 1222 ,
+                email: 'string',
+                name: 'string',
+                followed: 0 ,
+                followers: [],
+                followeds: [],
+                profile: {
+                    about_me: 'string',
+                    avatar: null,
+                    created_at: ' 22.05.1988',
+                    email: 'string@knf2f.ru',
+                    hero: null,
+                    id: 1222,
+                    name: 'string',
+                    surname: 'string',
+                    updated_at: 'string',
+                    user_id: 1222
+                },
+                postsCount: 3 ,
+                isAuthUser: false
+            },
+            isAuthorIsAuth: false,
+            created: '2023-03-16T15:54:34.000000Z',
+        },
+        // {
+        //     id: 2,
+        //     dialogId: 2,
+        //     body: 'здравствуйте ',
+        //     isForwarded: false,
+        //     isEdited: false,
+        //     authorId: 1222,
+        //     author: {
+        //         id: 1222 ,
+        //         email: 'string',
+        //         name: 'string',
+        //         followed: 0 ,
+        //         followers: [],
+        //         followeds: [],
+        //         profile: {
+        //             about_me: 'string',
+        //             avatar: null,
+        //             created_at: ' 22.05.1988',
+        //             email: 'string@knf2f.ru',
+        //             hero: null,
+        //             id: 1222,
+        //             name: 'string',
+        //             surname: 'string',
+        //             updated_at: 'string',
+        //             user_id: 1222
+        //         },
+        //         postsCount: 3 ,
+        //         isAuthUser: false
+        //     },
+        //     isAuthorIsAuth: false,
+        //     created: '2023-03-16T15:54:34.000000Z',
+        // },
+        // {
+        //     id: 2,
+        //     dialogId: 2,
+        //     body: 'здравствуйте ',
+        //     isForwarded: false,
+        //     isEdited: false,
+        //     authorId: 1222,
+        //     author: {
+        //         id: 1222 ,
+        //         email: 'string',
+        //         name: 'string',
+        //         followed: 0 ,
+        //         followers: [],
+        //         followeds: [],
+        //         profile: {
+        //             about_me: 'string',
+        //             avatar: null,
+        //             created_at: ' 22.05.1988',
+        //             email: 'string@knf2f.ru',
+        //             hero: null,
+        //             id: 1222,
+        //             name: 'string',
+        //             surname: 'string',
+        //             updated_at: 'string',
+        //             user_id: 1222
+        //         },
+        //         postsCount: 3 ,
+        //         isAuthUser: false
+        //     },
+        //     isAuthorIsAuth: false,
+        //     created: '2023-03-16T15:54:34.000000Z',
+        // },
+        // {
+        //     id: 2,
+        //     dialogId: 2,
+        //     body: 'здравствуйте ',
+        //     isForwarded: false,
+        //     isEdited: false,
+        //     authorId: 1222,
+        //     author: {
+        //         id: 1222 ,
+        //         email: 'string',
+        //         name: 'string',
+        //         followed: 0 ,
+        //         followers: [],
+        //         followeds: [],
+        //         profile: {
+        //             about_me: 'string',
+        //             avatar: null,
+        //             created_at: ' 22.05.1988',
+        //             email: 'string@knf2f.ru',
+        //             hero: null,
+        //             id: 1222,
+        //             name: 'string',
+        //             surname: 'string',
+        //             updated_at: 'string',
+        //             user_id: 1222
+        //         },
+        //         postsCount: 3 ,
+        //         isAuthUser: false
+        //     },
+        //     isAuthorIsAuth: false,
+        //     created: '2023-03-16T15:54:34.000000Z',
+        // },
+        // {
+        //     id: 2,
+        //     dialogId: 2,
+        //     body: 'здравствуйте ',
+        //     isForwarded: false,
+        //     isEdited: false,
+        //     authorId: 1222,
+        //     author: {
+        //         id: 1222 ,
+        //         email: 'string',
+        //         name: 'string',
+        //         followed: 0 ,
+        //         followers: [],
+        //         followeds: [],
+        //         profile: {
+        //             about_me: 'string',
+        //             avatar: null,
+        //             created_at: ' 22.05.1988',
+        //             email: 'string@knf2f.ru',
+        //             hero: null,
+        //             id: 1222,
+        //             name: 'string',
+        //             surname: 'string',
+        //             updated_at: 'string',
+        //             user_id: 1222
+        //         },
+        //         postsCount: 3 ,
+        //         isAuthUser: false
+        //     },
+        //     isAuthorIsAuth: false,
+        //     created: '2023-03-16T15:54:34.000000Z',
+        // },
+        // {
+        //     id: 2,
+        //     dialogId: 2,
+        //     body: 'здравствуйте ',
+        //     isForwarded: false,
+        //     isEdited: false,
+        //     authorId: 1222,
+        //     author: {
+        //         id: 1222 ,
+        //         email: 'string',
+        //         name: 'string',
+        //         followed: 0 ,
+        //         followers: [],
+        //         followeds: [],
+        //         profile: {
+        //             about_me: 'string',
+        //             avatar: null,
+        //             created_at: ' 22.05.1988',
+        //             email: 'string@knf2f.ru',
+        //             hero: null,
+        //             id: 1222,
+        //             name: 'string',
+        //             surname: 'string',
+        //             updated_at: 'string',
+        //             user_id: 1222
+        //         },
+        //         postsCount: 3 ,
+        //         isAuthUser: false
+        //     },
+        //     isAuthorIsAuth: false,
+        //     created: '2023-03-16T15:54:34.000000Z',
+        // },
+        // {
+        //     id: 2,
+        //     dialogId: 2,
+        //     body: 'здравствуйте ',
+        //     isForwarded: false,
+        //     isEdited: false,
+        //     authorId: 1222,
+        //     author: {
+        //         id: 1222 ,
+        //         email: 'string',
+        //         name: 'string',
+        //         followed: 0 ,
+        //         followers: [],
+        //         followeds: [],
+        //         profile: {
+        //             about_me: 'string',
+        //             avatar: null,
+        //             created_at: ' 22.05.1988',
+        //             email: 'string@knf2f.ru',
+        //             hero: null,
+        //             id: 1222,
+        //             name: 'string',
+        //             surname: 'string',
+        //             updated_at: 'string',
+        //             user_id: 1222
+        //         },
+        //         postsCount: 3 ,
+        //         isAuthUser: false
+        //     },
+        //     isAuthorIsAuth: false,
+        //     created: '2023-03-16T15:54:34.000000Z',
+        // },
+       
+ 
     ],
     newNotification: null
 
@@ -54,12 +312,12 @@ const notifications = (state = initialState, action) => {
                     resultNotifications.splice(state.notifications.length - 1, 1)
                     resultNotifications.unshift(action.notification)
                 }
-                if (state.newNotification ) {
-                    if(state.newNotification.message.id !== action.notification.message.id){
+                if (state.newNotification) {
+                    if (state.newNotification.message.id !== action.notification.message.id) {
                         newNotification = action.notification
                     }
-                   
-                }else{
+
+                } else {
                     newNotification = action.notification
                 }
                 return { ...state, notifications: resultNotifications, newNotification };
@@ -72,7 +330,7 @@ const notifications = (state = initialState, action) => {
 
         case DELETE_NOTIFICATION:
             let resultNotification = state.notifications.filter(n => n.message.id !== action.notificationId)
-            
+
             return { ...state, notifications: resultNotification }
 
         case DELETE_NEW_NOTIFICATION:

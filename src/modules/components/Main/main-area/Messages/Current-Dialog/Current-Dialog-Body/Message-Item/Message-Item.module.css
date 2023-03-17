@@ -8,7 +8,11 @@
 .message{
     width: 585px;
 }
-.message, .author {
+.notification{
+    width: 385px;
+    /* margin-bottom: 50px; */
+}
+.message, .notification, .author {
     text-align: start;
     display: block;
     padding: 0;

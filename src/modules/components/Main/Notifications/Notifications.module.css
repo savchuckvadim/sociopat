@@ -1,0 +1,48 @@
+.container, .header, .notifications, .notification{
+    margin: 0;
+
+}
+.container{
+    position: fixed;
+    max-width: 400px;
+    min-height: 90vh;
+    /* min-height: 0; */
+    /* opacity: 50%; */
+    right: 2px;
+    top: 8vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    /* background-color: rgb(175, 182, 210); */
+    z-index: 2000;
+}
+.header{
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.notifications{
+    
+    /* max-height: 700px; */
+    max-width: 200px;
+    padding: 1px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: flex-end;
+}
+.notification{
+    border-radius: 12px;
+    margin: 2px 0;
+    /* margin: 0; */
+    padding: 0;
+    /* width: 99%; */
+    /* height: 60px; */
+    /* max-height: 60px; */
+    background-color: rgb(239, 230, 247);
+}
+
+.reset{
+    cursor: pointer;
+}

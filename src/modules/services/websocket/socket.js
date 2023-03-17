@@ -139,10 +139,10 @@ export const socket = {
   async reconnect(authUserId, dispatch) {
     if (echo) {
       console.log('reconnect')
-      console.log(echo)
+      
       setTimeout(async () => {
         await socket.reconnect(authUserId, dispatch)
-      }, 10000)
+      }, 100000)
     } else {
       
       await socket.connection(authUserId, dispatch)
