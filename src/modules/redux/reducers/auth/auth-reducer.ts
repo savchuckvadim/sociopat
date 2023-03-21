@@ -1,10 +1,10 @@
 import { stopSubmit } from "redux-form"
 import { ResultCodesEnum } from "../../../services/api-laravel"
 import { authAPI } from "../../../services/auth-api";
+import { dialogsAPI } from "../../../services/dialogs-api";
 import { socket } from "../../../services/websocket/socket";
 import { PreloaderCodesEnum, UserType } from "../../../types/types"
 import { InferActionsTypes, ThunkType } from "../../store"
-import { getDialogs } from "../dialogs/dialogs-reducer";
 import { inProgress } from "../preloader/preloader-reducer"
 
 //TYPES
@@ -31,6 +31,7 @@ const actions = {
 //THUNKS
 export const getAuth = (): AuthThunkType => async (dispatch) => {
     dispatch(inProgress(true, PreloaderCodesEnum.Global))
+   
     let response = await authAPI.getAuthUser()
 
     let authUser = null

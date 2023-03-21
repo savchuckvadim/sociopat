@@ -1,5 +1,19 @@
+import { MessageType, PaginatorLinksType, PaginatorMetaType } from "../types/types";
 import { api } from "./api-laravel";
 
+
+type GetMessagesType = {
+    data: MessagesDataType
+    links: PaginatorLinksType
+    meta: PaginatorMetaType
+    message: string
+}
+
+type MessagesDataType = {
+    resultCode: number
+    totalCount: number
+    users: Array<MessageType>
+}
 
 
 export const dialogsAPI = {
@@ -9,6 +23,8 @@ export const dialogsAPI = {
 
         return response.data
     },
+    
+
     async getDialog(userId: number) {
         const response = await api.get(`api/dialog/${userId}`)
 
@@ -40,9 +56,21 @@ export const dialogsAPI = {
         const response = await api.delete(`api/message/${messageId}`)
         return response.data
     },
-    async getMessages(dialogId: number) {
-        const response = await api.get(`api/messages/${dialogId}`)
-        return response.data
+    // async getMessages(dialogId: number) {
+    //     const response = await api.get(`api/messages/${dialogId}`)
+    //     return response.data
+    // },
+
+    async getMessages(dialogId:number, currentPage: number = 1, pageSize: number = 10) {
+        try {
+            const res = await api.get<GetMessagesType>(`api/messages?dialogId=${dialogId}&page=${currentPage}&count=${pageSize}`);
+            debugger
+            return res.data;
+        } catch (error) {
+            alert(error);
+        }
+
+
     },
     // async addGroupDialog(users, dialogsName, dialogId = null) {
     //     const response = await api.post('group-dialog', {

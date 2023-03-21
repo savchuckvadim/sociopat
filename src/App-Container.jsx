@@ -7,6 +7,7 @@ import { LightLoadingPageContainer } from "./modules/components/Elements/Loading
 import StartPage from "./modules/components/Start/Start-Page"
 import { initialize } from "./modules/redux/reducers/app-reducer"
 import { getAuth } from "./modules/redux/reducers/auth/auth-reducer"
+import { dialogsAPI } from "./modules/services/dialogs-api"
 
 const withRouter = WrappedComponent => props => {
     const params = useParams()
@@ -31,6 +32,7 @@ const mapStateToProps = (state) => {
 const AppContainer = (props) => {
 
     useEffect(() => {
+        
         if (!props.isAuth) {
             props.initialize()
    

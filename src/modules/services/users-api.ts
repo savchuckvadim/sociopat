@@ -1,11 +1,11 @@
 import { api } from "./api-laravel";
-import { UserType } from "../types/types";
+import { PaginatorLinksType, PaginatorMetaType, UserType } from "../types/types";
 
 
 type GetUsersType = {
     data: UsersDataType
-    links: UsersLinksType
-    meta: UsersMetaType
+    links: PaginatorLinksType
+    meta: PaginatorMetaType 
     message: string
 }
 
@@ -14,23 +14,8 @@ type UsersDataType = {
     totalCount: number
     users: Array<UserType>
 }
-type UsersMetaType = {
-    current_page: number
-    from: number
-    last_page: number
-    links: Array<any>
-    path: string
-    per_page: string
-    to: number
-    total: number
-}
 
-type UsersLinksType = {
-    first: string
-    last: string
-    next: number
-    prev: number
-}
+
 
  type GetUserType = {
     user: UserType

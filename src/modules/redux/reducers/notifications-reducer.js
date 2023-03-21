@@ -7,7 +7,7 @@ const SOUND = 'notifications/SOUND'
 const DELETE_NEW_NOTIFICATION = 'notifications/DELETE_NEW_NOTIFICATION'
 
 const initialState = {
-    isActive: true,
+    isActive: false,
     notifications: [
         {
             id: 1,

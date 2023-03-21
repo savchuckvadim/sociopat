@@ -18,7 +18,7 @@ const Notification = ({
 
     }, [])
 
-    debugger
+    
     return (
 
         <div style={{ opacity: 1.5 / (index + 1) }} className={style.notification}>
@@ -35,7 +35,6 @@ const Notification = ({
 
 const Notifications = (props) => {
 
-    debugger
     return props.notificationStatus && props.notifications.length > 0 ? (
 
         <div className={style.container}>

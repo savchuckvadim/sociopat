@@ -49,12 +49,6 @@ export enum PreloaderCodesEnum {
     Component = 'component'
 }
 
-// export type MessageType = {
-//     id: number
-//     dialogId: number
-//     body: string
-//     isEdited: boolean
-// } 
 
 export type DialogType = {
     id: number
@@ -74,6 +68,25 @@ export type MessageType = {
     isAuthorIsAuth:boolean
     created: string
 } 
+
+
+export type PaginatorMetaType = {
+    current_page: number
+    from: number
+    last_page: number
+    links: Array<any>
+    path: string
+    per_page: string
+    to: number
+    total: number
+}
+
+export type PaginatorLinksType = {
+    first: string
+    last: string
+    next: number
+    prev: number
+}
 
 
             
