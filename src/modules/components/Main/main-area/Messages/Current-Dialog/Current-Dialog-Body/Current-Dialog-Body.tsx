@@ -4,6 +4,7 @@ import style from './Current-Dialog-Body.module.css'
 import noMessage from '../../../../../../../assets/imgs/dialogs/no-messages.svg'
 import { DialogType, MessageType, UserType } from "../../../../../../types/types"
 import Day from "./Day/Day"
+import { dialogsAPI } from '../../../../../../services/dialogs-api'
 
 type PropsType = {
     dialog: DialogType
@@ -23,30 +24,62 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
 
     //for scroll//
     const refScroll = useRef<null | HTMLDivElement>(null);
-    const [messages, setMessages] = useState();
+    const [messages, setMessages] = useState([] as Array<MessageType>);
     const [currentPage, setCurrentPage] = useState(1);
-    const [fetching, setFetching] = useState(true);
+    const [isFetching, setIsFetching] = useState(true);
+
+
+    useEffect(() => {
+        if (isFetching) {
+            dialogsAPI.getMessages(props.dialog.id, currentPage)
+                .then(res => {
+                    debugger
+                   
+                    if(res){
+                        console.log(res)
+                         // @ts-ignore
+                         
+                        setMessages(res.data.messages.data)
+                        setCurrentPage(prevState => prevState + 1)
+                    }
+                   
+                })
+                .finally(() => setIsFetching(false))
+        }
+    }, [isFetching, props.dialog])
+
 
     useEffect(() => {
         console.log(refScroll.current)
         console.log(document)
         refScroll.current?.addEventListener('scroll', scrollHandler)
-        return () => {refScroll.current?.removeEventListener('scroll', scrollHandler)}
+        return () => { refScroll.current?.removeEventListener('scroll', scrollHandler) }
     }, [])
 
     const scrollHandler = (e: any) => {
-       // @ts-ignore
-       console.log('start            :')
-        console.log(e.timeStamp)
-        console.log('-------------------')
-        console.log('scrollHeight')
-        console.log(e.target.scrollHeight)
-        console.log('-------------------')
-        console.log(e.target.scrollTop)
-        console.log('refScroll.current?.inert:')
-        console.log(refScroll.current?.clientHeight)
-        console.log('-------------------')
+        // @ts-ignore
+
+        let coefficient = e.target.scrollHeight - e.target.scrollTop - refScroll.current?.clientHeight
+        if (coefficient < 100) {
+            setIsFetching(true)
+        } else {
+            console.log('coefficient - больше 100')
+            console.log(coefficient)
+        }
+        //    console.log('coefficient            :')
+        //     console.log(coefficient)
+        //     console.log('-------------------')
+        //     console.log('общая высота страницы с учетом скрола :')
+        //     console.log(e.target.scrollHeight)  //общая высота страницы с учетом скрола
+        //     console.log('текущее положение скрола от верха страницы')
+        //     console.log(e.target.scrollTop)     //текущее положение скрола от верха страницы  
+        //     console.log('высота компоненты с сообщениями')
+        //     console.log(refScroll.current?.clientHeight) //высота компоненты с сообщениями
+        //     console.log('-------------------')
     }
+    //////////////////////////////////////////////
+
+
 
     useLayoutEffect(() => {
 
@@ -72,7 +105,7 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
     }
 
     return (
-        <div ref={refScroll}  className={style.wrapper}>
+        <div ref={refScroll} className={style.wrapper}>
             <Day date={date} />
             <div className={style.interior__wrapper} >
 
