@@ -33,13 +33,15 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
         if (isFetching) {
             dialogsAPI.getMessages(props.dialog.id, currentPage)
                 .then(res => {
-                    debugger
+    
                    
                     if(res){
-                        console.log(res)
+                        // @ts-ignore
+                        console.log(res.messages)
+                        debugger
                          // @ts-ignore
                          
-                        setMessages(res.data.messages.data)
+                        setMessages(res.messages)
                         setCurrentPage(prevState => prevState + 1)
                     }
                    
@@ -89,11 +91,11 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
         }
 
 
-    }, [props.dialog.messages.length]);
+    }, [messages.length]);
 
-    if (props.dialog.messages.length > 0) {
+    if (messages.length > 0) {
 
-        body = props.dialog.messages.map((m: MessageType) => {
+        body = messages.map((m: MessageType) => {
             date = m.created
             return <Message key={m.id} message={m} />
 

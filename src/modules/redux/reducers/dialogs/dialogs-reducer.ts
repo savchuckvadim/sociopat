@@ -47,6 +47,7 @@ const initialState = {
     dialogs: [] as DialogsType,
     currentDialogId: undefined as undefined | number,
     currentDialog: null as null | DialogType,
+    messages: [] as Array<MessageType>,
     currentMessage: {
         //  isSending:  false/sending/sended/
         isSending: false as StatusType
@@ -66,7 +67,7 @@ const initialState = {
 
 }
 type DialogsActionType = SetDialogsType | SetDialogType | SetCurrentDialogType |
-    SetChangeCurrentDialogType | SetNewMessageType | SetSendingStatusType | SetParticipantType |
+    SetNewMessageType | SetSendingStatusType | SetParticipantType |
     SetSoundType | SetPrecenseUserType | SetEditingStatusType |
     SetDeleteDialogType
 //AC
@@ -86,11 +87,11 @@ export type SetCurrentDialogType = {
     type: typeof SET_CURRENT_DIALOG
     dialog: DialogType | null
 }
-export const changeCurrentDialog = (dialog: DialogType): SetChangeCurrentDialogType => ({ type: CHANGE_CURRENT_DIALOG, dialog })
-type SetChangeCurrentDialogType = {
-    type: typeof CHANGE_CURRENT_DIALOG
-    dialog: DialogType
-}
+// export const changeCurrentDialog = (dialog: DialogType): SetChangeCurrentDialogType => ({ type: CHANGE_CURRENT_DIALOG, dialog })
+// type SetChangeCurrentDialogType = {
+//     type: typeof CHANGE_CURRENT_DIALOG
+//     dialog: DialogType
+// }
 export const setNewMessage = (message: MessageType): SetNewMessageType => ({ type: SET_NEW_MESSAGE, message })
 type SetNewMessageType = {
     type: typeof SET_NEW_MESSAGE
@@ -171,7 +172,7 @@ export const getDialogs = (dialogIdFromUrl = null) => async (dispatch: AppDispat
 }
 
 export const getDialog = (userId: number) => async (dispatch: AppDispatchType) => {
-
+    // ProfileButtons
     let response = await dialogsAPI.getDialog(userId);
 
     if (response && response.resultCode === ResultCodesEnum.Success) {
@@ -292,22 +293,29 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
 
     switch (action.type) {
         ///////////////////////////
-        case SET_DIALOGS:
+        case SET_DIALOGS: // при запросе всех диалогов
+
             const setingDialogs = action.dialogs
-            let searchingDialogId = setingDialogs[0] && setingDialogs[0].id
-            if (action.dialogIdFromUrl) {
-                searchingDialogId = action.dialogIdFromUrl
+            let searchingDialogId = setingDialogs[0] && setingDialogs[0].id  //устанавливает id текущего диалога - первый диалог из полученных
+
+            if (action.dialogIdFromUrl) {                                    //если пришел id текущего диалога из urla
+                searchingDialogId = action.dialogIdFromUrl                   // ставит текущим его  
             }
+
+            // теперь, когда определились с id текущего диалога находим его в полученных диалогах и ставим его текущим. 
+            // месседжы(в диалоге должна быть первая пачка из 10 месседжей) вставлем в стэйт из этого полученного диалога
             let currentDialog = searchDialog(searchingDialogId, [setingDialogs])
+            let currentDialogsMessages = currentDialog ? currentDialog.messages : []
 
             return {
                 ...state,
                 dialogs: setingDialogs,
                 currentDialog,
                 currentDialogId: searchingDialogId,
+                messages: currentDialogsMessages
             };
 
-        case SET_DIALOG:
+        case SET_DIALOG:  // ProfileButtons - при создании нового диалога, т.е при попытке написать пользователю в первый раз
             let resultDialogs = []
             let checkExistDialog = searchDialog(action.dialog.id, [state.dialogs])
 
@@ -318,14 +326,23 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
                 resultDialogs.unshift(action.dialog)
                 return {
                     ...state, dialogs: resultDialogs,
-                    currentDialogId: action.dialog.id, currentDialog: action.dialog
+                    currentDialogId: action.dialog.id, currentDialog: action.dialog,
+                    messages: action.dialog.messages
                 }
 
             } else {
                 return {
                     ...state,
-                    currentDialogId: action.dialog.id, currentDialog: action.dialog
+                    currentDialogId: action.dialog.id, currentDialog: action.dialog,
+                    messages: action.dialog.messages
                 }
+            }
+
+        case SET_CURRENT_DIALOG:
+            if (action.dialog) {
+                return { ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog, messages: action.dialog.messages }
+            } else {
+                return { ...state, currentDialogId: undefined, currentDialog: null, messages: [] }
             }
 
         case DELETE_DIALOG:
@@ -373,25 +390,24 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
                     // @ts-ignore
                     currentDialogId: resultDeletingCurrentDialogId,
                     currentDialog: resultDeletingCurrentDialog,
+                    messages: resultDeletingCurrentMessages
                 }
             }
             return state
 
-        case SET_CURRENT_DIALOG:
-            if (action.dialog) {
-                return { ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog }
-            } else {
-                return { ...state, currentDialogId: undefined, currentDialog: null }
-            }
 
-        case CHANGE_CURRENT_DIALOG:
 
-            if (state.currentDialogId !== action.dialog.id) {
+        // case CHANGE_CURRENT_DIALOG:
 
-                return { ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog }
-            }
+        //     if (state.currentDialogId !== action.dialog.id) {
 
-            return state
+        //         return {
+        //             ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog,
+        //             messages: action.dialog.messages
+        //         }
+        //     }
+
+        //     return state
 
         case SET_NEW_MESSAGE:
             //TODO isEdited
@@ -401,20 +417,22 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             let updatedCrrentDialog = null
 
             if (state.currentDialog) {
-                updatedCrrentDialog = { ...state.currentDialog }
+                updatedCrrentDialog = { ...state.currentDialog } // перезатираем текущий диалог
             }
 
-            const currentDialogs = state.dialogs.map(dialog => {
+            const currentDialogs = state.dialogs.map(dialog => {    //перебираем все  диалоги в стэйте
 
-                if (dialog.id === action.message.dialogId) {
-                    let dialogsMessages = [...dialog.messages]
-                    const checkExistMessage = dialogsMessages.some(dialogsMessage => dialogsMessage.id === message.id)
+                if (dialog.id === action.message.dialogId) {        //если  диалог стакается с пришедшим message.dialogId      
+                    let dialogsMessages = [...dialog.messages]      //  берем этот диалог
+                    const checkExistMessage = dialogsMessages.some(dialogsMessage => dialogsMessage.id === message.id) //проверяем есть ли в месседжах этого диалога такой как пришел по id
 
-                    if (!checkExistMessage && !action.message.isEdited) {
+                    if (!checkExistMessage && !action.message.isEdited) {   //если месседж в диалоге отсутствует, а также если это новый а не редактируемый месседж
                         dialogsMessages.push(message)
                         messages = dialogsMessages
                         updatedCrrentDialog = { ...dialog, messages: dialogsMessages }
                     }
+
+
                     if (checkExistMessage && action.message.isEdited) {
                         dialogsMessages.forEach((m, i) => {
                             if (m.id === action.message.id) {
@@ -434,10 +452,14 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             })
 
             if (action.message.dialogId === state.currentDialogId) {
+                let updatedMessages = [...state.messages]
+                updatedMessages.unshift(action.message)
+
                 return {
                     ...state,
                     currentDialog: updatedCrrentDialog,
                     dialogs: currentDialogs,
+                    messages: updatedMessages
                 }
 
             } else {

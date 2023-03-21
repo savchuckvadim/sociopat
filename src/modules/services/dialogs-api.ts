@@ -64,8 +64,8 @@ export const dialogsAPI = {
     async getMessages(dialogId:number, currentPage: number = 1, pageSize: number = 10) {
         try {
             const res = await api.get<GetMessagesType>(`api/messages?dialogId=${dialogId}&page=${currentPage}&count=${pageSize}`);
-            debugger
-            return res
+            // TODO 
+            return res.data
         } catch (error) {
             alert(error);
         }
