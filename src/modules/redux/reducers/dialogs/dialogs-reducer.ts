@@ -68,7 +68,7 @@ const initialState = {
 
 }
 type DialogsActionType = SetDialogsType | SetDialogType | SetCurrentDialogType |
-    SetNewMessageType | SetSendingStatusType | SetParticipantType |
+    SetNewMessageType | SetMessagesType | SetSendingStatusType | SetParticipantType |
     SetSoundType | SetPrecenseUserType | SetEditingStatusType |
     SetDeleteDialogType
 //AC
@@ -202,7 +202,7 @@ export const getDialog = (userId: number) => async (dispatch: AppDispatchType) =
 }
 
 
-//MESSAGES
+//MESSAGES////////////////////////////////////////////////////////////////////////////////////////////////
 
 export const getMessages = (dialogId: number, currentPage: number = 1, pageSize: number = 10) => async (dispatch: AppDispatchType) => {
     let response = await dialogsAPI.getMessages(dialogId, currentPage, pageSize)
@@ -298,7 +298,7 @@ export const deleteMessage = (messageId: number) => async (dispatch: AppDispatch
     dispatch(setDeleteMessage(messageId))
     dispatch(setSendingStatus(false))
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 // export const getMessages = (dialogId:any) => async (dispatch:any) => {
 //     const response:any = await dialogsAPI.getMessages(dialogId)
 //     dispatch(setCurrentDialog(dialogId, response.messages))
@@ -506,6 +506,16 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
 
                 return { ...state, dialogs: currentDialogs }
             }
+
+        case SET_MESSAGES:
+
+            const newMessages = [...state.messages]
+            action.messages.forEach(m => {
+                if(!newMessages.some(message => message.id === m.id)){   //усли в текущих сообщениях нету перебираемого сообщения по id
+                    newMessages.unshift(m)
+                }
+            });
+            return { ...state, messages: newMessages }
 
         // }
         case SET_SOUND:
