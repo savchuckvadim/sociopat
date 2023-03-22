@@ -6,6 +6,7 @@ import CurrentDialogsCard from "./Current-Dilogs-Card"
 type PropsType = {
     dialogs: Array<DialogType>
     messages:Array<MessageType>
+    isMessagesFetching: boolean
     currentDialog: DialogType
     newMessage: string
     authUser: UserType
@@ -25,6 +26,7 @@ const RouteCurrentDialog: React.FC<PropsType> = (props) => {
                     authUser={props.authUser}
                     getMessages={props.getMessages}
                     messages={props.messages}
+                    isMessagesFetching={props.isMessagesFetching}
                     setCurrentDialog={props.setCurrentDialog}
                     sendMessage={props.sendMessage}
                 />}

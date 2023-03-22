@@ -17,6 +17,7 @@ type PropsType = {
     dialog: DialogType
     // id: number
     messages: Array<MessageType>
+    isMessagesFetching: boolean
     authUser: UserType
     setCurrentDialog: (dialog: DialogType | null) => SetCurrentDialogType
     sendMessage: (dialogId: number, body: string, isForwarded: boolean, isEdited: boolean) => void

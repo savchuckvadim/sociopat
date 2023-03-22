@@ -12,8 +12,8 @@ const mapStateToProps = (state) => {
         currentDialog: state.dialogsReducer.currentDialog,
         authUser: state.auth.authUser.profile,
         inProgress: state.preloader.global.inProgress,
-        messages:state.dialogsReducer.messages
-
+        messages: state.dialogsReducer.messages,
+        isMessagesFetching: state.dialogsReducer.isMessagesFetching
 
     }
 }
@@ -26,17 +26,17 @@ const MessagesContainer = (props) => {
     //     props.getDialogs()
     // }, [])
     if (!props.inProgress) {
-        
+
         return <Messages {...props} />
     }
-    
+
     return <LightLoadingPageContainer />
 }
 
 export default compose(
     connect(mapStateToProps, {
         getDialogs,
-        setCurrentDialog, 
+        setCurrentDialog,
         sendMessage,
         getMessages
     })

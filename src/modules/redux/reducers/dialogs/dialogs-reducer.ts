@@ -17,6 +17,7 @@ const SET_DIALOG = 'dialogs/SET_DIALOG'
 const SET_CURRENT_DIALOG = 'dialogs/SET_CURRENT_DIALOG'
 const CHANGE_CURRENT_DIALOG = 'dialogs/CHANGE_CURRENT_DIALOG'
 const SET_MESSAGES = 'dialogs/SET_MESSAGES'
+const IS_MESSAGES_FETCHING = 'dialogs/IS_MESSAGES_FETCHING'
 const SET_NEW_MESSAGE = 'dialogs/SET_NEW_MESSAGE'
 const SET_SENDING_STATUS = 'dialogs/SET_SENDING_STATUS'
 const PARTICIPANTS_NEW_GROUP_DIALOG = 'dialogs/PARTICIPANTS_NEW_GROUP_DIALOG'
@@ -38,9 +39,8 @@ type DialogsType = Array<DialogType>
 
 type InitialStateType = typeof initialState
 
-//TODO
 type StatusType = false | 'sending' | 'sended'
-//TODO
+
 
 
 const initialState = {
@@ -49,11 +49,11 @@ const initialState = {
     currentDialogId: undefined as undefined | number,
     currentDialog: null as null | DialogType,
     messages: [] as Array<MessageType>,
+    isMessagesFetching: false as boolean,
     currentMessage: {
         //  isSending:  false/sending/sended/
         isSending: false as StatusType
     },
-
     forwardingMessage: {
         inProgress: false as boolean,
         body: ''
@@ -99,6 +99,11 @@ export const setNewMessage = (message: MessageType): SetNewMessageType => ({ typ
 type SetNewMessageType = {
     type: typeof SET_NEW_MESSAGE
     message: MessageType
+}
+const setMessagesFetchingStatus = (boolean: boolean): SetMessagesFetchingStatusType => ({ type: IS_MESSAGES_FETCHING, boolean })
+type SetMessagesFetchingStatusType = {
+    type: typeof IS_MESSAGES_FETCHING
+    boolean: boolean
 }
 
 export const setMessages = (messages: Array<MessageType>): SetMessagesType => ({ type: SET_MESSAGES, messages })
@@ -205,25 +210,22 @@ export const getDialog = (userId: number) => async (dispatch: AppDispatchType) =
 //MESSAGES////////////////////////////////////////////////////////////////////////////////////////////////
 
 export const getMessages = (dialogId: number, currentPage: number = 1, pageSize: number = 10) => async (dispatch: AppDispatchType) => {
+    dispatch(setMessagesFetchingStatus(true))
     let response = await dialogsAPI.getMessages(dialogId, currentPage, pageSize)
-   debugger
+    
     if (response) {
         if (response.resultCode === ResultCodesEnum.Success) {
             const messages = response.messages
             if (messages) {
                 dispatch(setMessages(messages))
             }
-
-
         } else {
             if (response.message) {
                 alert(response.message)
             }
-
         }
     }
-
-
+    dispatch(setMessagesFetchingStatus(false))
 }
 
 export const sendMessage = (dialogId: number, body: string, isForwarded: boolean, isEdited: boolean) => async (dispatch: AppDispatchType, getState: GetStateType) => {
@@ -513,7 +515,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
 
             const newMessages = [...state.messages]
             action.messages.forEach(m => {
-                if(!newMessages.some(message => message.id === m.id)){   //усли в текущих сообщениях нету перебираемого сообщения по id
+                if (!newMessages.some(message => message.id === m.id)) {   //усли в текущих сообщениях нету перебираемого сообщения по id
                     newMessages.push(m)
                 }
             });

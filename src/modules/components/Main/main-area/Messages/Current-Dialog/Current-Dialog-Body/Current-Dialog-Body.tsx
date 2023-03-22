@@ -11,6 +11,7 @@ import { getMessages } from '../../../../../../redux/reducers/dialogs/dialogs-re
 type PropsType = {
     dialog: DialogType
     messages: Array<MessageType>
+    isMessagesFetching: boolean
     getMessages: (dialogId: number, currentPage: number, pageSize?: number) => void
 
     // authUser: UserType
@@ -25,7 +26,6 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
     let body = null
     let date = null
     let ref = useRef<null | HTMLDivElement>(null);
-    let dispatch = useDispatch()
 
     //for scroll//
     const refScroll = useRef<null | HTMLDivElement>(null);
@@ -35,13 +35,13 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
 
 
     useEffect(() => {
-        if (isFetching) {
-            debugger
+        if (isFetching && !props.isMessagesFetching) {
+
             props.getMessages(props.dialog.id, currentPage)
             setIsFetching(false)
             setCurrentPage(prevState => prevState + 1)
         }
-    }, [isFetching])
+    }, [isFetching, props.isMessagesFetching])
 
 
     useEffect(() => {
@@ -56,10 +56,12 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
 
         let coefficient = e.target.scrollHeight - e.target.scrollTop - refScroll.current?.clientHeight
         if (coefficient > 100) {
-            debugger
-            setIsFetching(true)
+
+            // setIsFetching(true)
+            console.log('coefficient  больше 100')
+            console.log(coefficient)
         } else {
-            console.log('coefficient - больше 100')
+            console.log('coefficient меньше 100')
             console.log(coefficient)
         }
         //    console.log('coefficient            :')
