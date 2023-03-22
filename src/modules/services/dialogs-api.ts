@@ -12,7 +12,8 @@ type GetMessagesType = {
 type MessagesDataType = {
     resultCode: number
     totalCount: number
-    messages: Array<MessageType>
+    messages?: Array<MessageType>
+    message?: string
 }
 
 
@@ -63,7 +64,7 @@ export const dialogsAPI = {
 
     async getMessages(dialogId:number, currentPage: number = 1, pageSize: number = 10) {
         try {
-            const res = await api.get<GetMessagesType>(`api/messages?dialogId=${dialogId}&page=${currentPage}&count=${pageSize}`);
+            const res = await api.get<MessagesDataType>(`api/messages?dialogId=${dialogId}&page=${currentPage}&count=${pageSize}`);
             // TODO 
             return res.data
         } catch (error) {

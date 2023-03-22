@@ -11,7 +11,8 @@ const mapStateToProps = (state) => {
         dialogs: state.dialogsReducer.dialogs,
         currentDialog: state.dialogsReducer.currentDialog,
         authUser: state.auth.authUser.profile,
-        inProgress: state.preloader.global.inProgress
+        inProgress: state.preloader.global.inProgress,
+        messages:state.dialogsReducer.messages
 
 
     }

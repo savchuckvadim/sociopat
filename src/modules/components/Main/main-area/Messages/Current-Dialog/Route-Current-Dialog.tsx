@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom"
 import { SetCurrentDialogType } from "../../../../../redux/reducers/dialogs/dialogs-reducer"
-import { DialogType, UserType } from "../../../../../types/types"
+import { DialogType, MessageType, UserType } from "../../../../../types/types"
 import CurrentDialogsCard from "./Current-Dilogs-Card"
 
 type PropsType = {
     dialogs: Array<DialogType>
+    messages:Array<MessageType>
     currentDialog: DialogType
     newMessage: string
     authUser: UserType
@@ -22,7 +23,7 @@ const RouteCurrentDialog: React.FC<PropsType> = (props) => {
                     dialog={dialog}
                     authUser={props.authUser}
                     // id={dialog.id}
-                    messages={dialog.messages}
+                    messages={props.messages}
                     setCurrentDialog={props.setCurrentDialog}
                     sendMessage={props.sendMessage}
                 />}

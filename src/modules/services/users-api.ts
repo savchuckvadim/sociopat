@@ -43,8 +43,6 @@ export const usersAPI = {
         } catch (error) {
             alert(error);
         }
-
-
     },
 
     async getUser(userId: number) {

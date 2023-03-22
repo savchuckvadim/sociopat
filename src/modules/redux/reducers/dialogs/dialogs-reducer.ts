@@ -16,6 +16,7 @@ const SET_DIALOGS = 'dialogs/SET_DIALOGS'
 const SET_DIALOG = 'dialogs/SET_DIALOG'
 const SET_CURRENT_DIALOG = 'dialogs/SET_CURRENT_DIALOG'
 const CHANGE_CURRENT_DIALOG = 'dialogs/CHANGE_CURRENT_DIALOG'
+const SET_MESSAGES = 'dialogs/SET_MESSAGES'
 const SET_NEW_MESSAGE = 'dialogs/SET_NEW_MESSAGE'
 const SET_SENDING_STATUS = 'dialogs/SET_SENDING_STATUS'
 const PARTICIPANTS_NEW_GROUP_DIALOG = 'dialogs/PARTICIPANTS_NEW_GROUP_DIALOG'
@@ -92,11 +93,23 @@ export type SetCurrentDialogType = {
 //     type: typeof CHANGE_CURRENT_DIALOG
 //     dialog: DialogType
 // }
+
+
 export const setNewMessage = (message: MessageType): SetNewMessageType => ({ type: SET_NEW_MESSAGE, message })
 type SetNewMessageType = {
     type: typeof SET_NEW_MESSAGE
     message: MessageType
 }
+
+export const setMessages = (messages: Array<MessageType>): SetMessagesType => ({ type: SET_MESSAGES, messages })
+type SetMessagesType = {
+    type: typeof SET_MESSAGES
+    messages: Array<MessageType>
+}
+
+
+
+
 const setSendingStatus = (status: StatusType): SetSendingStatusType => ({ type: SET_SENDING_STATUS, status }) //status:false, sending, sended
 type SetSendingStatusType = {
     type: typeof SET_SENDING_STATUS
@@ -109,12 +122,15 @@ type SetParticipantType = {
     bool: boolean
 
 }
+
 export const setSound = (dialog: DialogType): SetSoundType => ({ type: SET_SOUND, dialog })
 type SetSoundType = {
     type: typeof SET_SOUND
     dialog: DialogType
 
 }
+
+
 export const setPrecenseUser = (onlineUsersIds: Array<number>): SetPrecenseUserType => ({ type: PRECENSE_USER, onlineUsersIds })
 type SetPrecenseUserType = {
     type: typeof PRECENSE_USER
@@ -185,6 +201,30 @@ export const getDialog = (userId: number) => async (dispatch: AppDispatchType) =
 
 }
 
+
+//MESSAGES
+
+export const getMessages = (dialogId: number, currentPage: number = 1, pageSize: number = 10) => async (dispatch: AppDispatchType) => {
+    let response = await dialogsAPI.getMessages(dialogId, currentPage, pageSize)
+    if (response) {
+        if (response.resultCode === ResultCodesEnum.Success) {
+            const messages = response.messages
+            if (messages) {
+                dispatch(setMessages(messages))
+            }
+
+
+        } else {
+            if (response.message) {
+                alert(response.message)
+            }
+
+        }
+    }
+
+
+}
+
 export const sendMessage = (dialogId: number, body: string, isForwarded: boolean, isEdited: boolean) => async (dispatch: AppDispatchType, getState: GetStateType) => {
 
     dispatch(setSendingStatus('sending'))
@@ -234,7 +274,6 @@ export const sendMessage = (dialogId: number, body: string, isForwarded: boolean
     dispatch(setSendingStatus(false))
 }
 
-
 export const sendEditMessage = (messageId: number, body: string) => async (dispatch: AppDispatchType) => {
     dispatch(setEditingStatus(false, null)) //set editing status - false and clear editing message state
     dispatch(setSendingStatus('sending'))
@@ -259,6 +298,7 @@ export const deleteMessage = (messageId: number) => async (dispatch: AppDispatch
     dispatch(setDeleteMessage(messageId))
     dispatch(setSendingStatus(false))
 }
+
 // export const getMessages = (dialogId:any) => async (dispatch:any) => {
 //     const response:any = await dialogsAPI.getMessages(dialogId)
 //     dispatch(setCurrentDialog(dialogId, response.messages))

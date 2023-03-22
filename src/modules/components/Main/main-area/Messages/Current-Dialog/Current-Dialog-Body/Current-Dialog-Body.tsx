@@ -8,6 +8,7 @@ import { dialogsAPI } from '../../../../../../services/dialogs-api'
 
 type PropsType = {
     dialog: DialogType
+    messages: Array<MessageType>
     // authUser: UserType
 }
 
