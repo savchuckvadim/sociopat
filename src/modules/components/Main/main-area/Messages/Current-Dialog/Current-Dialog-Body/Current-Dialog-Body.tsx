@@ -36,7 +36,6 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
 
     useEffect(() => {
         if (isFetching && !props.isMessagesFetching) {
-
             props.getMessages(props.dialog.id, currentPage)
             setIsFetching(false)
             setCurrentPage(prevState => prevState + 1)
@@ -57,7 +56,7 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
         let coefficient = e.target.scrollHeight - e.target.scrollTop - refScroll.current?.clientHeight
         if (coefficient > 100) {
 
-            // setIsFetching(true)
+            setIsFetching(true)
             console.log('coefficient  больше 100')
             console.log(coefficient)
         } else {

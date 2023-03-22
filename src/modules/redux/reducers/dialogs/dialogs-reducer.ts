@@ -68,7 +68,7 @@ const initialState = {
 
 }
 type DialogsActionType = SetDialogsType | SetDialogType | SetCurrentDialogType |
-    SetNewMessageType | SetMessagesType | SetSendingStatusType | SetParticipantType |
+    SetNewMessageType | SetMessagesFetchingStatusType | SetMessagesType | SetSendingStatusType | SetParticipantType |
     SetSoundType | SetPrecenseUserType | SetEditingStatusType |
     SetDeleteDialogType
 //AC
@@ -212,7 +212,7 @@ export const getDialog = (userId: number) => async (dispatch: AppDispatchType) =
 export const getMessages = (dialogId: number, currentPage: number = 1, pageSize: number = 10) => async (dispatch: AppDispatchType) => {
     dispatch(setMessagesFetchingStatus(true))
     let response = await dialogsAPI.getMessages(dialogId, currentPage, pageSize)
-    
+
     if (response) {
         if (response.resultCode === ResultCodesEnum.Success) {
             const messages = response.messages
@@ -521,7 +521,14 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             });
             return { ...state, messages: newMessages }
 
-        // }
+        case IS_MESSAGES_FETCHING:
+            let resultState = state
+            state.isMessagesFetching !== action.boolean 
+            ? resultState = {...state, isMessagesFetching: action.boolean }
+            : resultState = state
+            return resultState
+
+
         case SET_SOUND:
 
             let dialog = action.dialog
