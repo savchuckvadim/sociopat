@@ -206,6 +206,7 @@ export const getDialog = (userId: number) => async (dispatch: AppDispatchType) =
 
 export const getMessages = (dialogId: number, currentPage: number = 1, pageSize: number = 10) => async (dispatch: AppDispatchType) => {
     let response = await dialogsAPI.getMessages(dialogId, currentPage, pageSize)
+   debugger
     if (response) {
         if (response.resultCode === ResultCodesEnum.Success) {
             const messages = response.messages
@@ -470,10 +471,11 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
                         dialogsMessages.push(message)
                         messages = dialogsMessages
                         updatedCrrentDialog = { ...dialog, messages: dialogsMessages }
+                        console.log(updatedCrrentDialog)
                     }
 
 
-                    if (checkExistMessage && action.message.isEdited) {
+                    if (checkExistMessage && action.message.isEdited) {    // если месседж не новый, а редактируется
                         dialogsMessages.forEach((m, i) => {
                             if (m.id === action.message.id) {
                                 dialogsMessages.splice(i, 1, action.message)
@@ -493,7 +495,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
 
             if (action.message.dialogId === state.currentDialogId) {
                 let updatedMessages = [...state.messages]
-                updatedMessages.unshift(action.message)
+                updatedMessages.push(action.message)
 
                 return {
                     ...state,
@@ -512,7 +514,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             const newMessages = [...state.messages]
             action.messages.forEach(m => {
                 if(!newMessages.some(message => message.id === m.id)){   //усли в текущих сообщениях нету перебираемого сообщения по id
-                    newMessages.unshift(m)
+                    newMessages.push(m)
                 }
             });
             return { ...state, messages: newMessages }

@@ -5,10 +5,14 @@ import noMessage from '../../../../../../../assets/imgs/dialogs/no-messages.svg'
 import { DialogType, MessageType, UserType } from "../../../../../../types/types"
 import Day from "./Day/Day"
 import { dialogsAPI } from '../../../../../../services/dialogs-api'
+import { useDispatch } from 'react-redux'
+import { getMessages } from '../../../../../../redux/reducers/dialogs/dialogs-reducer'
 
 type PropsType = {
     dialog: DialogType
     messages: Array<MessageType>
+    getMessages: (dialogId: number, currentPage: number, pageSize?: number) => void
+
     // authUser: UserType
 }
 
@@ -21,35 +25,23 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
     let body = null
     let date = null
     let ref = useRef<null | HTMLDivElement>(null);
-
+    let dispatch = useDispatch()
 
     //for scroll//
     const refScroll = useRef<null | HTMLDivElement>(null);
-    const [messages, setMessages] = useState([] as Array<MessageType>);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [isFetching, setIsFetching] = useState(true);
+    // const [messages, setMessages] = useState([] as Array<MessageType>);
+    const [currentPage, setCurrentPage] = useState(2);
+    const [isFetching, setIsFetching] = useState(false);
 
 
     useEffect(() => {
         if (isFetching) {
-            dialogsAPI.getMessages(props.dialog.id, currentPage)
-                .then(res => {
-    
-                   
-                    if(res){
-                        // @ts-ignore
-                        console.log(res.messages)
-                        debugger
-                         // @ts-ignore
-                         
-                        setMessages(res.messages)
-                        setCurrentPage(prevState => prevState + 1)
-                    }
-                   
-                })
-                .finally(() => setIsFetching(false))
+            debugger
+            props.getMessages(props.dialog.id, currentPage)
+            setIsFetching(false)
+            setCurrentPage(prevState => prevState + 1)
         }
-    }, [isFetching, props.dialog])
+    }, [isFetching])
 
 
     useEffect(() => {
@@ -63,7 +55,8 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
         // @ts-ignore
 
         let coefficient = e.target.scrollHeight - e.target.scrollTop - refScroll.current?.clientHeight
-        if (coefficient < 100) {
+        if (coefficient > 100) {
+            debugger
             setIsFetching(true)
         } else {
             console.log('coefficient - больше 100')
@@ -92,11 +85,11 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
         }
 
 
-    }, [messages.length]);
+    }, [props.messages.length]);
 
-    if (messages.length > 0) {
+    if (props.messages.length > 0) {
 
-        body = messages.map((m: MessageType) => {
+        body = props.messages.reverse().map((m: MessageType) => {
             date = m.created
             return <Message key={m.id} message={m} />
 

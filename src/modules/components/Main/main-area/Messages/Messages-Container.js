@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { connect } from "react-redux"
 import { compose } from "redux"
-import { getDialogs, sendMessage, setCurrentDialog } from "../../../../redux/reducers/dialogs/dialogs-reducer"
+import { getDialogs, getMessages, sendMessage, setCurrentDialog } from "../../../../redux/reducers/dialogs/dialogs-reducer"
 import { LightLoadingPageContainer } from "../../../Elements/Loading/Light-Loading-Page-Container"
 import Messages from "./Messages"
 
@@ -37,6 +37,7 @@ export default compose(
     connect(mapStateToProps, {
         getDialogs,
         setCurrentDialog, 
-        sendMessage
+        sendMessage,
+        getMessages
     })
 )(MessagesContainer)

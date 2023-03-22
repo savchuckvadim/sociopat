@@ -27,7 +27,7 @@ export const socket = {
       authorizer: (channel, options) => {
         console.log('websocket connection is success')
         console.log(channel)
-       
+
         return {
           authorize: (socketId, callback) => {
             api.post('api/broadcasting/auth', {
@@ -50,7 +50,7 @@ export const socket = {
     console.log('echo')
     console.log(echo)
 
-    await this.postListener() 
+    await this.postListener()
     await this.precenseListener(dispatch)
     await this.newMessageListener(authUserId, dispatch)
 
@@ -61,12 +61,12 @@ export const socket = {
   async postListener() {
 
     if (echo) {
-      
+
       echo.private(`send-post`)
-      .listen('SendPost', (e) => {
-        console.log(e)
-        alert(e.post.body)
-      })
+        .listen('SendPost', (e) => {
+          console.log(e)
+          alert(e.post.body)
+        })
     } else {
 
       setTimeout(async () => {
@@ -80,22 +80,22 @@ export const socket = {
   async precenseListener(dispatch) {
 
     if (echo) {
-      
+
       echo.join(`socio-chat`)
         .here((ids) => {
-          
+
           console.log(ids)
-          
+
           dispatch(setOnline(ids))
         })
         .joining((userId) => {
-          
+
           console.log(userId)
           dispatch(addOnline(userId))
 
         })
         .leaving((userId) => {
-          
+
           console.log(`leaving ${userId}`)
           dispatch(deleteOnline(userId))
 
@@ -121,11 +121,10 @@ export const socket = {
       echo.private(`new-message.${authUserId}`)
 
         .listen('.SendMessage', (e) => {
-          debugger
           dispatch(setNewMessage(e.message, authUserId))
           dispatch(setNotification(e))
-
         })
+
     } else {
 
       setTimeout(async () => {
@@ -139,12 +138,12 @@ export const socket = {
   async reconnect(authUserId, dispatch) {
     if (echo) {
       console.log('reconnect')
-      
+
       setTimeout(async () => {
         await socket.reconnect(authUserId, dispatch)
       }, 100000)
     } else {
-      
+
       await socket.connection(authUserId, dispatch)
       await socket.reconnect(authUserId, dispatch)
     }

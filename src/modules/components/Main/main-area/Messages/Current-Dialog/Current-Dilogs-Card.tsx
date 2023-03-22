@@ -20,6 +20,8 @@ type PropsType = {
     authUser: UserType
     setCurrentDialog: (dialog: DialogType | null) => SetCurrentDialogType
     sendMessage: (dialogId: number, body: string, isForwarded: boolean, isEdited: boolean) => void
+    getMessages: (dialogId: number, currentPage: number, pageSize?: number) => any
+
 }
 
 
