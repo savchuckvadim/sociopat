@@ -13,7 +13,6 @@ const Notification = ({
     useEffect(() => {
 
         setTimeout(() => { 
-            
             deleteNotification(notification.id) }, 20000)
 
     }, [])

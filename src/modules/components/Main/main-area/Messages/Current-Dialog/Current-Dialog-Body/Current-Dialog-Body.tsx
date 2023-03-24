@@ -77,7 +77,7 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
         //     console.log(refScroll.current?.clientHeight) //высота компоненты с сообщениями
         //     console.log('-------------------')
     }
-//////////////////////////////////////////////
+    //////////////////////////////////////////////
 
 
 
@@ -91,7 +91,7 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
 
     }, [props.messages.length]);
 
-    if (props.messages.length > 0 ) {
+    if (props.messages.length > 0) {
 
         body = props.messages.reverse().map((m: MessageType) => {
             date = m.created
@@ -99,23 +99,20 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
 
         })
 
-    } else{
+    } else {
 
         body = <img className={style.nomessages} src={noMessage} alt="no-messages-icon" />
     }
 
     return (
-        isFetching
-            ? <div>Loading . . .   .    .</div>
-            : <div ref={refScroll} className={style.wrapper}>
-                <Day date={date} />
-                <div className={style.interior__wrapper} >
-
-                    {body}
-                    <div ref={ref}></div>
-                </div>
-
+        <div ref={refScroll} className={style.wrapper}>
+            <Day date={date} />
+            <div className={style.interior__wrapper} >
+                {body}
+                <div ref={ref}></div>
             </div>
+
+        </div>
 
 
     )
