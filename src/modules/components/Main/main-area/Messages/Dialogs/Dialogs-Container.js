@@ -5,7 +5,7 @@ import Dialogs from "./Dialogs"
 import noMessage from '../../../../../../assets/imgs/dialogs/no-messages.svg'
 
 const mapStateToProps = (state) => {
-    
+
     return {
         dialogs: state.dialogsReducer.dialogs,
         user: state.auth.authUser,
@@ -15,15 +15,7 @@ const mapStateToProps = (state) => {
 
 
 const DialogsContainer = (props) => {
-
-    // if (props.dialogs.length > 0) {
-        
-        return <Dialogs {...props} />
-    // } else {
-    //     return <img src={noMessage} alt="no-messages-icon" />
-    // }
-
-
+    return <Dialogs {...props} />
 }
 
 export default compose(

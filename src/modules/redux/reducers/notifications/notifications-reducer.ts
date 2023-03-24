@@ -1,34 +1,40 @@
+import { NotificationType } from "../../../types/types"
+import { InferActionsTypes } from "../../store"
 
-const NOTIFICATIONS_STATUS = 'notifications/NOTIFICATIONS_STATUS'
-const SET_NOTIFICATION = 'notifications/SET_NOTIFICATION'
-const DELETE_NOTIFICATION = 'notifications/DELETE_NOTIFICATION'
-const NOTIFICATIONS_RESET = 'notifications/NOTIFICATIONS_RESET'
-const SOUND = 'notifications/SOUND'
-const DELETE_NEW_NOTIFICATION = 'notifications/DELETE_NEW_NOTIFICATION'
 
 const initialState = {
-    isActive: true,
-    notifications: [ ],
-    newNotification: null
+    isActive: true as boolean,
+    notifications: [] as Array<NotificationType>,
+    newNotification: null as  NotificationType | null
 
 }
 
+export type NotificationsStateType = typeof initialState
+type NotificationsActionsTypes = InferActionsTypes<typeof notificationsActions>
+
+
 
 //AC 
+export const notificationsActions = {
+    changeNotificationStatus: (bool: boolean) => ({ type: 'notifications/NOTIFICATIONS_STATUS', bool } as const),
+    setNotification: (notification: NotificationType) => ({ type: 'notifications/SET_NOTIFICATION', notification } as const),
+    deleteNotification: (notificationId: number) => ({ type: 'notifications/DELETE_NOTIFICATION', notificationId } as const),
+    resetNotifications: () => ({ type: 'notifications/NOTIFICATIONS_RESET' } as const),
+    deleteNewNotification: () => ({ type: 'notifications/DELETE_NEW_NOTIFICATION' } as const)
+}
 
-export const changeNotificationStatus = (bool) => ({ type: NOTIFICATIONS_STATUS, bool })
-export const setNotification = (notification) => ({ type: SET_NOTIFICATION, notification })
-export const deleteNotification = (notificationId) => ({ type: DELETE_NOTIFICATION, notificationId })
 
-export const resetNotifications = () => ({ type: NOTIFICATIONS_RESET })
-export const sound = (status) => ({ type: SOUND, status })
-export const deleteNewNotification = () => ({ type: DELETE_NEW_NOTIFICATION })
+
+
+
+
+
 
 
 //REDUCER
-const notifications = (state = initialState, action) => {
+const notifications = (state: NotificationsStateType = initialState, action: NotificationsActionsTypes): NotificationsStateType => {
     switch (action.type) {
-        case NOTIFICATIONS_STATUS:
+        case 'notifications/NOTIFICATIONS_STATUS':
             if (state.isActive !== action.bool) {
 
 
@@ -39,8 +45,8 @@ const notifications = (state = initialState, action) => {
             return state;
 
 
-        case SET_NOTIFICATION:
-            
+        case 'notifications/SET_NOTIFICATION':
+            debugger
             let checkExist = state.notifications.some(n => n.message.id === action.notification.message.id)
             let newNotification = state.newNotification
             if (checkExist) {
@@ -66,23 +72,17 @@ const notifications = (state = initialState, action) => {
             }
 
 
-        case NOTIFICATIONS_RESET:
+        case 'notifications/DELETE_NOTIFICATION':
 
             return { ...state, notifications: [], newNotification: null };
 
-        case DELETE_NOTIFICATION:
+        case 'notifications/DELETE_NOTIFICATION':
             let resultNotification = state.notifications.filter(n => n.message.id !== action.notificationId)
 
             return { ...state, notifications: resultNotification }
 
-        case DELETE_NEW_NOTIFICATION:
+        case 'notifications/DELETE_NEW_NOTIFICATION':
             return { ...state, newNotification: null }
-
-        case SOUND:
-            if (state.sound !== action.status) {
-                return { ...state, sound: action.status }
-            }
-            return state
 
 
         default:

@@ -1,16 +1,16 @@
 
 
 export type UserType = {
-    id: number 
+    id: number
     email: string
     name: string
     followed: 0 | 1
     followers: Array<UserType>
     followeds: Array<UserType>
     profile: ProfileType
-    postsCount: number 
-    isAuthUser:boolean
-} 
+    postsCount: number
+    isAuthUser: boolean
+}
 
 export type ProfileType = {
     about_me: string | null
@@ -33,7 +33,7 @@ export type PostType = {
     isAuthLikes: boolean
     likesCount: number
     profile_id: number
-    created:string
+    created: string
 
 }
 
@@ -65,9 +65,9 @@ export type MessageType = {
     isEdited: boolean
     authorId: number
     author: UserType
-    isAuthorIsAuth:boolean
+    isAuthorIsAuth: boolean
     created: string
-} 
+}
 
 
 export type PaginatorMetaType = {
@@ -88,5 +88,9 @@ export type PaginatorLinksType = {
     prev: number
 }
 
+export type NotificationType = {
+    // isSound: boolean
+    message: MessageType
 
-            
+}
+

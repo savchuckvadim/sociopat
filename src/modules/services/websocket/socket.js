@@ -1,7 +1,7 @@
 import Echo from 'laravel-echo'
 import { api } from '../api-laravel'
 import { setNewMessage } from '../../redux/reducers/dialogs/dialogs-reducer'
-import { setNotification } from '../../redux/reducers/notifications-reducer'
+import { notificationsActions, setNotification } from '../../redux/reducers/notifications/notifications-reducer'
 import { usersActions } from '../../redux/reducers/users/users-reducer'
 
 //TODO TypeScript
@@ -50,7 +50,7 @@ export const socket = {
     console.log('echo')
     console.log(echo)
 
-    await this.postListener()
+    await this.postListener(dispatch)
     await this.precenseListener(dispatch)
     await this.newMessageListener(authUserId, dispatch)
 
@@ -58,14 +58,14 @@ export const socket = {
 
 
   },
-  async postListener() {
+  async postListener(dispatch) {
 
     if (echo) {
 
       echo.private(`send-post`)
         .listen('SendPost', (e) => {
           console.log(e)
-          alert(e.post.body)
+          dispatch(notificationsActions.setNotification(e))
         })
     } else {
 
@@ -122,7 +122,7 @@ export const socket = {
 
         .listen('.SendMessage', (e) => {
           dispatch(setNewMessage(e.message, authUserId))
-          dispatch(setNotification(e))
+          dispatch(notificationsActions.setNotification(e))
         })
 
     } else {

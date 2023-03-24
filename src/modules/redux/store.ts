@@ -14,7 +14,7 @@ import LoginRegistrationReducer from "./reducers/login-registaration/login-regis
 import appReducer from "./reducers/app-reducer"
 import preloader from "./reducers/preloader/preloader-reducer"
 import paginatorReducer from "./reducers/paginator/paginator-reducer"
-import notifications from "./reducers/notifications-reducer"
+import notifications from "./reducers/notifications/notifications-reducer"
 
 
 // import { LoginRegistrationType } from "./reducers/login-registaration/login-registration-reducer"

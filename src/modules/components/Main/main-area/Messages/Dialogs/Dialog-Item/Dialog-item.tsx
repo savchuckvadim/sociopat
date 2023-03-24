@@ -11,6 +11,7 @@ type PropsType = {
     participant: UserType
     online: Array<number>
 }
+
 const DialogItem: React.FC<PropsType> = (props) => {
 
     const isActive = props.online.some(userId => userId === props.participant.id)

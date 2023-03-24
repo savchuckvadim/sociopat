@@ -41,9 +41,6 @@ export const usersActions = {
     deleteOnline : (userId: number) => ({ type: 'SP/USERS/DELETE_ONLINE', userId } as const)
 }
 
-// export const addOnline = (userId: number) => ({ type: ADD_ONLINE, userId })
-// export const deleteOnline = (userId: number) => ({ type: DELETE_ONLINE, userId })
-
 // const setPrecenseUser = (onlineUsersIds) => ({ type: PRECENSE_USER, onlineUsersIds })
 
 //THUNKS
@@ -119,14 +116,12 @@ const usersReducer = (state: UsersStateType = initialState, action: UsersActions
 
             return result
 
-        //TODO:
         case 'SP/USERS/SET_ONLINE':
             let resUsersSet = setOnlineInAll(state.users, action.usersIds)
-            debugger
             return { ...state, online: action.usersIds, users: resUsersSet }
 
         case 'SP/USERS/ADD_ONLINE':
-            debugger
+            
             if (!state.online.some(id => id === action.userId)) {
                 usersWithOnline = precenseUserUtil(state.users, action.userId, true)
                 let resOnlineAdd = [...state.online, action.userId]
@@ -136,7 +131,7 @@ const usersReducer = (state: UsersStateType = initialState, action: UsersActions
             }
 
         case 'SP/USERS/DELETE_ONLINE':
-            debugger
+            
             let deleteResultOnline = [] as Array<number>
             let checkExistId = false;
             state.online.forEach(userId => {
