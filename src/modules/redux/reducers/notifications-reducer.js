@@ -40,7 +40,7 @@ const notifications = (state = initialState, action) => {
 
 
         case SET_NOTIFICATION:
-            debugger
+            
             let checkExist = state.notifications.some(n => n.message.id === action.notification.message.id)
             let newNotification = state.newNotification
             if (checkExist) {

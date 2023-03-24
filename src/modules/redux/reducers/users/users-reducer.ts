@@ -3,6 +3,7 @@ import { ResultCodesEnum } from "../../../services/api-laravel";
 import { usersAPI } from "../../../services/users-api";
 import { UserType } from "../../../types/types";
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow";
+import { setOnlineInAll, precenseUserUtil } from "../../../utils/for-rdeucers/users-utils";
 import { AppDispatchType, InferActionsTypes, AppStateType, ThunkType } from "../../store";
 import { paginatorsActions } from "../paginator/paginator-reducer";
 
@@ -24,9 +25,8 @@ const initialState = {
     online: [] as Array<number>,
 }
 
-const SET_ONLINE = 'SET_ONLINE'
-const ADD_ONLINE = 'ADD_ONLINE'
-const DELETE_ONLINE = 'DELETE_ONLINE'
+
+// export const PRECENSE_USER = 'PRECENSE_USER'
 
 // ACTION CREATORS
 
@@ -36,21 +36,14 @@ export const usersActions = {
     follow: (userId: number, authUser: UserType) => ({ type: 'FOLLOW', userId, authUser } as const),
     unFollow: (userId: number, authUser: UserType) => ({ type: 'UNFOLLOW', userId, authUser } as const),
     toggleFollowingInProgress: (userId: number, isFetching: boolean) => ({ type: 'SP/USERS/FOLLOWING_IN_PROGRESS', userId, isFetching } as const),
-
+    setOnline: (usersIds: Array<number>) => ({ type: 'SP/USERS/SET_ONLINE', usersIds } as const),
+    addOnline : (userId: number) => ({ type:    'SP/USERS/ADD_ONLINE', userId } as const),
+    deleteOnline : (userId: number) => ({ type: 'SP/USERS/DELETE_ONLINE', userId } as const)
 }
-export const setOnline = (usersIds: Array<number>): SetOnlineType => ({ type: SET_ONLINE, usersIds })
-type SetOnlineType = {
-    type: typeof SET_ONLINE
-    usersIds: Array<number>
-}
-export const addOnline = (userId: number) => ({ type: ADD_ONLINE, userId })
-export const deleteOnline = (userId: number) => ({ type: DELETE_ONLINE, userId })
-//TODO:
 
-// export const PRECENSE_USER = 'PRECENSE_USER'
-// export const setOnline = (usersIds) => ({ type: SET_ONLINE, usersIds })
-// export const addOnline = (userId) => ({ type: ADD_ONLINE, userId })
-// export const deleteOnline = (userId) => ({ type: DELETE_ONLINE, userId })
+// export const addOnline = (userId: number) => ({ type: ADD_ONLINE, userId })
+// export const deleteOnline = (userId: number) => ({ type: DELETE_ONLINE, userId })
+
 // const setPrecenseUser = (onlineUsersIds) => ({ type: PRECENSE_USER, onlineUsersIds })
 
 //THUNKS
@@ -110,7 +103,7 @@ export const unFollowThunk = (userId: number, authUser: UserType): UsersThunkTyp
 //REDUCER
 const usersReducer = (state: UsersStateType = initialState, action: UsersActionsTypes): UsersStateType => {
     let result = state
-
+    let usersWithOnline = []  as Array<UserType>
     switch (action.type) {
         case "SP/USERS/SET_USERS": result = { ...state }; result.users = action.users; return result;
         case "SP/USERS/FETCHING": result = { ...state }; result.isFetching = action.bool; return result;
@@ -127,42 +120,42 @@ const usersReducer = (state: UsersStateType = initialState, action: UsersActions
             return result
 
         //TODO:
-        // case SET_ONLINE:
+        case 'SP/USERS/SET_ONLINE':
+            let resUsersSet = setOnlineInAll(state.users, action.usersIds)
+            debugger
+            return { ...state, online: action.usersIds, users: resUsersSet }
 
-        //     let resUsersSet = setOnlineInAll(state.users, action.usersIds)
-        //     return { ...state, online: action.usersIds, users: resUsersSet }
+        case 'SP/USERS/ADD_ONLINE':
+            debugger
+            if (!state.online.some(id => id === action.userId)) {
+                usersWithOnline = precenseUserUtil(state.users, action.userId, true)
+                let resOnlineAdd = [...state.online, action.userId]
+                return { ...state, online: resOnlineAdd, users: usersWithOnline }
+            } else {
+                return state
+            }
 
-        // case ADD_ONLINE:
+        case 'SP/USERS/DELETE_ONLINE':
+            debugger
+            let deleteResultOnline = [] as Array<number>
+            let checkExistId = false;
+            state.online.forEach(userId => {
+                if (Number(userId) !== Number(action.userId)) {
+                    deleteResultOnline.push(userId)
+                } else {
+                    checkExistId = true
+                }
+            })
+            if (checkExistId) {
 
-        //     if (!state.online.some(id => id === action.userId)) {
-        //         usersWifthOnline = precenseUserUtil(state.users, action.userId, true)
-        //         let resOnlineAdd = [...state.online, action.userId]
-        //         return { ...state, online: resOnlineAdd, users: usersWifthOnline }
-        //     } else {
-        //         return state
-        //     }
+                usersWithOnline = precenseUserUtil(state.users, action.userId, false)
 
-        // case DELETE_ONLINE:
+                debugger
+                return { ...state, online: deleteResultOnline, users: usersWithOnline }
+            } else {
 
-        //     let deleteResultOnline = []
-        //     let checkExistId = false;
-        //     state.online.forEach(userId => {
-        //         if (Number(userId) !== Number(action.userId)) {
-        //             deleteResultOnline.push(userId)
-        //         } else {
-        //             checkExistId = true
-        //         }
-        //     })
-        //     if (checkExistId) {
-
-        //         usersWifthOnline = precenseUserUtil(state.users, action.userId, false)
-
-
-        //         return { ...state, online: deleteResultOnline, users: usersWifthOnline }
-        //     } else {
-
-        //         return state
-        //     }
+                return state
+            }
 
         // case PRECENSE_USER:
         //     const users = setOnlineInAll(state.users, action.onlineUsersIds)

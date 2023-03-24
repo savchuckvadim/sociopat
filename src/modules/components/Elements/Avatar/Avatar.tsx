@@ -9,11 +9,14 @@ type PropsType = {
     link?: string
     img?: string
     border?: string
+    isActive?: boolean
 }
 
 const Avatar: React.FC<PropsType> = (props) => {
+
     let initials = null
     let img = props.user.profile.avatar
+    
     // let border = props.border && 'none' 
 
     if (props.user) {
@@ -36,7 +39,7 @@ const Avatar: React.FC<PropsType> = (props) => {
             width: props.size,
             height: props.size,
             // border: border,
-            borderColor: 'white'
+            // borderColor: 'red'
         }}>
         {!props.img && <h1 className={style.initials}
             style={{
@@ -46,7 +49,7 @@ const Avatar: React.FC<PropsType> = (props) => {
             {initials}
 
         </h1>}
-
+       {<div className={style.isActive}></div>}
     </div>
     if (props.link && props.link !== undefined) {
         return <NavLink className={style.link} replace to={`${props.link}`}>{avatar}</NavLink>

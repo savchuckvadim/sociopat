@@ -18,7 +18,7 @@ const Notification = ({
 
     }, [])
 
-    debugger
+    
     return (
 
         <div style={{ opacity: 1.5 / (index + 1) }} className={style.notification}>

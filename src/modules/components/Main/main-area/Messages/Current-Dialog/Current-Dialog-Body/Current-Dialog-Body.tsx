@@ -40,8 +40,6 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
     useEffect(() => {
 
         if (isFetching && !props.isMessagesFetching) {
-            debugger
-
             props.getMessages(props.dialog.id, currentPage)
             setIsFetching(false)
             setCurrentPage(prevState => prevState + 1)

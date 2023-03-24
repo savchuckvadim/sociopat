@@ -2,7 +2,7 @@ import Echo from 'laravel-echo'
 import { api } from '../api-laravel'
 import { setNewMessage } from '../../redux/reducers/dialogs/dialogs-reducer'
 import { setNotification } from '../../redux/reducers/notifications-reducer'
-import { addOnline, deleteOnline, setOnline } from '../../redux/reducers/users/users-reducer'
+import { usersActions } from '../../redux/reducers/users/users-reducer'
 
 //TODO TypeScript
 
@@ -86,18 +86,18 @@ export const socket = {
 
           console.log(ids)
 
-          dispatch(setOnline(ids))
+          dispatch(usersActions.setOnline(ids))
         })
         .joining((userId) => {
 
           console.log(userId)
-          dispatch(addOnline(userId))
+          dispatch(usersActions.addOnline(userId))
 
         })
         .leaving((userId) => {
 
           console.log(`leaving ${userId}`)
-          dispatch(deleteOnline(userId))
+          dispatch(usersActions.deleteOnline(userId))
 
 
         })
