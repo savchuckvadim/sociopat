@@ -33,9 +33,15 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
     const [currentPage, setCurrentPage] = useState(2);
     const [isFetching, setIsFetching] = useState(false);
 
+    useEffect(() => {
+        setIsFetching(true)
+    }, [props.dialog])
 
     useEffect(() => {
+
         if (isFetching && !props.isMessagesFetching) {
+            debugger
+
             props.getMessages(props.dialog.id, currentPage)
             setIsFetching(false)
             setCurrentPage(prevState => prevState + 1)
@@ -88,7 +94,7 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
 
     }, [props.messages.length]);
 
-    if (props.messages.length > 0) {
+    if (props.messages.length > 0 ) {
 
         body = props.messages.reverse().map((m: MessageType) => {
             date = m.created
@@ -96,21 +102,23 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
 
         })
 
-    } else {
+    } else{
 
         body = <img className={style.nomessages} src={noMessage} alt="no-messages-icon" />
     }
 
     return (
-        <div ref={refScroll} className={style.wrapper}>
-            <Day date={date} />
-            <div className={style.interior__wrapper} >
+        isFetching
+            ? <div>Loading . . .   .    .</div>
+            : <div ref={refScroll} className={style.wrapper}>
+                <Day date={date} />
+                <div className={style.interior__wrapper} >
 
-                {body}
-                <div ref={ref}></div>
+                    {body}
+                    <div ref={ref}></div>
+                </div>
+
             </div>
-
-        </div>
 
 
     )

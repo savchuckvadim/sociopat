@@ -18,14 +18,14 @@ const Notification = ({
 
     }, [])
 
-    
+    debugger
     return (
 
         <div style={{ opacity: 1.5 / (index + 1) }} className={style.notification}>
 
             <Message
-                key={`notifi-message-${notification.id}`}
-                message={notification}
+                key={`notifi-message-${notification.message.id}`}
+                message={notification.message}
                 isNotification={true}
             />
         </div>

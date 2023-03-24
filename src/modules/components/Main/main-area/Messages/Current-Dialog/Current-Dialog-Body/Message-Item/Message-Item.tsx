@@ -10,7 +10,7 @@ type PropsType = {
 }
 
 const Message: React.FC<PropsType> = (props) => {
-    
+    debugger
     let nameOfDialog = `${props.message.author.profile.name} ${props.message.author.profile.surname}`
 
 
