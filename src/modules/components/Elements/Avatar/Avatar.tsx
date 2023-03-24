@@ -38,6 +38,7 @@ const Avatar: React.FC<PropsType> = (props) => {
             backgroundImage: ` url(${img || null})`,
             width: props.size,
             height: props.size,
+           
             // border: border,
             // borderColor: 'red'
         }}>
@@ -49,7 +50,7 @@ const Avatar: React.FC<PropsType> = (props) => {
             {initials}
 
         </h1>}
-       {<div className={style.isActive}></div>}
+       {props.isActive && <div className={style.isActive}></div>}
     </div>
     if (props.link && props.link !== undefined) {
         return <NavLink className={style.link} replace to={`${props.link}`}>{avatar}</NavLink>

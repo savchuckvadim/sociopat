@@ -29,7 +29,6 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
 
     //for scroll//
     const refScroll = useRef<null | HTMLDivElement>(null);
-    // const [messages, setMessages] = useState([] as Array<MessageType>);
     const [currentPage, setCurrentPage] = useState(2);
     const [isFetching, setIsFetching] = useState(false);
 
@@ -78,7 +77,7 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
         //     console.log(refScroll.current?.clientHeight) //высота компоненты с сообщениями
         //     console.log('-------------------')
     }
-    //////////////////////////////////////////////
+//////////////////////////////////////////////
 
 
 

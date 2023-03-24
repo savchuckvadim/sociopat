@@ -7,7 +7,7 @@ import newMessageReducer from "./reducers/dialogs/new-message-reducer"
 import profileReducer from "./reducers/profile/profile-reducer"
 import { themeReducer } from "./reducers/theme/style-reducer"
 import navMenuReducer from "./reducers/nav-menu/nav-menu-reducer"
-import usersReducer from "./reducers/users/users-reducer"
+import usersReducer, { UsersStateType } from "./reducers/users/users-reducer"
 import authReducer from "./reducers/auth/auth-reducer"
 import { reducer as formReducer } from 'redux-form'
 import LoginRegistrationReducer from "./reducers/login-registaration/login-registration-reducer"
@@ -33,7 +33,7 @@ let rootReducer = combineReducers({
   loginRegistration: LoginRegistrationReducer,
   //  as () => LoginRegistrationType,
   users: usersReducer,
-  // as () => UsersStateType,
+  //  as () => UsersStateType,
   theme: themeReducer,
   //as () => ThemeStateType,
   navMenu: navMenuReducer,
