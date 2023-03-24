@@ -71,6 +71,7 @@ type DialogsActionType = SetDialogsType | SetDialogType | SetCurrentDialogType |
     SetNewMessageType | SetMessagesFetchingStatusType | SetMessagesType | SetSendingStatusType | SetParticipantType |
     SetSoundType | SetPrecenseUserType | SetEditingStatusType |
     SetDeleteDialogType
+
 //AC
 const setDialogs = (dialogs: DialogsType, dialogIdFromUrl: null | number): SetDialogsType => ({ type: SET_DIALOGS, dialogs, dialogIdFromUrl })
 type SetDialogsType = {
@@ -390,6 +391,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
 
         case SET_CURRENT_DIALOG:
             if (action.dialog) {
+                debugger
                 return { ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog, messages: action.dialog.messages }
             } else {
                 return { ...state, currentDialogId: undefined, currentDialog: null, messages: [] }
@@ -523,9 +525,10 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             const newMessages = [...state.messages]
             action.messages.forEach(m => {
                 if (!newMessages.some(message => message.id === m.id)) {   //усли в текущих сообщениях нету перебираемого сообщения по id
-                    newMessages.push(m)
+                    newMessages.unshift(m)
                 }
             });
+            debugger
             return { ...state, messages: newMessages }
 
         case IS_MESSAGES_FETCHING:

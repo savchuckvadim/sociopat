@@ -29,7 +29,7 @@ const BodyOfCurrentDialog: React.FC<PropsType> = (props) => {
 
     //for scroll//
     const refScroll = useRef<null | HTMLDivElement>(null);
-    const [currentPage, setCurrentPage] = useState(2);
+    const [currentPage, setCurrentPage] = useState(1);
     const [isFetching, setIsFetching] = useState(false);
 
     useEffect(() => {
