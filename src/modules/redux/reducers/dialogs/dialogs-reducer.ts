@@ -342,20 +342,27 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
             let searchingDialogId = setingDialogs[0] && setingDialogs[0].id  //устанавливает id текущего диалога - первый диалог из полученных
 
             if (action.dialogIdFromUrl) {                                    //если пришел id текущего диалога из urla
-                searchingDialogId = action.dialogIdFromUrl                   // ставит текущим его  
+                searchingDialogId = action.dialogIdFromUrl                   // ставит текущим его
+                let currentDialog = searchDialog(searchingDialogId, [setingDialogs])
+                let currentDialogsMessages = currentDialog ? currentDialog.messages : []
+
+                return {
+                    ...state,
+                    dialogs: setingDialogs,
+                    currentDialog,
+                    currentDialogId: searchingDialogId,
+                    messages: currentDialogsMessages
+                };
             }
 
             // теперь, когда определились с id текущего диалога находим его в полученных диалогах и ставим его текущим. 
             // месседжы(в диалоге должна быть первая пачка из 10 месседжей) вставлем в стэйт из этого полученного диалога
-            let currentDialog = searchDialog(searchingDialogId, [setingDialogs])
-            let currentDialogsMessages = currentDialog ? currentDialog.messages : []
+            // let currentDialog = searchDialog(searchingDialogId, [setingDialogs])
+            // let currentDialogsMessages = currentDialog ? currentDialog.messages : []
 
             return {
                 ...state,
                 dialogs: setingDialogs,
-                currentDialog,
-                currentDialogId: searchingDialogId,
-                messages: currentDialogsMessages
             };
 
         case SET_DIALOG:  // ProfileButtons - при создании нового диалога, т.е при попытке написать пользователю в первый раз
@@ -523,9 +530,9 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
 
         case IS_MESSAGES_FETCHING:
             let resultState = state
-            state.isMessagesFetching !== action.boolean 
-            ? resultState = {...state, isMessagesFetching: action.boolean }
-            : resultState = state
+            state.isMessagesFetching !== action.boolean
+                ? resultState = { ...state, isMessagesFetching: action.boolean }
+                : resultState = state
             return resultState
 
 

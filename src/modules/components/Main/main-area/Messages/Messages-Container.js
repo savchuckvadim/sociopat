@@ -24,7 +24,9 @@ const MessagesContainer = (props) => {
     // useEffect(() => {
     //     
     //     props.getDialogs()
-    // }, [])
+    // }, [currentDialog])
+
+
     if (!props.inProgress) {
 
         return <Messages {...props} />

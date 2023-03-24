@@ -66,7 +66,7 @@ const ProfileInformation: React.FC<ProfileInformationPropsType> = (props) => {
                 <div className={style.avatar}>
                     <Avatar
                         size={128}
-                        border={10}
+                        border={'10px'}
                         // img={visitedUser.profile.avatar}
                         user={visitedUser}
                        
