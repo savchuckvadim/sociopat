@@ -6,14 +6,13 @@
     position: fixed;
     max-width: 400px;
     min-height: 90vh;
-    /* min-height: 0; */
-    /* opacity: 50%; */
+
     right: 2px;
     top: 8vh;
     display: flex;
     flex-direction: column;
     justify-content: end;
-    /* background-color: rgb(175, 182, 210); */
+
     z-index: 2000;
 }
 .header{

@@ -27,14 +27,14 @@ const Header = (props: HeaderPropsType) => {
                 </div>
                 <div className={style.currentUser}>
                     <div className={style.name}>
-                        <LogoutContainer />
+                        {props.user && <LogoutContainer />}
                     </div>
-                    <Avatar
+                    {props.user && <Avatar
                         size={40}
                         // img={avatar}
                         link={'profile'}
                         user={props.user}
-                    />
+                    />}
                 </div>
             </div>
         </header>

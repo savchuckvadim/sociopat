@@ -1,0 +1,30 @@
+@import './typography.scss';
+
+
+p,
+h1,
+h2,
+h3,
+textarea {
+    font-family: 'Inter';
+}
+
+h1 {
+    font-weight: 800;
+}
+
+p,
+textarea {
+    @extend .text--base--line;
+    font-style: normal;
+
+}
+
+body {
+    background-color: $background-color;
+}
+
+[class*=_container] {
+    max-width: 991px;
+
+}

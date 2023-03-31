@@ -1,14 +1,12 @@
-import './App.css'
+import './App.scss'
 import { Route, Routes } from 'react-router-dom'
 import Sociopath from './modules/components/Sociopath-App/Sociopath'
 import LoginRedirect from './modules/components/Login-Page/Login-Redirect'
 
-// TODO
-// POST -> Author
-// redirect from profile to currentdialog (Send Message)
-//api/dialog/8 -> возвращает dialog id 2 бэк возвращает не тот диалог
 
-function App(props) {
+
+
+const App = (props) => {
 
   return (
     <div className="App">

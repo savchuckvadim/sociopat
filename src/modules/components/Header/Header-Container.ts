@@ -11,13 +11,13 @@ import Header from "./Header"
 const mapStateToProps = (state: AppStateType) => {
     return {
         user: state.auth.authUser,
-        theme: state.theme
+        // theme: state.theme
     }
 }
 
-export type HeaderPropsType ={
-    user: UserType
-    theme: ThemeStateType
+export type HeaderPropsType = {
+    user: UserType | null
+    // theme: ThemeStateType
 }
 const HeaderContainer = connect(mapStateToProps, null)(Header)
 export default HeaderContainer
