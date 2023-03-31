@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom"
-import style from './Main.module.css'
+import style from './Main.module.scss'
 import NavMenuContainer from "./Nav-Menu/Nav-Menu-Container"
 import ProfileContainer from "./main-area/Profile/Profile-Container.tsx"
 import UsersContainer from "./main-area/Users/Users-Container.ts"

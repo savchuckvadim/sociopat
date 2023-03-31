@@ -33,7 +33,7 @@ const ProfileInformation: React.FC<ProfileInformationPropsType> = (props) => {
                     <div className={style.info__wrapper}>
                         <div className={style.about__wrapper}>
 
-                            <h1 className={style.name}>{`${visitedUser.profile.name} ${visitedUser.profile.surname}`}</h1>
+                            <h2 className={style.name}>{`${visitedUser.profile.name} ${visitedUser.profile.surname}`}</h2>
 
                             <AboutMe
                                 aboutMe={visitedUser.profile.about_me}

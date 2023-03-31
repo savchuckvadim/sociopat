@@ -11,14 +11,11 @@ const RegistrationPage = () => {
             <div className={style.header}>
                 <HeaderContainer user={null} />
             </div>
-
             <div className={style.page__container}>
                 <Background dark={false} />
                 <div className={style.form__wrapper}>
-
                     <RegistrationContainer />
                 </div>
-
             </div>
         </>
     )

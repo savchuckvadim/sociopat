@@ -6,23 +6,30 @@ h1,
 h2,
 h3,
 textarea {
-    font-family: 'Inter';
+    @extend .text;
 }
 
 h1 {
-    font-weight: 800;
+    @extend .text--large;
+    color: $black-color;
+}
+h2 {
+    @extend .text--big;
+    color: $black-color;
 }
 
 p,
 textarea {
-    @extend .text--base--line;
+    @extend .text--base;
     font-style: normal;
-
 }
 
 body {
+    @extend .text--base;
+    color: $dark-color;
     background-color: $background-color;
 }
+
 
 [class*=_container] {
     max-width: 991px;
