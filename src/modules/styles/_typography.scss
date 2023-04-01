@@ -1,10 +1,9 @@
-
 // Базовые стили текста
 .text {
     font-family: $font-family-base;
     font-style: normal;
     text-align: center;
-   
+
 }
 
 .text--base {
@@ -23,6 +22,22 @@
 
 }
 
+.statistics--name {
+    @extend .text;
+    font-weight: $base-weight; //400
+    font-size: $small-font-size; //12
+    line-height: 14px;
+    color: $black-text;
+}
+
+.statistics--quantity {
+    @extend .text;
+    font-weight: $big-weight; //700
+    font-size: $base-font-size; //14
+    line-height: 17px;
+    color: $black-text;
+}
+
 .text--small {
     @extend .text;
     font-weight: $small-weight; //500
@@ -38,7 +53,7 @@
     color: $black-text;
 }
 
-.text--large{
+.text--large {
     @extend .text;
     font-weight: $large-weight; //800
     font-size: $large-font-size; //40

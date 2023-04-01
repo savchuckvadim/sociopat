@@ -5,7 +5,8 @@ p,
 h1,
 h2,
 h3,
-textarea {
+textarea,
+a {
     @extend .text;
 }
 
