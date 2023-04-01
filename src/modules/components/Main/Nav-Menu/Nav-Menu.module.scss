@@ -1,0 +1,50 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.menu {
+    min-width: 100%;
+    @include flexbox($direction: column, $align-items: baseline);
+}
+
+.item {
+    @include flexbox($align-items: center);
+    text-decoration: none;
+    color: $black-text;
+    padding: 0 16px;
+    height: 40px;
+    width: 100%;
+    border-radius: $border-base;
+}
+
+.item svg path {
+    stroke: $black-text;
+}
+
+.name {
+    margin: 15px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+
+
+.activeItem {
+    @include flexbox($align-items: center);
+
+    text-decoration: none;
+    color: $red-color;
+    background-color: $white-color;
+    padding: 0 16px;
+    height: 40px;
+    width: 100%;
+    border-radius: $border-base;
+}
+
+.activeItem svg path {
+    stroke: $red-color;
+    opacity: 100%;
+}

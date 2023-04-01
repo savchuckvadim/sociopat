@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
-import style from './Nav-Menu.module.css'
-import containerStyle from './Containers.module.css'
+import style from './Nav-Menu.module.scss'
+import containerStyle from './Containers.module.scss'
 const NavMenu = (props) => {
 
     let iconProfile =

@@ -9,7 +9,7 @@
 
 .text--base {
     @extend .text;
-    font-weight: $base-weight;
+    font-weight: $base-weight; //400
     font-size: $base-font-size; //14
     line-height: $base-line; //24
 

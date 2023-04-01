@@ -4,8 +4,8 @@ $white-color: rgb(255, 255, 255);
 $grey-color: rgb(128, 128, 128);
 $dark-color: rgb(89, 89, 89);
 $red-color: rgba(244, 72, 72, 1);
-
 $background-color: rgb(244, 244, 244);
+
 
 
 
@@ -31,12 +31,12 @@ $base-line: 24px;
 $small-line: 22px;
 $big-line: 32px;
 $large-line: 56px;
-//Отступы границы бордер-радиусы
 
+//Отступы границы бордер-радиусы
+$border-base: 16px;
 
 
 // Брейкпоинты для адаптивного дизайна
-
 $breakpoint-xs: 480px;
 $breakpoint-sm: 768px;
 $breakpoint-md: 992px;

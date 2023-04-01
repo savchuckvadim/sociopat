@@ -13,6 +13,7 @@ h1 {
     @extend .text--large;
     color: $black-color;
 }
+
 h2 {
     @extend .text--big;
     color: $black-color;
@@ -21,6 +22,7 @@ h2 {
 p,
 textarea {
     @extend .text--base;
+ 
     font-style: normal;
 }
 
