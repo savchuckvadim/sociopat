@@ -6,7 +6,7 @@ h1,
 h2,
 h3,
 textarea,
-a {
+a{
     @extend .text;
 }
 
@@ -20,11 +20,10 @@ h2 {
     color: $black-color;
 }
 
-p,
-textarea {
+p{
     @extend .text--base;
- 
     font-style: normal;
+    
 }
 
 body {

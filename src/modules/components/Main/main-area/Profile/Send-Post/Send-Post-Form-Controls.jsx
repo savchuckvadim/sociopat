@@ -14,7 +14,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
     let textClass = style.input
     let cameraOpacity = 50
     // let sendArea = <p>Photo/Video</p>
-// let user= props.user
+    // let user= props.user
 
     let leftAreaClass = style.left__area
     if (meta.active || input.value) {
@@ -30,9 +30,9 @@ const InputSendPost = ({ input, meta, ...props }) => {
         textClass = style.inputActive
         leftAreaClass = style.left__areaActive
         cameraOpacity = 0
-        
+
     }
-    
+
     return (
         <>
 
@@ -43,19 +43,19 @@ const InputSendPost = ({ input, meta, ...props }) => {
             >
 
                 <div className={leftAreaClass}
-                   
+
                 >
                     <div style={
                         {
                             // display: displayDefault
                         }} className={style.icon__wrapper}>
-                            <Avatar
+                        <Avatar
                             size={40}
                             link={false}
                             img={props.user.profile.avatar}
                             // name={props.user.fullName}
                             user={props.user}
-                            />
+                        />
                         {/* <Icon 
                         user={props} 
                         /> */}
@@ -78,7 +78,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
                 <div className={style.right__area}
                     style={{
                         display: displayDefault,
-                        opacity:cameraOpacity
+                        opacity: cameraOpacity
                     }}
                 >
                     <div className={style.camera__wrapper}>
@@ -88,13 +88,8 @@ const InputSendPost = ({ input, meta, ...props }) => {
 
                 </div>
             </div>
-
             <FooterSendPost {...input}
-                        {...props}  display={displaySending} />
-
-
-
-
+                {...props} display={displaySending} />
         </>
 
     )

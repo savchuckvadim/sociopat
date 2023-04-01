@@ -14,7 +14,7 @@ const StatisticsItem: React.FC<StatisticsItemType> = (props) => {
                 <p className={style.name}>{props.name}</p>
             </div>
 
-            {/* {props.name !== 'following' && <div className={style.line}></div>} */}
+             {props.name !== 'following' && <div className={style.line}></div>}
 
         </>
     )
