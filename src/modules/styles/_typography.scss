@@ -46,9 +46,9 @@
 
 .text--big {
     @extend .text;
-    font-weight: $big-weight;
-    font-size: $large-font-size;
-    line-height: $big-line;
+    font-weight: $big-weight; //700
+    font-size: $large-font-size; //40px
+    line-height: $big-line;  //32px
     color: $black-text;
 }
 

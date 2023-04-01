@@ -2,7 +2,6 @@
 import style from './Post.module.css'
 import knife from '../../../../../../../assets/imgs/posts/knife.svg'
 import knifeActive from '../../../../../../../assets/imgs/posts/knife-active.svg'
-
 import repost from '../../../../../../../assets/imgs/posts/reply-share-circle.svg'
 import eye from '../../../../../../../assets/imgs/posts/eye.svg'
 import dots from '../../../../../../../assets/imgs/posts/dots-menu.svg'

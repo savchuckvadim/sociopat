@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import style from './About-Me.module.css'
+import style from './About-Me.module.scss'
+
+
 
 const AboutMe = (props) => {
 

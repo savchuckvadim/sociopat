@@ -1,5 +1,5 @@
 import Avatar from '../../../../Elements/Avatar/Avatar'
-import camera from '../../../../../../assets/imgs/posts//camera-photo.svg'
+import camera from '../../../../../../assets/imgs/posts/camera-photo.svg'
 import style from './Send-Post.module.css'
 
 import FooterSendPost from './Footer-send-Post/Footer-Send-Post.jsx'

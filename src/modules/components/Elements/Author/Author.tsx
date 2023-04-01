@@ -1,4 +1,4 @@
-import style from './Author.module.css'
+import style from './Author.module.scss'
 import Moment from 'react-moment'
 import Avatar from '../Avatar/Avatar'
 import { UserType } from '../../../types/types'
