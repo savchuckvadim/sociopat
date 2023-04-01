@@ -1,4 +1,4 @@
-// @import '../../../../../../styles/typography' ;
+
 
 .about {
     width: 100%;
@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: column;
 }
-
 
 .input,
 .inputError {
@@ -32,7 +31,7 @@
 }
 
 .text {
-    // @extend .text--base--line;
+    @extend .text--base--line;
     width: 100%;
     border: none;
     text-align: center;
