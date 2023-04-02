@@ -10,7 +10,6 @@ export let echo
 export const socket = {
 
   async connection(authUserId, dispatch) {
-
     window.Pusher = require('pusher-js')
     await api.get("/sanctum/csrf-cookie")
     await api.get('api/user')
@@ -65,9 +64,9 @@ export const socket = {
       echo.private(`send-post`)
         .listen('SendPost', (e) => {
           console.log(e)
-          debugger
           dispatch(notificationsActions.setNotification(e))
         })
+
     } else {
 
       setTimeout(async () => {

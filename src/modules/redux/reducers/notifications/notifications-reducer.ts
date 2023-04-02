@@ -10,7 +10,7 @@ const initialState = {
 }
 
 export type NotificationsStateType = typeof initialState
-type NotificationsActionsTypes = InferActionsTypes<typeof notificationsActions>
+export type NotificationsActionsTypes = InferActionsTypes<typeof notificationsActions>
 
 
 
@@ -20,7 +20,7 @@ export const notificationsActions = {
     setNotification: (notification: NotificationType) => ({ type: 'notifications/SET_NOTIFICATION', notification } as const),
     deleteNotification: (notificationId: number) => ({ type: 'notifications/DELETE_NOTIFICATION', notificationId } as const),
     resetNotifications: () => ({ type: 'notifications/NOTIFICATIONS_RESET' } as const),
-    deleteNewNotification: () => ({ type: 'notifications/DELETE_NEW_NOTIFICATION' } as const)
+    deleteNewNotification: (notificationId: number) => ({ type: 'notifications/DELETE_NEW_NOTIFICATION' } as const)
 }
 
 

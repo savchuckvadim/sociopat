@@ -1,11 +1,11 @@
 import Avatar from '../../../../../../Elements/Avatar/Avatar'
 import style from './Message-Item.module.css'
 import readed from '../../../../../../../../assets/imgs/dialogs/status-readed.svg'
-import { MessageType } from '../../../../../../../types/types'
+import { MessageType, PostType } from '../../../../../../../types/types'
 import Moment from 'react-moment'
 
 type PropsType = {
-    message: MessageType
+    message: MessageType | PostType
     isNotification?: boolean
 }
 
