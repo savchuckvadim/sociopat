@@ -3,11 +3,11 @@ import { ResultCodesEnum } from "../../../services/api-laravel"
 import { postAPI } from "../../../services/post-api"
 import { profileAPI } from "../../../services/profile-api"
 import { usersAPI } from "../../../services/users-api"
-import { PostType, PreloaderCodesEnum, UserType } from "../../../types/types"
+import { PostType, UserType } from "../../../types/types"
 import { followUnfollow } from "../../../utils/for-rdeucers/follow-unfollow"
 import { likeDislikeFollow } from "../../../utils/for-rdeucers/like-dislike"
 import { AppDispatchType, InferActionsTypes, AppStateType } from "../../store"
-import { inProgress } from "../preloader/preloader-reducer"
+
 
 
 
@@ -17,7 +17,9 @@ let initialState = {
     //aboutMe: string |null
     // status: '',
     posts: [] as Array<PostType>,
-    likeInProgress: false as boolean
+    likeInProgress: false as boolean,
+    isPostSending: false as boolean,
+    isProfileFetching: true as boolean,
 }
 
 export type ProfileStateType = typeof initialState
@@ -29,11 +31,13 @@ export const profileActions = {
     setPosts: (posts: Array<PostType>) => ({ type: 'SP/PROFILE/SET_POSTS', posts } as const),
     setAboutMe: (aboutMe: string) => ({ type: 'SP/PROFILE/SET_ABOUT_ME', aboutMe } as const),
     setProfilePageData: (user: UserType | null) => ({ type: 'SP/PROFILE/SET_PROFILE_PAGE_DATA', user } as const),
-    setLike: (postId: number) => ({ type: 'SP/PROFILE/LIKE', postId } as const), 
-    setDislike: (postId: number) => ({ type: 'SP/PROFILE/DISLIKE', postId } as const),    
-    likeInProgress: (bool: boolean) => ({ type: 'SP/PROFILE/LIKE_IN_PROGRESS', bool } as const), 
+    setLike: (postId: number) => ({ type: 'SP/PROFILE/LIKE', postId } as const),
+    setDislike: (postId: number) => ({ type: 'SP/PROFILE/DISLIKE', postId } as const),
+    likeInProgress: (bool: boolean) => ({ type: 'SP/PROFILE/LIKE_IN_PROGRESS', bool } as const),
     follow: (userId: number, authUser: UserType) => ({ type: 'FOLLOW', userId, authUser } as const),
     unFollow: (userId: number, authUser: UserType) => ({ type: 'UNFOLLOW', userId, authUser } as const),
+    isPostSending: (bool: boolean) => ({ type: 'SP/PROFILE/POST_SENDING', bool } as const),
+    isProfileFetching: (bool: boolean) => ({ type: 'SP/PROFILE/PROFILE_FETCHING', bool } as const),
 }
 
 //THUNKS
@@ -43,8 +47,10 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ProfileAction
 
 export const getDataForLoadProfilePage = (userId: number) => async (dispatch: AppDispatchType, getState: GetStateType) => {
     const state = getState()
+    debugger
+    dispatch(profileActions.isProfileFetching(true))
     if ((state.profile.visitedUser && state.profile.visitedUser.id !== userId) || !state.profile.visitedUser) {
-        dispatch(inProgress(true, PreloaderCodesEnum.Global)) //from inprogress refucer
+        
         const userRes = await usersAPI.getUser(userId)
         const postsRes = await postAPI.getPosts(userId) //get posts from backend and set to state
         let user = null
@@ -66,7 +72,7 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
         }
 
 
-        dispatch(inProgress(false, PreloaderCodesEnum.Global))
+        dispatch(profileActions.isProfileFetching(false))
         dispatch(profileActions.setProfilePageData(user))
     }
 
@@ -82,7 +88,6 @@ export const updateAboutMe = (aboutMe: string):
         } else {
             alert(res.message)
         }
-
     }
 
 
@@ -101,14 +106,16 @@ export const updateAboutMe = (aboutMe: string):
 
 export const sendPost = (userId: number, profileId: number, body: string, img: string):
     ThunkType => async (dispatch: any, getState) => {
-        dispatch(inProgress(true, PreloaderCodesEnum.Global))
+        // dispatch(inProgress(true, PreloaderCodesEnum.Global))
+        dispatch(profileActions.isProfileFetching(true))
         const res = await postAPI.sendPost(userId, profileId, body, img)
         if (res.resultCode === ResultCodesEnum.Success) {
             dispatch(profileActions.addPostActionCreator(res.post))
         } else {
             alert(res.message)
         }
-        dispatch(inProgress(false, PreloaderCodesEnum.Global))
+        // dispatch(inProgress(false, PreloaderCodesEnum.Global))
+        dispatch(profileActions.isProfileFetching(false))
     }
 
 
@@ -117,14 +124,12 @@ export const like = (postId: number):
     ThunkType => async (dispatch, getState: GetStateType) => {
         let state = getState()
         likeDislikeFollow(true, dispatch, state, postId, profileActions.likeInProgress, profileActions.setLike, profileActions.setDislike)
-
     }
 
 export const dislike = (postId: number):
     ThunkType => async (dispatch, getState: GetStateType) => {
         let state = getState()
         likeDislikeFollow(false, dispatch, state, postId, profileActions.likeInProgress, profileActions.setLike, profileActions.setDislike)
-
     }
 
 //REDUCER
@@ -150,6 +155,13 @@ const profileReducer = (state: ProfileStateType = initialState, action: ProfileA
             }
             return result
 
+        case "SP/PROFILE/PROFILE_FETCHING":
+            if (state.isProfileFetching !== action.bool) {
+                return { ...state, isProfileFetching: action.bool }
+            } else {
+                return state
+            }
+
         case "SP/PROFILE/SET_ABOUT_ME":
             if (state.visitedUser) {
                 if (result.visitedUser!.profile.about_me !== action.aboutMe) {
@@ -171,7 +183,6 @@ const profileReducer = (state: ProfileStateType = initialState, action: ProfileA
         //     return result
 
         case "SP/PROFILE/SET_PROFILE_PAGE_DATA":
-
             if (state.visitedUser) {
                 if (action.user) {
                     if (state.visitedUser.id !== action.user.id) {
@@ -190,7 +201,6 @@ const profileReducer = (state: ProfileStateType = initialState, action: ProfileA
             return result
 
         case "SP/PROFILE/ADD_POST":
-
             result = { ...state }
             let posts = [...state.posts]
             let lastPost = action.value
@@ -203,12 +213,18 @@ const profileReducer = (state: ProfileStateType = initialState, action: ProfileA
 
             return result
 
+        case "SP/PROFILE/POST_SENDING":
+
+            if (state.isPostSending !== action.bool) {
+                return { ...state, isPostSending: action.bool }
+            } else {
+                return state
+            }
+
         case "SP/PROFILE/SET_POSTS":
             // state.posts = action.posts.reverse(post => ({ ...post }))
             state.posts = action.posts.reverse()
             return state
-
-
 
         case "SP/PROFILE/LIKE":
             result = { ...state }

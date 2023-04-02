@@ -17,8 +17,11 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
         visitedUser: state.profile.visitedUser,
         posts: state.profile.posts,
         likeInProgress: state.profile.likeInProgress,
-        currentDialog: state.dialogsReducer.currentDialog
-      
+        isProfileFetching: state.profile.isProfileFetching,
+        isPostSending: state.profile.isPostSending,
+        currentDialog: state.dialogsReducer.currentDialog,
+       
+
     }
 }
 
@@ -42,8 +45,11 @@ type MapStatePropsType = {
     visitedUser: UserType | null
     posts: Array<PostType>
     likeInProgress: boolean
+    isProfileFetching: boolean
+    isPostSending: boolean
     currentDialog: DialogType | null
- 
+    
+
 
 
 
@@ -100,23 +106,23 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     }
 
     render() {
-        if(this.props.auth){
-            if(!this.props.currentDialog){
+        if (this.props.auth) {
+            if (!this.props.currentDialog) {
                 if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth && this.props.auth.id}`) return <Navigate replace to={'../profile'} />
-                if (!this.props.visitedUser) return <LightLoadingPageContainer />
+                if (!this.props.visitedUser || this.props.isProfileFetching) return <LightLoadingPageContainer />
                 return (
-        
+
                     <Profile {...this.props}
-                        // profilePhoto={this.props.profile.photos.small}
-                        // isCurrentUser={this.props.visitedUser.isAuthUser}
+                    // profilePhoto={this.props.profile.photos.small}
+                    // isCurrentUser={this.props.visitedUser.isAuthUser}
                     />
                 )
-            }else{
+            } else {
                 return <Navigate to={`../messages/dialog/${this.props.currentDialog.id}`} replace={true} />
             }
-            
+
         }
-        
+
     }
 }
 
@@ -124,7 +130,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 
 
 export default compose(
-// @ts-ignore
+    // @ts-ignore
     connect<MapStatePropsType, MapDispatchPropsType, ParamsForPropsType, AppStateType>(mapStateToProps, {
         // getAboutMe,
         updateAboutMe,
@@ -132,7 +138,7 @@ export default compose(
         // loadPhoto,                //TODO
         like,
         dislike,
-        
+
         getDialog,
     }),
     withRouter,

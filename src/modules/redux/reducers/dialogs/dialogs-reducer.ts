@@ -391,7 +391,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
 
         case SET_CURRENT_DIALOG:
             if (action.dialog) {
-                debugger
+                
                 return { ...state, currentDialogId: action.dialog.id, currentDialog: action.dialog, messages: action.dialog.messages }
             } else {
                 return { ...state, currentDialogId: undefined, currentDialog: null, messages: [] }
@@ -528,7 +528,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: DialogsA
                     newMessages.unshift(m)
                 }
             });
-            debugger
+            
             return { ...state, messages: newMessages }
 
         case IS_MESSAGES_FETCHING:

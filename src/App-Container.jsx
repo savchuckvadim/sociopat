@@ -45,8 +45,7 @@ const AppContainer = (props) => {
     }, [])
 
 
-    let app = <LightLoadingPageContainer />
-
+    let app = <App {...props} />
 
     if (!props.isAuth && !props.preloader) {
 
@@ -54,6 +53,7 @@ const AppContainer = (props) => {
 
     }
     else if (props.preloader) {
+        
         app = <LightLoadingPageContainer />
     }
 

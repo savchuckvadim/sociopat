@@ -109,7 +109,6 @@ const usersReducer = (state: UsersStateType = initialState, action: UsersActions
         case "SP/USERS/FOLLOWING_IN_PROGRESS":
             result = { ...state }
             result.followingInProgress = [...state.followingInProgress]
-
             action.isFetching ?
                 result.followingInProgress.push(action.userId) :
                 result.followingInProgress = state.followingInProgress.filter(id => id !== action.userId)
@@ -145,7 +144,6 @@ const usersReducer = (state: UsersStateType = initialState, action: UsersActions
 
                 usersWithOnline = precenseUserUtil(state.users, action.userId, false)
 
-                debugger
                 return { ...state, online: deleteResultOnline, users: usersWithOnline }
             } else {
 

@@ -1,14 +1,14 @@
 import { UserType } from "../../types/types"
 
 export const precenseUserUtil = (users: Array<UserType>, userId: number, status: boolean | string): Array<UserType> => {
-    debugger
+    
     if (users.length > 0) {
         const resultUsers = users.map(user => (
             user.id === userId
                 ? { ...user, isActive: status }
                 : user
         ))
-        debugger
+        
         return resultUsers
     } else {
         return users
@@ -19,7 +19,7 @@ export const setOnlineInAll = (users: Array<UserType>, onlineUserIds: Array<numb
 
     if (users.length > 0) {
         const resultUsers = users.map(user => {
-debugger
+
             if (onlineUserIds.some(userId => userId == user.id)) {
 
                 return { ...user, isActive: true }
