@@ -1,0 +1,60 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/mixins';
+
+.frame {
+    margin: 8px;
+    padding: 16px;
+    background-color: $white-color;
+    height: 185px;
+    width: 199px;
+
+    @include flexbox($direction: column,
+        $justify: space-between,
+        $align-items: center,
+    );
+
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 900px) {
+    .frame {
+        width: 75%;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .frame {
+        width: 95%;
+    }
+
+}
+
+.icon__wrapper {
+    margin: 0;
+    padding: 0;
+    width: 68px;
+    height: 68px;
+
+}
+
+.login {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+
+}
+
+.login p {
+
+    font-weight: 600;
+}
+
+.follow__wrapper {
+    width: 100%;
+    height: 40px;
+    // display: flex;// align-items: center;
+// justify-content: center;
+    @include flexbox(
+    $justify: center,
+    $align-items: center)
+}

@@ -1,16 +1,16 @@
 import style from './Button.module.css'
 import { Field } from 'redux-form'
-export type ColorType = 'white'|'red'|'grey'
-export type DisabledType = boolean 
+export type ColorType = 'white' | 'red' | 'grey'
+export type DisabledType = boolean
 
 type ButtonType = {
     color: ColorType
-    border:  12|16|18
+    border: 12 | 16 | 18
     name: string
     disabled: boolean
-    onClick:( () => void) |undefined
+    onClick: (() => void) | undefined
 }
-export enum ButtonColorsEnum  {
+export enum ButtonColorsEnum {
     red = 'red',
     grey = 'grey',
     white = 'white'
@@ -29,7 +29,7 @@ const Button: React.FC<ButtonType> = (props) => {
             style={{
                 borderRadius: props.border,
                 backgroundColor: background,
-                color:color
+                color: color
             }}
             type='submit'
             name={'whiteButton'}

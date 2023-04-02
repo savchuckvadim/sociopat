@@ -31,8 +31,10 @@
 }
 
 .text {
-    @extend .text--base--line;
+    /* @extend .text--base--line; */
     width: 100%;
+    height: 100%;
+    max-height: 88px;
     border: none;
     text-align: center;
     word-break: break-word;

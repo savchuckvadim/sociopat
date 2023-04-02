@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import style from './User-Card.module.css'
+import style from './User-Card.module.scss'
 import FollowUnfollowButtons from '../../../../Elements/Button/Follow-Unfollow-Buttons/Follow-Unfollow-Buttons'
 import Avatar from '../../../../Elements/Avatar/Avatar'
 import { UserType } from "../../../../../types/types"
