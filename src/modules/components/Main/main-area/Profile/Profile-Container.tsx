@@ -49,11 +49,9 @@ type MapStatePropsType = {
     isPostSending: boolean
     currentDialog: DialogType | null
     
-
-
-
-
 }
+
+
 type MapDispatchPropsType = {
 
     updateAboutMe: (aboutMe: string) => void
@@ -99,9 +97,12 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 
     }
     componentDidUpdate() {
-
         let userId = this.getUserId()
-        this.getProfileData(userId)
+        if(!this.props.visitedUser || (this.props.visitedUser && this.props.visitedUser.id !== userId)){
+            this.getProfileData(userId)
+        }
+        
+       
 
     }
 
@@ -109,7 +110,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
         if (this.props.auth) {
             if (!this.props.currentDialog) {
                 if (this.props.params.userId && `${this.props.params.userId}` === `${this.props.auth && this.props.auth.id}`) return <Navigate replace to={'../profile'} />
-                if (!this.props.visitedUser || this.props.isProfileFetching) return <LightLoadingPageContainer />
+                if ( this.props.isProfileFetching) return <LightLoadingPageContainer />
                 return (
 
                     <Profile {...this.props}

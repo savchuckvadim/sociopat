@@ -19,7 +19,7 @@ let initialState = {
     posts: [] as Array<PostType>,
     likeInProgress: false as boolean,
     isPostSending: false as boolean,
-    isProfileFetching: true as boolean,
+    isProfileFetching: false as boolean,
 }
 
 export type ProfileStateType = typeof initialState
@@ -47,13 +47,13 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ProfileAction
 
 export const getDataForLoadProfilePage = (userId: number) => async (dispatch: AppDispatchType, getState: GetStateType) => {
     const state = getState()
-    debugger
-    dispatch(profileActions.isProfileFetching(true))
+   
     if ((state.profile.visitedUser && state.profile.visitedUser.id !== userId) || !state.profile.visitedUser) {
-        
+        dispatch(profileActions.isProfileFetching(true))
         const userRes = await usersAPI.getUser(userId)
         const postsRes = await postAPI.getPosts(userId) //get posts from backend and set to state
         let user = null
+        
         if (userRes) {
 
             if (userRes.resultCode === ResultCodesEnum.Success) {
@@ -69,14 +69,10 @@ export const getDataForLoadProfilePage = (userId: number) => async (dispatch: Ap
             dispatch(profileActions.setPosts(posts))
         } else {
             alert(postsRes.message)
-        }
-
-
+        }  
         dispatch(profileActions.isProfileFetching(false))
         dispatch(profileActions.setProfilePageData(user))
     }
-
-
 
 }
 
