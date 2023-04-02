@@ -3,6 +3,7 @@ import style from './Send-Post.module.css'
 import { reduxForm, Field, reset } from 'redux-form'
 import InputSendPost from './Send-Post-Form-Controls'
 import { LightLoadingPageContainer } from '../../../../Elements/Loading/Light-Loading-Page-Container'
+import LoadingPage from '../../../../Elements/Loading/Loading-Page'
 
 export const SendPost = (props) => {
 
@@ -16,26 +17,26 @@ export const SendPost = (props) => {
     }
 
     return (
-        !props.isPostSending
-            ? <SendPostFormReduxForm onSubmit={submit} user={props.user} />
-            : <div className={style.framePreloader}
-            >
-                <LightLoadingPageContainer />
-            </div>
+        <SendPostFormReduxForm isPostSending={props.isPostSending} onSubmit={submit} user={props.user} />
+
     )
 }
 let SendPostForm = (props) => {
 
-    return (
-        <form onSubmit={props.handleSubmit} className={style.frame}>
-
-            <Field
+    return (<form onSubmit={props.handleSubmit} className={style.frame}>
+        {!props.isPostSending
+            ? <Field
                 component={InputSendPost}
                 name='sendPost'
                 user={props.user}
             />
 
-        </form>
+            : <div className={style.framePreloader}>
+                <LoadingPage isComponent={true} />
+            </div>}
+    </form>
+
+
     )
 }
 

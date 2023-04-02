@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
         logo: theme.greyLogo
     }
     return {
-        style: style
+        style: style,
+        isComponent: false
 
     }
 }
