@@ -2,7 +2,7 @@ import style from './Light-Loading-Page.module.scss'
 import dark from './Dark-Loading-Page.module.css'
 
 const LoadingPage = (props) => {
-    debugger
+    
     if (props.type === 'dark') {
         return (
             <div className={dark.wrapper} style={props.style}>

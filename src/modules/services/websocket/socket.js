@@ -65,6 +65,7 @@ export const socket = {
       echo.private(`send-post`)
         .listen('SendPost', (e) => {
           console.log(e)
+          debugger
           dispatch(notificationsActions.setNotification(e))
         })
     } else {

@@ -90,7 +90,7 @@ export type PaginatorLinksType = {
 
 export type NotificationType = {
     // isSound: boolean
-    message: MessageType
+    message: MessageType | PostType
 
 }
 
