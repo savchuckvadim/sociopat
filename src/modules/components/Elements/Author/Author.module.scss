@@ -2,9 +2,6 @@
 @import '../../../styles/mixins';
 
 .user__wrapper {
-    // display: flex;
-    // flex-direction: row;
-    // justify-content: space-around;
     @include flexbox($justify: space-around);
 }
 
@@ -17,8 +14,6 @@
 
 .user__info {
     margin-left: 16px;
-    // display: flex;// justify-content: center;
-    // flex-direction: column;
     @include flexbox($direction: column, $justify: center)
 }
 

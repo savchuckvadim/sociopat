@@ -1,0 +1,23 @@
+@import '../../../styles/mixins';
+@import '../../../styles/variables';
+
+
+.wrapper {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    @include flexbox($direction: column,
+        $justify: center,
+        $align-items: center);
+}
+
+.logo {
+    opacity: 50%;
+    min-width: 100px;
+    height: auto;
+}
+
+.text {
+    color: $grey-color;
+}

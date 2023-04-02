@@ -1,5 +1,6 @@
-import style from './Button.module.css'
-import { Field } from 'redux-form'
+import style from './Button.module.scss'
+
+
 export type ColorType = 'white' | 'red' | 'grey'
 export type DisabledType = boolean
 
@@ -19,7 +20,7 @@ const Button: React.FC<ButtonType> = (props) => {
     let background = 'white'
     let color = 'black'
     if (props.color === ButtonColorsEnum.grey) {
-        background = '#F4F4F4'
+        background = 'rgb(244, 244, 244)'
     } else if (props.color === ButtonColorsEnum.red) {
         background = 'rgba(244, 72, 72, 1)'
         color = 'white'

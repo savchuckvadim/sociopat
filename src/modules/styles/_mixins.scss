@@ -11,3 +11,8 @@
     align-items: $align-items;
     align-content: $align-content;
 }
+
+@mixin color__animation(){
+    transition-property: background-color, color;
+    transition-duration: 0.5s;
+}

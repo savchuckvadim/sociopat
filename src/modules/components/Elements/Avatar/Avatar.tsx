@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { UserType } from '../../../types/types'
-import style from './Avatar.module.css'
+import style from './Avatar.module.scss'
 
 
 type PropsType = {
