@@ -10,7 +10,8 @@ const mapStateToProps = (state: AppStateType) => {
 
     return {
         user: state.auth.authUser,
-        visitedUser: state.profile.visitedUser
+        visitedUser: state.profile.visitedUser,
+        isPostSending: state.profile.isPostSending
 
     }
 }

@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
     }
     return {
         style: style
+
     }
 }
 

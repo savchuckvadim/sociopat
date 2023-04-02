@@ -6,16 +6,10 @@
 .App {
   text-align: center;
   min-height: 100vh;
-  background-color: #F4F4F4;
+  background-color: $background-color;
+ 
 }
 
-
-
-// [class*=_container] {
-//   max-width: 991px;
-
-// }
-
-// body {
-//   background-color: '#F4F4F4';
-// }
+.preloader__wrapper{
+  height: 100vh;
+}

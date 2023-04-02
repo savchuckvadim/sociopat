@@ -3,11 +3,9 @@ import { connect } from "react-redux"
 import { useParams } from "react-router-dom"
 import { compose } from "redux"
 import App from "./App"
-import { LightLoadingPageContainer } from "./modules/components/Elements/Loading/Light-Loading-Page-Container"
 import StartPage from "./modules/components/Start/Start-Page"
 import { initialize } from "./modules/redux/reducers/app-reducer"
 import { getAuth } from "./modules/redux/reducers/auth/auth-reducer"
-import { dialogsAPI } from "./modules/services/dialogs-api"
 
 const withRouter = WrappedComponent => props => {
     const params = useParams()
@@ -32,10 +30,10 @@ const mapStateToProps = (state) => {
 const AppContainer = (props) => {
 
     useEffect(() => {
-        
+
         if (!props.isAuth) {
             props.initialize()
-   
+
         } else {
             console.log('allready initialized')
         }
@@ -47,15 +45,13 @@ const AppContainer = (props) => {
 
     let app = <App {...props} />
 
-    if (!props.isAuth && !props.preloader) {
+
+    if (!props.isAuth) {
 
         app = <StartPage />
 
     }
-    else if (props.preloader) {
-        
-        app = <LightLoadingPageContainer />
-    }
+ 
 
     else {
         app = <App {...props} />

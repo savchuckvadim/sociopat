@@ -103,7 +103,7 @@ export const updateAboutMe = (aboutMe: string):
 export const sendPost = (userId: number, profileId: number, body: string, img: string):
     ThunkType => async (dispatch: any, getState) => {
         // dispatch(inProgress(true, PreloaderCodesEnum.Global))
-        dispatch(profileActions.isProfileFetching(true))
+        dispatch(profileActions.isPostSending(true))
         const res = await postAPI.sendPost(userId, profileId, body, img)
         if (res.resultCode === ResultCodesEnum.Success) {
             dispatch(profileActions.addPostActionCreator(res.post))
@@ -111,7 +111,7 @@ export const sendPost = (userId: number, profileId: number, body: string, img: s
             alert(res.message)
         }
         // dispatch(inProgress(false, PreloaderCodesEnum.Global))
-        dispatch(profileActions.isProfileFetching(false))
+        dispatch(profileActions.isPostSending(false))
     }
 
 
