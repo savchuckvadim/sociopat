@@ -37,7 +37,7 @@ const FooterSendPost: React.FC<FooterSendPostPropsType> = (props) => {
             <div style={{ height: height }} className={style.left__area}>
 
                 <div className={style.camera__wrapper}>
-                    <img className={cameraClass} src={camera} alt='camera' />
+                    {/* <img className={cameraClass} src={camera} alt='camera' /> */}
                     <p style={{ opacity: opacityCamera, height: heightCamera }} className={cameraClass}>Photo/Video</p>
                 </div>
 
@@ -48,11 +48,12 @@ const FooterSendPost: React.FC<FooterSendPostPropsType> = (props) => {
                 <div
                     style={{ opacity: opacity, height: height }}
                     className={sendAreaClass}>
+
                     <Button color={'red'}
-                        // className={cameraClass}  
                         border={12} name={'Post'}
                         onClick={undefined}
                     />
+
                 </div>
             </div>
         </div>

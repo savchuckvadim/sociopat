@@ -8,28 +8,10 @@ import { getAuth } from "./modules/redux/reducers/auth/auth-reducer"
 import { AppDispatchType, AppStateType } from "./modules/redux/store"
 import WithRouter from "./modules/components/HOC/WithRouter"
 
-// type WithRouterProps<P> = P & {
-//     params: ReturnType<typeof useParams>;
-// };
-
-// const withRouter = <Props extends {}>(
-//     WrappedComponent: React.ComponentType<WithRouterProps<Props>>
-// ): React.FC<Props> => {
-//     return (props: Props) => {
-//         const params = useParams();
-
-//         return <WrappedComponent {...props} params={params} />;
-//     };
-// };
-// const withRouter = WrappedComponent => props => {
-//     const params = useParams()
-//     // etc... other react-router-dom v6 hooks
-
-//     return (<WrappedComponent {...props} params={params} />
-//     )
-// }
 
 type ConnectorType = typeof connector
+
+
 const mapStateToProps = (state: AppStateType) => {
 
     return {
@@ -37,7 +19,6 @@ const mapStateToProps = (state: AppStateType) => {
         initialized: state.app.initialized,
         preloader: state.preloader.global.inProgress
         //TODO initializedInProgress 
-
     }
 }
 const mapDispatchToProps = (dispatch: AppDispatchType) => {
@@ -80,11 +61,6 @@ const AppContainer: React.FC<ConnectedProps<ConnectorType>> = (props) => {
 
 
 export default compose(
-
-    // connect(mapStateToProps, {
-    //     getAuth,
-    //     initialize
-    // }),
     connector,
     WithRouter
 )(AppContainer)
