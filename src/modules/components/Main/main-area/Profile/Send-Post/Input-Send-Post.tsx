@@ -1,31 +1,33 @@
 import Avatar from '../../../../Elements/Avatar/Avatar'
 import camera from '../../../../../../assets/imgs/posts/camera-photo.svg'
 import style from './Send-Post.module.css'
-
 import FooterSendPost from './Footer-send-Post/Footer-Send-Post.jsx'
+import { WrappedFieldInputProps, WrappedFieldMetaProps } from 'redux-form'
+import { UserType } from '../../../../../types/types'
 
-const InputSendPost = ({ input, meta, ...props }) => {
-    let height = 40
+type InputSendPostPropsType = {
+    input: WrappedFieldInputProps
+    meta: WrappedFieldMetaProps
+    user: UserType
+}
+
+const InputSendPost: React.FC<InputSendPostPropsType> = ({ input, meta, ...props }) => {
+    let height = 40 as number | string
     let displaySending = 'none'
     let displayDefault = 'block'
     let textHeight = '5px'
-    // let textCols = 5
-    let textResize = 'none'
+    let textResize = 'none' as 'none' | 'vertical'
     let textClass = style.input
     let cameraOpacity = 50
-    // let sendArea = <p>Photo/Video</p>
-    // let user= props.user
+
 
     let leftAreaClass = style.left__area
     if (meta.active || input.value) {
-        // sendArea = <img
-        //     src={arrowup}
-        //     alt='arrow-up' />
+
         height = '100%'
         displaySending = 'flex'
         displayDefault = 'none'
         textHeight = '50px'
-        // textCols = 55
         textResize = 'vertical'
         textClass = style.inputActive
         leftAreaClass = style.left__areaActive
@@ -36,29 +38,15 @@ const InputSendPost = ({ input, meta, ...props }) => {
     return (
         <>
 
-            <div className={style.wrapper} style={
-                {
-                    minHeight: height
-                }}
-            >
+            <div className={style.wrapper} style={{ minHeight: height }}>
 
-                <div className={leftAreaClass}
-
-                >
-                    <div style={
-                        {
-                            // display: displayDefault
-                        }} className={style.icon__wrapper}>
+                <div className={leftAreaClass}>
+                    <div className={style.icon__wrapper}>
                         <Avatar
                             size={40}
-                            link={false}
-                            img={props.user.profile.avatar}
-                            // name={props.user.fullName}
                             user={props.user}
                         />
-                        {/* <Icon 
-                        user={props} 
-                        /> */}
+
                     </div>
 
                     <textarea className={textClass}
@@ -70,8 +58,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
                         }}
 
                         placeholder='Take a shit here...'
-                        // cols={textCols}
-                        rows={'1'}
+                        rows={1}
                     />
                 </div>
 
@@ -79,8 +66,7 @@ const InputSendPost = ({ input, meta, ...props }) => {
                     style={{
                         display: displayDefault,
                         opacity: cameraOpacity
-                    }}
-                >
+                    }}>
                     <div className={style.camera__wrapper}>
                         <img src={camera} alt='camera' />
                         <p>Photo/Video</p>

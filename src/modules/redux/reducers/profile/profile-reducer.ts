@@ -100,7 +100,7 @@ export const updateAboutMe = (aboutMe: string):
 
 // }
 
-export const sendPost = (userId: number, profileId: number, body: string, img: string):
+export const sendPost = (userId: number, profileId: number, body: string, img: string | null):
     ThunkType => async (dispatch: any, getState) => {
         // dispatch(inProgress(true, PreloaderCodesEnum.Global))
         dispatch(profileActions.isPostSending(true))

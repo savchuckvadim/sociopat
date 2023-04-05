@@ -4,7 +4,7 @@ import PostsArea from './Posts-Area/Posts-Area'
 import { ProfilePropsType } from './Profile-Container'
 import ProfileInformation from './Profile-Information/Profile-Information'
 import style from './Profile.module.css'
-import { SendPostContainer } from './Send-Post/Send-Post-Container'
+import  SendPostContainer  from './Send-Post/Send-Post-Container'
 
 
 export const Profile: React.FC<ProfilePropsType> = (props) => {

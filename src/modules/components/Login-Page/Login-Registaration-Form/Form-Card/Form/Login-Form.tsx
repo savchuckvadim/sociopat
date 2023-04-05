@@ -5,8 +5,7 @@ import { emailValidate, FieldValidatorType, passwordValidate, requiredFields } f
 import style from './Form.module.css'
 import Input from './Inputs/Input-Login-Registartion'
 import Button from '../../../../Elements/Button/Button'
-import { FieldType, LoginFieldsType, SetErrorType } from '../../../../../redux/reducers/login-registaration/login-registration-reducer'
-import { LoginPropsType } from '../../Login-Container'
+import { LoginFieldsType, SetErrorType } from '../../../../../redux/reducers/login-registaration/login-registration-reducer'
 import { FieldsValuesType, OnSubmitType } from '../Login-Form-Card'
 
 // type FieldsType = LoginFieldsType | RegistrationFieldsType

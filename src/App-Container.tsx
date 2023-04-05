@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import { ConnectedProps, connect } from "react-redux"
-import { useParams } from "react-router-dom"
 import { compose } from "redux"
 import App from "./App"
 import StartPage from "./modules/components/Start/Start-Page"

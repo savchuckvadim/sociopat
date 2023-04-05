@@ -24,7 +24,7 @@ export const postAPI = {
         const res = await api.get<GetPostsType>(`api/post/${profileId}`);
         return res.data;
     },
-    async sendPost(userId: number, profileId: number, body: string, image: string) {
+    async sendPost(userId: number, profileId: number, body: string, image: string | null) {
         await api.get<string>("/sanctum/csrf-cookie");
 
         // await eventsAPI.event()
