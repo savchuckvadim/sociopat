@@ -8,7 +8,7 @@ type ButtonType = {
     color: ColorType
     border: 12 | 16 | 18
     name: string
-    disabled: boolean
+    disabled?: boolean
     onClick: (() => void) | undefined
 }
 export enum ButtonColorsEnum {

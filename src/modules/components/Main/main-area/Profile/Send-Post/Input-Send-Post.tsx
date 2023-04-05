@@ -1,7 +1,7 @@
 import Avatar from '../../../../Elements/Avatar/Avatar'
 import camera from '../../../../../../assets/imgs/posts/camera-photo.svg'
 import style from './Send-Post.module.css'
-import FooterSendPost from './Footer-send-Post/Footer-Send-Post.jsx'
+import FooterSendPost from './Footer-send-Post/Footer-Send-Post'
 import { WrappedFieldInputProps, WrappedFieldMetaProps } from 'redux-form'
 import { UserType } from '../../../../../types/types'
 
@@ -13,7 +13,7 @@ type InputSendPostPropsType = {
 
 const InputSendPost: React.FC<InputSendPostPropsType> = ({ input, meta, ...props }) => {
     let height = 40 as number | string
-    let displaySending = 'none'
+    let displaySending = 'none' as 'none' | 'flex'
     let displayDefault = 'block'
     let textHeight = '5px'
     let textResize = 'none' as 'none' | 'vertical'
@@ -38,35 +38,26 @@ const InputSendPost: React.FC<InputSendPostPropsType> = ({ input, meta, ...props
     return (
         <>
 
-            <div className={style.wrapper} style={{ minHeight: height }}>
-
+            <div className={style.wrapper}
+                style={{ minHeight: height }}>
                 <div className={leftAreaClass}>
                     <div className={style.icon__wrapper}>
-                        <Avatar
-                            size={40}
-                            user={props.user}
-                        />
-
+                        <Avatar size={40} user={props.user} />
                     </div>
 
-                    <textarea className={textClass}
+                    <textarea
+                        className={textClass}
                         {...input}
                         {...props}
-                        style={{
-                            height: textHeight,
-                            resize: textResize
-                        }}
-
+                        style={{ height: textHeight, resize: textResize }}
                         placeholder='Take a shit here...'
                         rows={1}
                     />
                 </div>
 
                 <div className={style.right__area}
-                    style={{
-                        display: displayDefault,
-                        opacity: cameraOpacity
-                    }}>
+                    style={{ display: displayDefault, opacity: cameraOpacity }}>
+
                     <div className={style.camera__wrapper}>
                         <img src={camera} alt='camera' />
                         <p>Photo/Video</p>
@@ -74,7 +65,7 @@ const InputSendPost: React.FC<InputSendPostPropsType> = ({ input, meta, ...props
 
                 </div>
             </div>
-            <FooterSendPost {...input}
+            <FooterSendPost input={input}
                 {...props} display={displaySending} />
         </>
 
