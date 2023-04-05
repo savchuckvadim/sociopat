@@ -1,6 +1,6 @@
 import style from './Login-Page.module.scss'
 import RegistrationContainer from './Login-Registaration-Form/Registration-Container'
-import Background from '../Elements/Backgounds/Background'
+import Background from '../Elements/Backgrounds/Background'
 import HeaderContainer from '../Header/Header-Container'
 
 

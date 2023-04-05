@@ -4,7 +4,7 @@ import inscriptionLogog from '../../../assets/imgs/logo/Sociopath.svg'
 import { Navigate, NavLink } from 'react-router-dom'
 import { Route, Routes } from "react-router-dom"
 import LoginPage from '../Login-Page/Login-Page'
-import Background from '../Elements/Backgounds/Background'
+import Background from '../Elements/Backgrounds/Background'
 import RegistrationPage from '../Login-Page/Registration-Page'
 import Button from '../Elements/Button/Button'
 
@@ -27,7 +27,7 @@ const Start = () => {
                 <div>
                     <div className={style.slogan__wrapper}>
                         <h1 className={style.slogan__title}>Become a Sociopath.</h1>
-                        <p className={style.slogan__text}> and give a shit at all</p>
+                        <p className={style.slogan__text}>and give a shit at all</p>
                     </div>
 
                     <div className={style.buttons__wrapper}>

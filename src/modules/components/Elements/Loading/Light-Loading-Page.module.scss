@@ -18,12 +18,23 @@
     opacity: 50%;
     min-width: 100px;
     height: auto;
+   
 }
 
 .logoMini  {
-    
+    margin: 5px;
     width: 30px;
     height: auto;
+    animation: rotation 0.2s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .logoMini svg path {

@@ -1,7 +1,7 @@
 import style from './Login-Page.module.scss'
 import LoginContainer from './Login-Registaration-Form/Login-Container'
 import HeaderContainer from '../Header/Header-Container'
-import Background from '../Elements/Backgounds/Background'
+import Background from '../Elements/Backgrounds/Background'
 
 
 const LoginPage = () => {

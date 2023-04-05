@@ -1,4 +1,4 @@
-import Post from "./Posts/Post"
+import Post from "./Post/Post"
 import nopost from '../../../../../../assets/imgs/posts/nopost.svg'
 import style from './Posts-Area.module.css'
 import { PostType, ProfileType } from "../../../../../types/types"

@@ -5,7 +5,7 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 import store from './modules/redux/store.ts'
 import { BrowserRouter } from 'react-router-dom'
-import AppContainer from './App-Container.jsx'
+import AppContainer from './App-Container.tsx'
 
 
 
