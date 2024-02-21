@@ -16,7 +16,7 @@ export const authAPI = {
     },
 
     async register(name: string, surname: string, email: string, password: string, passwordConfirmation: string) {
-        await api.get("/sanctum/csrf-cookie");
+        // await api.get("/sanctum/csrf-cookie");
         let result = await api.post('register', {
             name: name,
             surname: surname,
@@ -30,7 +30,7 @@ export const authAPI = {
     },
 
     async login(email: string, password: string) {
-        await api.get("/sanctum/csrf-cookie");
+        // await api.get("/sanctum/csrf-cookie");
         let res = await api.post('login', {
             email: email,
             password: password,
